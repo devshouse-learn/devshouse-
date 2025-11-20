@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Empleo - DevsHouse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DevsHouse</h1>
+            <p class="subtitle">Encuentra tu próxima oportunidad</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-header">
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+            <h2>Registro de Candidato</h2>
+            <p>Completa tu perfil para encontrar las mejores oportunidades laborales.</p>
+        </div>
+
+        <form id="buscarEmpleoForm" class="registration-form">
+            <div class="form-section">
+                <h3>Información Personal</h3>
+                
+                <div class="form-group">
+                    <label for="nombreCompleto">Nombre Completo *</label>
+                    <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoDocumento">Tipo de Documento *</label>
+                        <select id="tipoDocumento" name="tipoDocumento" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="cc">Cédula de Ciudadanía</option>
+                            <option value="ce">Cédula de Extranjería</option>
+                            <option value="pasaporte">Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numeroDocumento">Número de Documento *</label>
+                        <input type="text" id="numeroDocumento" name="numeroDocumento" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha de Nacimiento *</label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genero">Género</label>
+                        <select id="genero" name="genero">
+                            <option value="">Seleccione una opción</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                            <option value="prefiero-no-decir">Prefiero no decir</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emailCandidato">Email *</label>
+                        <input type="email" id="emailCandidato" name="emailCandidato" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefonoCandidato">Teléfono *</label>
+                        <input type="tel" id="telefonoCandidato" name="telefonoCandidato" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccionCandidato">Dirección</label>
+                    <input type="text" id="direccionCandidato" name="direccionCandidato">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciudadCandidato">Ciudad *</label>
+                        <input type="text" id="ciudadCandidato" name="ciudadCandidato" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paisCandidato">País *</label>
+                        <input type="text" id="paisCandidato" name="paisCandidato" value="Colombia" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Educación</h3>
+                
+                <div class="form-group">
+                    <label for="nivelEducativo">Nivel Educativo *</label>
+                    <select id="nivelEducativo" name="nivelEducativo" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="bachiller">Bachiller</option>
+                        <option value="tecnico">Técnico</option>
+                        <option value="tecnologo">Tecnólogo</option>
+                        <option value="universitario">Universitario en curso</option>
+                        <option value="profesional">Profesional</option>
+                        <option value="especializacion">Especialización</option>
+                        <option value="maestria">Maestría</option>
+                        <option value="doctorado">Doctorado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="carreraProfesion">Carrera/Profesión *</label>
+                    <input type="text" id="carreraProfesion" name="carreraProfesion" required placeholder="Ej: Ingeniería de Sistemas, Administración de Empresas">
+                </div>
+
+                <div class="form-group">
+                    <label for="institucionEducativa">Institución Educativa</label>
+                    <input type="text" id="institucionEducativa" name="institucionEducativa">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Experiencia Laboral</h3>
+                
+                <div class="form-group">
+                    <label for="anosExperiencia">Años de Experiencia *</label>
+                    <select id="anosExperiencia" name="anosExperiencia" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="sin-experiencia">Sin experiencia</option>
+                        <option value="menos-1">Menos de 1 año</option>
+                        <option value="1-2">1-2 años</option>
+                        <option value="3-5">3-5 años</option>
+                        <option value="5-10">5-10 años</option>
+                        <option value="10+">Más de 10 años</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="areaExperiencia">Área de Experiencia *</label>
+                    <select id="areaExperiencia" name="areaExperiencia" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="tecnologia">Tecnología/IT</option>
+                        <option value="ventas">Ventas</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="rrhh">Recursos Humanos</option>
+                        <option value="finanzas">Finanzas/Contabilidad</option>
+                        <option value="operaciones">Operaciones</option>
+                        <option value="servicio">Servicio al Cliente</option>
+                        <option value="diseno">Diseño</option>
+                        <option value="administracion">Administración</option>
+                        <option value="educacion">Educación</option>
+                        <option value="salud">Salud</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experienciaDetalle">Descripción de tu Experiencia</label>
+                    <textarea id="experienciaDetalle" name="experienciaDetalle" rows="5" placeholder="Describe tus responsabilidades y logros principales en trabajos anteriores..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="cargoActual">Cargo Actual/Último Cargo</label>
+                    <input type="text" id="cargoActual" name="cargoActual" placeholder="Ej: Desarrollador Senior, Contador">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Habilidades y Competencias</h3>
+                
+                <div class="form-group">
+                    <label for="habilidadesTecnicas">Habilidades Técnicas *</label>
+                    <textarea id="habilidadesTecnicas" name="habilidadesTecnicas" rows="4" required placeholder="Ej: JavaScript, Python, Excel avanzado, SQL, Photoshop, etc."></textarea>
+                    <small>Separa cada habilidad con comas</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="habilidadesBlandas">Habilidades Blandas</label>
+                    <textarea id="habilidadesBlandas" name="habilidadesBlandas" rows="3" placeholder="Ej: Liderazgo, Trabajo en equipo, Comunicación efectiva, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="idiomas">Idiomas *</label>
+                    <textarea id="idiomas" name="idiomas" rows="2" required placeholder="Ej: Español (Nativo), Inglés (Intermedio), Francés (Básico)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="certificaciones">Certificaciones (Opcional)</label>
+                    <textarea id="certificaciones" name="certificaciones" rows="3" placeholder="Lista tus certificaciones profesionales, cursos completados, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Preferencias Laborales</h3>
+                
+                <div class="form-group">
+                    <label for="tipoEmpleoDeseado">Tipo de Empleo Deseado *</label>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" name="tipoEmpleo" value="tiempo-completo"> Tiempo Completo</label>
+                        <label><input type="checkbox" name="tipoEmpleo" value="medio-tiempo"> Medio Tiempo</label>
+                        <label><input type="checkbox" name="tipoEmpleo" value="freelance"> Freelance</label>
+                        <label><input type="checkbox" name="tipoEmpleo" value="practicas"> Prácticas</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalidadPreferida">Modalidad Preferida *</label>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" name="modalidad" value="presencial"> Presencial</label>
+                        <label><input type="checkbox" name="modalidad" value="remoto"> Remoto</label>
+                        <label><input type="checkbox" name="modalidad" value="hibrido"> Híbrido</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="aspiracionSalarial">Aspiración Salarial</label>
+                    <input type="text" id="aspiracionSalarial" name="aspiracionSalarial" placeholder="Ej: $2,500,000 - $3,500,000">
+                </div>
+
+                <div class="form-group">
+                    <label for="disponibilidad">Disponibilidad *</label>
+                    <select id="disponibilidad" name="disponibilidad" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="inmediata">Inmediata</option>
+                        <option value="15-dias">15 días</option>
+                        <option value="1-mes">1 mes</option>
+                        <option value="2-meses">2 meses o más</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="disponibilidadViajar">¿Disponibilidad para viajar?</label>
+                    <select id="disponibilidadViajar" name="disponibilidadViajar">
+                        <option value="">Seleccione una opción</option>
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                        <option value="ocasional">Ocasionalmente</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Información Adicional</h3>
+                
+                <div class="form-group">
+                    <label for="linkedinProfile">Perfil de LinkedIn</label>
+                    <input type="url" id="linkedinProfile" name="linkedinProfile" placeholder="https://linkedin.com/in/tu-perfil">
+                </div>
+
+                <div class="form-group">
+                    <label for="portafolio">Portafolio/Sitio Web</label>
+                    <input type="url" id="portafolio" name="portafolio" placeholder="https://tu-portafolio.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="github">GitHub (para desarrolladores)</label>
+                    <input type="url" id="github" name="github" placeholder="https://github.com/tu-usuario">
+                </div>
+
+                <div class="form-group">
+                    <label for="sobreTi">Cuéntanos sobre ti</label>
+                    <textarea id="sobreTi" name="sobreTi" rows="5" placeholder="¿Qué te motiva? ¿Cuáles son tus objetivos profesionales? ¿Por qué deberíamos considerarte?"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="terminosBusqueda" name="terminosBusqueda" required>
+                        Acepto los términos y condiciones de uso *
+                    </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="autorizacionDatosCandidato" name="autorizacionDatosCandidato" required>
+                        Autorizo el tratamiento de mis datos personales y compartirlos con empresas reclutadoras *
+                    </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="notificaciones" name="notificaciones">
+                        Deseo recibir notificaciones sobre nuevas ofertas de empleo
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Registrar Perfil</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DevsHouse. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Comunidad -->
+    <div id="comunidadModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Bienvenido a la Comunidad de Candidatos!</h2>
+            <p>Te has unido exitosamente a nuestra bolsa de empleo.</p>
+            <div class="comunidad-info">
+                <h3>👥 Comunidad de Candidatos DevsHouse</h3>
+                <p>Aquí podrás:</p>
+                <ul>
+                    <li>Recibir alertas de nuevas vacantes</li>
+                    <li>Conectar con reclutadores</li>
+                    <li>Acceder a tips para entrevistas</li>
+                    <li>Participar en talleres de empleabilidad</li>
+                    <li>Networking con otros profesionales</li>
+                </ul>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary" onclick="unirseWhatsApp('candidatos')">Unirse al grupo de WhatsApp</a>
+                    <a href="#" class="btn btn-secondary" onclick="unirseDiscord('candidatos')">Unirse a Discord</a>
+                </div>
+            </div>
+            <button class="close-modal" onclick="cerrarModal()">Continuar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

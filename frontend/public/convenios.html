@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Convenio - DevsHouse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DevsHouse</h1>
+            <p class="subtitle">Registro de Convenio con Colegio</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-header">
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+            <h2>Formulario de Convenio con Instituciones Educativas</h2>
+            <p>Complete los datos de su institución para establecer un convenio educativo.</p>
+        </div>
+
+        <form id="conveniosForm" class="registration-form">
+            <div class="form-section">
+                <h3>Información de la Institución</h3>
+                
+                <div class="form-group">
+                    <label for="nombreColegio">Nombre del Colegio *</label>
+                    <input type="text" id="nombreColegio" name="nombreColegio" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoInstitucion">Tipo de Institución *</label>
+                    <select id="tipoInstitucion" name="tipoInstitucion" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="publico">Público</option>
+                        <option value="privado">Privado</option>
+                        <option value="mixto">Mixto</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nit">NIT *</label>
+                        <input type="text" id="nit" name="nit" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Dirección *</label>
+                    <input type="text" id="direccion" name="direccion" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad *</label>
+                        <input type="text" id="ciudad" name="ciudad" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pais">País *</label>
+                        <input type="text" id="pais" name="pais" value="Colombia" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Datos del Representante Legal</h3>
+                
+                <div class="form-group">
+                    <label for="nombreRepresentante">Nombre Completo *</label>
+                    <input type="text" id="nombreRepresentante" name="nombreRepresentante" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cargoRepresentante">Cargo *</label>
+                        <input type="text" id="cargoRepresentante" name="cargoRepresentante" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cedulaRepresentante">Cédula *</label>
+                        <input type="text" id="cedulaRepresentante" name="cedulaRepresentante" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emailRepresentante">Email *</label>
+                        <input type="email" id="emailRepresentante" name="emailRepresentante" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefonoRepresentante">Teléfono *</label>
+                        <input type="tel" id="telefonoRepresentante" name="telefonoRepresentante" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Detalles del Convenio</h3>
+                
+                <div class="form-group">
+                    <label for="tipoConvenio">Tipo de Convenio *</label>
+                    <select id="tipoConvenio" name="tipoConvenio" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="practicas">Prácticas Profesionales</option>
+                        <option value="capacitacion">Programas de Capacitación</option>
+                        <option value="eventos">Eventos Académicos</option>
+                        <option value="investigacion">Proyectos de Investigación</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="numeroEstudiantes">Número Aproximado de Estudiantes</label>
+                    <input type="number" id="numeroEstudiantes" name="numeroEstudiantes" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcionConvenio">Descripción del Convenio Propuesto *</label>
+                    <textarea id="descripcionConvenio" name="descripcionConvenio" rows="5" required placeholder="Describa los objetivos y alcance del convenio que desea establecer..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="areasInteres">Áreas de Interés</label>
+                    <textarea id="areasInteres" name="areasInteres" rows="3" placeholder="Ej: Tecnología, Programación, Diseño, Marketing Digital..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="terminosConvenio" name="terminosConvenio" required>
+                        Acepto los términos y condiciones del convenio *
+                    </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="autorizacionDatos" name="autorizacionDatos" required>
+                        Autorizo el tratamiento de datos personales según la política de privacidad *
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DevsHouse. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Comunidad -->
+    <div id="comunidadModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Bienvenido a la Comunidad de Convenios Educativos!</h2>
+            <p>Te has unido exitosamente a nuestra comunidad de instituciones educativas.</p>
+            <div class="comunidad-info">
+                <h3>🎓 Comunidad Educativa DevsHouse</h3>
+                <p>Aquí podrás:</p>
+                <ul>
+                    <li>Conectar con otras instituciones educativas</li>
+                    <li>Acceder a recursos de capacitación</li>
+                    <li>Participar en eventos académicos</li>
+                    <li>Compartir experiencias y mejores prácticas</li>
+                </ul>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary" onclick="unirseWhatsApp('convenios')">Unirse al grupo de WhatsApp</a>
+                    <a href="#" class="btn btn-secondary" onclick="unirseDiscord('convenios')">Unirse a Discord</a>
+                </div>
+            </div>
+            <button class="close-modal" onclick="cerrarModal()">Continuar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

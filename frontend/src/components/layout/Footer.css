@@ -1,0 +1,16 @@
+.footer {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 2.5rem 0;
+  text-align: center;
+  margin-top: 4rem;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  margin: 0;
+  opacity: 0.9;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}

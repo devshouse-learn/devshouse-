@@ -1,0 +1,62 @@
+.impact-section {
+  margin: 3rem 0;
+}
+
+.impact-section h3 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.impact-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: var(--transition);
+  border: 2px solid var(--border-color);
+}
+
+.impact-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+  border-color: var(--primary-light);
+}
+
+.impact-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.impact-item h4 {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.impact-item p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-section h3 {
+    font-size: 1.5rem;
+  }
+}

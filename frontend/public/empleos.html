@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar Empleo - DevsHouse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DevsHouse</h1>
+            <p class="subtitle">Publica Ofertas de Empleo</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-header">
+            <a href="index.html" class="back-link">← Volver al inicio</a>
+            <h2>Formulario de Publicación de Empleo</h2>
+            <p>Encuentra el mejor talento para tu empresa.</p>
+        </div>
+
+        <form id="empleosForm" class="registration-form">
+            <div class="form-section">
+                <h3>Información de la Empresa</h3>
+                
+                <div class="form-group">
+                    <label for="nombreEmpresaEmpleo">Nombre de la Empresa *</label>
+                    <input type="text" id="nombreEmpresaEmpleo" name="nombreEmpresaEmpleo" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nitEmpresaEmpleo">NIT *</label>
+                        <input type="text" id="nitEmpresaEmpleo" name="nitEmpresaEmpleo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sectorEmpresaEmpleo">Sector *</label>
+                        <select id="sectorEmpresaEmpleo" name="sectorEmpresaEmpleo" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="educacion">Educación</option>
+                            <option value="salud">Salud</option>
+                            <option value="finanzas">Finanzas</option>
+                            <option value="retail">Retail/Comercio</option>
+                            <option value="manufactura">Manufactura</option>
+                            <option value="servicios">Servicios</option>
+                            <option value="construccion">Construcción</option>
+                            <option value="marketing">Marketing/Publicidad</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="sitioWebEmpleo">Sitio Web de la Empresa</label>
+                    <input type="url" id="sitioWebEmpleo" name="sitioWebEmpleo" placeholder="https://">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emailContactoEmpleo">Email de Contacto *</label>
+                        <input type="email" id="emailContactoEmpleo" name="emailContactoEmpleo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefonoContactoEmpleo">Teléfono de Contacto *</label>
+                        <input type="tel" id="telefonoContactoEmpleo" name="telefonoContactoEmpleo" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Datos del Reclutador</h3>
+                
+                <div class="form-group">
+                    <label for="nombreReclutador">Nombre Completo *</label>
+                    <input type="text" id="nombreReclutador" name="nombreReclutador" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cargoReclutador">Cargo *</label>
+                        <input type="text" id="cargoReclutador" name="cargoReclutador" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailReclutador">Email *</label>
+                        <input type="email" id="emailReclutador" name="emailReclutador" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Detalles de la Vacante</h3>
+                
+                <div class="form-group">
+                    <label for="tituloVacante">Título del Cargo *</label>
+                    <input type="text" id="tituloVacante" name="tituloVacante" required placeholder="Ej: Desarrollador Full Stack, Diseñador UX/UI">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="areaVacante">Área/Departamento *</label>
+                        <select id="areaVacante" name="areaVacante" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="tecnologia">Tecnología/IT</option>
+                            <option value="ventas">Ventas</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="rrhh">Recursos Humanos</option>
+                            <option value="finanzas">Finanzas/Contabilidad</option>
+                            <option value="operaciones">Operaciones</option>
+                            <option value="servicio">Servicio al Cliente</option>
+                            <option value="diseno">Diseño</option>
+                            <option value="administracion">Administración</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nivelVacante">Nivel del Cargo *</label>
+                        <select id="nivelVacante" name="nivelVacante" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="practicante">Practicante</option>
+                            <option value="junior">Junior</option>
+                            <option value="semi-senior">Semi-Senior</option>
+                            <option value="senior">Senior</option>
+                            <option value="lider">Líder/Coordinador</option>
+                            <option value="gerente">Gerente</option>
+                            <option value="director">Director</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcionVacante">Descripción del Cargo *</label>
+                    <textarea id="descripcionVacante" name="descripcionVacante" rows="5" required placeholder="Describe las responsabilidades principales del cargo..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="requisitos">Requisitos y Habilidades Requeridas *</label>
+                    <textarea id="requisitos" name="requisitos" rows="5" required placeholder="Lista los requisitos educativos, experiencia, habilidades técnicas y blandas..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="beneficios">Beneficios y Compensación</label>
+                    <textarea id="beneficios" name="beneficios" rows="4" placeholder="Salario, bonos, horario flexible, trabajo remoto, capacitaciones, etc."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoContrato">Tipo de Contrato *</label>
+                        <select id="tipoContrato" name="tipoContrato" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="indefinido">Indefinido</option>
+                            <option value="fijo">Término Fijo</option>
+                            <option value="obra-labor">Obra o Labor</option>
+                            <option value="prestacion">Prestación de Servicios</option>
+                            <option value="temporal">Temporal</option>
+                            <option value="aprendizaje">Contrato de Aprendizaje</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modalidadTrabajo">Modalidad de Trabajo *</label>
+                        <select id="modalidadTrabajo" name="modalidadTrabajo" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="presencial">Presencial</option>
+                            <option value="remoto">Remoto</option>
+                            <option value="hibrido">Híbrido</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciudadVacante">Ciudad *</label>
+                        <input type="text" id="ciudadVacante" name="ciudadVacante" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paisVacante">País *</label>
+                        <input type="text" id="paisVacante" name="paisVacante" value="Colombia" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rangoSalarial">Rango Salarial (Opcional)</label>
+                        <input type="text" id="rangoSalarial" name="rangoSalarial" placeholder="Ej: $2,000,000 - $3,500,000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numeroVacantes">Número de Vacantes *</label>
+                        <input type="number" id="numeroVacantes" name="numeroVacantes" min="1" value="1" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="experienciaRequerida">Experiencia Requerida *</label>
+                        <select id="experienciaRequerida" name="experienciaRequerida" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="sin-experiencia">Sin experiencia</option>
+                            <option value="1-2">1-2 años</option>
+                            <option value="3-5">3-5 años</option>
+                            <option value="5-10">5-10 años</option>
+                            <option value="10+">Más de 10 años</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaCierre">Fecha de Cierre de Convocatoria</label>
+                        <input type="date" id="fechaCierre" name="fechaCierre">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="idiomas">Idiomas Requeridos</label>
+                    <input type="text" id="idiomas" name="idiomas" placeholder="Ej: Español (nativo), Inglés (intermedio)">
+                </div>
+
+                <div class="form-group">
+                    <label for="educacionRequerida">Nivel Educativo Requerido *</label>
+                    <select id="educacionRequerida" name="educacionRequerida" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="bachiller">Bachiller</option>
+                        <option value="tecnico">Técnico</option>
+                        <option value="tecnologo">Tecnólogo</option>
+                        <option value="universitario">Universitario en curso</option>
+                        <option value="profesional">Profesional</option>
+                        <option value="especializacion">Especialización</option>
+                        <option value="maestria">Maestría</option>
+                        <option value="doctorado">Doctorado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Información Adicional</h3>
+                
+                <div class="form-group">
+                    <label for="urlAplicacion">URL para Aplicar (Opcional)</label>
+                    <input type="url" id="urlAplicacion" name="urlAplicacion" placeholder="https://">
+                    <small>Si tienes un portal externo de aplicaciones, compártelo aquí</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="instruccionesAdicionales">Instrucciones Adicionales para Aplicar</label>
+                    <textarea id="instruccionesAdicionales" name="instruccionesAdicionales" rows="3" placeholder="Ej: Enviar portafolio, mencionar pretensiones salariales, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="terminosEmpleo" name="terminosEmpleo" required>
+                        Acepto los términos y condiciones de publicación *
+                    </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="autorizacionDatosEmpleo" name="autorizacionDatosEmpleo" required>
+                        Autorizo el tratamiento de datos según la política de privacidad *
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Publicar Vacante</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DevsHouse. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Comunidad -->
+    <div id="comunidadModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Bienvenido a la Comunidad de Reclutadores!</h2>
+            <p>Te has unido exitosamente a nuestra comunidad de empresas reclutadoras.</p>
+            <div class="comunidad-info">
+                <h3>💼 Comunidad de Reclutadores DevsHouse</h3>
+                <p>Aquí podrás:</p>
+                <ul>
+                    <li>Acceder a una base de talento calificado</li>
+                    <li>Compartir mejores prácticas de reclutamiento</li>
+                    <li>Participar en ferias de empleo</li>
+                    <li>Conectar con profesionales de RRHH</li>
+                    <li>Recibir actualizaciones de talento disponible</li>
+                </ul>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary" onclick="unirseWhatsApp('empleos')">Unirse al grupo de WhatsApp</a>
+                    <a href="#" class="btn btn-secondary" onclick="unirseDiscord('empleos')">Unirse a Discord</a>
+                </div>
+            </div>
+            <button class="close-modal" onclick="cerrarModal()">Continuar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
