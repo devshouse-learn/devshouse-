@@ -1,5 +1,3 @@
-import apiService from './api.service';
-
 const ADMIN_EMAIL = 'kelib@gmail.com';
 const ADMIN_PASSWORD = '03v5h0u53';
 
@@ -46,10 +44,10 @@ export const authService = {
   },
 
   // Simulamos un registro
-  register: async (name, email, password, confirmPassword, role = 'usuario', adminCode = '') => {
+  register: async (name, email, password, confirmPassword, role = 'usuario') => {
     try {
       // Cuando backend esté listo, descomentar:
-      // return await apiService.post('/auth/register', { name, email, password, role, adminCode });
+      // return await apiService.post('/auth/register', { name, email, password, role });
 
       // Validaciones básicas
       if (!name || !email || !password || !confirmPassword) {

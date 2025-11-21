@@ -1,10 +1,8 @@
 import { useAuth } from '../../context/AuthContext';
-import { useLanguage } from '../../context/LanguageContext';
 import './Hero.css';
 
 const Hero = ({ onShowAuthModal }) => {
   const { isAuthenticated } = useAuth();
-  const { t } = useLanguage();
 
   return (
     <section className="hero">

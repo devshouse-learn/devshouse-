@@ -12,7 +12,6 @@ const AuthModal = ({ onClose }) => {
   const [role, setRole] = useState('usuario');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [showAdminCode, setShowAdminCode] = useState(false);
   const { login, register } = useAuth();
   const { language, changeLanguage } = useLanguage();
   const t = (key) => translations[language]?.[key] || key;

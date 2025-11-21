@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { useLanguage } from '../../context/LanguageContext';
 import { jobsService } from '../../services/registration.service';
 import './JobsForm.css';
 
 const JobsForm = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { language } = useLanguage();
   
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

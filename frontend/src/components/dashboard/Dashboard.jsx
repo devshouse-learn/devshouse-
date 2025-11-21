@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { useLanguage } from '../../context/LanguageContext';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const { t } = useLanguage();
   const navigate = useNavigate();
 
   const handleCardClick = (item) => {

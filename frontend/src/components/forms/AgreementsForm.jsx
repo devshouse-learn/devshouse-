@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
 import { agreementsService } from '../../services/registration.service';
 import './AgreementsForm.css';
 
 const AgreementsForm = () => {
   const navigate = useNavigate();
-  const { language } = useLanguage();
   
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

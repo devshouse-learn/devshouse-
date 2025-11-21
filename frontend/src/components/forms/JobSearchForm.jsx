@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
 import './JobSearchForm.css';
 
 const JobSearchForm = () => {
   const navigate = useNavigate();
-  const { language } = useLanguage();
   
   const [searchCriteria, setSearchCriteria] = useState({
     jobTitle: '',

@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { useLanguage } from '../../context/LanguageContext';
 import { authService } from '../../services/auth.service';
 import './AdminPanel.css';
 
 export default function AdminPanel() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { t } = useLanguage();
   const [adminEmail, setAdminEmail] = useState('');
   const [moderatorEmail, setModeratorEmail] = useState('');
   const [revokeAdminEmail, setRevokeAdminEmail] = useState('');
