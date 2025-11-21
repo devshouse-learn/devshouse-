@@ -8,8 +8,7 @@ import AgreementsForm from './components/forms/AgreementsForm';
 import VenturesForm from './components/forms/VenturesForm';
 import JobsForm from './components/forms/JobsForm';
 import JobSearchForm from './components/forms/JobSearchForm';
-import AdminPage from './components/pages/AdminPage';
-import './App.css';
+import AdminPanel from './components/admin/AdminPanel';
 
 function App() {
   return (
@@ -55,7 +54,7 @@ function App() {
                 path="admin"
                 element={
                   <ProtectedRoute requiredRole="admin">
-                    <AdminPage />
+                    <AdminPanel />
                   </ProtectedRoute>
                 }
               />

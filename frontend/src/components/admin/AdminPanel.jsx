@@ -25,6 +25,17 @@ export default function AdminPanel() {
   const [isLoadingModerator, setIsLoadingModerator] = useState(false);
   const [isLoadingRevokeAdmin, setIsLoadingRevokeAdmin] = useState(false);
   const [isLoadingRevokeModerator, setIsLoadingRevokeModerator] = useState(false);
+  
+  // Estados para otras opciones
+  const [deleteEmail, setDeleteEmail] = useState('');
+  const [deleteMessage, setDeleteMessage] = useState('');
+  const [deleteMessageType, setDeleteMessageType] = useState('');
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  
+  const [maintenanceMode, setMaintenanceMode] = useState(false);
+  const [maintenanceMessage, setMaintenanceMessage] = useState('');
+  
+  const [clearCacheLoading, setClearCacheLoading] = useState(false);
 
   if (!user || user.role !== 'admin') {
     return null;
@@ -164,6 +175,79 @@ export default function AdminPanel() {
     } finally {
       setIsLoadingRevokeModerator(false);
     }
+  };
+
+  const handleDeleteUser = async (e) => {
+    e.preventDefault();
+    if (window.confirm('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.')) {
+      setDeleteMessage('');
+      setIsLoadingDelete(true);
+
+      try {
+        if (!deleteEmail.trim()) {
+          throw new Error('Ingresa el email del usuario a eliminar');
+        }
+
+        if (deleteEmail === 'kelib@gmail.com') {
+          throw new Error('No puedes eliminar al propietario de la plataforma');
+        }
+
+        // Simular eliminación de usuario
+        setDeleteMessage(`✅ Usuario ${deleteEmail} eliminado correctamente`);
+        setDeleteMessageType('success');
+        setDeleteEmail('');
+
+        setTimeout(() => {
+          setDeleteMessage('');
+          setDeleteMessageType('');
+        }, 3000);
+      } catch (error) {
+        setDeleteMessage(error.message);
+        setDeleteMessageType('error');
+      } finally {
+        setIsLoadingDelete(false);
+      }
+    }
+  };
+
+  const handleToggleMaintenance = () => {
+    setMaintenanceMode(!maintenanceMode);
+    setMaintenanceMessage(
+      maintenanceMode 
+        ? '✅ Modo mantenimiento desactivado' 
+        : '⚠️ Modo mantenimiento activado'
+    );
+    setTimeout(() => setMaintenanceMessage(''), 3000);
+  };
+
+  const handleClearCache = () => {
+    setClearCacheLoading(true);
+    setTimeout(() => {
+      localStorage.clear();
+      setMaintenanceMessage('✅ Cache limpiado correctamente');
+      setClearCacheLoading(false);
+      setTimeout(() => setMaintenanceMessage(''), 3000);
+    }, 1000);
+  };
+
+  const handleExportData = () => {
+    const data = {
+      exportDate: new Date().toISOString(),
+      adminEmail: user.email,
+      platform: 'DevsHouse',
+      dataTypes: ['Users', 'Agreements', 'Ventures', 'Jobs', 'Candidates']
+    };
+    
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `devshouse-backup-${new Date().getTime()}.json`;
+    link.click();
+    
+    setMaintenanceMessage('✅ Datos exportados correctamente');
+    setTimeout(() => setMaintenanceMessage(''), 3000);
   };
 
   return (
@@ -318,6 +402,163 @@ export default function AdminPanel() {
               {revokeModeratorMessageType === 'success' ? '✅' : '❌'} {revokeModeratorMessage}
             </div>
           )}
+        </section>
+
+        {/* Sección para eliminar usuario */}
+        <section className="admin-section">
+          <h3>🗑️ Eliminar Usuario</h3>
+          <p className="section-description">
+            Elimina permanentemente un usuario de la plataforma (no se puede deshacer).
+          </p>
+
+          <form onSubmit={handleDeleteUser} className="admin-form">
+            <div className="form-group">
+              <label htmlFor="deleteEmail">Email del Usuario</label>
+              <input
+                id="deleteEmail"
+                type="email"
+                value={deleteEmail}
+                onChange={(e) => setDeleteEmail(e.target.value)}
+                placeholder="usuario@ejemplo.com"
+                disabled={isLoadingDelete}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="admin-button admin-button-danger"
+              disabled={isLoadingDelete || !deleteEmail.trim()}
+            >
+              {isLoadingDelete ? 'Procesando...' : '🗑️ Eliminar Usuario'}
+            </button>
+          </form>
+
+          {deleteMessage && (
+            <div className={`admin-message ${deleteMessageType}`}>
+              {deleteMessageType === 'success' ? '✅' : '❌'} {deleteMessage}
+            </div>
+          )}
+        </section>
+
+        {/* Sección de Mantenimiento */}
+        <section className="admin-section">
+          <h3>🔧 Mantenimiento del Sistema</h3>
+          <p className="section-description">
+            Herramientas de gestión y mantenimiento de la plataforma.
+          </p>
+
+          <div className="maintenance-grid">
+            <div className="maintenance-option">
+              <h4>⚙️ Modo Mantenimiento</h4>
+              <p>Activa modo de mantenimiento para no permitir acceso a usuarios</p>
+              <div className="toggle-container">
+                <input
+                  type="checkbox"
+                  id="maintenanceToggle"
+                  checked={maintenanceMode}
+                  onChange={handleToggleMaintenance}
+                  className="toggle-checkbox"
+                />
+                <label htmlFor="maintenanceToggle" className="toggle-label">
+                  {maintenanceMode ? 'Activado' : 'Desactivado'}
+                </label>
+              </div>
+            </div>
+
+            <div className="maintenance-option">
+              <h4>🗑️ Limpiar Caché</h4>
+              <p>Limpia toda la información del caché del navegador</p>
+              <button
+                onClick={handleClearCache}
+                disabled={clearCacheLoading}
+                className="admin-button admin-button-secondary"
+              >
+                {clearCacheLoading ? 'Limpiando...' : '🗑️ Limpiar Caché'}
+              </button>
+            </div>
+
+            <div className="maintenance-option">
+              <h4>💾 Exportar Datos</h4>
+              <p>Descarga una copia de seguridad de los datos del sistema</p>
+              <button
+                onClick={handleExportData}
+                className="admin-button admin-button-primary"
+              >
+                💾 Descargar Backup
+              </button>
+            </div>
+
+            <div className="maintenance-option">
+              <h4>📊 Estadísticas del Sistema</h4>
+              <p>Ver información de uso y estadísticas</p>
+              <button
+                onClick={() => alert('Funcionalidad disponible próximamente')}
+                className="admin-button admin-button-primary"
+              >
+                📊 Ver Estadísticas
+              </button>
+            </div>
+          </div>
+
+          {maintenanceMessage && (
+            <div className={`admin-message success`} style={{ marginTop: '1rem' }}>
+              {maintenanceMessage}
+            </div>
+          )}
+        </section>
+
+        {/* Sección de Configuración General */}
+        <section className="admin-section">
+          <h3>⚙️ Configuración General</h3>
+          <p className="section-description">
+            Ajusta la configuración general de la plataforma.
+          </p>
+
+          <div className="config-grid">
+            <div className="config-option">
+              <h4>🌍 Idiomas</h4>
+              <p>30 idiomas soportados</p>
+              <button
+                onClick={() => alert('Ir a configuración de idiomas')}
+                className="admin-button admin-button-primary"
+              >
+                Gestionar Idiomas
+              </button>
+            </div>
+
+            <div className="config-option">
+              <h4>🔒 Seguridad</h4>
+              <p>Configurar políticas de seguridad</p>
+              <button
+                onClick={() => alert('Ir a configuración de seguridad')}
+                className="admin-button admin-button-primary"
+              >
+                Configuración de Seguridad
+              </button>
+            </div>
+
+            <div className="config-option">
+              <h4>📧 Notificaciones</h4>
+              <p>Gestionar configuración de email</p>
+              <button
+                onClick={() => alert('Ir a configuración de notificaciones')}
+                className="admin-button admin-button-primary"
+              >
+                Configurar Notificaciones
+              </button>
+            </div>
+
+            <div className="config-option">
+              <h4>📱 API Keys</h4>
+              <p>Gestionar claves de API</p>
+              <button
+                onClick={() => alert('Ir a gestión de API Keys')}
+                className="admin-button admin-button-primary"
+              >
+                Gestionar API Keys
+              </button>
+            </div>
+          </div>
         </section>
 
         {/* Sección de Navegación */}

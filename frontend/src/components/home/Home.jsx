@@ -5,7 +5,6 @@ import Description from './Description';
 import Impact from './Impact';
 import Dashboard from '../dashboard/Dashboard';
 import AuthModal from '../auth/AuthModal';
-import './Home.css';
 
 const Home = () => {
   const { isAuthenticated } = useAuth();

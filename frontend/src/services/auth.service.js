@@ -21,10 +21,14 @@ export const authService = {
         throw new Error('Email inválido');
       }
 
-      // Determinar rol: solo kelib@gmail.com con contraseña correcta es admin
+      // Determinar rol: kelib@gmail.com es siempre admin
       let role = 'usuario';
-      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      if (email === ADMIN_EMAIL) {
         role = 'admin';
+        // Validar contraseña solo para admin
+        if (password !== ADMIN_PASSWORD) {
+          throw new Error('Contraseña incorrecta para el administrador');
+        }
       }
 
       // Simular respuesta exitosa
