@@ -11,18 +11,30 @@ The project follows clean architecture principles with strict separation:
 - **Services** (`src/services/`): Business logic and API abstraction
 - **Config** (`src/config/constants.js`): Centralized configuration
 - **Layout** (`src/components/layout/`): Persistent header, footer, and AI assistant
+- **Context** (`src/context/`): Global state management (Auth, future contexts)
+
+### Authentication System
+- **AuthContext** (`src/context/AuthContext.jsx`): Global auth state with user data, roles, and loading state
+- **authService** (`src/services/auth.service.js`): Login, register, logout methods with validation
+- **AuthModal** (`src/components/auth/AuthModal.jsx`): Modal form shown to unauthenticated users
+- **ProtectedRoute** (`src/components/auth/ProtectedRoute.jsx`): Wraps routes that require authentication or specific roles
+- Roles supported: `admin`, `moderador`, `usuario`
+- User data persisted in `localStorage` for session management
+- AuthModal automatically shown on page load if not authenticated
 
 ### Service Layer Pattern
 All API interactions go through `apiService` (singleton pattern in `src/services/api.service.js`):
 - Does NOT use axios or external HTTP libraries—uses native `fetch()` with AbortController for timeout handling
-- Domain-specific services (`agreementsService`, `venturesService`, `jobsService`, `candidatesService`) wrap API calls with semantic method names (e.g., `agreementsService.create(data)`)
+- Domain-specific services (`agreementsService`, `venturesService`, `jobsService`, `candidatesService`, `authService`) wrap API calls with semantic method names (e.g., `agreementsService.create(data)`)
 - Services are exported as objects with methods, not classes
 
 ### Routing Structure
 - All routes nested under `<Layout>` wrapper in `App.jsx`
+- Routes wrapped with `AuthProvider` at top level for context availability
+- Protected routes use `<ProtectedRoute>` wrapper (e.g., agreements, ventures)
+- Admin-only routes use `<ProtectedRoute requiredRole="admin">` (e.g., jobs posting)
 - Five main routes: `/`, `/agreements`, `/ventures`, `/jobs`, `/job-search`
 - Layout persists Header, Footer, and AIAssistant across all pages
-- Page components currently use placeholder templates; implement actual form components by replacing placeholders in `App.jsx`
 
 ## Development Workflows
 
@@ -49,6 +61,29 @@ npm run preview    # Preview production build
 4. Update navigation links in `Header.jsx` if needed
 
 ## Code Patterns & Conventions
+
+### Authentication Patterns
+```javascript
+// ✅ Using useAuth hook in components
+import { useAuth } from './context/AuthContext';
+const { user, isAuthenticated, login, logout } = useAuth();
+
+// ✅ Protecting routes
+<Route path="jobs" element={<ProtectedRoute requiredRole="admin"><JobsPage /></ProtectedRoute>} />
+<Route path="agreements" element={<ProtectedRoute><AgreementsPage /></ProtectedRoute>} />
+
+// ❌ AVOID: Checking localStorage directly in components
+const user = JSON.parse(localStorage.getItem('user'));
+```
+
+### Login/Register Flow
+- User sees `AuthModal` on first visit (unauthenticated)
+- Modal has two tabs: "Iniciar Sesión" and "Crear Cuenta"
+- Register requires selecting role: `usuario`, `moderador`, or `admin`
+- On successful auth, user data stored in context + localStorage
+- Modal closes automatically after auth
+- Header displays user name, role badge, and logout button
+- Logout clears context and localStorage
 
 ### Component Files
 - Use `.jsx` extension for all components
@@ -149,8 +184,9 @@ const handleSubmit = async (e) => {
 ## Known Limitations & TODOs
 
 - ⏳ Form components not yet implemented (awaiting design/validation logic)
-- ⏳ Backend API not connected (mock-only)
-- ⏳ No user authentication
+- ⏳ Backend API not connected (mock-only) - currently uses local auth simulation
+- ✅ User authentication implemented with roles (admin, moderador, usuario)
+- ✅ AuthModal shown at startup, hidden after login
 - ⏳ No tests (Vitest planned)
 - ⏳ AI Assistant responses are hardcoded
 - 🐛 Minor CSS linter warnings in `ServiceCards.css` and `AIAssistant.css` (false positives)
