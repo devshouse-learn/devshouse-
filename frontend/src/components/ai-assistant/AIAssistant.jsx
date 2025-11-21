@@ -6,7 +6,7 @@ const AIAssistant = () => {
   const [messages, setMessages] = useState([
     {
       type: 'ai',
-      text: '¡Hola! Soy tu asistente de DevsHouse. ¿En qué puedo ayudarte hoy?'
+      text: '¡Hola! Soy tu asistente de DEVSHOUSE. ¿En qué puedo ayudarte hoy?'
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -91,7 +91,7 @@ const AIAssistant = () => {
             <div className="header-info">
               <span className="bot-icon">🤖</span>
               <div>
-                <h3>Asistente DevsHouse</h3>
+                <h3>Asistente DEVSHOUSE</h3>
                 <span className="status">● En línea</span>
               </div>
             </div>

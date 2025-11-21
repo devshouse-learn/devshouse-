@@ -4,42 +4,38 @@ DevsHouse es una plataforma integral diseñada para conectar instituciones educa
 
 ## 🚀 Características Principales
 
-### 1. **Convenios con Colegios**
+### 1. **Convenios Educativos**
 - Registro de alianzas educativas
 - Programas de formación en tecnologías actuales
-- Capacitación en: Visual Studio Code, Git, API REST, IA
 - Prácticas profesionales
 
 ### 2. **Emprendimientos**
 - Publicación de empresas y proyectos
 - Visibilidad empresarial
-- Networking
-- Oportunidades de inversión
-- Asistencia de IA para optimización
+- Networking y oportunidades de inversión
 
 ### 3. **Ofertas de Empleo**
-- **Para Empresas**: Publicación de vacantes
-- **Para Candidatos**: Búsqueda de oportunidades
-- Matching inteligente con IA
+- Publicación de vacantes (solo admins)
+- Búsqueda inteligente de oportunidades
 
-### 4. **Asistente de IA**
-- Soporte 24/7
-- Resolución de problemas
-- Guía de uso de la plataforma
-- Optimización de búsquedas
+### 4. **Sistema de Administración**
+- Panel de control para gestionar usuarios y roles
+- Asignación de roles: Admin, Moderador, Usuario
+- Revocación de roles
 
 ## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
-- **React 18** - Biblioteca de UI
+- **React 19** - Biblioteca de UI
 - **Vite** - Build tool y dev server
-- **React Router DOM** - Navegación cliente
-- **CSS Modules** - Estilos con scope
+- **React Router v7.9.6** - Navegación cliente
+- **Context API** - Gestión de estado global
+- **CSS 3** - Estilos modernos
 
-### Arquitectura
-- **Clean Architecture** - Separación de responsabilidades
-- **Service Layer** - Abstracción de lógica de negocio
-- **Component-Based** - Componentes reutilizables
+### Características
+- **30 Idiomas** - Soporte multiidioma completo
+- **Autenticación** - Sistema de roles y permisos
+- **Clean Architecture** - Separación clara de responsabilidades
 
 ## 📁 Estructura del Proyecto
 
@@ -47,25 +43,28 @@ DevsHouse es una plataforma integral diseñada para conectar instituciones educa
 frontend/
 ├── src/
 │   ├── components/
-│   │   ├── layout/          # Header, Footer, Layout
-│   │   ├── home/            # Hero, About, Impact, ServiceCards
-│   │   ├── agreements/      # Formulario convenios
-│   │   ├── ventures/        # Formulario emprendimientos
-│   │   ├── jobs/            # Formulario publicar empleo
-│   │   ├── job-search/      # Formulario buscar empleo
-│   │   └── ai-assistant/    # Asistente de IA
+│   │   ├── layout/           # Header, Footer, Layout
+│   │   ├── home/             # Hero, Description, Impact
+│   │   ├── auth/             # AuthModal, ProtectedRoute
+│   │   ├── admin/            # AdminPanel
+│   │   ├── dashboard/        # Dashboard
+│   │   ├── forms/            # Formularios de cada servicio
+│   │   └── ai-assistant/     # Asistente de IA
+│   ├── context/
+│   │   ├── AuthContext.jsx   # Contexto de autenticación
+│   │   └── LanguageContext.jsx # Contexto de idiomas
 │   ├── services/
-│   │   ├── api.service.js          # Cliente HTTP
-│   │   └── registration.service.js # Servicios de registro
+│   │   ├── api.service.js         # Cliente HTTP
+│   │   ├── auth.service.js        # Servicios de autenticación
+│   │   └── registration.service.js # Servicios de negocio
 │   ├── config/
-│   │   └── constants.js     # Constantes y configuración
-│   ├── hooks/               # Custom hooks
-│   ├── utils/               # Utilidades
+│   │   ├── constants.js           # Constantes
+│   │   └── translations-extended.js # Traducciones (30 idiomas)
 │   ├── styles/
-│   │   └── globals.css      # Estilos globales
-│   ├── App.jsx              # Configuración de rutas
-│   └── main.jsx             # Punto de entrada
-├── public/                  # Archivos estáticos
+│   │   └── globals.css       # Estilos globales
+│   ├── App.jsx               # Configuración de rutas
+│   └── main.jsx              # Punto de entrada
+├── public/                   # Archivos estáticos
 └── package.json
 ```
 
@@ -77,20 +76,15 @@ frontend/
 
 ### Instalación
 
-1. **Clonar el repositorio**
 ```bash
+# Clonar repositorio
 git clone <url-del-repositorio>
-cd devshouse-
-```
+cd devshouse-/frontend
 
-2. **Instalar dependencias**
-```bash
-cd frontend
+# Instalar dependencias
 npm install
-```
 
-3. **Ejecutar en desarrollo**
-```bash
+# Ejecutar en desarrollo
 npm run dev
 ```
 
@@ -105,85 +99,116 @@ npm run preview  # Preview del build
 npm run lint     # Linter
 ```
 
+## 🔐 Sistema de Autenticación
+
+### Credenciales de Admin
+
+```
+Email: kelib@gmail.com
+Contraseña: 03v5h0u53
+```
+
+### Roles Disponibles
+
+1. **Admin** (`admin`)
+   - Gestión completa de la plataforma
+   - Asignación y revocación de roles
+   - Acceso a todas las features
+
+2. **Moderador** (`moderador`)
+   - Moderación de contenido
+   - Acceso a analítica
+
+3. **Usuario** (`usuario`)
+   - Acceso a búsqueda de empleos
+   - Publicación de emprendimientos
+   - Acceso a convenios
+
+### Panel de Administración
+
+El admin puede:
+- ✅ **Asignar Admin** a otros usuarios
+- ✅ **Asignar Moderador** a otros usuarios
+- ✅ **Revocar Admin** (excepto a kelib@gmail.com)
+- ✅ **Revocar Moderador** a otros usuarios
+
+## 🌐 Idiomas Soportados (30)
+
+Español, English, Português, Français, Deutsch, Italiano, Nederlands, Polski, Русский, 日本語, 中文, 한국어, العربية, हिन्दी, Türkçe, Tiếng Việt, ไทย, Bahasa Indonesia, Tagalog, Bahasa Melayu, Svenska, Dansk, Norsk, Suomi, Ελληνικά, Čeština, Magyar, Română, Українська, עברית
+
 ## 🌐 Rutas de la Aplicación
 
-| Ruta | Componente | Descripción |
-|------|-----------|-------------|
-| `/` | Home | Página principal |
-| `/agreements` | Agreements | Registro de convenios |
-| `/ventures` | Ventures | Publicar emprendimiento |
-| `/jobs` | Jobs | Publicar empleo (empresas) |
-| `/job-search` | JobSearch | Buscar empleo (candidatos) |
+| Ruta | Acceso | Descripción |
+|------|--------|-------------|
+| `/` | Público | Página principal |
+| `/agreements` | Autenticado | Convenios educativos |
+| `/ventures` | Autenticado | Emprendimientos |
+| `/jobs` | Admin | Publicar empleo |
+| `/job-search` | Autenticado | Buscar empleo |
 
 ## 🎨 Características de Diseño
 
 - **Diseño Responsive** - Adaptable a todos los dispositivos
-- **Modo Oscuro** - Interfaz oscura moderna
-- **Animaciones** - Transiciones suaves y profesionales
-- **Gradientes** - Efectos visualales atractivos
-- **Accesibilidad** - Cumple estándares WCAG
+- **Tema Oscuro** - Interfaz moderna y elegante
+- **Animaciones Suaves** - Transiciones profesionales
+- **Gradientes Atractivos** - Estética moderna
+- **30 Idiomas** - Soporte multiidioma completo
 
 ## 🔧 Configuración
 
 ### Variables de Entorno
 
-Crea un archivo `.env` en la carpeta `frontend`:
+Crea un archivo `.env`:
 
 ```env
-VITE_API_BASE_URL=http://localhost:3000/api
-VITE_API_TIMEOUT=10000
+VITE_API_URL=http://localhost:3000/api
 ```
 
-### Configuración de API
+## 📝 Ejemplo de Uso
 
-Edita `src/config/constants.js` para ajustar:
-- Base URL del API
-- Timeout de peticiones
-- Headers por defecto
-- Enlaces de redes sociales
-
-## 📝 Servicios Disponibles
-
-### API Service
+### Login
 ```javascript
-import { apiService } from './services/api.service';
+import { useAuth } from './context/AuthContext';
 
-// GET request
-const data = await apiService.get('/endpoint');
-
-// POST request
-const result = await apiService.post('/endpoint', { data });
+const MyComponent = () => {
+  const { user, login, logout, isAuthenticated } = useAuth();
+  
+  return (
+    <div>
+      {isAuthenticated ? (
+        <p>Bienvenido {user.name}</p>
+      ) : (
+        <p>Por favor inicia sesión</p>
+      )}
+    </div>
+  );
+};
 ```
 
-### Registration Services
+### Cambiar Idioma
 ```javascript
-import { agreementsService, venturesService, jobsService, candidatesService } 
-  from './services/registration.service';
+import { useLanguage } from './context/LanguageContext';
 
-// Crear convenio
-await agreementsService.create(data);
-
-// Obtener todos los emprendimientos
-const ventures = await venturesService.getAll();
+const MyComponent = () => {
+  const { language, changeLanguage, t } = useLanguage();
+  
+  return (
+    <div>
+      <p>{t('signIn')}</p>
+      <button onClick={() => changeLanguage('en')}>English</button>
+    </div>
+  );
+};
 ```
-
-## 🤖 Asistente de IA
-
-El asistente de IA puede ayudarte con:
-- ¿Cómo registrar un convenio?
-- ¿Cómo publicar mi emprendimiento?
-- ¿Cómo buscar empleo?
-- Reportar problemas técnicos
 
 ## 🔜 Próximas Características
 
-- [ ] Autenticación de usuarios
-- [ ] Dashboard personalizado
-- [ ] Notificaciones en tiempo real
-- [ ] Sistema de mensajería
-- [ ] Integración con backend
+- [ ] Integración con backend API
+- [ ] Sistema de notificaciones
+- [ ] Mensajería en tiempo real
+- [ ] Dashboard analítico
+- [ ] Sistema de búsqueda avanzada
 - [ ] Tests automatizados
-- [ ] Documentación de API
 
 ## 🤝 Contribución
 
@@ -203,11 +228,6 @@ Este proyecto está bajo la licencia MIT.
 
 DevsHouse - Conectando talento con oportunidades
 
-## 📧 Contacto
-
-- WhatsApp: [Unirse a la comunidad](#)
-- Discord: [Servidor DevsHouse](#)
-
 ---
 
-**Desarrollado con ❤️ por el equipo de DevsHouse**
+**Desarrollado con ❤️ por DevsHouse**

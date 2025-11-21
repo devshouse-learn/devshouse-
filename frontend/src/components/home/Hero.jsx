@@ -1,10 +1,34 @@
+import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import './Hero.css';
 
-const Hero = () => {
+const Hero = ({ onShowAuthModal }) => {
+  const { isAuthenticated } = useAuth();
+  const { t } = useLanguage();
+
   return (
     <section className="hero">
-      <h2>Bienvenido a DevsHouse</h2>
-      <p>Conectando oportunidades</p>
+      <div className="hero-content">
+        <h1>Bienvenidos a DEVSHOUSE</h1>
+        <p className="hero-subtitle">Conectando educación, emprendimiento y oportunidades laborales</p>
+        
+        {!isAuthenticated && (
+          <div className="hero-buttons">
+            <button 
+              className="hero-btn hero-btn-primary"
+              onClick={onShowAuthModal}
+            >
+              🔑 Inicio de Sesión
+            </button>
+            <button 
+              className="hero-btn hero-btn-secondary"
+              onClick={onShowAuthModal}
+            >
+              📝 Crear Cuenta
+            </button>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

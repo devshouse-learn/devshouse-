@@ -1,34 +1,34 @@
 import './Impact.css';
 
-const impactData = [
+const featuresData = [
   {
-    icon: '🎓',
-    title: 'Estudiantes',
-    description: 'Formación en tecnologías actuales y oportunidades de práctica'
+    icon: '⚡',
+    title: 'Rápido y Eficiente',
+    description: 'Acceso inmediato a oportunidades sin trámites complicados'
   },
   {
-    icon: '🏫',
-    title: 'Instituciones Educativas',
-    description: 'Programas de capacitación y convenios educativos'
+    icon: '🔐',
+    title: 'Seguro y Confiable',
+    description: 'Tu información está protegida con los más altos estándares'
   },
   {
-    icon: '🚀',
-    title: 'Emprendedores',
-    description: 'Visibilidad, networking y oportunidades de inversión'
+    icon: '🌍',
+    title: 'Alcance Global',
+    description: 'Conecta con profesionales y oportunidades en todo el mundo'
   },
   {
-    icon: '💼',
-    title: 'Empresas',
-    description: 'Acceso a talento calificado y reclutamiento eficiente'
+    icon: '�',
+    title: 'Accesible en Cualquier Lugar',
+    description: 'Plataforma responsive optimizada para todos los dispositivos'
   }
 ];
 
 const Impact = () => {
   return (
     <section className="impact-section">
-      <h3>¿A quiénes impacta?</h3>
+      <h3>¿Por qué elegir DEVSHOUSE?</h3>
       <div className="impact-grid">
-        {impactData.map((item, index) => (
+        {featuresData.map((item, index) => (
           <div key={index} className="impact-item">
             <span className="impact-icon">{item.icon}</span>
             <h4>{item.title}</h4>

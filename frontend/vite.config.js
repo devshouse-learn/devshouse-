@@ -8,5 +8,13 @@ export default defineConfig({
         port: 5173,
         open: true,
         host: 'localhost'
+    },
+    build: {
+        cssMinify: false,
+        rollupOptions: {
+            output: {
+                assetFileNames: 'assets/[name]-[hash][extname]'
+            }
+        }
     }
 })
