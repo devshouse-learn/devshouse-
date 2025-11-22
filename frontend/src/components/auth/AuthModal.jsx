@@ -9,7 +9,6 @@ const AuthModal = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [role, setRole] = useState('usuario');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { login, register } = useAuth();
@@ -45,11 +44,6 @@ const AuthModal = ({ onClose }) => {
     setError('');
   };
 
-  const handleRoleChange = (e) => {
-    setRole(e.target.value);
-    setError('');
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -77,9 +71,7 @@ const AuthModal = ({ onClose }) => {
         formData.name,
         formData.email,
         formData.password,
-        formData.confirmPassword,
-        role,
-        formData.adminCode
+        formData.confirmPassword
       );
       register(userData);
       // La modal desaparecerá automáticamente cuando isAuthenticated sea true
@@ -225,23 +217,7 @@ const AuthModal = ({ onClose }) => {
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="role">{t('accountType')}</label>
-                  <select
-                    id="role"
-                    value={role}
-                    onChange={handleRoleChange}
-                    disabled={loading}
-                    required
-                  >
-                    <option value="usuario">{t('userRole')}</option>
-                  </select>
-                  <p className="role-description">
-                    {t('roleDescription')}
-                  </p>
-                </div>
-
-                {/* Campos de contraseña para usuario y moderador */}
+                {/* Campos de contraseña */}
                 <div className="form-group">
                   <label htmlFor="password">{t('password')}</label>
                   <div className="password-input-wrapper">

@@ -4,6 +4,16 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// Importar rutas
+import monitoringRoutes from './routes/monitoring.routes.js';
+import aiAssistantRoutes from './routes/aiAssistant.routes.js';
+import verificationRoutes from './routes/verification.routes.js';
+import emailValidationRoutes from './routes/emailValidation.routes.js';
+
+// Importar middleware
+import { globalErrorHandler, notFoundHandler } from './middleware/errorHandler.js';
+import { requestLogger } from './utils/logger.js';
+
 // Cargar variables de entorno
 dotenv.config();
 
@@ -19,6 +29,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware de logging
+app.use(requestLogger);
+
 // Rutas
 app.get('/api/health', (req, res) => {
   res.json({
@@ -30,6 +43,11 @@ app.get('/api/health', (req, res) => {
 });
 
 // Rutas API
+app.use('/api/monitoring', monitoringRoutes);
+app.use('/api/ai-assistant', aiAssistantRoutes);
+app.use('/api/verification', verificationRoutes);
+app.use('/api/email-validation', emailValidationRoutes);
+
 app.use('/api/auth', (req, res) => {
   res.json({ message: 'Auth routes coming soon' });
 });
@@ -55,22 +73,10 @@ app.use('/api/candidates', (req, res) => {
 });
 
 // Manejo de rutas no encontradas
-app.use((req, res) => {
-  res.status(404).json({
-    error: 'Not Found',
-    message: `La ruta ${req.path} no existe`,
-    statusCode: 404,
-  });
-});
+app.use(notFoundHandler);
 
 // Manejo de errores global
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
-  res.status(err.statusCode || 500).json({
-    error: err.message || 'Internal Server Error',
-    statusCode: err.statusCode || 500,
-  });
-});
+app.use(globalErrorHandler);
 
 // Iniciar servidor
 app.listen(PORT, () => {

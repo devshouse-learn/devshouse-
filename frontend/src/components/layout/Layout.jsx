@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Header from './Header';
 import Footer from './Footer';
-import AIAssistant from '../ai-assistant/AIAssistant';
+import AIAssistantEnhanced from '../ai-assistant/AIAssistantEnhanced';
 import AuthModal from '../auth/AuthModal';
 import './Layout.css';
 
@@ -27,7 +27,7 @@ const Layout = () => {
       {!isAuthenticated && !loading && showModal && (
         <AuthModal onClose={handleAuthModalClose} />
       )}
-      <AIAssistant />
+      <AIAssistantEnhanced />
     </div>
   );
 };
