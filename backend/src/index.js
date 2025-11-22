@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// Importar configuración de base de datos
+import { connectDB } from './config/database.js';
+
 // Importar rutas
 import monitoringRoutes from './routes/monitoring.routes.js';
 import aiAssistantRoutes from './routes/aiAssistant.routes.js';
@@ -78,11 +81,34 @@ app.use(notFoundHandler);
 // Manejo de errores global
 app.use(globalErrorHandler);
 
+// Función para iniciar el servidor
+const startServer = async () => {
+  try {
+    // Conectar a PostgreSQL
+    await connectDB();
+    
+    // Iniciar servidor
+    app.listen(PORT, () => {
+      console.log('╔════════════════════════════════════════════════════════════╗');
+      console.log('║          🚀 DEVSHOUSE BACKEND API - INICIADO              ║');
+      console.log('╚════════════════════════════════════════════════════════════╝');
+      console.log('');
+      console.log(`  🌐 Server:        http://localhost:${PORT}`);
+      console.log(`  📊 Health Check:  http://localhost:${PORT}/api/health`);
+      console.log(`  � Environment:   ${process.env.NODE_ENV}`);
+      console.log(`  🗄️  Database:      PostgreSQL (AWS RDS)`);
+      console.log(`  📍 DB Host:       ${process.env.DB_HOST}`);
+      console.log('');
+      console.log('══════════════════════════════════════════════════════════════');
+      console.log('');
+    });
+  } catch (error) {
+    console.error('❌ Error al iniciar el servidor:', error.message);
+    process.exit(1);
+  }
+};
+
 // Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 DevsHouse Backend API running on http://localhost:${PORT}`);
-  console.log(`📝 Environment: ${process.env.NODE_ENV}`);
-  console.log(`✅ Health check: http://localhost:${PORT}/api/health`);
-});
+startServer();
 
 export default app;
