@@ -5,8 +5,8 @@ import { authService } from '../../services/auth.service';
 import { translations, SUPPORTED_LANGUAGES } from '../../config/translations';
 import './AuthModal.css';
 
-const AuthModal = ({ onClose }) => {
-  const [isLogin, setIsLogin] = useState(true);
+const AuthModal = ({ onClose, initialMode = 'login' }) => {
+  const [isLogin, setIsLogin] = useState(initialMode === 'login');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +56,30 @@ const AuthModal = ({ onClose }) => {
       login(userData);
       // La modal desaparecerá automáticamente cuando isAuthenticated sea true
     } catch (err) {
-      setError(err.message || 'Error al iniciar sesión');
+      const errorMessage = err.message || 'Error al iniciar sesión';
+      
+      // Si el error es que no está registrado, ofrecer cambiar a registro
+      if (errorMessage.includes('no está registrada') || errorMessage.includes('crea una cuenta')) {
+        setError(
+          <div>
+            <p>{errorMessage}</p>
+            <button
+              type="button"
+              className="error-action-button"
+              onClick={() => {
+                setIsLogin(false);
+                setError('');
+                setFormData({ name: '', email: formData.email, password: '', confirmPassword: '', adminCode: '' });
+              }}
+            >
+              📝 Crear cuenta ahora
+            </button>
+          </div>
+        );
+      } else {
+        setError(errorMessage);
+      }
+      
       setLoading(false);
     }
   };
@@ -76,7 +99,30 @@ const AuthModal = ({ onClose }) => {
       register(userData);
       // La modal desaparecerá automáticamente cuando isAuthenticated sea true
     } catch (err) {
-      setError(err.message || 'Error al registrarse');
+      const errorMessage = err.message || 'Error al registrarse';
+      
+      // Si el error es que el correo ya está registrado, ofrecer ir a login
+      if (errorMessage.includes('ya está registrado')) {
+        setError(
+          <div>
+            <p>{errorMessage}</p>
+            <button
+              type="button"
+              className="error-action-button"
+              onClick={() => {
+                setIsLogin(true);
+                setError('');
+                setFormData({ name: '', email: formData.email, password: '', confirmPassword: '', adminCode: '' });
+              }}
+            >
+              🔑 Ir a Iniciar Sesión
+            </button>
+          </div>
+        );
+      } else {
+        setError(errorMessage);
+      }
+      
       setLoading(false);
     }
   };

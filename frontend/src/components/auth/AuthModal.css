@@ -296,6 +296,36 @@ form {
   border-left: 3px solid #ff6b6b;
 }
 
+.auth-error p {
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.auth-error p:last-child {
+  margin-bottom: 0;
+}
+
+.error-action-button {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #00d4ff 0%, #8a2be2 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.error-action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+
 .auth-button {
   padding: 12px 24px;
   background: linear-gradient(135deg, #8a2be2 0%, #ff1493 100%);

@@ -1,5 +1,40 @@
 const ADMIN_EMAIL = 'kelib@gmail.com';
 const ADMIN_PASSWORD = '03v5h0u53';
+const REGISTERED_USERS_KEY = 'devshouse_registered_users';
+
+// Función helper para obtener usuarios registrados
+const getRegisteredUsers = () => {
+  try {
+    const users = localStorage.getItem(REGISTERED_USERS_KEY);
+    return users ? JSON.parse(users) : [];
+  } catch (error) {
+    console.error('Error al obtener usuarios registrados:', error);
+    return [];
+  }
+};
+
+// Función helper para guardar usuario registrado
+const saveRegisteredUser = (user) => {
+  try {
+    const users = getRegisteredUsers();
+    users.push({
+      email: user.email,
+      name: user.name,
+      password: user.password, // En producción esto NO se haría, pero para desarrollo local está bien
+      role: user.role,
+      registeredAt: new Date().toISOString()
+    });
+    localStorage.setItem(REGISTERED_USERS_KEY, JSON.stringify(users));
+  } catch (error) {
+    console.error('Error al guardar usuario registrado:', error);
+  }
+};
+
+// Función helper para verificar si un usuario existe
+const findUserByEmail = (email) => {
+  const users = getRegisteredUsers();
+  return users.find(user => user.email.toLowerCase() === email.toLowerCase());
+};
 
 export const authService = {
   // Simulamos un login (cuando backend esté listo, descomentar la llamada API)
@@ -7,6 +42,10 @@ export const authService = {
     try {
       // Cuando backend esté listo, descomentar:
       // return await apiService.post('/auth/login', { email, password });
+
+      // Limpiar espacios en blanco
+      email = email?.trim().toLowerCase() || '';
+      password = password?.trim() || '';
 
       // Simulación local para desarrollo
       if (!email || !password) {
@@ -16,25 +55,41 @@ export const authService = {
       // Validación básica
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        throw new Error('Email inválido');
+        throw new Error('Email inválido. Verifica el formato');
       }
 
-      // Determinar rol: kelib@gmail.com es siempre admin
-      let role = 'usuario';
+      // Verificar si es el admin
       if (email === ADMIN_EMAIL) {
-        role = 'admin';
-        // Validar contraseña solo para admin
         if (password !== ADMIN_PASSWORD) {
           throw new Error('Contraseña incorrecta para el administrador');
         }
+        return {
+          id: 'admin-id',
+          email,
+          name: 'Administrador',
+          role: 'admin',
+          token: 'mock-token-admin',
+        };
+      }
+
+      // Verificar si el usuario existe en localStorage
+      const existingUser = findUserByEmail(email);
+      
+      if (!existingUser) {
+        throw new Error('Esta cuenta no está registrada. Por favor, crea una cuenta primero.');
+      }
+
+      // Verificar contraseña
+      if (existingUser.password !== password) {
+        throw new Error('Contraseña incorrecta');
       }
 
       // Simular respuesta exitosa
       return {
         id: Math.random().toString(36).substr(2, 9),
-        email,
-        name: email.split('@')[0],
-        role: role,
+        email: existingUser.email,
+        name: existingUser.name,
+        role: existingUser.role,
         token: 'mock-token-' + Math.random().toString(36).substr(2, 9),
       };
     } catch (error) {
@@ -49,11 +104,39 @@ export const authService = {
       // Cuando backend esté listo, descomentar:
       // return await apiService.post('/auth/register', { name, email, password, role });
 
+      // Limpiar espacios en blanco de todos los campos
+      name = name?.trim() || '';
+      email = email?.trim().toLowerCase() || '';
+      password = password?.trim() || '';
+      confirmPassword = confirmPassword?.trim() || '';
+
       // Validaciones básicas
       if (!name || !email || !password || !confirmPassword) {
         throw new Error('Todos los campos son requeridos');
       }
 
+      // Validar que el nombre tenga al menos 2 caracteres
+      if (name.length < 2) {
+        throw new Error('El nombre debe tener al menos 2 caracteres');
+      }
+
+      // Validar formato de email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        throw new Error('Email inválido. Verifica el formato (ejemplo: usuario@dominio.com)');
+      }
+
+      // Verificar si el email ya está registrado (incluyendo el admin)
+      if (email === ADMIN_EMAIL) {
+        throw new Error('Este correo electrónico ya está registrado como administrador');
+      }
+
+      const existingUser = findUserByEmail(email);
+      if (existingUser) {
+        throw new Error('Este correo electrónico ya está registrado. Por favor, inicia sesión o usa otro correo.');
+      }
+
+      // Validar contraseñas
       if (password !== confirmPassword) {
         throw new Error('Las contraseñas no coinciden');
       }
@@ -62,22 +145,30 @@ export const authService = {
         throw new Error('La contraseña debe tener al menos 6 caracteres');
       }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        throw new Error('Email inválido');
-      }
-
       if (role !== 'usuario') {
         throw new Error('Solo se puede registrar como usuario. Los moderadores son asignados por el administrador');
       }
 
-      // Simular respuesta exitosa
-      return {
+      // Crear usuario y guardarlo
+      const newUser = {
         id: Math.random().toString(36).substr(2, 9),
         name,
         email,
+        password, // Solo para desarrollo local
         role: role,
         token: 'mock-token-' + Math.random().toString(36).substr(2, 9),
+      };
+
+      // Guardar en localStorage
+      saveRegisteredUser(newUser);
+
+      // Retornar sin la contraseña
+      return {
+        id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        token: newUser.token,
       };
     } catch (error) {
       console.error('Register error:', error);

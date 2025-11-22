@@ -14,13 +14,13 @@ const Hero = ({ onShowAuthModal }) => {
           <div className="hero-buttons">
             <button 
               className="hero-btn hero-btn-primary"
-              onClick={onShowAuthModal}
+              onClick={() => onShowAuthModal('login')}
             >
               🔑 Inicio de Sesión
             </button>
             <button 
               className="hero-btn hero-btn-secondary"
-              onClick={onShowAuthModal}
+              onClick={() => onShowAuthModal('register')}
             >
               📝 Crear Cuenta
             </button>

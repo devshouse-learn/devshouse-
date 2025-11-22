@@ -9,8 +9,10 @@ import AuthModal from '../auth/AuthModal';
 const Home = () => {
   const { isAuthenticated } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState('login');
 
-  const handleShowAuthModal = () => {
+  const handleShowAuthModal = (mode = 'login') => {
+    setAuthMode(mode);
     setShowAuthModal(true);
   };
 
@@ -25,7 +27,7 @@ const Home = () => {
           <Hero onShowAuthModal={handleShowAuthModal} />
           <Description />
           <Impact />
-          {showAuthModal && <AuthModal onClose={handleCloseAuthModal} />}
+          {showAuthModal && <AuthModal onClose={handleCloseAuthModal} initialMode={authMode} />}
         </>
       ) : (
         <Dashboard />

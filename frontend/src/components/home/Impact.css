@@ -1,11 +1,11 @@
 .impact-section {
-  margin: 3rem 0;
+  margin: 1.5rem 0;
 }
 
 .impact-section h3 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: var(--primary-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   font-weight: 700;
   text-align: center;
 }
@@ -13,12 +13,12 @@
 .impact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .impact-item {
   background: white;
-  padding: 2rem;
+  padding: 1.25rem;
   border-radius: 12px;
   text-align: center;
   transition: var(--transition);
@@ -32,16 +32,16 @@
 }
 
 .impact-icon {
-  font-size: 3rem;
+  font-size: 2.25rem;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
   animation: bounce 2s ease-in-out infinite;
 }
 
 .impact-item h4 {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: var(--text-dark);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 600;
 }
 
