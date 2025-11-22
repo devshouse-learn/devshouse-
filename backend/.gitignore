@@ -11,3 +11,14 @@ coverage/
 *.swo
 *~
 .vscode/
+
+# AWS deployment
+.elasticbeanstalk/
+deploy-package/
+deploy-package.zip
+*.pem
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -4,12 +4,30 @@
 [![Backend](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-green)](https://nodejs.org)
 [![Frontend](https://img.shields.io/badge/Frontend-React%2019-blue)](https://react.dev)
 [![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)](https://mongodb.com)
+[![AWS](https://img.shields.io/badge/Deploy-AWS-orange)](https://aws.amazon.com)
 
 Plataforma que conecta escuelas, emprendedores y empresas a través de 4 módulos principales: convenios educativos, emprendimientos, publicación de empleos y búsqueda de empleo con IA.
 
+## 🚀 Despliegue Rápido en AWS
+
+```bash
+# Configuración automática de AWS (frontend en S3 + backend en Elastic Beanstalk)
+cd .github/scripts
+.\setup-aws.ps1  # Windows
+./setup-aws.sh   # Linux/Mac
+```
+
+📖 **Documentación de Despliegue:**
+- 🚀 [SETUP_COMPLETO.md](./SETUP_COMPLETO.md) - **⭐ EMPIEZA AQUÍ** - Resumen completo
+- ⚡ [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) - Guía rápida paso a paso
+- 🧪 [TEST_LOCAL.md](./TEST_LOCAL.md) - Tests antes de desplegar
+- 📋 [.github/CHECKLIST.md](./.github/CHECKLIST.md) - Checklist visual
+- 🔐 [.github/GITHUB_SECRETS.md](./.github/GITHUB_SECRETS.md) - Configurar secrets
+- 📚 [.github/DEPLOYMENT.md](./.github/DEPLOYMENT.md) - Documentación detallada
+
 ---
 
-## 🚀 Inicio Rápido
+## 🚀 Inicio Rápido Local
 
 ```bash
 # 1. Instalar dependencias

@@ -1,0 +1,72 @@
+name: Deploy Backend to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-backend.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Create deployment package
+        working-directory: ./backend
+        run: |
+          # Crear directorio temporal
+          mkdir -p deploy-package
+
+          # Copiar archivos necesarios (excepto node_modules y archivos de desarrollo)
+          cp -r src deploy-package/
+          cp package.json deploy-package/
+          cp package-lock.json deploy-package/
+
+          # Crear archivo .npmrc para producción
+          echo "NODE_ENV=production" > deploy-package/.npmrc
+
+          # Comprimir el paquete
+          cd deploy-package
+          zip -r ../deploy-package.zip . -x "*.git*" "*.env*" "node_modules/*"
+
+      - name: Get timestamp
+        id: timestamp
+        run: echo "timestamp=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          version_label: "devshouse-backend-${{ steps.timestamp.outputs.timestamp }}"
+          region: ${{ secrets.AWS_REGION }}
+          deployment_package: backend/deploy-package.zip
+          wait_for_deployment: true
+          wait_for_environment_recovery: 300
+
+      - name: Deployment summary
+        run: |
+          echo "✅ Backend deployed successfully to Elastic Beanstalk"
+          echo "📦 Application: ${{ secrets.EB_APPLICATION_NAME }}"
+          echo "🌍 Environment: ${{ secrets.EB_ENVIRONMENT_NAME }}"
+          echo "🏷️  Version: devshouse-backend-${{ steps.timestamp.outputs.timestamp }}"
