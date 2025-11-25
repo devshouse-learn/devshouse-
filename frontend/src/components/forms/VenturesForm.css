@@ -45,8 +45,8 @@
 }
 
 .ventures-form {
-  background: #000000;
-  border: 1px solid rgba(138, 43, 226, 0.2);
+  background: linear-gradient(135deg, rgba(230, 126, 34, 0.1), rgba(230, 126, 34, 0.05));
+  border: 2px solid rgba(230, 126, 34, 0.3);
   border-radius: 12px;
   padding: 40px;
   margin-bottom: 30px;
@@ -150,7 +150,8 @@
 .btn-reset,
 .btn-back,
 .btn-next,
-.btn-close {
+.btn-close,
+.btn-cancel {
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -160,77 +161,26 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-.btn-submit {
-  background: linear-gradient(135deg, #8a2be2 0%, #ff1493 100%);
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
   color: #ffffff;
 }
 
-.btn-submit:hover:not(:disabled) {
+.btn-submit:hover:not(:disabled),
+.btn-reset:hover:not(:disabled),
+.btn-back:hover:not(:disabled),
+.btn-next:hover:not(:disabled),
+.btn-close:hover:not(:disabled),
+.btn-cancel:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(138, 43, 226, 0.4);
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.4);
 }
 
-.btn-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-reset {
-  background: rgba(0, 212, 255, 0.1);
-  color: #00d4ff;
-  border: 1px solid rgba(0, 212, 255, 0.3);
-}
-
-.btn-reset:hover:not(:disabled) {
-  background: rgba(0, 212, 255, 0.2);
-  border-color: #00d4ff;
-}
-
-.btn-reset:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-back {
-  background: rgba(100, 100, 100, 0.2);
-  color: #a0a0a0;
-  border: 1px solid rgba(100, 100, 100, 0.5);
-}
-
-.btn-back:hover:not(:disabled) {
-  background: rgba(100, 100, 100, 0.4);
-  border-color: #a0a0a0;
-}
-
-.btn-next {
-  background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-  color: #ffffff;
-}
-
-.btn-next:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
-}
-
-.btn-next:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-close {
-  background: rgba(255, 82, 82, 0.2);
-  color: #ff6b6b;
-  border: 1px solid rgba(255, 82, 82, 0.5);
-}
-
-.btn-close:hover:not(:disabled) {
-  background: rgba(255, 82, 82, 0.4);
-  border-color: #ff6b6b;
-}
-
-.btn-close:disabled {
+.btn-submit:disabled,
+.btn-reset:disabled,
+.btn-back:disabled,
+.btn-next:disabled,
+.btn-close:disabled,
+.btn-cancel:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

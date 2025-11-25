@@ -5,11 +5,11 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
   border: none;
   font-size: 28px;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 20px rgba(26, 115, 232, 0.4);
   transition: all 0.3s ease;
   z-index: 1000;
   display: flex;
@@ -19,11 +19,11 @@
 
 .ai-assistant-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 6px 30px rgba(26, 115, 232, 0.6);
 }
 
 .ai-assistant-button.open {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
 }
 
 .ai-assistant-panel {
@@ -54,7 +54,7 @@
 }
 
 .ai-assistant-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
   color: white;
   padding: 16px;
   border-radius: 16px 16px 0 0;
@@ -113,7 +113,7 @@
 
 .ai-assistant-tabs button.active {
   background: white;
-  color: #667eea;
+  color: #1a73e8;
   font-weight: 600;
 }
 
@@ -265,7 +265,7 @@
 .send-button {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
   border: none;
   border-radius: 12px;
   color: white;
@@ -279,7 +279,7 @@
 
 .send-button:hover:not(:disabled) {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
 }
 
 .send-button:disabled {
@@ -322,9 +322,9 @@
 
 .quick-fix-card:hover {
   background: white;
-  border-color: #667eea;
+  border-color: #1a73e8;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.1);
 }
 
 .quick-fix-card h5 {
@@ -348,8 +348,8 @@
 
 .fix-category {
   padding: 4px 8px;
-  background: #dbeafe;
-  color: #1e40af;
+  background: rgba(26, 115, 232, 0.2);
+  color: #1a73e8;
   border-radius: 6px;
   font-size: 11px;
   font-weight: 600;

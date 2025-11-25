@@ -19,6 +19,16 @@ const Header = () => {
               <span className="user-name">{user.name}</span>
               <span className={`user-role role-${user.role}`}>{user.role}</span>
             </div>
+            {(user.role === 'admin' || user.role === 'moderador') && (
+              <Link to="/moderation" className="moderation-link">
+                🛡️ Moderación
+              </Link>
+            )}
+            {user.role === 'admin' && (
+              <Link to="/data-viewer" className="admin-link">
+                📊 Datos
+              </Link>
+            )}
             <button className="logout-button" onClick={logout}>
               Salir
             </button>

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
+import { validateField } from '../../services/validation.service';
+import validationRules from '../../services/validation.service';
 import './AgreementsForm.css';
 
 const AgreementsForm = () => {
@@ -9,10 +11,11 @@ const AgreementsForm = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
   
   const [formData, setFormData] = useState({
     schoolName: '',
-    schoolType: 'primaria',
+    schoolType: 'university',
     location: '',
     contactPerson: '',
     contactEmail: '',
@@ -36,20 +39,45 @@ const AgreementsForm = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setFieldErrors({});
 
     try {
-      // Validaciones básicas
-      if (!formData.schoolName || !formData.contactEmail || !formData.location) {
-        throw new Error('Por favor completa todos los campos requeridos');
+      // Validaciones mejoradas
+      const errors = {};
+
+      if (!formData.schoolName?.trim()) {
+        errors.schoolName = 'Nombre de institución es requerido';
       }
 
-      // Enviar datos (cuando backend esté listo)
-      await agreementsService.create(formData);
+      if (!formData.contactEmail?.trim()) {
+        errors.contactEmail = 'Email es requerido';
+      } else {
+        const emailError = validationRules.email(formData.contactEmail);
+        if (emailError) errors.contactEmail = emailError;
+      }
+
+      if (!formData.location?.trim()) {
+        errors.location = 'Ubicación es requerida';
+      }
+
+      if (formData.contactPhone && formData.contactPhone.trim()) {
+        const phoneError = validationRules.phone(formData.contactPhone);
+        if (phoneError) errors.contactPhone = phoneError;
+      }
+
+      if (Object.keys(errors).length > 0) {
+        setFieldErrors(errors);
+        throw new Error('Por favor completa todos los campos requeridos correctamente');
+      }
+
+      // Guardar en base de datos a través del API
+      const response = await agreementsService.create(formData);
+      console.log('✅ Convenio guardado en BD:', response.data);
       
       setSuccess(true);
       setFormData({
         schoolName: '',
-        schoolType: 'primaria',
+        schoolType: 'university',
         location: '',
         contactPerson: '',
         contactEmail: '',
@@ -60,10 +88,14 @@ const AgreementsForm = () => {
         endDate: '',
       });
 
-      // Limpiar mensaje de éxito después de 3 segundos
-      setTimeout(() => setSuccess(false), 3000);
+      // Limpiar mensaje de éxito después de 3 segundos y navegar
+      setTimeout(() => {
+        setSuccess(false);
+        navigate('/agreements');
+      }, 2000);
     } catch (err) {
       setError(err.message || 'Error al enviar formulario');
+      console.error('Error en formulario:', err);
     } finally {
       setLoading(false);
     }
@@ -117,11 +149,10 @@ const AgreementsForm = () => {
                 required
                 disabled={loading}
               >
-                <option value="primaria">Educación Primaria</option>
-                <option value="secundaria">Educación Secundaria</option>
-                <option value="tecnica">Educación Técnica</option>
-                <option value="superior">Educación Superior</option>
-                <option value="otra">Otra</option>
+                <option value="university">Universidad</option>
+                <option value="technical">Educación Técnica</option>
+                <option value="bootcamp">Bootcamp / Academia</option>
+                <option value="high-school">Secundaria</option>
               </select>
             </div>
           </div>

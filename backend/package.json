@@ -7,6 +7,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "dev:stable": "node src/index.js",
+    "start:safe": "node watchdog.js",
     "lint": "eslint src/**/*.js",
     "test": "jest --detectOpenHandles"
   },

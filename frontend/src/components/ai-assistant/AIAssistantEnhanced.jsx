@@ -9,14 +9,18 @@ const AIAssistantEnhanced = () => {
   const [quickFixes, setQuickFixes] = useState([]);
   const [activeTab, setActiveTab] = useState('chat'); // chat, fixes, errors
   const messagesEndRef = useRef(null);
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
-    // Cargar soluciones rápidas
-    loadQuickFixes();
-
-    // Mensaje de bienvenida
-    if (messages.length === 0) {
+    // Solo ejecutar una vez al montar el componente
+    if (!hasInitialized.current) {
+      // Cargar soluciones rápidas
+      loadQuickFixes();
+      
+      // Mensaje de bienvenida
       addMessage('¡Hola! 👋 Soy tu asistente de IA. ¿En qué puedo ayudarte hoy?', 'ai');
+      
+      hasInitialized.current = true;
     }
   }, []);
 
@@ -30,11 +34,19 @@ const AIAssistantEnhanced = () => {
 
   const loadQuickFixes = async () => {
     try {
-      const response = await fetch('/api/ai-assistant/quick-fixes');
-      const data = await response.json();
-      if (data.success) {
-        setQuickFixes(data.data);
-      }
+      // Comentado temporalmente hasta que el backend esté listo
+      // const response = await fetch('/api/ai-assistant/quick-fixes');
+      // const data = await response.json();
+      // if (data.success) {
+      //   setQuickFixes(data.data);
+      // }
+      
+      // Datos de ejemplo para desarrollo
+      setQuickFixes([
+        { id: 1, title: '¿Cómo registrarme?', description: 'Información sobre el registro' },
+        { id: 2, title: '¿Cómo publicar empleos?', description: 'Guía para publicar ofertas' },
+        { id: 3, title: '¿Cómo buscar trabajo?', description: 'Usar el buscador de empleos' }
+      ]);
     } catch (error) {
       console.error('Error cargando soluciones rápidas:', error);
     }
@@ -95,15 +107,38 @@ const AIAssistantEnhanced = () => {
     return 'general';
   };
 
-  const handleHelpRequest = async (query) => {
+  const handleHelpRequest = async (_query) => {
     try {
-      const response = await fetch('/api/ai-assistant/help', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
-      });
-
-      const data = await response.json();
+      // Comentado temporalmente hasta que el backend esté listo
+      // const response = await fetch('/api/ai-assistant/help', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ query })
+      // });
+      // const data = await response.json();
+      
+      // Respuesta simulada para desarrollo
+      const data = {
+        success: true,
+        data: {
+          suggestions: [
+            {
+              category: 'ayuda',
+              solutions: [
+                {
+                  problem: 'Información general',
+                  fixes: [
+                    'DevsHouse es una plataforma de conexión educativa y laboral',
+                    'Puedes registrarte como usuario, moderador o administrador',
+                    'Explora las secciones de Convenios, Emprendimientos y Empleos'
+                  ]
+                }
+              ]
+            }
+          ],
+          relatedTopics: ['Registro', 'Perfil de usuario', 'Publicar contenido']
+        }
+      };
       
       if (data.success && data.data.suggestions.length > 0) {
         let helpMessage = '📚 Aquí está lo que encontré:\n\n';
@@ -136,24 +171,43 @@ const AIAssistantEnhanced = () => {
     }
   };
 
-  const handleErrorDiagnosis = async (description) => {
+  const handleErrorDiagnosis = async (_description) => {
     try {
-      const response = await fetch('/api/ai-assistant/diagnose', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: {
-            message: description,
-            name: 'UserReportedError'
-          },
-          context: {
-            source: 'user-report',
-            userAgent: navigator.userAgent
-          }
-        })
-      });
-
-      const data = await response.json();
+      // Comentado temporalmente hasta que el backend esté listo
+      // const response = await fetch('/api/ai-assistant/diagnose', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     error: {
+      //       message: description,
+      //       name: 'UserReportedError'
+      //     },
+      //     context: {
+      //       source: 'user-report',
+      //       userAgent: navigator.userAgent
+      //     }
+      //   })
+      // });
+      // const data = await response.json();
+      
+      // Respuesta simulada para desarrollo
+      const data = {
+        success: true,
+        data: {
+          possibleCauses: [
+            'Error de conexión con el servidor',
+            'Token de autenticación expirado',
+            'Problema de configuración en el frontend'
+          ],
+          recommendations: [
+            'Verifica tu conexión a internet',
+            'Intenta cerrar sesión y volver a iniciar',
+            'Limpia el caché del navegador',
+            'Recarga la página (Ctrl+R o Cmd+R)',
+            'Contacta al soporte si el problema persiste'
+          ]
+        }
+      };
       
       if (data.success) {
         const diagnosis = data.data;

@@ -11,7 +11,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { login, register } = useAuth();
+  const { login, register, isAuthenticated } = useAuth();
   const { language, changeLanguage } = useLanguage();
   const t = (key) => translations[language]?.[key] || key;
 
@@ -21,6 +21,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
     password: '',
     confirmPassword: '',
     adminCode: '',
+    city: '',
   });
 
   // Escuchar tecla Escape para cerrar
@@ -34,6 +35,13 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
     window.addEventListener('keydown', handleEscapeKey);
     return () => window.removeEventListener('keydown', handleEscapeKey);
   }, [onClose]);
+
+  // Cerrar modal automáticamente cuando el usuario se autentica
+  useEffect(() => {
+    if (isAuthenticated) {
+      onClose();
+    }
+  }, [isAuthenticated, onClose]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -221,7 +229,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 className="auth-toggle-button"
                 onClick={() => {
                   setIsLogin(false);
-                  setFormData({ name: '', email: '', password: '', confirmPassword: '', adminCode: '' });
+                  setFormData({ name: '', email: '', password: '', confirmPassword: '', adminCode: '', city: '' });
                   setError('');
                 }}
               >
@@ -260,6 +268,19 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                     placeholder="tu@email.com"
                     disabled={loading}
                     required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="city">Ciudad</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    placeholder="Ej: Buenos Aires, Medellín, Madrid"
+                    disabled={loading}
                   />
                 </div>
 
@@ -333,7 +354,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 className="auth-toggle-button"
                 onClick={() => {
                   setIsLogin(true);
-                  setFormData({ name: '', email: '', password: '', confirmPassword: '', adminCode: '' });
+                  setFormData({ name: '', email: '', password: '', confirmPassword: '', adminCode: '', city: '' });
                   setError('');
                 }}
               >

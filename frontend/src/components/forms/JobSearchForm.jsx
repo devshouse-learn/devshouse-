@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jobsService } from '../../services/registration.service';
 import './JobSearchForm.css';
 
 const JobSearchForm = () => {
@@ -18,74 +19,27 @@ const JobSearchForm = () => {
 
   const [results, setResults] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [allJobs, setAllJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const mockJobs = [
-    {
-      id: 1,
-      title: 'Desarrollador Frontend React',
-      company: 'Tech Innovations',
-      location: 'Medellín, Colombia',
-      industry: 'technology',
-      type: 'full-time',
-      experience: 'senior',
-      salary: { min: 3500, max: 5000 },
-      description: 'Buscamos desarrollador React con experiencia en proyectos de gran escala.',
-      keywords: ['React', 'JavaScript', 'CSS', 'Git'],
-      posted: '2024-01-15',
-    },
-    {
-      id: 2,
-      title: 'Especialista en UX/UI Design',
-      company: 'Creative Studio',
-      location: 'Bogotá, Colombia',
-      industry: 'technology',
-      type: 'contract',
-      experience: 'mid',
-      salary: { min: 2000, max: 3500 },
-      description: 'Diseñador UX/UI para proyectos de transformación digital.',
-      keywords: ['Figma', 'Design System', 'User Research'],
-      posted: '2024-01-14',
-    },
-    {
-      id: 3,
-      title: 'Backend Developer Python',
-      company: 'DataFlow Systems',
-      location: 'Medellín, Colombia',
-      industry: 'technology',
-      type: 'full-time',
-      experience: 'mid',
-      salary: { min: 2800, max: 4200 },
-      description: 'Desarrollador Backend con Python y Django para aplicaciones empresariales.',
-      keywords: ['Python', 'Django', 'PostgreSQL', 'REST API'],
-      posted: '2024-01-13',
-    },
-    {
-      id: 4,
-      title: 'Gerente de Proyecto',
-      company: 'Enterprise Solutions',
-      location: 'Cali, Colombia',
-      industry: 'technology',
-      type: 'full-time',
-      experience: 'senior',
-      salary: { min: 4000, max: 6000 },
-      description: 'Gestor de proyectos TI con experiencia en metodologías ágiles.',
-      keywords: ['Scrum', 'Agile', 'Leadership', 'JIRA'],
-      posted: '2024-01-12',
-    },
-    {
-      id: 5,
-      title: 'Especialista Marketing Digital',
-      company: 'Digital Marketing Pro',
-      location: 'Virtual',
-      industry: 'marketing',
-      type: 'full-time',
-      experience: 'mid',
-      salary: { min: 1800, max: 3000 },
-      description: 'Marketing Digital especializado en SEO, SEM y redes sociales.',
-      keywords: ['SEO', 'SEM', 'Google Analytics', 'Social Media'],
-      posted: '2024-01-11',
-    },
-  ];
+  // Cargar empleos de la base de datos al inicio
+  useEffect(() => {
+    const loadJobs = async () => {
+      try {
+        setLoading(true);
+        const response = await jobsService.getAll({ status: 'active' });
+        const jobs = response.data || [];
+        setAllJobs(jobs);
+        console.log('📋 Empleos cargados desde BD:', jobs.length);
+      } catch (error) {
+        console.error('Error al cargar empleos:', error);
+        setAllJobs([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadJobs();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -98,10 +52,10 @@ const JobSearchForm = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     
-    // Simulación de búsqueda
-    const filtered = mockJobs.filter((job) => {
+    // Búsqueda real en empleos guardados
+    const filtered = allJobs.filter((job) => {
       const matchesTitle = !searchCriteria.jobTitle || 
-        job.title.toLowerCase().includes(searchCriteria.jobTitle.toLowerCase());
+        job.position.toLowerCase().includes(searchCriteria.jobTitle.toLowerCase());
       
       const matchesIndustry = !searchCriteria.industry || 
         job.industry === searchCriteria.industry;
@@ -113,11 +67,11 @@ const JobSearchForm = () => {
         job.experience === searchCriteria.experienceLevel;
       
       const matchesType = searchCriteria.jobType === 'any' || 
-        job.type === searchCriteria.jobType;
+        job.jobType === searchCriteria.jobType;
       
       const minSalary = searchCriteria.salaryMin ? parseInt(searchCriteria.salaryMin) : 0;
       const maxSalary = searchCriteria.salaryMax ? parseInt(searchCriteria.salaryMax) : Infinity;
-      const matchesSalary = job.salary.min >= minSalary && job.salary.max <= maxSalary;
+      const matchesSalary = job.salaryMin >= minSalary && job.salaryMax <= maxSalary;
       
       return matchesTitle && matchesIndustry && matchesLocation && 
              matchesExperience && matchesType && matchesSalary;
@@ -301,35 +255,37 @@ const JobSearchForm = () => {
                 <div key={job.id} className="job-card">
                   <div className="job-header">
                     <div>
-                      <h3>{job.title}</h3>
+                      <h3>{job.position}</h3>
                       <p className="company">{job.company}</p>
                     </div>
-                    <div className="job-type-badge" data-type={job.type}>
-                      {job.type === 'full-time' && '💼 Tiempo Completo'}
-                      {job.type === 'part-time' && '⏰ Medio Tiempo'}
-                      {job.type === 'contract' && '📋 Contrato'}
-                      {job.type === 'freelance' && '🎯 Freelance'}
+                    <div className="job-type-badge" data-type={job.jobType}>
+                      {job.jobType === 'full-time' && '💼 Tiempo Completo'}
+                      {job.jobType === 'part-time' && '⏰ Medio Tiempo'}
+                      {job.jobType === 'contract' && '📋 Contrato'}
+                      {job.jobType === 'freelance' && '🎯 Freelance'}
                     </div>
                   </div>
 
                   <div className="job-details">
                     <span className="detail">📍 {job.location}</span>
                     <span className="detail">💼 {job.experience}</span>
-                    <span className="detail">💵 ${job.salary.min}k - ${job.salary.max}k</span>
+                    <span className="detail">💵 {job.currency} {job.salaryMin} - {job.salaryMax}</span>
                   </div>
 
                   <p className="job-description">{job.description}</p>
 
-                  <div className="job-keywords">
-                    {job.keywords.map((keyword, idx) => (
-                      <span key={idx} className="keyword">
-                        {keyword}
-                      </span>
-                    ))}
-                  </div>
+                  {job.requirements && (
+                    <div className="job-keywords">
+                      {job.requirements.split(',').map((req, idx) => (
+                        <span key={idx} className="keyword">
+                          {req.trim()}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   <div className="job-footer">
-                    <span className="posted">Publicado: {job.posted}</span>
+                    <span className="posted">Publicado: {new Date(job.createdAt).toLocaleDateString()}</span>
                     <button className="btn-apply">Aplicar Ahora</button>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-  BASE_URL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
-  TIMEOUT: 10000,
+  BASE_URL: import.meta.env.VITE_API_URL || 'http://localhost:3001/api',
+  TIMEOUT: 30000, // 30 segundos para dar tiempo a la sincronización de BD
   HEADERS: {
     'Content-Type': 'application/json',
   },
@@ -12,6 +12,8 @@ export const ROUTES = {
   VENTURES: '/ventures',
   JOBS: '/jobs',
   JOB_SEARCH: '/job-search',
+  ADMIN: '/admin',
+  DATA_VIEWER: '/data-viewer',
 };
 
 export const COMMUNITY_LINKS = {

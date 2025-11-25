@@ -44,7 +44,8 @@ const VenturesForm = () => {
         throw new Error('Por favor completa todos los campos requeridos');
       }
 
-      await venturesService.create(formData);
+      const response = await venturesService.create(formData);
+      console.log('✅ Emprendimiento guardado en BD:', response.data);
       
       setSuccess(true);
       setFormData({

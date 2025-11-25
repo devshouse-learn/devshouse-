@@ -12,13 +12,21 @@ import monitoringRoutes from './routes/monitoring.routes.js';
 import aiAssistantRoutes from './routes/aiAssistant.routes.js';
 import verificationRoutes from './routes/verification.routes.js';
 import emailValidationRoutes from './routes/emailValidation.routes.js';
+import agreementsRoutes from './routes/agreements.routes.js';
+import venturesRoutes from './routes/ventures.routes.js';
+import jobsRoutes from './routes/jobs.routes.js';
+import reactionsRoutes from './routes/reactions.routes.js';
+import moderationRoutes from './routes/moderation.routes.js';
 
 // Importar middleware
 import { globalErrorHandler, notFoundHandler } from './middleware/errorHandler.js';
-import { requestLogger } from './utils/logger.js';
+import logger, { requestLogger, setupErrorMonitoring } from './utils/logger.js';
 
 // Cargar variables de entorno
 dotenv.config();
+
+// Configurar monitoreo de errores
+setupErrorMonitoring(logger);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,7 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middleware de logging
-app.use(requestLogger);
+app.use(requestLogger(logger));
 
 // Rutas
 app.get('/api/health', (req, res) => {
@@ -50,6 +58,11 @@ app.use('/api/monitoring', monitoringRoutes);
 app.use('/api/ai-assistant', aiAssistantRoutes);
 app.use('/api/verification', verificationRoutes);
 app.use('/api/email-validation', emailValidationRoutes);
+app.use('/api/agreements', agreementsRoutes);
+app.use('/api/ventures', venturesRoutes);
+app.use('/api/jobs', jobsRoutes);
+app.use('/api/reactions', reactionsRoutes);
+app.use('/api/moderation', moderationRoutes);
 
 app.use('/api/auth', (req, res) => {
   res.json({ message: 'Auth routes coming soon' });
@@ -57,18 +70,6 @@ app.use('/api/auth', (req, res) => {
 
 app.use('/api/users', (req, res) => {
   res.json({ message: 'Users routes coming soon' });
-});
-
-app.use('/api/agreements', (req, res) => {
-  res.json({ message: 'Agreements routes coming soon' });
-});
-
-app.use('/api/ventures', (req, res) => {
-  res.json({ message: 'Ventures routes coming soon' });
-});
-
-app.use('/api/jobs', (req, res) => {
-  res.json({ message: 'Jobs routes coming soon' });
 });
 
 app.use('/api/candidates', (req, res) => {

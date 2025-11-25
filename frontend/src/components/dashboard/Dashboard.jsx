@@ -30,25 +30,16 @@ const Dashboard = () => {
       roles: ['usuario', 'moderador', 'admin']
     },
     {
-      id: 3,
-      path: '/job-search',
-      title: 'Buscar Empleo',
-      description: 'Encuentra las mejores oportunidades laborales',
-      icon: '💼',
-      color: 'cyan',
+      id: 4,
+      path: '/recruiting',
+      title: 'Centro de Reclutamiento',
+      description: 'Busca talentos o publica oportunidades laborales',
+      icon: '�',
+      color: 'orange',
       roles: ['usuario', 'moderador', 'admin']
     },
     {
-      id: 4,
-      path: '/jobs',
-      title: 'Publicar Empleos',
-      description: 'Publica ofertas de trabajo para tu empresa',
-      icon: '📢',
-      color: 'pink',
-      roles: ['admin']
-    },
-    {
-      id: 5,
+      id: 6,
       path: '/admin',
       title: 'Panel de Administración',
       description: 'Gestiona usuarios, permisos y configuraciones',

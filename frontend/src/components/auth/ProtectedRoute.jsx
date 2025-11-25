@@ -36,24 +36,29 @@ const ProtectedRoute = ({ children, requiredRole = null }) => {
     );
   }
 
-  if (requiredRole && user?.role !== requiredRole) {
-    return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '60vh',
-        color: '#ff6b6b',
-        fontSize: '18px',
-        textAlign: 'center',
-        flexDirection: 'column',
-        gap: '12px'
-      }}>
-        <h2>⛔ Acceso Denegado</h2>
-        <p>Tu rol actual es: <strong>{user?.role}</strong></p>
-        <p>Se requiere: <strong>{requiredRole}</strong></p>
-      </div>
-    );
+  if (requiredRole) {
+    const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+    const hasAccess = allowedRoles.includes(user?.role);
+    
+    if (!hasAccess) {
+      return (
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '60vh',
+          color: '#ff6b6b',
+          fontSize: '18px',
+          textAlign: 'center',
+          flexDirection: 'column',
+          gap: '12px'
+        }}>
+          <h2>⛔ Acceso Denegado</h2>
+          <p>Tu rol actual es: <strong>{user?.role}</strong></p>
+          <p>Se requiere: <strong>{allowedRoles.join(' o ')}</strong></p>
+        </div>
+      );
+    }
   }
 
   return children;

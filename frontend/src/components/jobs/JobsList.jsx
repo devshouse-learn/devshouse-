@@ -1,0 +1,199 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { jobsService } from '../../services/registration.service';
+import './JobsList.css';
+
+const JobsList = () => {
+  const navigate = useNavigate();
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    loadJobs();
+  }, []);
+
+  const loadJobs = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const response = await jobsService.getAll();
+      setJobs(response.data || []);
+    } catch (err) {
+      console.error('Error loading jobs:', err);
+      if (err.message.includes('Failed to fetch')) {
+        setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
+      } else if (err.message.includes('timeout')) {
+        setError('⚠️ La conexión tardó demasiado. Por favor, intenta de nuevo.');
+      } else {
+        setError('⚠️ Error al cargar los empleos. Por favor, intenta de nuevo más tarde.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLike = async (id) => {
+    try {
+      const result = await jobsService.like(id);
+      console.log('Like response:', result);
+      loadJobs();
+      alert('❤️ Like registrado');
+    } catch (err) {
+      console.error('Error al dar like:', err);
+      alert('Error al registrar like: ' + err.message);
+    }
+  };
+
+  const handleReport = async (id) => {
+    try {
+      const reason = prompt('¿Cuál es el motivo de la denuncia?');
+      if (reason) {
+        const result = await jobsService.report(id, reason);
+        console.log('Report response:', result);
+        alert('🚨 Denuncia registrada correctamente');
+        loadJobs();
+      }
+    } catch (err) {
+      console.error('Error al reportar:', err);
+      alert('Error al registrar denuncia: ' + err.message);
+    }
+  };
+
+  if (loading) {
+    return <div className="loading">⏳ Cargando empleos...</div>;
+  }
+
+  return (
+    <div className="list-container">
+      <div className="list-header">
+        <div className="header-top">
+          <button 
+            className="btn-back"
+            onClick={() => navigate('/')}
+            title="Volver al inicio"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="header-content">
+          <h1>💼 Ofertas de Empleo</h1>
+          <p>Encuentra las mejores oportunidades laborales</p>
+        </div>
+        <button 
+          className="btn-primary-large"
+          onClick={() => navigate('/jobs/form')}
+        >
+          ➕ Publicar Empleo
+        </button>
+      </div>
+
+      {error && (
+        <div className="error-message">
+          {error}
+          <button 
+            onClick={loadJobs}
+            style={{
+              marginLeft: '15px',
+              padding: '5px 15px',
+              background: '#c33',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontWeight: '600',
+            }}
+          >
+            🔄 Reintentar
+          </button>
+        </div>
+      )}
+
+      {jobs.length === 0 ? (
+        <div className="empty-state">
+          <h2>📭 Sin ofertas de empleo aún</h2>
+          <p>Sé el primero en publicar una oferta</p>
+          <button 
+            className="btn-primary"
+            onClick={() => navigate('/jobs/form')}
+          >
+            ➕ Publicar Empleo
+          </button>
+        </div>
+      ) : (
+        <div className="items-grid">
+          {jobs.map((job) => (
+            <div key={job.id} className="item-card">
+              <div className="card-header">
+                <h3>{job.position}</h3>
+                <span className="badge">{job.experience}</span>
+              </div>
+
+              <div className="card-content">
+                <div className="info-row">
+                  <span className="label">🏢 Empresa:</span>
+                  <span className="value">{job.company}</span>
+                </div>
+
+                <div className="info-row">
+                  <span className="label">📍 Ubicación:</span>
+                  <span className="value">{job.location}</span>
+                </div>
+
+                <div className="info-row">
+                  <span className="label">💼 Tipo:</span>
+                  <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
+                </div>
+
+                {job.salaryMin && job.salaryMax && (
+                  <div className="info-row">
+                    <span className="label">💰 Salario:</span>
+                    <span className="value">
+                      ${Number(job.salaryMin).toLocaleString()} - ${Number(job.salaryMax).toLocaleString()} {job.currency}
+                    </span>
+                  </div>
+                )}
+
+                <div className="info-row">
+                  <span className="label">📧 Email:</span>
+                  <span className="value">{job.contactEmail}</span>
+                </div>
+
+                {job.description && (
+                  <div className="description">
+                    <p>{job.description}</p>
+                  </div>
+                )}
+
+                <div className="card-stats">
+                  <span>👁️ {job.views} vistas</span>
+                  <span>❤️ {job.likes} likes</span>
+                  <span>🚨 {job.reports} reportes</span>
+                </div>
+              </div>
+
+              <div className="card-actions">
+                <button
+                  className="btn-like"
+                  onClick={() => handleLike(job.id)}
+                  title="Me gusta"
+                >
+                  ❤️ Like
+                </button>
+                <button
+                  className="btn-report"
+                  onClick={() => handleReport(job.id)}
+                  title="Reportar"
+                >
+                  🚨 Reportar
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default JobsList;

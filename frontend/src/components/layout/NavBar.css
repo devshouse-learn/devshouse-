@@ -1,0 +1,156 @@
+.navbar {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  color: #666;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-link:hover {
+  color: #1a73e8;
+  background: #f8f9fa;
+  border-bottom-color: #1a73e8;
+}
+
+.nav-link.active {
+  color: #1a73e8;
+  border-bottom-color: #1a73e8;
+  background: #f0f4ff;
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+}
+
+.nav-text {
+  font-size: 0.9rem;
+}
+
+.recruiting-link {
+  background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+  color: white;
+  margin: 8px 20px;
+  border-radius: 8px;
+  padding: 12px 20px;
+  border: none;
+}
+
+.recruiting-link:hover {
+  background: linear-gradient(135deg, #1557b0 0%, #3a7bc8 100%);
+  color: white;
+  border-bottom-color: transparent;
+}
+
+.recruiting-link.active {
+  background: linear-gradient(135deg, #1557b0 0%, #3a7bc8 100%);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+
+  .nav-link {
+    padding: 14px 16px;
+    font-size: 0.85rem;
+  }
+
+  .nav-text {
+    font-size: 0.8rem;
+  }
+
+  .nav-icon {
+    font-size: 1rem;
+  }
+}
+
+/* Estilos para las diferentes secciones */
+.nav-link[href*="agreements"] {
+  --color: #27ae60;
+}
+
+.nav-link[href*="agreements"]:hover {
+  color: #27ae60;
+  border-bottom-color: #27ae60;
+}
+
+.nav-link[href*="agreements"].active {
+  color: #27ae60;
+  border-bottom-color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.nav-link[href*="ventures"] {
+  --color: #e67e22;
+}
+
+.nav-link[href*="ventures"]:hover {
+  color: #e67e22;
+  border-bottom-color: #e67e22;
+}
+
+.nav-link[href*="ventures"].active {
+  color: #e67e22;
+  border-bottom-color: #e67e22;
+  background: rgba(230, 126, 34, 0.1);
+}
+
+.nav-link[href*="jobs"] {
+  --color: #3498db;
+}
+
+.nav-link[href*="jobs"]:hover {
+  color: #3498db;
+  border-bottom-color: #3498db;
+}
+
+.nav-link[href*="jobs"].active {
+  color: #3498db;
+  border-bottom-color: #3498db;
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.nav-link[href*="job-search"] {
+  --color: #8e44ad;
+}
+
+.nav-link[href*="job-search"]:hover {
+  color: #8e44ad;
+  border-bottom-color: #8e44ad;
+}
+
+.nav-link[href*="job-search"].active {
+  color: #8e44ad;
+  border-bottom-color: #8e44ad;
+  background: rgba(142, 68, 173, 0.1);
+}

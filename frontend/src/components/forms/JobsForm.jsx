@@ -59,10 +59,12 @@ const JobsForm = () => {
       const jobData = {
         ...formData,
         postedBy: user?.id || 'admin',
-        postedDate: new Date().toISOString(),
+        postedByEmail: user?.email || formData.contactEmail,
+        postedByName: user?.name || 'Administrador',
       };
 
-      await jobsService.create(jobData);
+      const response = await jobsService.create(jobData);
+      console.log('✅ Empleo guardado en BD:', response.data);
       
       setSuccess(true);
       setFormData({
