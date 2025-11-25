@@ -24,11 +24,12 @@ const getModel = (resourceType) => {
 router.post('/like', async (req, res) => {
   try {
     const { userId, resourceType, resourceId } = req.body;
+    const finalUserId = userId || 1; // Usar 1 como default si no viene userId
 
-    if (!userId || !resourceType || !resourceId) {
+    if (!resourceType || !resourceId) {
       return res.status(400).json({
         success: false,
-        message: 'Faltan datos requeridos: userId, resourceType, resourceId',
+        message: 'Faltan datos requeridos: resourceType, resourceId',
       });
     }
 
@@ -52,7 +53,7 @@ router.post('/like', async (req, res) => {
     // Verificar si ya existe el like
     const existingLike = await Reaction.findOne({
       where: {
-        userId,
+        userId: finalUserId,
         resourceType,
         resourceId,
         reactionType: 'like',
@@ -73,7 +74,7 @@ router.post('/like', async (req, res) => {
     } else {
       // Crear nuevo like
       await Reaction.create({
-        userId,
+        userId: finalUserId,
         resourceType,
         resourceId,
         reactionType: 'like',
@@ -101,11 +102,12 @@ router.post('/like', async (req, res) => {
 router.post('/report', async (req, res) => {
   try {
     const { userId, resourceType, resourceId, reportReason } = req.body;
+    const finalUserId = userId || 1; // Usar 1 como default si no viene userId
 
-    if (!userId || !resourceType || !resourceId) {
+    if (!resourceType || !resourceId) {
       return res.status(400).json({
         success: false,
-        message: 'Faltan datos requeridos: userId, resourceType, resourceId',
+        message: 'Faltan datos requeridos: resourceType, resourceId',
       });
     }
 
@@ -129,7 +131,7 @@ router.post('/report', async (req, res) => {
     // Verificar si ya denunció este recurso
     const existingReport = await Reaction.findOne({
       where: {
-        userId,
+        userId: finalUserId,
         resourceType,
         resourceId,
         reactionType: 'report',
@@ -145,7 +147,7 @@ router.post('/report', async (req, res) => {
 
     // Crear denuncia
     await Reaction.create({
-      userId,
+      userId: finalUserId,
       resourceType,
       resourceId,
       reactionType: 'report',

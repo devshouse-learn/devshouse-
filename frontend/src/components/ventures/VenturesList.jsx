@@ -8,6 +8,7 @@ const VenturesList = () => {
   const [ventures, setVentures] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [userReactions, setUserReactions] = useState({});
 
   useEffect(() => {
     loadVentures();
@@ -18,7 +19,16 @@ const VenturesList = () => {
       setLoading(true);
       setError('');
       const response = await venturesService.getAll();
-      setVentures(response.data || []);
+      const loadedVentures = response.data || [];
+      setVentures(loadedVentures);
+      
+      // Cargar reacciones del usuario
+      const reactions = {};
+      for (const venture of loadedVentures) {
+        const userReaction = await venturesService.getUserReactions(venture.id);
+        reactions[venture.id] = userReaction;
+      }
+      setUserReactions(reactions);
     } catch (err) {
       console.error('Error loading ventures:', err);
       if (err.message.includes('Failed to fetch')) {
@@ -37,8 +47,23 @@ const VenturesList = () => {
     try {
       const result = await venturesService.like(id);
       console.log('Like response:', result);
-      loadVentures();
-      alert('❤️ Like registrado');
+      
+      const isLiking = result.action === 'liked';
+      setVentures(prevVentures => 
+        prevVentures.map(venture => 
+          venture.id === id 
+            ? { ...venture, likes: isLiking ? (venture.likes || 0) + 1 : (venture.likes || 1) - 1 }
+            : venture
+        )
+      );
+      
+      setUserReactions(prev => ({
+        ...prev,
+        [id]: { ...prev[id], hasLiked: isLiking }
+      }));
+      
+      const message = isLiking ? '❤️ Like registrado' : '💔 Like removido';
+      alert(message);
     } catch (err) {
       console.error('Error al dar like:', err);
       alert('Error al registrar like: ' + err.message);
@@ -46,13 +71,31 @@ const VenturesList = () => {
   };
 
   const handleReport = async (id) => {
+    if (userReactions[id]?.hasReported) {
+      alert('⚠️ Ya has denunciado este contenido');
+      return;
+    }
+    
     try {
       const reason = prompt('¿Cuál es el motivo de la denuncia?');
       if (reason) {
         const result = await venturesService.report(id, reason);
         console.log('Report response:', result);
+        
+        setVentures(prevVentures => 
+          prevVentures.map(venture => 
+            venture.id === id 
+              ? { ...venture, reports: (venture.reports || 0) + 1 }
+              : venture
+          )
+        );
+        
+        setUserReactions(prev => ({
+          ...prev,
+          [id]: { ...prev[id], hasReported: true }
+        }));
+        
         alert('🚨 Denuncia registrada correctamente');
-        loadVentures();
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -176,18 +219,19 @@ const VenturesList = () => {
 
               <div className="card-actions">
                 <button
-                  className="btn-like"
+                  className={`btn-like ${userReactions[venture.id]?.hasLiked ? 'liked' : ''}`}
                   onClick={() => handleLike(venture.id)}
-                  title="Me gusta"
+                  title={userReactions[venture.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  ❤️ Like
+                  {userReactions[venture.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
                 </button>
                 <button
-                  className="btn-report"
+                  className={`btn-report ${userReactions[venture.id]?.hasReported ? 'reported' : ''}`}
                   onClick={() => handleReport(venture.id)}
-                  title="Reportar"
+                  title={userReactions[venture.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
+                  disabled={userReactions[venture.id]?.hasReported}
                 >
-                  🚨 Reportar
+                  🚨 {userReactions[venture.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
               </div>
             </div>

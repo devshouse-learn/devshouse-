@@ -8,6 +8,7 @@ const AgreementsList = () => {
   const [agreements, setAgreements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [userReactions, setUserReactions] = useState({}); // Rastrear reacciones del usuario
 
   useEffect(() => {
     loadAgreements();
@@ -19,10 +20,18 @@ const AgreementsList = () => {
       setError('');
       const response = await agreementsService.getAll();
       console.log('Response from API:', response);
-      setAgreements(response.data || []);
+      const loadedAgreements = response.data || [];
+      setAgreements(loadedAgreements);
+      
+      // Cargar reacciones del usuario para cada item
+      const reactions = {};
+      for (const agreement of loadedAgreements) {
+        const userReaction = await agreementsService.getUserReactions(agreement.id);
+        reactions[agreement.id] = userReaction;
+      }
+      setUserReactions(reactions);
     } catch (err) {
       console.error('Error loading agreements:', err);
-      // Solo mostrar error si no es un error temporal
       if (err.message.includes('Failed to fetch')) {
         setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
@@ -39,9 +48,28 @@ const AgreementsList = () => {
     try {
       const result = await agreementsService.like(id);
       console.log('Like response:', result);
-      loadAgreements();
+      
+      // Actualizar contadores según la acción
+      const action = result.action || 'liked'; // 'liked' o 'unliked'
+      const isLiking = action === 'liked';
+      
+      setAgreements(prevAgreements => 
+        prevAgreements.map(agreement => 
+          agreement.id === id 
+            ? { ...agreement, likes: isLiking ? (agreement.likes || 0) + 1 : (agreement.likes || 1) - 1 }
+            : agreement
+        )
+      );
+      
+      // Actualizar estado de reacciones
+      setUserReactions(prev => ({
+        ...prev,
+        [id]: { ...prev[id], hasLiked: isLiking }
+      }));
+      
       // Mostrar confirmación
-      alert('❤️ Like registrado');
+      const message = isLiking ? '❤️ Like registrado' : '💔 Like removido';
+      alert(message);
     } catch (err) {
       console.error('Error al dar like:', err);
       alert('Error al registrar like: ' + err.message);
@@ -49,13 +77,34 @@ const AgreementsList = () => {
   };
 
   const handleReport = async (id) => {
+    // Si ya reportó, mostrar mensaje
+    if (userReactions[id]?.hasReported) {
+      alert('⚠️ Ya has denunciado este contenido');
+      return;
+    }
+    
     try {
       const reason = prompt('¿Cuál es el motivo de la denuncia?');
       if (reason) {
         const result = await agreementsService.report(id, reason);
         console.log('Report response:', result);
+        
+        // Actualizar contadores
+        setAgreements(prevAgreements => 
+          prevAgreements.map(agreement => 
+            agreement.id === id 
+              ? { ...agreement, reports: (agreement.reports || 0) + 1 }
+              : agreement
+          )
+        );
+        
+        // Actualizar estado de reacciones
+        setUserReactions(prev => ({
+          ...prev,
+          [id]: { ...prev[id], hasReported: true }
+        }));
+        
         alert('🚨 Denuncia registrada correctamente');
-        loadAgreements();
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -173,18 +222,19 @@ const AgreementsList = () => {
 
               <div className="card-actions">
                 <button
-                  className="btn-like"
+                  className={`btn-like ${userReactions[agreement.id]?.hasLiked ? 'liked' : ''}`}
                   onClick={() => handleLike(agreement.id)}
-                  title="Me gusta"
+                  title={userReactions[agreement.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  ❤️ Like
+                  {userReactions[agreement.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
                 </button>
                 <button
-                  className="btn-report"
+                  className={`btn-report ${userReactions[agreement.id]?.hasReported ? 'reported' : ''}`}
                   onClick={() => handleReport(agreement.id)}
-                  title="Reportar"
+                  title={userReactions[agreement.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
+                  disabled={userReactions[agreement.id]?.hasReported}
                 >
-                  🚨 Reportar
+                  🚨 {userReactions[agreement.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
               </div>
             </div>

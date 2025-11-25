@@ -8,6 +8,7 @@ const JobsList = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [userReactions, setUserReactions] = useState({});
 
   useEffect(() => {
     loadJobs();
@@ -18,7 +19,16 @@ const JobsList = () => {
       setLoading(true);
       setError('');
       const response = await jobsService.getAll();
-      setJobs(response.data || []);
+      const loadedJobs = response.data || [];
+      setJobs(loadedJobs);
+      
+      // Cargar reacciones del usuario
+      const reactions = {};
+      for (const job of loadedJobs) {
+        const userReaction = await jobsService.getUserReactions(job.id);
+        reactions[job.id] = userReaction;
+      }
+      setUserReactions(reactions);
     } catch (err) {
       console.error('Error loading jobs:', err);
       if (err.message.includes('Failed to fetch')) {
@@ -37,8 +47,23 @@ const JobsList = () => {
     try {
       const result = await jobsService.like(id);
       console.log('Like response:', result);
-      loadJobs();
-      alert('❤️ Like registrado');
+      
+      const isLiking = result.action === 'liked';
+      setJobs(prevJobs => 
+        prevJobs.map(job => 
+          job.id === id 
+            ? { ...job, likes: isLiking ? (job.likes || 0) + 1 : (job.likes || 1) - 1 }
+            : job
+        )
+      );
+      
+      setUserReactions(prev => ({
+        ...prev,
+        [id]: { ...prev[id], hasLiked: isLiking }
+      }));
+      
+      const message = isLiking ? '❤️ Like registrado' : '💔 Like removido';
+      alert(message);
     } catch (err) {
       console.error('Error al dar like:', err);
       alert('Error al registrar like: ' + err.message);
@@ -46,13 +71,31 @@ const JobsList = () => {
   };
 
   const handleReport = async (id) => {
+    if (userReactions[id]?.hasReported) {
+      alert('⚠️ Ya has denunciado este contenido');
+      return;
+    }
+    
     try {
       const reason = prompt('¿Cuál es el motivo de la denuncia?');
       if (reason) {
         const result = await jobsService.report(id, reason);
         console.log('Report response:', result);
+        
+        setJobs(prevJobs => 
+          prevJobs.map(job => 
+            job.id === id 
+              ? { ...job, reports: (job.reports || 0) + 1 }
+              : job
+          )
+        );
+        
+        setUserReactions(prev => ({
+          ...prev,
+          [id]: { ...prev[id], hasReported: true }
+        }));
+        
         alert('🚨 Denuncia registrada correctamente');
-        loadJobs();
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -174,18 +217,19 @@ const JobsList = () => {
 
               <div className="card-actions">
                 <button
-                  className="btn-like"
+                  className={`btn-like ${userReactions[job.id]?.hasLiked ? 'liked' : ''}`}
                   onClick={() => handleLike(job.id)}
-                  title="Me gusta"
+                  title={userReactions[job.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  ❤️ Like
+                  {userReactions[job.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
                 </button>
                 <button
-                  className="btn-report"
+                  className={`btn-report ${userReactions[job.id]?.hasReported ? 'reported' : ''}`}
                   onClick={() => handleReport(job.id)}
-                  title="Reportar"
+                  title={userReactions[job.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
+                  disabled={userReactions[job.id]?.hasReported}
                 >
-                  🚨 Reportar
+                  🚨 {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
               </div>
             </div>

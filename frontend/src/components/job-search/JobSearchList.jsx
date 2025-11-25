@@ -8,6 +8,7 @@ const JobSearchList = () => {
   const [candidates, setCandidates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [userReactions, setUserReactions] = useState({});
 
   useEffect(() => {
     loadCandidates();
@@ -18,7 +19,16 @@ const JobSearchList = () => {
       setLoading(true);
       setError('');
       const response = await candidatesService.getAll();
-      setCandidates(response.data || []);
+      const loadedCandidates = response.data || [];
+      setCandidates(loadedCandidates);
+      
+      // Cargar reacciones del usuario
+      const reactions = {};
+      for (const candidate of loadedCandidates) {
+        const userReaction = await candidatesService.getUserReactions(candidate.id);
+        reactions[candidate.id] = userReaction;
+      }
+      setUserReactions(reactions);
     } catch (err) {
       console.error('Error loading candidates:', err);
       if (err.message.includes('Failed to fetch')) {
@@ -37,8 +47,23 @@ const JobSearchList = () => {
     try {
       const result = await candidatesService.like(id);
       console.log('Like response:', result);
-      loadCandidates();
-      alert('❤️ Like registrado');
+      
+      const isLiking = result.action === 'liked';
+      setCandidates(prevCandidates => 
+        prevCandidates.map(candidate => 
+          candidate.id === id 
+            ? { ...candidate, likes: isLiking ? (candidate.likes || 0) + 1 : (candidate.likes || 1) - 1 }
+            : candidate
+        )
+      );
+      
+      setUserReactions(prev => ({
+        ...prev,
+        [id]: { ...prev[id], hasLiked: isLiking }
+      }));
+      
+      const message = isLiking ? '❤️ Like registrado' : '💔 Like removido';
+      alert(message);
     } catch (err) {
       console.error('Error al dar like:', err);
       alert('Error al registrar like: ' + err.message);
@@ -46,13 +71,31 @@ const JobSearchList = () => {
   };
 
   const handleReport = async (id) => {
+    if (userReactions[id]?.hasReported) {
+      alert('⚠️ Ya has denunciado este contenido');
+      return;
+    }
+    
     try {
       const reason = prompt('¿Cuál es el motivo de la denuncia?');
       if (reason) {
         const result = await candidatesService.report(id, reason);
         console.log('Report response:', result);
+        
+        setCandidates(prevCandidates => 
+          prevCandidates.map(candidate => 
+            candidate.id === id 
+              ? { ...candidate, reports: (candidate.reports || 0) + 1 }
+              : candidate
+          )
+        );
+        
+        setUserReactions(prev => ({
+          ...prev,
+          [id]: { ...prev[id], hasReported: true }
+        }));
+        
         alert('🚨 Denuncia registrada correctamente');
-        loadCandidates();
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -180,18 +223,19 @@ const JobSearchList = () => {
 
               <div className="card-actions">
                 <button
-                  className="btn-like"
+                  className={`btn-like ${userReactions[candidate.id]?.hasLiked ? 'liked' : ''}`}
                   onClick={() => handleLike(candidate.id)}
-                  title="Me gusta"
+                  title={userReactions[candidate.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  ❤️ Like
+                  {userReactions[candidate.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
                 </button>
                 <button
-                  className="btn-report"
+                  className={`btn-report ${userReactions[candidate.id]?.hasReported ? 'reported' : ''}`}
                   onClick={() => handleReport(candidate.id)}
-                  title="Reportar"
+                  title={userReactions[candidate.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
+                  disabled={userReactions[candidate.id]?.hasReported}
                 >
-                  🚨 Reportar
+                  🚨 {userReactions[candidate.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
               </div>
             </div>
