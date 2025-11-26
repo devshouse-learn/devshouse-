@@ -102,7 +102,7 @@ legend {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(39, 174, 96, 0.3);
   border-radius: 8px;
-  color: #ffffff;
+  color: #000000;
   font-size: 14px;
   font-family: inherit;
   transition: all 0.3s ease;
