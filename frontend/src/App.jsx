@@ -18,7 +18,6 @@ import JobsForm from './components/forms/JobsForm';
 import JobSearchList from './components/job-search/JobSearchList';
 import JobSearchForm from './components/forms/JobSearchForm';
 import AdminPanel from './components/admin/AdminPanel';
-import AdminDashboard from './components/admin/AdminDashboard';
 import DataViewer from './components/dashboard/DataViewer';
 import ModerationPanel from './components/moderation/ModerationPanel';
 import RecruitingHub from './components/recruiting/RecruitingHub';
@@ -105,7 +104,7 @@ function App() {
                 path="admin"
                 element={
                   <ProtectedRoute requiredRole="admin">
-                    <AdminDashboard />
+                    <AdminPanel />
                   </ProtectedRoute>
                 }
               />
@@ -114,6 +113,14 @@ function App() {
                 element={
                   <ProtectedRoute requiredRole="admin">
                     <DataViewer />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="moderation"
+                element={
+                  <ProtectedRoute requiredRole={['admin', 'moderador']}>
+                    <ModerationPanel />
                   </ProtectedRoute>
                 }
               />

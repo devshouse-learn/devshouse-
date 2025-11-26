@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { moderationService } from '../../services/reactions.service';
 import { useAuth } from '../../context/AuthContext';
 import './ModerationPanel.css';
 
 const ModerationPanel = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [pendingItems, setPendingItems] = useState([]);
   const [stats, setStats] = useState({});
@@ -273,6 +275,18 @@ const ModerationPanel = () => {
             </div>
           ))
         )}
+      </div>
+
+      {/* Back Button */}
+      <div className="moderation-navigation">
+        <button
+          type="button"
+          className="btn-back"
+          onClick={() => navigate(-1)}
+          title="Volver atrás"
+        >
+          ⬅️ Atrás
+        </button>
       </div>
     </div>
   );
