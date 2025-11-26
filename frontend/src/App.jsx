@@ -6,6 +6,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import BackendMonitor from './components/common/BackendMonitor';
+import AgreementsHub from './components/agreements/AgreementsHub';
 import AgreementsList from './components/agreements/AgreementsList';
 import AgreementsForm from './components/forms/AgreementsForm';
 import VenturesList from './components/ventures/VenturesList';
@@ -35,6 +36,10 @@ function App() {
               <Route index element={<Home />} />
               <Route
                 path="agreements"
+                element={<AgreementsHub />}
+              />
+              <Route
+                path="agreements/list"
                 element={<AgreementsList />}
               />
               <Route
