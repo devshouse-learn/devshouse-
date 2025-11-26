@@ -40,9 +40,9 @@ export const connectDB = async () => {
     await sequelize.authenticate();
     console.log('✅ PostgreSQL conectado exitosamente');
     
-    // Sincronizar modelos en desarrollo
+    // Sincronizar modelos en desarrollo (sin alter para evitar bloqueos)
     if (process.env.NODE_ENV === 'development') {
-      await sequelize.sync({ alter: true });
+      await sequelize.sync({ alter: false, force: false });
       console.log('✅ Modelos sincronizados con la base de datos');
     }
   } catch (error) {
