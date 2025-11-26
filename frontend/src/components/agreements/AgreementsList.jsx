@@ -66,10 +66,6 @@ const AgreementsList = () => {
         ...prev,
         [id]: { ...prev[id], hasLiked: isLiking }
       }));
-      
-      // Mostrar confirmación
-      const message = isLiking ? '❤️ Like registrado' : '💔 Like removido';
-      alert(message);
     } catch (err) {
       console.error('Error al dar like:', err);
       alert('Error al registrar like: ' + err.message);
@@ -77,9 +73,8 @@ const AgreementsList = () => {
   };
 
   const handleReport = async (id) => {
-    // Si ya reportó, mostrar mensaje
+    // Si ya reportó, no permitir otro reporte
     if (userReactions[id]?.hasReported) {
-      alert('⚠️ Ya has denunciado este contenido');
       return;
     }
     
@@ -103,8 +98,6 @@ const AgreementsList = () => {
           ...prev,
           [id]: { ...prev[id], hasReported: true }
         }));
-        
-        alert('🚨 Denuncia registrada correctamente');
       }
     } catch (err) {
       console.error('Error al reportar:', err);

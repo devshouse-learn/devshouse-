@@ -61,9 +61,6 @@ const JobsList = () => {
         ...prev,
         [id]: { ...prev[id], hasLiked: isLiking }
       }));
-      
-      const message = isLiking ? '❤️ Like registrado' : '💔 Like removido';
-      alert(message);
     } catch (err) {
       console.error('Error al dar like:', err);
       alert('Error al registrar like: ' + err.message);
@@ -71,8 +68,8 @@ const JobsList = () => {
   };
 
   const handleReport = async (id) => {
+    // Si ya reportó, no permitir otro reporte
     if (userReactions[id]?.hasReported) {
-      alert('⚠️ Ya has denunciado este contenido');
       return;
     }
     
