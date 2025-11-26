@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { candidatesService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import '../forms/JobSearchForm.css';
 
 const PublishProfile = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -51,6 +53,7 @@ const PublishProfile = () => {
         resume: formData.experience || null,
         technologies: formData.skills ? formData.skills.split(',').map(s => s.trim()) : [],
         availability: 'disponible',
+        createdBy: user?.id,
       };
 
       // Llamar a la API para crear el candidato

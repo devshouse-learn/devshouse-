@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { candidatesService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import '../job-search/JobSearchList.css';
 
 const SearchTalent = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [talents, setTalents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -91,6 +93,29 @@ const SearchTalent = () => {
       );
     } catch (error) {
       console.error('Error al reportar:', error);
+    }
+  };
+
+  const handleDelete = async (id, talent) => {
+    // Solo admin o el creador del perfil pueden eliminar
+    const isAdmin = user?.role === 'admin';
+    const isCreator = user?.id === talent.createdBy;
+
+    if (!isAdmin && !isCreator) {
+      alert('⛔ No tienes permiso para eliminar este perfil');
+      return;
+    }
+
+    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este perfil? Esta acción no se puede deshacer.')) {
+      try {
+        await candidatesService.delete(id);
+        console.log('✅ Perfil de talento eliminado');
+        setTalents(prevTalents => prevTalents.filter(t => t.id !== id));
+        alert('✅ Perfil eliminado exitosamente');
+      } catch (err) {
+        console.error('Error al eliminar:', err);
+        alert('❌ Error al eliminar el perfil: ' + err.message);
+      }
     }
   };
 
@@ -223,6 +248,26 @@ const SearchTalent = () => {
                   >
                     ✉️ Contactar
                   </button>
+                  {(user?.role === 'admin' || user?.id === talent.createdBy) && (
+                    <button
+                      onClick={() => handleDelete(talent.id, talent)}
+                      title={user?.role === 'admin' ? 'Eliminar perfil (admin)' : 'Eliminar tu perfil'}
+                      onMouseOver={(e) => e.target.style.backgroundColor = '#ff5252'}
+                      onMouseOut={(e) => e.target.style.backgroundColor = '#ff6b6b'}
+                      style={{
+                        backgroundColor: '#ff6b6b',
+                        color: 'white',
+                        border: 'none',
+                        padding: '8px 16px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontWeight: '600',
+                        transition: 'background-color 0.2s ease',
+                      }}
+                    >
+                      🗑️ Eliminar
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
