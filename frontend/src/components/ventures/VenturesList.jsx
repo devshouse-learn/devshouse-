@@ -117,7 +117,6 @@ const VenturesList = () => {
         await venturesService.delete(id);
         console.log('✅ Emprendimiento eliminado');
         setVentures(prevVentures => prevVentures.filter(v => v.id !== id));
-        alert('✅ Emprendimiento eliminado exitosamente');
       } catch (err) {
         console.error('Error al eliminar emprendimiento:', err);
         alert('❌ Error al eliminar el emprendimiento: ' + err.message);

@@ -116,7 +116,6 @@ const JobsList = () => {
       try {
         await jobsService.delete(id);
         setJobs(prevJobs => prevJobs.filter(job => job.id !== id));
-        alert('✅ Oferta de empleo eliminada correctamente');
       } catch (err) {
         console.error('Error al eliminar:', err);
         alert('❌ Error al eliminar la oferta de empleo: ' + err.message);

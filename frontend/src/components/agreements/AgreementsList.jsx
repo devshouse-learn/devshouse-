@@ -122,7 +122,6 @@ const AgreementsList = () => {
         await agreementsService.delete(id);
         console.log('✅ Convenio eliminado');
         setAgreements(prevAgreements => prevAgreements.filter(a => a.id !== id));
-        alert('✅ Convenio eliminado exitosamente');
       } catch (err) {
         console.error('Error al eliminar convenio:', err);
         alert('❌ Error al eliminar el convenio: ' + err.message);

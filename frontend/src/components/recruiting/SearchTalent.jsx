@@ -111,7 +111,6 @@ const SearchTalent = () => {
         await candidatesService.delete(id);
         console.log('✅ Perfil de talento eliminado');
         setTalents(prevTalents => prevTalents.filter(t => t.id !== id));
-        alert('✅ Perfil eliminado exitosamente');
       } catch (err) {
         console.error('Error al eliminar:', err);
         alert('❌ Error al eliminar el perfil: ' + err.message);
