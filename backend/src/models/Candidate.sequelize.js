@@ -94,8 +94,10 @@ const Candidate = sequelize.define('Candidate', {
   },
 }, {
   tableName: 'candidates',
-  timestamps: false,  // Deshabilitado para evitar problemas con created_at/createdAt
+  timestamps: true,  // Habilitado para que Sequelize gestione created_at/updated_at
   underscored: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
   indexes: [
     {
       fields: ['email'],

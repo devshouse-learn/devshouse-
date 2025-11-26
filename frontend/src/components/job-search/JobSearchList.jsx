@@ -194,7 +194,13 @@ const JobSearchList = () => {
                 {candidate.experience && (
                   <div className="info-row">
                     <span className="label">💼 Experiencia:</span>
-                    <span className="value">{candidate.experience}</span>
+                    <span className="value">
+                      {Array.isArray(candidate.experience) 
+                        ? candidate.experience.map((exp, i) => (
+                            <div key={i}>{typeof exp === 'object' ? exp.description : exp}</div>
+                          ))
+                        : candidate.experience}
+                    </span>
                   </div>
                 )}
 
@@ -202,6 +208,13 @@ const JobSearchList = () => {
                   <div className="info-row">
                     <span className="label">🎯 Habilidades:</span>
                     <span className="value">{candidate.skills}</span>
+                  </div>
+                )}
+
+                {candidate.resume && (
+                  <div className="info-row">
+                    <span className="label">📝 CV:</span>
+                    <span className="value">{candidate.resume}</span>
                   </div>
                 )}
 

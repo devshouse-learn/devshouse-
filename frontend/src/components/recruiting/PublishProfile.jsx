@@ -48,10 +48,8 @@ const PublishProfile = () => {
         phone: formData.phone || null,
         location: formData.location || null,
         bio: formData.bio || null,
+        resume: formData.experience || null,
         technologies: formData.skills ? formData.skills.split(',').map(s => s.trim()) : [],
-        experience: formData.experience ? [{
-          description: formData.experience
-        }] : [],
         availability: 'disponible',
       };
 
