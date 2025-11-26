@@ -21,25 +21,25 @@ const AgreementsHub = () => {
       <div className="hub-options">
         <div 
           className="option-card"
-          onClick={() => navigate('/agreements/form')}
+          onClick={() => navigate('/agreements/list')}
         >
           <div className="option-icon">📋</div>
           <h2>Convenios</h2>
-          <p>Crea y publica convenios educativos entre instituciones y empresas</p>
+          <p>Explora convenios educativos registrados</p>
           <button className="option-button">
-            Crear Convenio →
+            Ver Convenios →
           </button>
         </div>
 
         <div 
           className="option-card"
-          onClick={() => navigate('/agreements/student')}
+          onClick={() => navigate('/agreements/students')}
         >
           <div className="option-icon">🎓</div>
           <h2>Estudiar</h2>
-          <p>Regístrate como estudiante y sube tu perfil para encontrar oportunidades</p>
+          <p>Descubre estudiantes y talentos registrados</p>
           <button className="option-button">
-            Registrarme como Estudiante →
+            Ver Estudiantes →
           </button>
         </div>
       </div>

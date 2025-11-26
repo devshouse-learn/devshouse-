@@ -8,6 +8,7 @@ import ErrorBoundary from './components/common/ErrorBoundary';
 import BackendMonitor from './components/common/BackendMonitor';
 import AgreementsHub from './components/agreements/AgreementsHub';
 import AgreementsList from './components/agreements/AgreementsList';
+import StudentsList from './components/agreements/StudentsList';
 import AgreementsForm from './components/forms/AgreementsForm';
 import StudentForm from './components/forms/StudentForm';
 import VenturesList from './components/ventures/VenturesList';
@@ -42,6 +43,10 @@ function App() {
               <Route
                 path="agreements/list"
                 element={<AgreementsList />}
+              />
+              <Route
+                path="agreements/students"
+                element={<StudentsList />}
               />
               <Route
                 path="agreements/form"
