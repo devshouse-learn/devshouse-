@@ -52,7 +52,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/candidates - Crear nuevo candidato (hoja de vida)
+// POST /api/candidates - Crear nuevo candidato (hoja de vida) o actualizar si ya existe
 router.post('/', async (req, res) => {
   try {
     const {
@@ -85,15 +85,8 @@ router.post('/', async (req, res) => {
 
     // Verificar si el email ya existe
     const existingCandidate = await Candidate.findOne({ where: { email } });
-    if (existingCandidate) {
-      return res.status(409).json({
-        success: false,
-        message: 'Un candidato con este email ya existe',
-      });
-    }
-
-    // Crear nuevo candidato
-    const candidate = await Candidate.create({
+    
+    const candidateData = {
       name,
       email,
       phone: phone || null,
@@ -110,20 +103,35 @@ router.post('/', async (req, res) => {
       twitter: twitter || null,
       website: website || null,
       availability: availability || 'disponible',
-      createdBy: createdBy || 1,
       status: 'active', // Permitir que se muestre inmediatamente
-    });
+    };
 
-    res.status(201).json({
+    let candidate;
+    let isCreated = false;
+
+    if (existingCandidate) {
+      // Actualizar candidato existente
+      await existingCandidate.update(candidateData);
+      candidate = existingCandidate;
+    } else {
+      // Crear nuevo candidato
+      candidate = await Candidate.create({
+        ...candidateData,
+        createdBy: createdBy || 1,
+      });
+      isCreated = true;
+    }
+
+    res.status(isCreated ? 201 : 200).json({
       success: true,
-      message: 'Candidato creado exitosamente',
+      message: isCreated ? 'Candidato creado exitosamente' : 'Candidato actualizado exitosamente',
       data: candidate,
     });
   } catch (error) {
-    console.error('Error creating candidate:', error);
+    console.error('Error creating/updating candidate:', error);
     res.status(500).json({
       success: false,
-      message: 'Error creating candidate',
+      message: 'Error creating/updating candidate',
       error: error.message,
     });
   }
