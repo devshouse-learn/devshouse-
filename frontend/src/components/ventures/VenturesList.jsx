@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { venturesService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import './VenturesList.css';
 
 const VenturesList = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [ventures, setVentures] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -97,6 +99,29 @@ const VenturesList = () => {
     } catch (err) {
       console.error('Error al reportar:', err);
       alert('Error al registrar denuncia: ' + err.message);
+    }
+  };
+
+  const handleDelete = async (id, venture) => {
+    // Solo admin o el creador del formulario pueden eliminar
+    const isAdmin = user?.role === 'admin';
+    const isCreator = user?.id === venture.createdBy;
+
+    if (!isAdmin && !isCreator) {
+      alert('⛔ No tienes permiso para eliminar este emprendimiento');
+      return;
+    }
+
+    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este emprendimiento? Esta acción no se puede deshacer.')) {
+      try {
+        await venturesService.delete(id);
+        console.log('✅ Emprendimiento eliminado');
+        setVentures(prevVentures => prevVentures.filter(v => v.id !== id));
+        alert('✅ Emprendimiento eliminado exitosamente');
+      } catch (err) {
+        console.error('Error al eliminar emprendimiento:', err);
+        alert('❌ Error al eliminar el emprendimiento: ' + err.message);
+      }
     }
   };
 
@@ -230,6 +255,27 @@ const VenturesList = () => {
                 >
                   🚨 {userReactions[venture.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
+                {(user?.role === 'admin' || user?.id === venture.createdBy) && (
+                  <button
+                    className="btn-delete"
+                    onClick={() => handleDelete(venture.id, venture)}
+                    title={user?.role === 'admin' ? 'Eliminar emprendimiento (admin)' : 'Eliminar tu emprendimiento'}
+                    style={{
+                      background: '#ff6b6b',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 12px',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontWeight: '600',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseOver={(e) => e.target.style.background = '#ff5252'}
+                    onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
+                  >
+                    🗑️ Eliminar
+                  </button>
+                )}
               </div>
             </div>
           ))}

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { venturesService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import './VenturesForm.css';
 
 const VenturesForm = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -45,7 +47,10 @@ const VenturesForm = () => {
         throw new Error('Por favor completa todos los campos requeridos');
       }
 
-      const response = await venturesService.create(formData);
+      const response = await venturesService.create({
+        ...formData,
+        createdBy: user?.id,
+      });
       console.log('✅ Emprendimiento guardado en BD:', response.data);
       
       setSuccess(true);

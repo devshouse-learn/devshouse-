@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import { validateField } from '../../services/validation.service';
 import validationRules from '../../services/validation.service';
 import './AgreementsForm.css';
 
 const AgreementsForm = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -71,7 +73,11 @@ const AgreementsForm = () => {
       }
 
       // Guardar en base de datos a través del API
-      const response = await agreementsService.create(formData);
+      const dataToSubmit = {
+        ...formData,
+        createdBy: user?.id,
+      };
+      const response = await agreementsService.create(dataToSubmit);
       console.log('✅ Convenio guardado en BD:', response.data);
       
       setSuccess(true);

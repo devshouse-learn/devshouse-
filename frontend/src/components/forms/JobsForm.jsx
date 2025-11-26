@@ -58,6 +58,7 @@ const JobsForm = () => {
 
       const jobData = {
         ...formData,
+        createdBy: user?.id,
         postedBy: user?.id || 'admin',
         postedByEmail: user?.email || formData.contactEmail,
         postedByName: user?.name || 'Administrador',

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import './AgreementsList.css';
 
 const AgreementsList = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [agreements, setAgreements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -102,6 +104,29 @@ const AgreementsList = () => {
     } catch (err) {
       console.error('Error al reportar:', err);
       alert('Error al registrar denuncia: ' + err.message);
+    }
+  };
+
+  const handleDelete = async (id, agreement) => {
+    // Solo admin o el creador del formulario pueden eliminar
+    const isAdmin = user?.role === 'admin';
+    const isCreator = user?.id === agreement.createdBy;
+
+    if (!isAdmin && !isCreator) {
+      alert('⛔ No tienes permiso para eliminar este convenio');
+      return;
+    }
+
+    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este convenio? Esta acción no se puede deshacer.')) {
+      try {
+        await agreementsService.delete(id);
+        console.log('✅ Convenio eliminado');
+        setAgreements(prevAgreements => prevAgreements.filter(a => a.id !== id));
+        alert('✅ Convenio eliminado exitosamente');
+      } catch (err) {
+        console.error('Error al eliminar convenio:', err);
+        alert('❌ Error al eliminar el convenio: ' + err.message);
+      }
     }
   };
 
@@ -229,6 +254,27 @@ const AgreementsList = () => {
                 >
                   🚨 {userReactions[agreement.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
+                {(user?.role === 'admin' || user?.id === agreement.createdBy) && (
+                  <button
+                    className="btn-delete"
+                    onClick={() => handleDelete(agreement.id, agreement)}
+                    title={user?.role === 'admin' ? 'Eliminar convenio (admin)' : 'Eliminar tu convenio'}
+                    style={{
+                      background: '#ff6b6b',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 12px',
+                      borderRadius: '5px',
+                      cursor: 'pointer',
+                      fontWeight: '600',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseOver={(e) => e.target.style.background = '#ff5252'}
+                    onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
+                  >
+                    🗑️ Eliminar
+                  </button>
+                )}
               </div>
             </div>
           ))}

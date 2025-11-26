@@ -102,13 +102,17 @@ const JobsList = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    // Solo admin puede eliminar
-    if (user?.role !== 'admin') {
+  const handleDelete = async (id, job) => {
+    // Solo admin o el creador del formulario pueden eliminar
+    const isAdmin = user?.role === 'admin';
+    const isCreator = user?.id === job.createdBy;
+
+    if (!isAdmin && !isCreator) {
+      alert('⛔ No tienes permiso para eliminar esta oferta de empleo');
       return;
     }
 
-    if (window.confirm('¿Estás seguro de que quieres eliminar esta oferta de empleo?')) {
+    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar esta oferta de empleo? Esta acción no se puede deshacer.')) {
       try {
         await jobsService.delete(id);
         setJobs(prevJobs => prevJobs.filter(job => job.id !== id));
@@ -248,10 +252,10 @@ const JobsList = () => {
                 >
                   🚨 {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
-                {user?.role === 'admin' && (
+                {(user?.role === 'admin' || user?.id === job.createdBy) && (
                   <button
-                    onClick={() => handleDelete(job.id)}
-                    title="Eliminar oferta de empleo (solo admin)"
+                    onClick={() => handleDelete(job.id, job)}
+                    title={user?.role === 'admin' ? 'Eliminar oferta de empleo (admin)' : 'Eliminar tu oferta de empleo'}
                     onMouseOver={(e) => e.target.style.backgroundColor = '#ff5252'}
                     onMouseOut={(e) => e.target.style.backgroundColor = '#ff6b6b'}
                     style={{
