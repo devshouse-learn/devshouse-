@@ -33,13 +33,13 @@ const AgreementsHub = () => {
 
         <div 
           className="option-card"
-          onClick={() => navigate('/recruiting/publish-profile')}
+          onClick={() => navigate('/agreements/student')}
         >
           <div className="option-icon">🎓</div>
           <h2>Estudiar</h2>
-          <p>Sube tu hoja de vida y muestra tu perfil profesional</p>
+          <p>Regístrate como estudiante y sube tu perfil para encontrar oportunidades</p>
           <button className="option-button">
-            Subir Hoja de Vida →
+            Registrarme como Estudiante →
           </button>
         </div>
       </div>

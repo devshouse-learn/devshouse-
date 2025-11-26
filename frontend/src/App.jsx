@@ -9,6 +9,7 @@ import BackendMonitor from './components/common/BackendMonitor';
 import AgreementsHub from './components/agreements/AgreementsHub';
 import AgreementsList from './components/agreements/AgreementsList';
 import AgreementsForm from './components/forms/AgreementsForm';
+import StudentForm from './components/forms/StudentForm';
 import VenturesList from './components/ventures/VenturesList';
 import VenturesForm from './components/forms/VenturesForm';
 import JobsList from './components/jobs/JobsList';
@@ -47,6 +48,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <AgreementsForm />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="agreements/student"
+                element={
+                  <ProtectedRoute>
+                    <StudentForm />
                   </ProtectedRoute>
                 }
               />
