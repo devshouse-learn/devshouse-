@@ -94,7 +94,7 @@ const Candidate = sequelize.define('Candidate', {
   },
 }, {
   tableName: 'candidates',
-  timestamps: true,
+  timestamps: false,  // Deshabilitado para evitar problemas con created_at/createdAt
   underscored: true,
   indexes: [
     {
@@ -105,9 +105,6 @@ const Candidate = sequelize.define('Candidate', {
     },
     {
       fields: ['status'],
-    },
-    {
-      fields: ['created_at'],
     },
   ],
 });

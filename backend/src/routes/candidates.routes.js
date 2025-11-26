@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
   try {
     const candidates = await Candidate.findAll({
       where: { status: 'active' },
-      order: [['createdAt', 'DESC']],
     });
 
     res.json({
