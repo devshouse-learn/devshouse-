@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { agreementsService, venturesService, jobsService } from '../../services/registration.service';
 import ReactionButtons from '../common/ReactionButtons';
+import ReadOnlyModal from '../common/ReadOnlyModal';
 import { useAuth } from '../../context/AuthContext';
 import './DataViewer.css';
 
@@ -14,6 +15,11 @@ const DataViewer = () => {
   });
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(false);
+  const [readOnlyModal, setReadOnlyModal] = useState({
+    isOpen: false,
+    data: null,
+    type: null,
+  });
 
   useEffect(() => {
     loadData();
@@ -113,6 +119,22 @@ const DataViewer = () => {
     }
   };
 
+  const openReadOnlyModal = (type, itemData) => {
+    setReadOnlyModal({
+      isOpen: true,
+      data: itemData,
+      type: type,
+    });
+  };
+
+  const closeReadOnlyModal = () => {
+    setReadOnlyModal({
+      isOpen: false,
+      data: null,
+      type: null,
+    });
+  };
+
   return (
     <div className="data-viewer">
       <div className="data-viewer-header">
@@ -197,7 +219,13 @@ const DataViewer = () => {
               data.agreements.map((agreement) => (
                 <div key={agreement.id} className="data-item">
                   <div className="item-header">
-                    <h3>{agreement.schoolName}</h3>
+                    <h3 
+                      onClick={() => openReadOnlyModal('agreement', agreement)}
+                      style={{ cursor: 'pointer' }}
+                      title="Haz clic para ver en modo lectura"
+                    >
+                      {agreement.schoolName}
+                    </h3>
                     <button
                       onClick={() => deleteItem('agreement', agreement.id)}
                       className="btn-delete"
@@ -239,7 +267,13 @@ const DataViewer = () => {
               data.ventures.map((venture) => (
                 <div key={venture.id} className="data-item">
                   <div className="item-header">
-                    <h3>{venture.companyName}</h3>
+                    <h3 
+                      onClick={() => openReadOnlyModal('venture', venture)}
+                      style={{ cursor: 'pointer' }}
+                      title="Haz clic para ver en modo lectura"
+                    >
+                      {venture.companyName}
+                    </h3>
                     <button
                       onClick={() => deleteItem('venture', venture.id)}
                       className="btn-delete"
@@ -283,7 +317,13 @@ const DataViewer = () => {
               data.jobs.map((job) => (
                 <div key={job.id} className="data-item">
                   <div className="item-header">
-                    <h3>{job.position}</h3>
+                    <h3 
+                      onClick={() => openReadOnlyModal('job', job)}
+                      style={{ cursor: 'pointer' }}
+                      title="Haz clic para ver en modo lectura"
+                    >
+                      {job.position}
+                    </h3>
                     <button
                       onClick={() => deleteItem('job', job.id)}
                       className="btn-delete"
@@ -320,6 +360,13 @@ const DataViewer = () => {
           </div>
         )}
       </div>
+
+      <ReadOnlyModal
+        isOpen={readOnlyModal.isOpen}
+        onClose={closeReadOnlyModal}
+        data={readOnlyModal.data}
+        type={readOnlyModal.type}
+      />
     </div>
   );
 };
