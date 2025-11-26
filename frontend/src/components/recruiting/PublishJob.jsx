@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jobsService } from '../../services/registration.service';
 import '../forms/JobsForm.css';
 
 const PublishJob = () => {
@@ -34,8 +35,31 @@ const PublishJob = () => {
     setLoading(true);
 
     try {
-      // Aquí iría la llamada a la API
-      console.log('Oferta de empleo:', formData);
+      // Validar campos requeridos
+      if (!formData.position || !formData.company || !formData.contactEmail || !formData.description) {
+        setError('Por favor completa los campos requeridos');
+        setLoading(false);
+        return;
+      }
+
+      // Preparar datos para enviar a la API
+      const jobData = {
+        position: formData.position,
+        company: formData.company,
+        location: formData.location || null,
+        jobType: formData.jobType,
+        salaryMin: formData.salaryMin ? parseInt(formData.salaryMin) : null,
+        salaryMax: formData.salaryMax ? parseInt(formData.salaryMax) : null,
+        currency: formData.currency,
+        contactEmail: formData.contactEmail,
+        description: formData.description,
+        status: 'active', // Publicar inmediatamente
+      };
+
+      // Llamar a la API para crear el empleo
+      const response = await jobsService.create(jobData);
+      console.log('✅ Oferta de empleo creada:', response);
+
       setSuccess('✅ Oferta publicada exitosamente');
       
       // Limpiar formulario
@@ -53,9 +77,10 @@ const PublishJob = () => {
 
       // Redirigir después de 2 segundos
       setTimeout(() => {
-        navigate('/recruiting');
+        navigate('/jobs');
       }, 2000);
     } catch (err) {
+      console.error('Error al publicar oferta:', err);
       setError('Error al publicar la oferta: ' + err.message);
     } finally {
       setLoading(false);
