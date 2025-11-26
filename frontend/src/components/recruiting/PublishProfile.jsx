@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { candidatesService } from '../../services/registration.service';
 import '../forms/JobSearchForm.css';
 
 const PublishProfile = () => {
@@ -33,8 +34,31 @@ const PublishProfile = () => {
     setLoading(true);
 
     try {
-      // Aquí iría la llamada a la API
-      console.log('Perfil profesional:', formData);
+      // Validar campos requeridos
+      if (!formData.name || !formData.email || !formData.profession) {
+        setError('Por favor completa los campos requeridos (Nombre, Email, Profesión)');
+        setLoading(false);
+        return;
+      }
+
+      // Preparar datos para enviar a la API
+      const candidateData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        location: formData.location || null,
+        bio: formData.bio || null,
+        technologies: formData.skills ? formData.skills.split(',').map(s => s.trim()) : [],
+        experience: formData.experience ? [{
+          description: formData.experience
+        }] : [],
+        availability: 'disponible',
+      };
+
+      // Llamar a la API para crear el candidato
+      const response = await candidatesService.create(candidateData);
+      console.log('✅ Hoja de vida creada:', response);
+
       setSuccess('✅ Perfil publicado exitosamente');
       
       // Limpiar formulario
@@ -51,9 +75,10 @@ const PublishProfile = () => {
 
       // Redirigir después de 2 segundos
       setTimeout(() => {
-        navigate('/recruiting');
+        navigate('/job-search');
       }, 2000);
     } catch (err) {
+      console.error('Error al publicar perfil:', err);
       setError('Error al publicar el perfil: ' + err.message);
     } finally {
       setLoading(false);

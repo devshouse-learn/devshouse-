@@ -15,6 +15,7 @@ import emailValidationRoutes from './routes/emailValidation.routes.js';
 import agreementsRoutes from './routes/agreements.routes.js';
 import venturesRoutes from './routes/ventures.routes.js';
 import jobsRoutes from './routes/jobs.routes.js';
+import candidatesRoutes from './routes/candidates.routes.js';
 import reactionsRoutes from './routes/reactions.routes.js';
 import moderationRoutes from './routes/moderation.routes.js';
 
@@ -61,19 +62,16 @@ app.use('/api/email-validation', emailValidationRoutes);
 app.use('/api/agreements', agreementsRoutes);
 app.use('/api/ventures', venturesRoutes);
 app.use('/api/jobs', jobsRoutes);
+app.use('/api/candidates', candidatesRoutes);
 app.use('/api/reactions', reactionsRoutes);
 app.use('/api/moderation', moderationRoutes);
-
-app.use('/api/auth', (req, res) => {
-  res.json({ message: 'Auth routes coming soon' });
-});
 
 app.use('/api/users', (req, res) => {
   res.json({ message: 'Users routes coming soon' });
 });
 
-app.use('/api/candidates', (req, res) => {
-  res.json({ message: 'Candidates routes coming soon' });
+app.use('/api/auth', (req, res) => {
+  res.json({ message: 'Auth routes coming soon' });
 });
 
 // Manejo de rutas no encontradas
