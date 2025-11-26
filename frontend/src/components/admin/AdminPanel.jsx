@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { authService } from '../../services/auth.service';
 import './AdminPanel.css';
 
 export default function AdminPanel() {
-  const navigate = useNavigate();
   const { user } = useAuth();
   const [adminEmail, setAdminEmail] = useState('');
   const [moderatorEmail, setModeratorEmail] = useState('');
@@ -793,28 +791,6 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
             </div>
           </div>
         </section>
-
-        {/* Sección de Navegación */}
-        <div className="admin-navigation">
-          <div className="btn-group-left">
-            <button
-              type="button"
-              className="btn-back"
-              onClick={() => navigate(-1)}
-            >
-              ⬅️ Atrás
-            </button>
-          </div>
-          <div className="btn-group-right">
-            <button
-              type="button"
-              className="btn-close"
-              onClick={() => navigate('/')}
-            >
-              ✕ Cerrar
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
