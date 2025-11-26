@@ -88,6 +88,12 @@ const Venture = sequelize.define('Venture', {
     field: 'under_review',
     comment: 'True si está en revisión por moderación (30+ denuncias)',
   },
+  showInSearch: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+    field: 'show_in_search',
+    comment: 'Si el emprendimiento aparece en Buscar Empresa',
+  },
 }, {
   tableName: 'ventures',
   timestamps: true,

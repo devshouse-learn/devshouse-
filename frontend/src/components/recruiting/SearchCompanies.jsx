@@ -28,7 +28,13 @@ const SearchCompanies = () => {
       }
       
       console.log('✅ Respuesta del API:', response);
-      const loadedCompanies = response.data || [];
+      let loadedCompanies = response.data || [];
+      
+      // Filtrar solo emprendimientos con showInSearch = true
+      if (activeTab === 'ventures') {
+        loadedCompanies = loadedCompanies.filter(venture => venture.showInSearch !== false);
+      }
+      
       console.log('🏢 Empresas cargadas:', loadedCompanies);
       setCompanies(loadedCompanies);
       

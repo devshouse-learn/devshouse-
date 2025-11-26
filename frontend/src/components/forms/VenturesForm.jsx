@@ -23,13 +23,14 @@ const VenturesForm = () => {
     socialMedia: '',
     investmentStage: 'idea',
     teamSize: '',
+    showInSearch: true,
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
     setError('');
   };
@@ -61,6 +62,7 @@ const VenturesForm = () => {
         socialMedia: '',
         investmentStage: 'idea',
         teamSize: '',
+        showInSearch: true,
       });
 
       setTimeout(() => setSuccess(false), 3000);
@@ -286,6 +288,26 @@ const VenturesForm = () => {
                 disabled={loading}
               />
             </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Visibilidad</legend>
+          <div className="form-group checkbox-group">
+            <label htmlFor="showInSearch" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="showInSearch"
+                name="showInSearch"
+                checked={formData.showInSearch}
+                onChange={handleInputChange}
+                disabled={loading}
+              />
+              <span>👁️ Mostrar en "Buscar Empresa"</span>
+            </label>
+            <p className="checkbox-help">
+              Si está marcado, tu emprendimiento será visible cuando otros usuarios busquen empresas en la plataforma.
+            </p>
           </div>
         </fieldset>
 
