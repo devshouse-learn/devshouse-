@@ -4,6 +4,7 @@ import { API_CONFIG } from '../../config/constants';
 const BackendMonitor = () => {
   const [isBackendDown, setIsBackendDown] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [lastCheckTime, setLastCheckTime] = useState(null);
 
   useEffect(() => {
     const checkBackendHealth = async () => {
@@ -14,36 +15,32 @@ const BackendMonitor = () => {
         });
 
         if (response.ok) {
+          if (isBackendDown) {
+            console.log('✅ Backend reconectado');
+          }
           setIsBackendDown(false);
           setRetryCount(0);
         } else {
           setIsBackendDown(true);
+          setRetryCount(prev => prev + 1);
         }
+        setLastCheckTime(new Date());
       } catch (err) {
         console.warn('Backend health check failed:', err.message);
         setIsBackendDown(true);
+        setRetryCount(prev => prev + 1);
+        setLastCheckTime(new Date());
       }
     };
 
-    // Verificar cada 10 segundos
-    const healthCheckInterval = setInterval(checkBackendHealth, 10000);
-    
     // Verificación inicial inmediata
     checkBackendHealth();
 
+    // Verificar cada 3 segundos si está caído, cada 30 segundos si está arriba
+    const healthCheckInterval = setInterval(checkBackendHealth, isBackendDown ? 3000 : 30000);
+    
     return () => clearInterval(healthCheckInterval);
-  }, []);
-
-  useEffect(() => {
-    if (isBackendDown) {
-      setRetryCount(prev => prev + 1);
-      
-      // Si el backend está caído y ya pasaron 3 intentos, mostrar overlay
-      if (retryCount >= 3) {
-        // El backend está caído hace tiempo, esperar a que vuelva
-      }
-    }
-  }, [isBackendDown, retryCount]);
+  }, [isBackendDown]);
 
   if (!isBackendDown) {
     return null;
@@ -71,6 +68,7 @@ const BackendMonitor = () => {
         borderRadius: '15px',
         backdropFilter: 'blur(10px)',
         maxWidth: '500px',
+        border: '2px solid #ff6b6b',
       }}>
         <h1 style={{ fontSize: '2.5rem', margin: '0 0 20px 0' }}>⏳ Backend Caído</h1>
         <p style={{ fontSize: '1.1rem', margin: '0 0 30px 0', lineHeight: '1.6' }}>
@@ -83,6 +81,7 @@ const BackendMonitor = () => {
           justifyContent: 'center',
           gap: '10px',
           marginBottom: '30px',
+          alignItems: 'center',
         }}>
           <div style={{
             width: '15px',
@@ -91,8 +90,18 @@ const BackendMonitor = () => {
             background: '#ff6b6b',
             animation: 'pulse 1s infinite',
           }}></div>
-          <span>Intentando reconectar...</span>
+          <span>Intentando reconectar... (Intento {retryCount})</span>
         </div>
+
+        {lastCheckTime && (
+          <div style={{
+            fontSize: '0.9rem',
+            color: '#ccc',
+            marginBottom: '20px',
+          }}>
+            Último intento: {lastCheckTime.toLocaleTimeString('es-ES')}
+          </div>
+        )}
 
         <button 
           onClick={() => window.location.reload()}
@@ -105,7 +114,10 @@ const BackendMonitor = () => {
             borderRadius: '8px',
             cursor: 'pointer',
             fontWeight: '600',
+            transition: 'background-color 0.3s ease',
           }}
+          onMouseEnter={(e) => e.target.style.backgroundColor = '#1565c0'}
+          onMouseLeave={(e) => e.target.style.backgroundColor = '#1a73e8'}
         >
           🔄 Reintentar Ahora
         </button>

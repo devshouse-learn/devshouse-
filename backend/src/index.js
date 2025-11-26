@@ -86,21 +86,39 @@ const startServer = async () => {
     // Conectar a PostgreSQL
     await connectDB();
     
-    // Iniciar servidor
-    app.listen(PORT, () => {
+    // Iniciar servidor con manejo de puertos ocupados
+    const server = app.listen(PORT, () => {
       console.log('╔════════════════════════════════════════════════════════════╗');
       console.log('║          🚀 DEVSHOUSE BACKEND API - INICIADO              ║');
       console.log('╚════════════════════════════════════════════════════════════╝');
       console.log('');
       console.log(`  🌐 Server:        http://localhost:${PORT}`);
       console.log(`  📊 Health Check:  http://localhost:${PORT}/api/health`);
-      console.log(`  � Environment:   ${process.env.NODE_ENV}`);
+      console.log(`  📋 Environment:   ${process.env.NODE_ENV}`);
       console.log(`  🗄️  Database:      PostgreSQL (AWS RDS)`);
       console.log(`  📍 DB Host:       ${process.env.DB_HOST}`);
       console.log('');
       console.log('══════════════════════════════════════════════════════════════');
       console.log('');
     });
+
+    // Manejo de errores del servidor
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`❌ Puerto ${PORT} está en uso. Intentando con un puerto dinámico...`);
+        // Dejar que el SO asigne un puerto disponible
+        server.listen(0, () => {
+          const dynamicPort = server.address().port;
+          console.log(`✅ Backend iniciado en puerto dinámico: ${dynamicPort}`);
+          console.log(`  🌐 Server:        http://localhost:${dynamicPort}`);
+          console.log(`  📊 Health Check:  http://localhost:${dynamicPort}/api/health`);
+        });
+      } else {
+        console.error('❌ Error del servidor:', err.message);
+        process.exit(1);
+      }
+    });
+
   } catch (error) {
     console.error('❌ Error al iniciar el servidor:', error.message);
     process.exit(1);

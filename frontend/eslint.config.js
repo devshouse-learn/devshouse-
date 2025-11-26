@@ -24,7 +24,7 @@ export default [
       ...js.configs.recommended.rules,
       'no-unused-vars': ['warn', { 
         argsIgnorePattern: '^_',
-        varsIgnorePattern: '^(React|Component|Page|Form|Provider|Route|Router|Routes|Layout|Home|AuthProvider|LanguageProvider|ProtectedRoute|AgreementsForm|VenturesForm|JobsForm|JobSearchForm|AdminPanel|Hero|Description|Impact|Dashboard|AuthModal|Link|Outlet|Header|Footer|AIAssistant|StrictMode|App|AgreementsList|VenturesList|JobsList|JobSearchList|DataViewer|ModerationPanel|RecruitingHub|NavBar|ErrorBoundary|validateField|validationRules|fieldErrors|setFieldErrors|loading|setLoading|reports|setReports)',
+        varsIgnorePattern: '^(React|Component|Page|Form|Provider|Route|Router|Routes|Layout|Home|AuthProvider|LanguageProvider|ProtectedRoute|AgreementsForm|VenturesForm|JobsForm|JobSearchForm|AdminPanel|AdminDashboard|AgreementsHub|StudentsList|StudentForm|SearchCompanies|SearchTalent|PublishJob|PublishProfile|BackendMonitor|Hero|Description|Impact|Dashboard|AuthModal|Link|Outlet|Header|Footer|AIAssistant|StrictMode|App|AgreementsList|VenturesList|JobsList|JobSearchList|DataViewer|ModerationPanel|RecruitingHub|NavBar|ErrorBoundary|validateField|validationRules|fieldErrors|setFieldErrors|loading|setLoading|reports|setReports)',
       }],
       'no-console': 'off',
     },
