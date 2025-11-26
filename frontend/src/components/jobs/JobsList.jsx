@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jobsService } from '../../services/registration.service';
+import { useAuth } from '../../context/AuthContext';
 import './JobsList.css';
 
 const JobsList = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -97,6 +99,24 @@ const JobsList = () => {
     } catch (err) {
       console.error('Error al reportar:', err);
       alert('Error al registrar denuncia: ' + err.message);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    // Solo admin puede eliminar
+    if (user?.role !== 'admin') {
+      return;
+    }
+
+    if (window.confirm('¿Estás seguro de que quieres eliminar esta oferta de empleo?')) {
+      try {
+        await jobsService.delete(id);
+        setJobs(prevJobs => prevJobs.filter(job => job.id !== id));
+        alert('✅ Oferta de empleo eliminada correctamente');
+      } catch (err) {
+        console.error('Error al eliminar:', err);
+        alert('❌ Error al eliminar la oferta de empleo: ' + err.message);
+      }
     }
   };
 
@@ -228,6 +248,26 @@ const JobsList = () => {
                 >
                   🚨 {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
+                {user?.role === 'admin' && (
+                  <button
+                    onClick={() => handleDelete(job.id)}
+                    title="Eliminar oferta de empleo (solo admin)"
+                    onMouseOver={(e) => e.target.style.backgroundColor = '#ff5252'}
+                    onMouseOut={(e) => e.target.style.backgroundColor = '#ff6b6b'}
+                    style={{
+                      backgroundColor: '#ff6b6b',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontWeight: '600',
+                      transition: 'background-color 0.2s ease',
+                    }}
+                  >
+                    🗑️ Eliminar
+                  </button>
+                )}
               </div>
             </div>
           ))}
