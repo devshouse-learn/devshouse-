@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { moderationService } from '../../services/reactions.service';
 import { useAuth } from '../../context/AuthContext';
 import './ModerationPanel.css';
 
 const ModerationPanel = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [pendingItems, setPendingItems] = useState([]);
   const [stats, setStats] = useState({});
@@ -102,6 +104,29 @@ const ModerationPanel = () => {
 
   return (
     <div className="moderation-panel">
+      <button
+        onClick={() => navigate('/')}
+        title="Volver al inicio"
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          padding: '8px 16px',
+          backgroundColor: '#6c757d',
+          color: 'white',
+          border: 'none',
+          borderRadius: '6px',
+          cursor: 'pointer',
+          fontSize: '14px',
+          fontWeight: '600',
+          zIndex: 10,
+          transition: 'background-color 0.3s ease',
+        }}
+        onMouseEnter={(e) => (e.target.style.backgroundColor = '#5a6268')}
+        onMouseLeave={(e) => (e.target.style.backgroundColor = '#6c757d')}
+      >
+        ← Volver
+      </button>
       <div className="moderation-header">
         <h1>🛡️ Panel de Moderación</h1>
         <p>
