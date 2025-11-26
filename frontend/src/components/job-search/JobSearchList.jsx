@@ -18,8 +18,11 @@ const JobSearchList = () => {
     try {
       setLoading(true);
       setError('');
+      console.log('🔄 Cargando candidatos desde API...');
       const response = await candidatesService.getAll();
+      console.log('✅ Respuesta del API:', response);
       const loadedCandidates = response.data || [];
+      console.log('📋 Candidatos cargados:', loadedCandidates);
       setCandidates(loadedCandidates);
       
       // Cargar reacciones del usuario
@@ -29,8 +32,9 @@ const JobSearchList = () => {
         reactions[candidate.id] = userReaction;
       }
       setUserReactions(reactions);
+      console.log('✅ Candidatos y reacciones cargados exitosamente');
     } catch (err) {
-      console.error('Error loading candidates:', err);
+      console.error('❌ Error loading candidates:', err);
       if (err.message.includes('Failed to fetch')) {
         setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
