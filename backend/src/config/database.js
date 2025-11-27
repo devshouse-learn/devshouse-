@@ -1,16 +1,21 @@
 import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
 
-dotenv.config();
+// ⚠️ NO usar dotenv.config() en producción - EB inyecta vars directamente
+// Solo cargar dotenv en desarrollo local
+if (process.env.NODE_ENV === 'development') {
+  const dotenv = await import('dotenv');
+  dotenv.config();
+}
 
 // Configuración de PostgreSQL con Sequelize
+// En producción, EB inyecta las variables desde .ebextensions/01_environment.config
 const sequelize = new Sequelize(
   process.env.DB_NAME || 'devshouse',
   process.env.DB_USER || 'postgres',
   process.env.DB_PASSWORD || '',
   {
     host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 5432,
+    port: parseInt(process.env.DB_PORT) || 5432,
     dialect: 'postgres',
     logging: process.env.NODE_ENV === 'development' ? console.log : false,
     dialectOptions: {
@@ -37,6 +42,15 @@ const sequelize = new Sequelize(
 // Probar conexión
 export const connectDB = async () => {
   try {
+    // Log de configuración (SIN mostrar password)
+    console.log('📡 Intentando conectar a PostgreSQL:', {
+      host: process.env.DB_HOST || 'localhost',
+      port: process.env.DB_PORT || 5432,
+      database: process.env.DB_NAME || 'devshouse',
+      user: process.env.DB_USER || 'postgres',
+      ssl: 'enabled'
+    });
+    
     await sequelize.authenticate();
     console.log('✅ PostgreSQL conectado exitosamente');
     

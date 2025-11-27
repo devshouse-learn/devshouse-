@@ -1,12 +1,20 @@
 # DevsHouse - Plataforma Educativa-Laboral
 
-[![Estado](https://img.shields.io/badge/Estado-Completo-success)](https://github.com)
+[![Estado](https://img.shields.io/badge/Estado-Desplegado-success)](https://github.com)
 [![Backend](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-green)](https://nodejs.org)
 [![Frontend](https://img.shields.io/badge/Frontend-React%2019-blue)](https://react.dev)
-[![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)](https://mongodb.com)
-[![AWS](https://img.shields.io/badge/Deploy-AWS-orange)](https://aws.amazon.com)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL-blue)](https://postgresql.org)
+[![AWS](https://img.shields.io/badge/Deploy-AWS%20Live-orange)](http://devshouse-frontend-2025.s3-website-us-east-1.amazonaws.com)
 
 Plataforma que conecta escuelas, emprendedores y empresas a través de 4 módulos principales: convenios educativos, emprendimientos, publicación de empleos y búsqueda de empleo con IA.
+
+## 🌐 Aplicación en Producción
+
+**🎉 Aplicación desplegada en AWS:**
+- 🌐 **Frontend:** http://devshouse-frontend-2025.s3-website-us-east-1.amazonaws.com
+- 🚀 **Backend API:** http://devshouse-prod.eba-72mpzajd.us-east-1.elasticbeanstalk.com/api
+- 🗄️ **Database:** PostgreSQL en AWS RDS
+- ✅ **Health Check:** http://devshouse-prod.eba-72mpzajd.us-east-1.elasticbeanstalk.com/api/health
 
 ## 🚀 Despliegue Rápido en AWS
 
