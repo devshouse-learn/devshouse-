@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// 🚀 DevsHouse Backend API - Configurado con CI/CD automático
 // Importar configuración de base de datos
 import { connectDB } from './config/database.js';
 
