@@ -40,6 +40,499 @@ body {
   padding: 0 20px;
 }
 
+/* Global Button Styles - TODOS LOS BOTONES AZUL RELLENO CON LETRA BLANCA */
+
+/* Agregar variables CSS para botones */
+:root {
+  --button-bg: #1e3a8a !important;
+  --button-color: white !important;
+  --button-hover: #1e40af !important;
+  --button-active: #0f2438 !important;
+}
+
+/* REGLA SUPREMA: button universal */
+button {
+  background-color: #1e3a8a !important;
+  background: #1e3a8a !important;
+  color: white !important;
+  border: none !important;
+  border-color: transparent !important;
+  background-image: none !important;
+}
+
+button:hover {
+  background-color: #1e40af !important;
+  background: #1e40af !important;
+  color: white !important;
+}
+
+button:active {
+  background-color: #0f2438 !important;
+  background: #0f2438 !important;
+  color: white !important;
+}
+
+button:disabled {
+  background-color: #1e3a8a !important;
+  background: #1e3a8a !important;
+  color: white !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Sobrescribir TODOS los selectores específicos de botones */
+button,
+button[type="button"],
+button[type="submit"],
+button[type="reset"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+a[role="button"],
+[role="button"],
+.btn,
+.btn-*,
+.admin-button,
+.admin-button-primary,
+.admin-button-secondary,
+.admin-button-danger,
+.admin-button-warning,
+.auth-button,
+.auth-toggle-button,
+.btn-back,
+.btn-home,
+.btn-close,
+.error-action-button,
+.error-boundary-button,
+.logout-button,
+.nav-tab,
+.validator-button,
+.resend-button,
+.send-button,
+.ai-assistant-button,
+.ai-chat-button,
+.mode-button,
+.back-button,
+.clear-button,
+.type-button,
+.action-button,
+.option-button,
+.filter-tabs button,
+.data-tabs button,
+.data-actions button,
+.item-actions button,
+.modal-actions button,
+.reaction-buttons button,
+.hero-button,
+.dashboard-card,
+.recruit-button,
+.btn-approve,
+.btn-delete,
+.toggle-label {
+  background-color: #1e3a8a !important;
+  background: #1e3a8a !important;
+  color: white !important;
+  border: none !important;
+  border-color: transparent !important;
+  background-image: none !important;
+  fill: white !important;
+  stroke: transparent !important;
+}
+
+button:hover:not(:disabled),
+button[type="button"]:hover:not(:disabled),
+button[type="submit"]:hover:not(:disabled),
+button[type="reset"]:hover:not(:disabled),
+input[type="button"]:hover:not(:disabled),
+input[type="submit"]:hover:not(:disabled),
+input[type="reset"]:hover:not(:disabled),
+a[role="button"]:hover:not(:disabled),
+[role="button"]:hover:not(:disabled),
+.btn:hover,
+.btn-*:hover,
+.admin-button:hover:not(:disabled),
+.admin-button-primary:hover:not(:disabled),
+.admin-button-secondary:hover:not(:disabled),
+.admin-button-danger:hover:not(:disabled),
+.admin-button-warning:hover:not(:disabled),
+.auth-button:hover:not(:disabled),
+.auth-toggle-button:hover:not(:disabled),
+.btn-back:hover:not(:disabled),
+.btn-home:hover:not(:disabled),
+.btn-close:hover:not(:disabled),
+.error-action-button:hover:not(:disabled),
+.error-boundary-button:hover:not(:disabled),
+.logout-button:hover:not(:disabled),
+.nav-tab:hover:not(:disabled),
+.validator-button:hover:not(:disabled),
+.resend-button:hover:not(:disabled),
+.send-button:hover:not(:disabled),
+.ai-assistant-button:hover:not(:disabled),
+.ai-chat-button:hover:not(:disabled),
+.mode-button:hover:not(:disabled),
+.back-button:hover:not(:disabled),
+.clear-button:hover:not(:disabled),
+.type-button:hover:not(:disabled),
+.action-button:hover:not(:disabled),
+.option-button:hover:not(:disabled),
+.filter-tabs button:hover,
+.data-tabs button:hover,
+.data-actions button:hover,
+.item-actions button:hover,
+.modal-actions button:hover,
+.reaction-buttons button:hover,
+.hero-button:hover,
+.dashboard-card:hover,
+.recruit-button:hover,
+.btn-approve:hover,
+.btn-delete:hover {
+  background-color: #1e40af !important;
+  background: #1e40af !important;
+  color: white !important;
+}
+
+button:active:not(:disabled),
+button[type="button"]:active:not(:disabled),
+button[type="submit"]:active:not(:disabled),
+button[type="reset"]:active:not(:disabled),
+.admin-button:active:not(:disabled),
+.auth-button:active:not(:disabled),
+.btn-back:active:not(:disabled),
+.btn-home:active:not(:disabled),
+.btn-close:active:not(:disabled) {
+  background-color: #0f2438 !important;
+  background: #0f2438 !important;
+  color: white !important;
+}
+
+button:disabled,
+button[type="button"]:disabled,
+button[type="submit"]:disabled,
+button[type="reset"]:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+.admin-button:disabled,
+.admin-button-primary:disabled,
+.admin-button-secondary:disabled,
+.admin-button-danger:disabled,
+.admin-button-warning:disabled,
+.auth-button:disabled,
+.auth-toggle-button:disabled,
+.btn-back:disabled,
+.btn-home:disabled,
+.btn-close:disabled,
+.error-action-button:disabled,
+.error-boundary-button:disabled,
+.logout-button:disabled,
+.nav-tab:disabled,
+.validator-button:disabled,
+.resend-button:disabled,
+.send-button:disabled,
+.ai-assistant-button:disabled,
+.ai-chat-button:disabled,
+.mode-button:disabled,
+.back-button:disabled,
+.clear-button:disabled,
+.type-button:disabled,
+.action-button:disabled,
+.option-button:disabled {
+  background-color: #1e3a8a !important;
+  background: #1e3a8a !important;
+  color: white !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Asegurar que el texto SIEMPRE sea blanco */
+button,
+a[role="button"],
+.btn,
+.admin-button,
+.auth-button,
+.btn-back,
+.btn-home,
+.btn-close,
+.error-action-button,
+.logout-button,
+.nav-tab,
+.validator-button,
+.resend-button,
+.send-button,
+.ai-assistant-button,
+.ai-chat-button,
+.mode-button,
+.back-button,
+.clear-button,
+.type-button,
+.action-button,
+.option-button,
+.btn-approve,
+.btn-delete {
+  color: white !important;
+}
+
+button *,
+button span,
+button p,
+button a,
+a[role="button"] *,
+.btn *,
+.admin-button *,
+.auth-button *,
+.btn-back *,
+.btn-home *,
+.btn-close *,
+.error-action-button *,
+.logout-button *,
+.nav-tab *,
+.validator-button *,
+.resend-button *,
+.send-button *,
+.ai-assistant-button *,
+.ai-chat-button *,
+.mode-button *,
+.back-button *,
+.clear-button *,
+.type-button *,
+.action-button *,
+.option-button *,
+.btn-approve *,
+.btn-delete * {
+  color: white !important;
+}
+
+/* ==================== GLOBAL FORM STYLES ==================== */
+
+/* Estilos globales para todos los inputs, selects y textareas */
+input,
+select,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+select,
+textarea {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border: 2px solid #1e3a8a !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 1rem !important;
+  font-family: inherit !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Focus state - borde azul más claro */
+input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #1e40af !important;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1) !important;
+  outline: none !important;
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder,
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+input[type="date"]::placeholder,
+input[type="time"]::placeholder,
+input[type="search"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="url"]::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Disabled state */
+input:disabled,
+input[type="text"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+input[type="number"]:disabled,
+input[type="date"]:disabled,
+input[type="time"]:disabled,
+input[type="search"]:disabled,
+input[type="tel"]:disabled,
+input[type="url"]:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: #f1f5f9 !important;
+  color: #94a3b8 !important;
+  border-color: #cbd5e1 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+}
+
+/* Labels */
+label,
+.label,
+.form-label {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+  font-size: 0.95rem !important;
+  text-transform: capitalize !important;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.form-group label {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border: 2px solid #1e3a8a !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #1e40af !important;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1) !important;
+  outline: none !important;
+}
+
+/* Form containers */
+form,
+.form-container,
+.form-wrapper,
+.agreement-form,
+.venture-form,
+.job-form,
+.search-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+.form-row {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Form actions/buttons container */
+.form-actions,
+.form-buttons,
+.btn-group,
+.btn-group-left,
+.btn-group-center,
+.btn-group-right {
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  margin-top: 30px !important;
+  justify-content: flex-start !important;
+}
+
+.btn-group-center {
+  justify-content: center !important;
+}
+
+.btn-group-right {
+  justify-content: flex-end !important;
+}
+
+.form-actions button,
+.form-buttons button,
+.btn-group button,
+.btn-group-left button,
+.btn-group-center button,
+.btn-group-right button {
+  background-color: #1e3a8a !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 120px !important;
+}
+
+.form-actions button:hover,
+.form-buttons button:hover,
+.btn-group button:hover,
+.btn-group-left button:hover,
+.btn-group-center button:hover,
+.btn-group-right button:hover {
+  background-color: #1e40af !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Fieldset y legend */
+fieldset {
+  border: 2px solid #1e3a8a !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+legend {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  padding: 0 12px !important;
+  font-size: 1.1rem !important;
+}
+
+/* Checkboxes y Radios */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 20px !important;
+  height: 20px !important;
+  cursor: pointer !important;
+  accent-color: #1e3a8a !important;
+}
+
+/* Select options */
+select option {
+  background-color: white !important;
+  color: #1e293b !important;
+  padding: 8px !important;
+}
+
+select option:checked {
+  background-color: #1e3a8a !important;
+  color: white !important;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
