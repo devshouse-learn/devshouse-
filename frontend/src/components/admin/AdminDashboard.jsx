@@ -8,14 +8,12 @@ import './AdminDashboard.css';
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const [activePanel, setActivePanel] = useState('admin'); // 'admin' o 'moderation'
-
-  if (!user || !['admin', 'moderador'].includes(user.role)) {
-    return null;
-  }
-
   const showAdminPanel = user.role === 'admin';
-  const showModerationPanel = ['admin', 'moderador'].includes(user.role);
+  const showModerationPanel = user.role === 'moderador' || user.role === 'admin';
+
+  // Si solo puede ver moderación, muestra moderación por defecto
+  const defaultPanel = showAdminPanel ? 'admin' : 'moderation';
+  const [activePanel, setActivePanel] = useState(defaultPanel);
 
   return (
     <div className="admin-dashboard">
