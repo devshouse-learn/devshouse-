@@ -65,14 +65,14 @@
   background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(0, 212, 255, 0.05));
   border: 2px solid rgba(30, 136, 229, 0.3);
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 24px 18px;
   text-align: center;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 320px;
+  min-height: 260px;
   animation: slideUp 0.6s ease 0.2s backwards;
 }
 
@@ -88,8 +88,8 @@
 }
 
 .option-icon {
-  font-size: 70px;
-  margin-bottom: 16px;
+  font-size: 60px;
+  margin-bottom: 12px;
   display: block;
   animation: float 3s ease-in-out infinite;
 }
@@ -100,17 +100,17 @@
 }
 
 .option-card h2 {
-  font-size: 28px;
+  font-size: 24px;
   color: #e0e0e0;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-weight: 700;
 }
 
 .option-card p {
   color: #a0a0a0;
-  font-size: 15px;
-  line-height: 1.5;
-  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 18px;
   flex-grow: 1;
 }
 
@@ -118,9 +118,9 @@
   background: linear-gradient(135deg, #1e88e5, #1565c0);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -182,45 +182,45 @@
   }
 
   .hub-header {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
   }
 
   .hub-header h1 {
-    font-size: 26px;
+    font-size: 24px;
     margin-bottom: 6px;
   }
 
   .hub-header p {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .hub-options {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
 
   .option-card {
-    padding: 24px 18px;
-    min-height: 280px;
+    padding: 18px 14px;
+    min-height: 220px;
   }
 
   .option-icon {
-    font-size: 56px;
-    margin-bottom: 12px;
-  }
-
-  .option-card h2 {
-    font-size: 22px;
+    font-size: 48px;
     margin-bottom: 8px;
   }
 
+  .option-card h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
   .option-card p {
-    font-size: 13px;
-    margin-bottom: 18px;
+    font-size: 12px;
+    margin-bottom: 12px;
   }
 
   .option-button {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 8px 16px;
+    font-size: 12px;
   }
 }
