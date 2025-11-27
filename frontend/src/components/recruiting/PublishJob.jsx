@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jobsService } from '../../services/registration.service';
-import '../forms/JobsForm.css';
+import '../forms/forms.css';
 
 const PublishJob = () => {
   const navigate = useNavigate();

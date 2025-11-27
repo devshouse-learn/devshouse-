@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { candidatesService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
-import '../forms/JobSearchForm.css';
+import '../forms/forms.css';
 
 const PublishProfile = () => {
   const navigate = useNavigate();
