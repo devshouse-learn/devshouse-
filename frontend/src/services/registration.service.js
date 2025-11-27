@@ -1,9 +1,8 @@
 import apiService from './api.service';
 
-// Función auxiliar para obtener el usuario actual (simulado por ahora)
+// Función auxiliar para obtener el usuario actual
 const getCurrentUserId = () => {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
-  // Convertir a número, usar 1 como default si no es válido
   const userId = parseInt(user.id, 10) || 1;
   return userId;
 };
@@ -20,42 +19,29 @@ const getUserReactions = async (resourceType, resourceId) => {
   }
 };
 
-export const agreementsService = {
-  create: (data) => apiService.post('/agreements', data),
-  getAll: () => apiService.get('/agreements'),
-  getById: (id) => apiService.get(`/agreements/${id}`),
-  delete: (id) => apiService.delete(`/agreements/${id}`),
-  like: (id) => apiService.post(`/reactions/like`, { userId: getCurrentUserId(), resourceType: 'agreement', resourceId: id, reactionType: 'like' }),
-  report: (id, reason) => apiService.post(`/reactions/report`, { userId: getCurrentUserId(), resourceType: 'agreement', resourceId: id, reactionType: 'report', reportReason: reason }),
-  getUserReactions: (id) => getUserReactions('agreement', id),
-};
+// Factory function para crear servicios de recursos
+const createResourceService = (endpoint, resourceType) => ({
+  create: (data) => apiService.post(endpoint, data),
+  getAll: () => apiService.get(endpoint),
+  getById: (id) => apiService.get(`${endpoint}/${id}`),
+  delete: (id) => apiService.delete(`${endpoint}/${id}`),
+  like: (id) => apiService.post('/reactions/like', { 
+    userId: getCurrentUserId(), 
+    resourceType, 
+    resourceId: id, 
+    reactionType: 'like' 
+  }),
+  report: (id, reason) => apiService.post('/reactions/report', { 
+    userId: getCurrentUserId(), 
+    resourceType, 
+    resourceId: id, 
+    reactionType: 'report', 
+    reportReason: reason 
+  }),
+  getUserReactions: (id) => getUserReactions(resourceType, id),
+});
 
-export const venturesService = {
-  create: (data) => apiService.post('/ventures', data),
-  getAll: () => apiService.get('/ventures'),
-  getById: (id) => apiService.get(`/ventures/${id}`),
-  delete: (id) => apiService.delete(`/ventures/${id}`),
-  like: (id) => apiService.post(`/reactions/like`, { userId: getCurrentUserId(), resourceType: 'venture', resourceId: id, reactionType: 'like' }),
-  report: (id, reason) => apiService.post(`/reactions/report`, { userId: getCurrentUserId(), resourceType: 'venture', resourceId: id, reactionType: 'report', reportReason: reason }),
-  getUserReactions: (id) => getUserReactions('venture', id),
-};
-
-export const jobsService = {
-  create: (data) => apiService.post('/jobs', data),
-  getAll: () => apiService.get('/jobs'),
-  getById: (id) => apiService.get(`/jobs/${id}`),
-  delete: (id) => apiService.delete(`/jobs/${id}`),
-  like: (id) => apiService.post(`/reactions/like`, { userId: getCurrentUserId(), resourceType: 'job', resourceId: id, reactionType: 'like' }),
-  report: (id, reason) => apiService.post(`/reactions/report`, { userId: getCurrentUserId(), resourceType: 'job', resourceId: id, reactionType: 'report', reportReason: reason }),
-  getUserReactions: (id) => getUserReactions('job', id),
-};
-
-export const candidatesService = {
-  create: (data) => apiService.post('/candidates', data),
-  getAll: () => apiService.get('/candidates'),
-  getById: (id) => apiService.get(`/candidates/${id}`),
-  delete: (id) => apiService.delete(`/candidates/${id}`),
-  like: (id) => apiService.post(`/reactions/like`, { userId: getCurrentUserId(), resourceType: 'candidate', resourceId: id, reactionType: 'like' }),
-  report: (id, reason) => apiService.post(`/reactions/report`, { userId: getCurrentUserId(), resourceType: 'candidate', resourceId: id, reactionType: 'report', reportReason: reason }),
-  getUserReactions: (id) => getUserReactions('candidate', id),
-};
+export const agreementsService = createResourceService('/agreements', 'agreement');
+export const venturesService = createResourceService('/ventures', 'venture');
+export const jobsService = createResourceService('/jobs', 'job');
+export const candidatesService = createResourceService('/candidates', 'candidate');
