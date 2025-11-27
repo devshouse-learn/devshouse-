@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
-import './StudentForm.css';
+import './forms.css';
 
 const StudentForm = () => {
   const navigate = useNavigate();

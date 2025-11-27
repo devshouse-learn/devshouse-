@@ -4,7 +4,7 @@ import { agreementsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
 import { validateField } from '../../services/validation.service';
 import validationRules from '../../services/validation.service';
-import './AgreementsForm.css';
+import './forms.css';
 
 const AgreementsForm = () => {
   const navigate = useNavigate();
