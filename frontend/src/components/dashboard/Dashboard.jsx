@@ -12,6 +12,33 @@ const Dashboard = () => {
 
   const menuItems = [
     {
+      id: 1,
+      path: '/agreements',
+      title: 'Convenios Educativos',
+      description: 'Accede a convenios educativos y conexiones académicas',
+      icon: '🎓',
+      color: 'blue',
+      roles: ['usuario', 'moderador', 'admin']
+    },
+    {
+      id: 2,
+      path: '/ventures',
+      title: 'Emprendimientos',
+      description: 'Crea y gestiona tus proyectos emprendedores',
+      icon: '🚀',
+      color: 'purple',
+      roles: ['usuario', 'moderador', 'admin']
+    },
+    {
+      id: 4,
+      path: '/recruiting',
+      title: 'Centro de Reclutamiento',
+      description: 'Busca talentos o publica oportunidades laborales',
+      icon: '💼',
+      color: 'orange',
+      roles: ['usuario', 'moderador', 'admin']
+    },
+    {
       id: 6,
       path: '/admin',
       title: 'Panel de Administración',
@@ -19,6 +46,15 @@ const Dashboard = () => {
       icon: '⚙️',
       color: 'red',
       roles: ['admin', 'moderador']
+    },
+    {
+      id: 7,
+      path: '/moderation-panel',
+      title: 'Panel de Moderación',
+      description: 'Revisa y modera contenido de la plataforma',
+      icon: '🛡️',
+      color: 'green',
+      roles: ['moderador', 'admin']
     }
   ];
 
@@ -27,11 +63,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="dashboard-header">
-        <h1>👋 Bienvenido, {user?.name}!</h1>
-        <p className="dashboard-subtitle">Selecciona qué deseas hacer</p>
-      </div>
-
       <div className="dashboard-grid">
         {availableItems.map((item) => (
           <div

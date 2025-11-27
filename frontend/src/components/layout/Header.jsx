@@ -19,6 +19,11 @@ const Header = () => {
               <span className="user-name">{user.name}</span>
               <span className={`user-role role-${user.role}`}>{user.role}</span>
             </div>
+            {(user.role === 'admin' || user.role === 'moderador') && (
+              <Link to="/moderation-panel" className="moderation-link">
+                🛡️ Moderación
+              </Link>
+            )}
             {user.role === 'admin' && (
               <Link to="/data-viewer" className="admin-link">
                 📊 Datos
