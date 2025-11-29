@@ -98,6 +98,7 @@ const VenturesForm = () => {
       )}
 
       <form onSubmit={handleSubmit} className="ventures-form">
+        <div className="form-type-badge">🚀 Formulario de Emprendimientos</div>
         <fieldset>
           <legend>Información de la Empresa</legend>
 

@@ -79,6 +79,18 @@ fieldset {
   margin: 0 0 1.5rem 0;
 }
 
+.form-type-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #1e3a8a, #1565c0);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
 legend {
   color: #000000;
   font-size: 1.1rem;

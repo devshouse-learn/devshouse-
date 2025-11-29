@@ -104,6 +104,7 @@ const JobSearchForm = () => {
       </div>
 
       <form onSubmit={handleSearch} className="job-search-form">
+        <div className="form-type-badge">🔍 Formulario de Búsqueda de Empleos</div>
         <fieldset>
           <legend>Criterios de Búsqueda</legend>
 

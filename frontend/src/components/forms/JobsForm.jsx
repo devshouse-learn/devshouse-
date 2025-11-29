@@ -115,6 +115,7 @@ const JobsForm = () => {
       )}
 
       <form onSubmit={handleSubmit} className="jobs-form">
+        <div className="form-type-badge">💼 Formulario de Empleos</div>
         <fieldset>
           <legend>Información de la Posición</legend>
 

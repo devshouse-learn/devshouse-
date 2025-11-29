@@ -127,6 +127,7 @@ const AgreementsForm = () => {
       )}
 
       <form onSubmit={handleSubmit} className="agreement-form">
+        <div className="form-type-badge">📋 Formulario de Convenios</div>
         <fieldset>
           <legend>Información de la Institución</legend>
 
