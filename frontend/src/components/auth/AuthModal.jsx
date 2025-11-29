@@ -378,7 +378,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
 
           {/* Tab de Recuperación de Contraseña */}
           {isForgotPassword && (
-            <div className="auth-form-wrapper">
+            <div className="auth-form-wrapper forgot-password-wrapper">
               <h2>🔐 Recuperar Contraseña</h2>
               <p className="auth-subtitle">Ingresa tu correo para recuperar tu contraseña</p>
 

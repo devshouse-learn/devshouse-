@@ -411,6 +411,22 @@ form {
   text-decoration: underline;
 }
 
+.forgot-password-wrapper {
+  text-align: center;
+}
+
+.forgot-password-wrapper h2 {
+  text-align: center;
+}
+
+.forgot-password-wrapper p {
+  text-align: center;
+}
+
+.forgot-password-wrapper form {
+  max-width: 100%;
+}
+
 .reset-success-message {
   text-align: center;
   padding: 24px;
