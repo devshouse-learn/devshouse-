@@ -145,7 +145,7 @@
 
 .mode-actions {
   display: flex;
-  gap: 1.5rem;
+  gap: 2.5rem;
   margin-bottom: 24px;
   flex-wrap: wrap;
 }
@@ -156,7 +156,7 @@
   color: #1e88e5;
   font-size: 0.95rem;
   cursor: pointer;
-  padding: 8px 14px;
+  padding: 12px 24px;
   border-radius: 6px;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -175,7 +175,7 @@
   color: white;
   font-size: 0.95rem;
   cursor: pointer;
-  padding: 8px 14px;
+  padding: 12px 24px;
   border-radius: 6px;
   font-weight: 600;
   transition: all 0.3s ease;
