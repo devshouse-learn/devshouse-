@@ -1,21 +1,18 @@
 import express from 'express';
-import Agreement from '../models/Agreement.sequelize.js';
+import { filterMockAgreements, getMockAgreement, mockAgreements } from '../mocks/agreements.mock.js';
 
 const router = express.Router();
 
 // GET todos los convenios
 router.get('/', async (req, res) => {
   try {
-    const { status, schoolType, limit = 50 } = req.query;
+    const { status, agreementType, schoolLevel, limit = 50 } = req.query;
     
-    const where = {};
-    if (status) where.status = status;
-    if (schoolType) where.schoolType = schoolType;
-
-    const agreements = await Agreement.findAll({
-      where,
-      limit: parseInt(limit),
-      order: [['created_at', 'DESC']],
+    const agreements = filterMockAgreements({
+      status,
+      agreementType,
+      schoolLevel,
+      limit,
     });
 
     res.json({
@@ -36,7 +33,7 @@ router.get('/', async (req, res) => {
 // GET un convenio por ID
 router.get('/:id', async (req, res) => {
   try {
-    const agreement = await Agreement.findByPk(req.params.id);
+    const agreement = getMockAgreement(req.params.id);
 
     if (!agreement) {
       return res.status(404).json({
@@ -45,8 +42,8 @@ router.get('/:id', async (req, res) => {
       });
     }
 
-    // Incrementar vistas
-    await agreement.increment('views');
+    // Incrementar vistas (solo en memoria)
+    agreement.views += 1;
 
     res.json({
       success: true,
@@ -65,12 +62,25 @@ router.get('/:id', async (req, res) => {
 // POST crear nuevo convenio
 router.post('/', async (req, res) => {
   try {
-    const agreement = await Agreement.create(req.body);
+    const newAgreement = {
+      id: mockAgreements.length + 1,
+      ...req.body,
+      status: 'pending',
+      created_at: new Date(),
+      updated_at: new Date(),
+      views: 0,
+      likes: 0,
+      reports: 0,
+      under_review: false,
+      show_in_search: true,
+    };
+
+    mockAgreements.push(newAgreement);
 
     res.status(201).json({
       success: true,
       message: 'Convenio creado exitosamente',
-      data: agreement,
+      data: newAgreement,
     });
   } catch (error) {
     console.error('Error al crear convenio:', error);
@@ -85,7 +95,7 @@ router.post('/', async (req, res) => {
 // PUT actualizar convenio
 router.put('/:id', async (req, res) => {
   try {
-    const agreement = await Agreement.findByPk(req.params.id);
+    const agreement = getMockAgreement(req.params.id);
 
     if (!agreement) {
       return res.status(404).json({
@@ -94,12 +104,19 @@ router.put('/:id', async (req, res) => {
       });
     }
 
-    await agreement.update(req.body);
+    const updated = {
+      ...agreement,
+      ...req.body,
+      updated_at: new Date(),
+    };
+
+    const index = mockAgreements.findIndex(a => a.id === parseInt(req.params.id));
+    mockAgreements[index] = updated;
 
     res.json({
       success: true,
       message: 'Convenio actualizado exitosamente',
-      data: agreement,
+      data: updated,
     });
   } catch (error) {
     console.error('Error al actualizar convenio:', error);
@@ -114,20 +131,21 @@ router.put('/:id', async (req, res) => {
 // DELETE eliminar convenio
 router.delete('/:id', async (req, res) => {
   try {
-    const agreement = await Agreement.findByPk(req.params.id);
+    const index = mockAgreements.findIndex(a => a.id === parseInt(req.params.id));
 
-    if (!agreement) {
+    if (index === -1) {
       return res.status(404).json({
         success: false,
         message: 'Convenio no encontrado',
       });
     }
 
-    await agreement.destroy();
+    const deleted = mockAgreements.splice(index, 1);
 
     res.json({
       success: true,
       message: 'Convenio eliminado exitosamente',
+      data: deleted[0],
     });
   } catch (error) {
     console.error('Error al eliminar convenio:', error);

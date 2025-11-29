@@ -1,14 +1,22 @@
 import express from 'express';
-import Candidate from '../models/Candidate.sequelize.js';
+import { filterMockCandidates, getMockCandidate, mockCandidates } from '../mocks/candidates.mock.js';
 
 const router = express.Router();
 
 // GET /api/candidates - Obtener todos los candidatos
 router.get('/', async (req, res) => {
   try {
-    const candidates = await Candidate.findAll({
-      where: { status: 'active' },
-    });
+    const { status = 'active', limit = 50 } = req.query;
+    
+    let candidates = mockCandidates;
+    
+    if (status) {
+      candidates = candidates.filter(c => c.status === status);
+    }
+    
+    if (limit) {
+      candidates = candidates.slice(0, parseInt(limit));
+    }
 
     res.json({
       success: true,
@@ -29,7 +37,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const candidate = await Candidate.findByPk(id);
+    const candidate = getMockCandidate(id);
 
     if (!candidate) {
       return res.status(404).json({
@@ -52,81 +60,94 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/candidates - Crear nuevo candidato (hoja de vida) o actualizar si ya existe
+// POST /api/candidates - Crear nuevo candidato (hoja de vida)
 router.post('/', async (req, res) => {
   try {
     const {
-      name,
+      full_name,
       email,
       phone,
+      professional_title,
+      professional_summary,
       location,
-      bio,
-      avatar,
-      resume,
-      technologies,
-      experience,
-      education,
-      portfolio,
-      linkedIn,
-      github,
-      twitter,
-      website,
+      years_experience,
+      skills,
+      languages,
+      job_type_preference,
+      remote_preference,
+      salary_expectation_min,
+      salary_expectation_max,
+      currency,
       availability,
-      createdBy,
+      linkedin_url,
+      portfolio_url,
     } = req.body;
 
     // Validar campos requeridos
-    if (!name || !email) {
+    if (!full_name || !email) {
       return res.status(400).json({
         success: false,
-        message: 'Name and email are required',
+        message: 'Full name and email are required',
       });
     }
 
     // Verificar si el email ya existe
-    const existingCandidate = await Candidate.findOne({ where: { email } });
+    const existingCandidate = mockCandidates.find(c => c.email === email);
     
     const candidateData = {
-      name,
+      id: mockCandidates.length + 1,
+      full_name,
       email,
-      phone: phone || null,
-      location: location || null,
-      bio: bio || null,
-      avatar: avatar || null,
-      resume: resume || null,
-      technologies: technologies || [],
-      experience: experience || [],
-      education: education || [],
-      portfolio: portfolio || null,
-      linkedIn: linkedIn || null,
-      github: github || null,
-      twitter: twitter || null,
-      website: website || null,
-      availability: availability || 'disponible',
-      status: 'active', // Permitir que se muestre inmediatamente
+      phone: phone || '',
+      professional_title: professional_title || '',
+      professional_summary: professional_summary || '',
+      location: location || '',
+      years_experience: years_experience || 0,
+      skills: skills || [],
+      languages: languages || [],
+      job_type_preference: job_type_preference || '',
+      remote_preference: remote_preference || '',
+      salary_expectation_min: salary_expectation_min || 0,
+      salary_expectation_max: salary_expectation_max || 0,
+      currency: currency || 'USD',
+      availability: availability || 'Disponible',
+      linkedin_url: linkedin_url || '',
+      portfolio_url: portfolio_url || '',
+      status: 'active',
+      views: 0,
+      likes: 0,
+      reports: 0,
+      under_review: false,
+      show_in_search: true,
+      created_at: new Date(),
+      updated_at: new Date(),
     };
-
-    let candidate;
-    let isCreated = false;
 
     if (existingCandidate) {
       // Actualizar candidato existente
-      await existingCandidate.update(candidateData);
-      candidate = existingCandidate;
+      const index = mockCandidates.findIndex(c => c.email === email);
+      const updated = {
+        ...existingCandidate,
+        ...candidateData,
+        updated_at: new Date(),
+      };
+      mockCandidates[index] = updated;
+
+      res.json({
+        success: true,
+        message: 'Candidato actualizado exitosamente',
+        data: updated,
+      });
     } else {
       // Crear nuevo candidato
-      candidate = await Candidate.create({
-        ...candidateData,
-        createdBy: createdBy || 1,
-      });
-      isCreated = true;
-    }
+      mockCandidates.push(candidateData);
 
-    res.status(isCreated ? 201 : 200).json({
-      success: true,
-      message: isCreated ? 'Candidato creado exitosamente' : 'Candidato actualizado exitosamente',
-      data: candidate,
-    });
+      res.status(201).json({
+        success: true,
+        message: 'Candidato creado exitosamente',
+        data: candidateData,
+      });
+    }
   } catch (error) {
     console.error('Error creating/updating candidate:', error);
     res.status(500).json({
@@ -141,7 +162,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const candidate = await Candidate.findByPk(id);
+    const candidate = getMockCandidate(id);
 
     if (!candidate) {
       return res.status(404).json({
@@ -150,37 +171,19 @@ router.put('/:id', async (req, res) => {
       });
     }
 
-    // Actualizar campos permitidos
-    const allowedFields = [
-      'name',
-      'phone',
-      'location',
-      'bio',
-      'avatar',
-      'resume',
-      'technologies',
-      'experience',
-      'education',
-      'portfolio',
-      'linkedIn',
-      'github',
-      'twitter',
-      'website',
-      'availability',
-    ];
+    const updated = {
+      ...candidate,
+      ...req.body,
+      updated_at: new Date(),
+    };
 
-    for (const field of allowedFields) {
-      if (req.body[field] !== undefined) {
-        candidate[field] = req.body[field];
-      }
-    }
-
-    await candidate.save();
+    const index = mockCandidates.findIndex(c => c.id === parseInt(id));
+    mockCandidates[index] = updated;
 
     res.json({
       success: true,
       message: 'Candidato actualizado exitosamente',
-      data: candidate,
+      data: updated,
     });
   } catch (error) {
     console.error('Error updating candidate:', error);
@@ -196,20 +199,21 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const candidate = await Candidate.findByPk(id);
+    const index = mockCandidates.findIndex(c => c.id === parseInt(id));
 
-    if (!candidate) {
+    if (index === -1) {
       return res.status(404).json({
         success: false,
         message: 'Candidato no encontrado',
       });
     }
 
-    await candidate.destroy();
+    const deleted = mockCandidates.splice(index, 1);
 
     res.json({
       success: true,
       message: 'Candidato eliminado exitosamente',
+      data: deleted[0],
     });
   } catch (error) {
     console.error('Error deleting candidate:', error);

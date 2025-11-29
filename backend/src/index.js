@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 
 // 🚀 DevsHouse Backend API - Configurado con CI/CD automático
 // Importar configuración de base de datos
-import { connectDB } from './config/database.js';
+// import { connectDB } from './config/database.js'; // Deshabilitado para modo mock
 
 // Importar rutas
 import monitoringRoutes from './routes/monitoring.routes.js';
@@ -84,16 +84,16 @@ app.use(globalErrorHandler);
 // Función para iniciar el servidor
 const startServer = async () => {
   try {
-    // Conectar a PostgreSQL/SQLite
-    try {
-      await connectDB();
-    } catch (dbError) {
-      if (process.env.DB_TYPE === 'sqlite') {
-        console.log('⚠️ SQLite en modo mock - continuando sin conexión');
-      } else {
-        console.warn('⚠️ Error de base de datos, continuando con modo degradado:', dbError.message);
-      }
-    }
+    // Conectar a PostgreSQL/SQLite (deshabilitado para modo mock)
+    // try {
+    //   await connectDB();
+    // } catch (dbError) {
+    //   if (process.env.DB_TYPE === 'sqlite') {
+    //     console.log('⚠️ SQLite en modo mock - continuando sin conexión');
+    //   } else {
+    //     console.warn('⚠️ Error de base de datos, continuando con modo degradado:', dbError.message);
+    //   }
+    // }
     
     // Iniciar servidor con manejo de puertos ocupados
     const server = app.listen(PORT, () => {
@@ -104,8 +104,8 @@ const startServer = async () => {
       console.log(`  🌐 Server:        http://localhost:${PORT}`);
       console.log(`  📊 Health Check:  http://localhost:${PORT}/api/health`);
       console.log(`  📋 Environment:   ${process.env.NODE_ENV}`);
-      console.log(`  🗄️  Database:      PostgreSQL (AWS RDS)`);
-      console.log(`  📍 DB Host:       ${process.env.DB_HOST}`);
+      console.log(`  🗄️  Database:      Mock Data (Desarrollo)`);
+      console.log(`  ✅ Modo:          Mock sin conexión a BD`);
       console.log('');
       console.log('══════════════════════════════════════════════════════════════');
       console.log('');
