@@ -99,7 +99,7 @@ const JobSearchForm = () => {
   return (
     <div className="search-container">
       <div className="search-header">
-        <h1>🔍 Busca Tu Próxima Oportunidad</h1>
+        <h1>🎯 Busca Tu Próxima Oportunidad</h1>
         <p>Encuentra empleos que se adapten a tu perfil y experiencia</p>
       </div>
 
@@ -221,7 +221,7 @@ const JobSearchForm = () => {
             </div>
             <div className="btn-group-center">
               <button type="submit" className="btn-submit">
-                🔍 Buscar Empleos
+                ⭐ Buscar Empleos
               </button>
               <button type="button" className="btn-reset" onClick={handleReset}>
                 🔄 Limpiar Filtros

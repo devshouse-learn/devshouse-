@@ -132,7 +132,7 @@ const StudentsList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>🎓 Estudiantes y Talentos</h1>
+          <h1>📚 Estudiantes y Talentos</h1>
           <p>Descubre perfiles de estudiantes registrados</p>
         </div>
         <button 

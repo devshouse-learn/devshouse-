@@ -140,7 +140,7 @@ const JobsList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>💼 Ofertas de Empleo</h1>
+          <h1>🎯 Ofertas de Empleo</h1>
           <p>Encuentra las mejores oportunidades laborales</p>
         </div>
         <button 
@@ -204,7 +204,7 @@ const JobsList = () => {
                 </div>
 
                 <div className="info-row">
-                  <span className="label">💼 Tipo:</span>
+                  <span className="label">🎯 Tipo:</span>
                   <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
                 </div>
 

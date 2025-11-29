@@ -84,8 +84,16 @@ app.use(globalErrorHandler);
 // Función para iniciar el servidor
 const startServer = async () => {
   try {
-    // Conectar a PostgreSQL
-    await connectDB();
+    // Conectar a PostgreSQL/SQLite
+    try {
+      await connectDB();
+    } catch (dbError) {
+      if (process.env.DB_TYPE === 'sqlite') {
+        console.log('⚠️ SQLite en modo mock - continuando sin conexión');
+      } else {
+        console.warn('⚠️ Error de base de datos, continuando con modo degradado:', dbError.message);
+      }
+    }
     
     // Iniciar servidor con manejo de puertos ocupados
     const server = app.listen(PORT, () => {

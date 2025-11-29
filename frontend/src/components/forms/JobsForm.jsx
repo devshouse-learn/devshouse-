@@ -98,7 +98,7 @@ const JobsForm = () => {
   return (
     <div className="form-container">
       <div className="form-header">
-        <h1>💼 Publicar Oportunidad de Empleo</h1>
+        <h1>🎯 Publicar Oportunidad de Empleo</h1>
         <p>Publica una nueva oferta laboral y llega a candidatos calificados</p>
       </div>
 

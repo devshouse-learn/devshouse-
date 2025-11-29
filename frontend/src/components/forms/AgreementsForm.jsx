@@ -110,7 +110,7 @@ const AgreementsForm = () => {
   return (
     <div className="form-container">
       <div className="form-header">
-        <h1>📋 Convenios Educativos</h1>
+        <h1>� Convenios Educativos</h1>
         <p>Registra tu institución educativa y establece convenios con empresas</p>
       </div>
 

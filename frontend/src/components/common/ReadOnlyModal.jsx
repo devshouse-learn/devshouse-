@@ -31,7 +31,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
 
   const renderAgreement = () => (
     <div className="readonly-form">
-      <h2>📋 Convenio Educativo (Solo Lectura)</h2>
+      <h2>� Convenio Educativo (Solo Lectura)</h2>
       
       <fieldset disabled>
         <legend>Información de la Institución</legend>
@@ -66,7 +66,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
 
   const renderVenture = () => (
     <div className="readonly-form">
-      <h2>🚀 Emprendimiento (Solo Lectura)</h2>
+      <h2>� Emprendimiento (Solo Lectura)</h2>
       
       <fieldset disabled>
         <legend>Información de la Empresa</legend>
@@ -104,7 +104,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
 
   const renderJob = () => (
     <div className="readonly-form">
-      <h2>💼 Oferta de Empleo (Solo Lectura)</h2>
+      <h2>🎯 Oferta de Empleo (Solo Lectura)</h2>
       
       <fieldset disabled>
         <legend>Información de la Posición</legend>

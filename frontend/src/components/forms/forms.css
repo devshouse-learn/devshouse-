@@ -4,6 +4,10 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form-header {
@@ -14,7 +18,10 @@
 
 .form-header h1 {
   font-size: 2rem;
-  color: var(--primary-color);
+  background: linear-gradient(135deg, #1e3a8a, #581c87);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
@@ -49,11 +56,21 @@
 .venture-form,
 .job-form,
 .search-form {
-  background: rgba(30, 58, 138, 0.05);
-  border: 2px solid rgba(30, 58, 138, 0.2);
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  border: none;
   border-radius: 12px;
   padding: 2.5rem;
   margin-bottom: 2rem;
+  color: white;
+  box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+}
+
+.agreement-form:nth-of-type(even),
+.venture-form:nth-of-type(even),
+.job-form:nth-of-type(even),
+.search-form:nth-of-type(even) {
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
 }
 
 fieldset {
@@ -63,12 +80,12 @@ fieldset {
 }
 
 legend {
-  color: var(--text-dark);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(30, 58, 138, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   width: 100%;
 }
 
@@ -90,7 +107,7 @@ legend {
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(30, 58, 138, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   flex-wrap: wrap;
 }
 
@@ -101,14 +118,14 @@ legend {
 }
 
 .form-info {
-  background: rgba(30, 58, 138, 0.05);
-  border: 1px solid rgba(30, 58, 138, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 1.5rem;
 }
 
 .form-info h3 {
-  color: var(--primary-color);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 1rem;
   margin: 0 0 1rem 0;
   font-weight: 600;
@@ -121,7 +138,7 @@ legend {
 }
 
 .form-info li {
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.8);
   padding: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
@@ -132,7 +149,7 @@ legend {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #10b981;
+  color: #86efac;
   font-weight: bold;
 }
 

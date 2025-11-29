@@ -90,7 +90,7 @@ const StudentForm = () => {
   return (
     <div className="form-container">
       <div className="form-header">
-        <h1>🎓 Soy Estudiante</h1>
+        <h1>📚 Soy Estudiante</h1>
         <p>Registra tu perfil y encuentra oportunidades de aprendizaje y experiencia</p>
       </div>
 

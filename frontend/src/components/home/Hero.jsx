@@ -8,7 +8,7 @@ const Hero = ({ onShowAuthModal }) => {
     <section className="hero">
       <div className="hero-content">
         <h1>Bienvenidos a DEVSHOUSE</h1>
-        <p className="hero-subtitle">Conectando educación, emprendimiento y oportunidades laborales 🚀</p>
+        <p className="hero-subtitle">Conectando educación, emprendimiento y oportunidades laborales ✨</p>
         
         {!isAuthenticated && (
           <div className="hero-buttons">
@@ -16,13 +16,13 @@ const Hero = ({ onShowAuthModal }) => {
               className="hero-btn hero-btn-primary"
               onClick={() => onShowAuthModal('login')}
             >
-              🔑 Inicio de Sesión
+              🔐 Inicio de Sesión
             </button>
             <button 
               className="hero-btn hero-btn-secondary"
               onClick={() => onShowAuthModal('register')}
             >
-              📝 Crear Cuenta
+              ✍️ Crear Cuenta
             </button>
           </div>
         )}

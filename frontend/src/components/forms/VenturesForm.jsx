@@ -81,7 +81,7 @@ const VenturesForm = () => {
   return (
     <div className="form-container">
       <div className="form-header">
-        <h1>🚀 Publica Tu Emprendimiento</h1>
+        <h1>� Publica Tu Emprendimiento</h1>
         <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
       </div>
 

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { agreementsService, venturesService, jobsService } from '../../services/registration.service';
 import ReactionButtons from '../common/ReactionButtons';
-import ReadOnlyModal from '../common/ReadOnlyModal';
 import { useAuth } from '../../context/AuthContext';
 import './DataViewer.css';
 

@@ -151,7 +151,7 @@ const AgreementsList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>📋 Convenios Educativos</h1>
+          <h1>� Convenios Educativos</h1>
           <p>Descubre instituciones educativas que buscan convenios con empresas</p>
         </div>
         <button 

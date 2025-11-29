@@ -141,7 +141,7 @@ const VenturesList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>🚀 Emprendimientos</h1>
+          <h1>� Emprendimientos</h1>
           <p>Descubre startups y emprendimientos en busca de talento</p>
         </div>
         <button 
