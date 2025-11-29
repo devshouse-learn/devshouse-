@@ -1,5 +1,5 @@
 import express from 'express';
-import Venture from '../models/Venture.sequelize.js';
+import { filterMockVentures, getMockVenture, mockVentures } from '../mocks/ventures.mock.js';
 
 const router = express.Router();
 
@@ -8,15 +8,11 @@ router.get('/', async (req, res) => {
   try {
     const { status, industry, investmentStage, limit = 50 } = req.query;
     
-    const where = {};
-    if (status) where.status = status;
-    if (industry) where.industry = industry;
-    if (investmentStage) where.investmentStage = investmentStage;
-
-    const ventures = await Venture.findAll({
-      where,
-      limit: parseInt(limit),
-      order: [['created_at', 'DESC']],
+    const ventures = filterMockVentures({
+      status,
+      industry,
+      investmentStage,
+      limit,
     });
 
     res.json({
@@ -37,7 +33,7 @@ router.get('/', async (req, res) => {
 // GET un emprendimiento por ID
 router.get('/:id', async (req, res) => {
   try {
-    const venture = await Venture.findByPk(req.params.id);
+    const venture = getMockVenture(req.params.id);
 
     if (!venture) {
       return res.status(404).json({
@@ -46,8 +42,8 @@ router.get('/:id', async (req, res) => {
       });
     }
 
-    // Incrementar vistas
-    await venture.increment('views');
+    // Incrementar vistas (solo en memoria, no persiste)
+    venture.views += 1;
 
     res.json({
       success: true,
@@ -66,12 +62,25 @@ router.get('/:id', async (req, res) => {
 // POST crear nuevo emprendimiento
 router.post('/', async (req, res) => {
   try {
-    const venture = await Venture.create(req.body);
+    const newVenture = {
+      id: mockVentures.length + 1,
+      ...req.body,
+      status: 'pending',
+      created_at: new Date(),
+      updated_at: new Date(),
+      views: 0,
+      likes: 0,
+      reports: 0,
+      under_review: false,
+      show_in_search: true,
+    };
+
+    mockVentures.push(newVenture);
 
     res.status(201).json({
       success: true,
       message: 'Emprendimiento creado exitosamente',
-      data: venture,
+      data: newVenture,
     });
   } catch (error) {
     console.error('Error al crear emprendimiento:', error);
@@ -86,7 +95,7 @@ router.post('/', async (req, res) => {
 // PUT actualizar emprendimiento
 router.put('/:id', async (req, res) => {
   try {
-    const venture = await Venture.findByPk(req.params.id);
+    const venture = getMockVenture(req.params.id);
 
     if (!venture) {
       return res.status(404).json({
@@ -95,12 +104,19 @@ router.put('/:id', async (req, res) => {
       });
     }
 
-    await venture.update(req.body);
+    const updated = {
+      ...venture,
+      ...req.body,
+      updated_at: new Date(),
+    };
+
+    const index = mockVentures.findIndex(v => v.id === parseInt(req.params.id));
+    mockVentures[index] = updated;
 
     res.json({
       success: true,
       message: 'Emprendimiento actualizado exitosamente',
-      data: venture,
+      data: updated,
     });
   } catch (error) {
     console.error('Error al actualizar emprendimiento:', error);
@@ -115,20 +131,21 @@ router.put('/:id', async (req, res) => {
 // DELETE eliminar emprendimiento
 router.delete('/:id', async (req, res) => {
   try {
-    const venture = await Venture.findByPk(req.params.id);
+    const index = mockVentures.findIndex(v => v.id === parseInt(req.params.id));
 
-    if (!venture) {
+    if (index === -1) {
       return res.status(404).json({
         success: false,
         message: 'Emprendimiento no encontrado',
       });
     }
 
-    await venture.destroy();
+    const deleted = mockVentures.splice(index, 1);
 
     res.json({
       success: true,
       message: 'Emprendimiento eliminado exitosamente',
+      data: deleted[0],
     });
   } catch (error) {
     console.error('Error al eliminar emprendimiento:', error);
