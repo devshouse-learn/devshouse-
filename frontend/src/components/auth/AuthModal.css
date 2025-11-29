@@ -193,7 +193,7 @@ form {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(30, 58, 138, 0.3);
   border-radius: 8px;
-  color: #000000;
+  color: #ffffff;
   font-size: 14px;
   font-family: inherit;
   transition: all 0.3s ease;
@@ -388,6 +388,25 @@ form {
 .auth-toggle-button:hover {
   background: rgba(26, 115, 232, 0.1);
   border-color: #1a73e8;
+}
+
+.forgot-password-link {
+  text-align: right;
+  margin-top: -8px;
+}
+
+.forgot-password-link a {
+  color: #f59e0b;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.forgot-password-link a:hover {
+  color: #fbbf24;
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {

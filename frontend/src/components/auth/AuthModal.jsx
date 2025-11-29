@@ -210,6 +210,15 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                   </div>
                 </div>
 
+                <div className="forgot-password-link">
+                  <a onClick={() => {
+                    // Aquí irá la funcionalidad de recuperar contraseña
+                    alert('🔐 Función de recuperación de contraseña en desarrollo');
+                  }}>
+                    🔑 ¿Olvidaste tu contraseña?
+                  </a>
+                </div>
+
                 {error && <div className="auth-error">{error}</div>}
 
                 <button
