@@ -202,8 +202,9 @@
 .btn-group-left,
 .btn-group-right {
   display: flex;
-  gap: 12px;
+  gap: 1.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .btn-group-right {
@@ -221,6 +222,8 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  min-width: 120px;
+  text-align: center;
 }
 
 .btn-back {
@@ -232,18 +235,6 @@
 .btn-back:hover:not(:disabled) {
   background: rgba(100, 100, 100, 0.4);
   border-color: #a0a0a0;
-}
-
-.btn-close {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 /* Estilos para Mantenimiento */

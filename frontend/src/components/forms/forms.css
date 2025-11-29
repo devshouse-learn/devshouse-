@@ -104,7 +104,7 @@ legend {
 
 .form-actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -114,13 +114,25 @@ legend {
 .btn-group-left,
 .btn-group-right {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .btn-group-right {
   justify-content: flex-end;
   margin-left: auto;
+}
+
+.btn-group-left button,
+.btn-group-right button,
+.form-actions button {
+  padding: 12px 24px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  min-width: 120px;
+  text-align: center;
 }
 
 
