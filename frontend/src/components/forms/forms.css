@@ -134,6 +134,7 @@ legend {
 
 .btn-group-left button,
 .btn-group-right button,
+.btn-group-center button,
 .form-actions button {
   padding: 12px 24px !important;
   font-size: 0.95rem !important;
