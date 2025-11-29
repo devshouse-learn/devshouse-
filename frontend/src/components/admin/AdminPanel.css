@@ -203,6 +203,11 @@
 .btn-group-right {
   display: flex;
   gap: 12px;
+  align-items: center;
+}
+
+.btn-group-right {
+  margin-left: auto;
 }
 
 .btn-back,
@@ -230,14 +235,18 @@
 }
 
 .btn-close {
-  background: rgba(255, 82, 82, 0.2);
-  color: #ff6b6b;
-  border: 1px solid rgba(255, 82, 82, 0.5);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn-close:hover:not(:disabled) {
-  background: rgba(255, 82, 82, 0.4);
-  border-color: #ff6b6b;
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
 }
 
 /* Estilos para Mantenimiento */

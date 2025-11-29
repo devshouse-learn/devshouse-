@@ -157,3 +157,30 @@ export const filterMockAgreements = (query) => {
 
   return filtered;
 };
+
+export const incrementAgreementLikes = (id) => {
+  const agreement = mockAgreements.find(a => a.id === parseInt(id));
+  if (agreement) {
+    agreement.likes += 1;
+  }
+  return agreement;
+};
+
+export const decrementAgreementLikes = (id) => {
+  const agreement = mockAgreements.find(a => a.id === parseInt(id));
+  if (agreement && agreement.likes > 0) {
+    agreement.likes -= 1;
+  }
+  return agreement;
+};
+
+export const incrementAgreementReports = (id) => {
+  const agreement = mockAgreements.find(a => a.id === parseInt(id));
+  if (agreement) {
+    agreement.reports += 1;
+    if (agreement.reports >= 30) {
+      agreement.under_review = true;
+    }
+  }
+  return agreement;
+};

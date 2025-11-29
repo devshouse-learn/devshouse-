@@ -115,6 +115,34 @@ legend {
 .btn-group-right {
   display: flex;
   gap: 1rem;
+  align-items: center;
+}
+
+.btn-group-right {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.btn-close {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease !important;
+  font-size: 0.95rem !important;
+}
+
+.btn-close:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626, #991b1b) !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.btn-close:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .form-info {

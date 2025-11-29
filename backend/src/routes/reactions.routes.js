@@ -1,20 +1,55 @@
 import express from 'express';
-import Reaction from '../models/Reaction.sequelize.js';
-import Agreement from '../models/Agreement.sequelize.js';
-import Venture from '../models/Venture.sequelize.js';
-import Job from '../models/Job.sequelize.js';
+import { addLike, addReport, getUserReactions, getReactionStats, mockReactions } from '../mocks/reactions.mock.js';
+import { incrementAgreementLikes, decrementAgreementLikes, incrementAgreementReports } from '../mocks/agreements.mock.js';
+import { incrementVentureLikes, decrementVentureLikes, incrementVentureReports } from '../mocks/ventures.mock.js';
+import { incrementJobLikes, decrementJobLikes, incrementJobReports } from '../mocks/jobs.mock.js';
+import { incrementCandidateLikes, decrementCandidateLikes, incrementCandidateReports } from '../mocks/candidates.mock.js';
 
 const router = express.Router();
 
-// Función para obtener el modelo según el tipo
-const getModel = (resourceType) => {
+// Función para incrementar likes según tipo de recurso
+const incrementResourceLikes = (resourceType, resourceId) => {
   switch (resourceType) {
     case 'agreement':
-      return Agreement;
+      return incrementAgreementLikes(resourceId);
     case 'venture':
-      return Venture;
+      return incrementVentureLikes(resourceId);
     case 'job':
-      return Job;
+      return incrementJobLikes(resourceId);
+    case 'candidate':
+      return incrementCandidateLikes(resourceId);
+    default:
+      return null;
+  }
+};
+
+// Función para decrementar likes según tipo de recurso
+const decrementResourceLikes = (resourceType, resourceId) => {
+  switch (resourceType) {
+    case 'agreement':
+      return decrementAgreementLikes(resourceId);
+    case 'venture':
+      return decrementVentureLikes(resourceId);
+    case 'job':
+      return decrementJobLikes(resourceId);
+    case 'candidate':
+      return decrementCandidateLikes(resourceId);
+    default:
+      return null;
+  }
+};
+
+// Función para incrementar reports según tipo de recurso
+const incrementResourceReports = (resourceType, resourceId) => {
+  switch (resourceType) {
+    case 'agreement':
+      return incrementAgreementReports(resourceId);
+    case 'venture':
+      return incrementVentureReports(resourceId);
+    case 'job':
+      return incrementJobReports(resourceId);
+    case 'candidate':
+      return incrementCandidateReports(resourceId);
     default:
       return null;
   }
@@ -24,7 +59,7 @@ const getModel = (resourceType) => {
 router.post('/like', async (req, res) => {
   try {
     const { userId, resourceType, resourceId } = req.body;
-    const finalUserId = userId || 1; // Usar 1 como default si no viene userId
+    const finalUserId = userId || 1;
 
     if (!resourceType || !resourceId) {
       return res.status(400).json({
@@ -33,59 +68,21 @@ router.post('/like', async (req, res) => {
       });
     }
 
-    const Model = getModel(resourceType);
-    if (!Model) {
-      return res.status(400).json({
-        success: false,
-        message: 'Tipo de recurso inválido',
-      });
-    }
+    const result = addLike(finalUserId, resourceType, resourceId);
 
-    // Verificar si el recurso existe
-    const resource = await Model.findByPk(resourceId);
-    if (!resource) {
-      return res.status(404).json({
-        success: false,
-        message: 'Recurso no encontrado',
-      });
-    }
-
-    // Verificar si ya existe el like
-    const existingLike = await Reaction.findOne({
-      where: {
-        userId: finalUserId,
-        resourceType,
-        resourceId,
-        reactionType: 'like',
-      },
-    });
-
-    if (existingLike) {
-      // Si ya existe, eliminar el like (unlike)
-      await existingLike.destroy();
-      await resource.decrement('likes');
-
-      return res.json({
-        success: true,
-        message: 'Like eliminado',
-        action: 'unliked',
-        likes: resource.likes - 1,
-      });
-    } else {
-      // Crear nuevo like
-      await Reaction.create({
-        userId: finalUserId,
-        resourceType,
-        resourceId,
-        reactionType: 'like',
-      });
-      await resource.increment('likes');
-
+    if (result.action === 'liked') {
+      incrementResourceLikes(resourceType, resourceId);
       return res.json({
         success: true,
         message: 'Like agregado',
         action: 'liked',
-        likes: resource.likes + 1,
+      });
+    } else {
+      decrementResourceLikes(resourceType, resourceId);
+      return res.json({
+        success: true,
+        message: 'Like eliminado',
+        action: 'unliked',
       });
     }
   } catch (error) {
@@ -93,7 +90,7 @@ router.post('/like', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error al procesar like',
-      error: error.message,
+      error: error.message || '',
     });
   }
 });
@@ -102,7 +99,7 @@ router.post('/like', async (req, res) => {
 router.post('/report', async (req, res) => {
   try {
     const { userId, resourceType, resourceId, reportReason } = req.body;
-    const finalUserId = userId || 1; // Usar 1 como default si no viene userId
+    const finalUserId = userId || 1;
 
     if (!resourceType || !resourceId) {
       return res.status(400).json({
@@ -111,70 +108,29 @@ router.post('/report', async (req, res) => {
       });
     }
 
-    const Model = getModel(resourceType);
-    if (!Model) {
+    const result = addReport(finalUserId, resourceType, resourceId, reportReason);
+
+    if (result.error) {
       return res.status(400).json({
         success: false,
-        message: 'Tipo de recurso inválido',
+        message: result.error,
       });
     }
 
-    // Verificar si el recurso existe
-    const resource = await Model.findByPk(resourceId);
-    if (!resource) {
-      return res.status(404).json({
-        success: false,
-        message: 'Recurso no encontrado',
-      });
-    }
-
-    // Verificar si ya denunció este recurso
-    const existingReport = await Reaction.findOne({
-      where: {
-        userId: finalUserId,
-        resourceType,
-        resourceId,
-        reactionType: 'report',
-      },
-    });
-
-    if (existingReport) {
-      return res.status(400).json({
-        success: false,
-        message: 'Ya has denunciado este contenido',
-      });
-    }
-
-    // Crear denuncia
-    await Reaction.create({
-      userId: finalUserId,
-      resourceType,
-      resourceId,
-      reactionType: 'report',
-      reportReason: reportReason || 'Sin razón especificada',
-    });
-
-    // Incrementar contador de denuncias
-    await resource.increment('reports');
-
-    // Si llega a 30 denuncias, marcar para revisión
-    const updatedResource = await Model.findByPk(resourceId);
-    if (updatedResource.reports >= 30 && !updatedResource.underReview) {
-      await updatedResource.update({ underReview: true });
-    }
+    const resource = incrementResourceReports(resourceType, resourceId);
 
     res.json({
       success: true,
       message: 'Denuncia registrada',
-      reports: updatedResource.reports,
-      underReview: updatedResource.underReview,
+      reports: resource?.reports || 1,
+      underReview: resource?.under_review || false,
     });
   } catch (error) {
     console.error('Error al procesar denuncia:', error);
     res.status(500).json({
       success: false,
       message: 'Error al procesar denuncia',
-      error: error.message,
+      error: error.message || '',
     });
   }
 });
@@ -184,31 +140,18 @@ router.get('/user/:userId/:resourceType/:resourceId', async (req, res) => {
   try {
     const { userId, resourceType, resourceId } = req.params;
 
-    const reactions = await Reaction.findAll({
-      where: {
-        userId,
-        resourceType,
-        resourceId,
-      },
-    });
-
-    const hasLiked = reactions.some((r) => r.reactionType === 'like');
-    const hasReported = reactions.some((r) => r.reactionType === 'report');
+    const reactions = getUserReactions(parseInt(userId), resourceType, resourceId);
 
     res.json({
       success: true,
-      data: {
-        hasLiked,
-        hasReported,
-        reactions,
-      },
+      data: reactions,
     });
   } catch (error) {
     console.error('Error al obtener reacciones:', error);
     res.status(500).json({
       success: false,
       message: 'Error al obtener reacciones',
-      error: error.message,
+      error: error.message || '',
     });
   }
 });
@@ -218,49 +161,18 @@ router.get('/stats/:resourceType/:resourceId', async (req, res) => {
   try {
     const { resourceType, resourceId } = req.params;
 
-    const Model = getModel(resourceType);
-    if (!Model) {
-      return res.status(400).json({
-        success: false,
-        message: 'Tipo de recurso inválido',
-      });
-    }
-
-    const resource = await Model.findByPk(resourceId);
-    if (!resource) {
-      return res.status(404).json({
-        success: false,
-        message: 'Recurso no encontrado',
-      });
-    }
-
-    const reports = await Reaction.findAll({
-      where: {
-        resourceType,
-        resourceId,
-        reactionType: 'report',
-      },
-    });
+    const stats = getReactionStats(resourceType, resourceId);
 
     res.json({
       success: true,
-      data: {
-        likes: resource.likes,
-        reports: resource.reports,
-        underReview: resource.underReview,
-        reportDetails: reports.map((r) => ({
-          userId: r.userId,
-          reason: r.reportReason,
-          createdAt: r.createdAt,
-        })),
-      },
+      data: stats,
     });
   } catch (error) {
     console.error('Error al obtener estadísticas:', error);
     res.status(500).json({
       success: false,
       message: 'Error al obtener estadísticas',
-      error: error.message,
+      error: error.message || '',
     });
   }
 });

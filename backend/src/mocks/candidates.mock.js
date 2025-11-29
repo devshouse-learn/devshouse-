@@ -187,3 +187,30 @@ export const filterMockCandidates = (query) => {
 
   return filtered;
 };
+
+export const incrementCandidateLikes = (id) => {
+  const candidate = mockCandidates.find(c => c.id === parseInt(id));
+  if (candidate) {
+    candidate.likes += 1;
+  }
+  return candidate;
+};
+
+export const decrementCandidateLikes = (id) => {
+  const candidate = mockCandidates.find(c => c.id === parseInt(id));
+  if (candidate && candidate.likes > 0) {
+    candidate.likes -= 1;
+  }
+  return candidate;
+};
+
+export const incrementCandidateReports = (id) => {
+  const candidate = mockCandidates.find(c => c.id === parseInt(id));
+  if (candidate) {
+    candidate.reports += 1;
+    if (candidate.reports >= 30) {
+      candidate.under_review = true;
+    }
+  }
+  return candidate;
+};

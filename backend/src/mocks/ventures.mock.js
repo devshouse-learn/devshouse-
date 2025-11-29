@@ -152,3 +152,30 @@ export const filterMockVentures = (query) => {
 
   return filtered;
 };
+
+export const incrementVentureLikes = (id) => {
+  const venture = mockVentures.find(v => v.id === parseInt(id));
+  if (venture) {
+    venture.likes += 1;
+  }
+  return venture;
+};
+
+export const decrementVentureLikes = (id) => {
+  const venture = mockVentures.find(v => v.id === parseInt(id));
+  if (venture && venture.likes > 0) {
+    venture.likes -= 1;
+  }
+  return venture;
+};
+
+export const incrementVentureReports = (id) => {
+  const venture = mockVentures.find(v => v.id === parseInt(id));
+  if (venture) {
+    venture.reports += 1;
+    if (venture.reports >= 30) {
+      venture.under_review = true;
+    }
+  }
+  return venture;
+};

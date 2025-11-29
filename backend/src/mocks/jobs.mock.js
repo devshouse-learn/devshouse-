@@ -176,3 +176,30 @@ export const filterMockJobs = (query) => {
 
   return filtered;
 };
+
+export const incrementJobLikes = (id) => {
+  const job = mockJobs.find(j => j.id === parseInt(id));
+  if (job) {
+    job.likes += 1;
+  }
+  return job;
+};
+
+export const decrementJobLikes = (id) => {
+  const job = mockJobs.find(j => j.id === parseInt(id));
+  if (job && job.likes > 0) {
+    job.likes -= 1;
+  }
+  return job;
+};
+
+export const incrementJobReports = (id) => {
+  const job = mockJobs.find(j => j.id === parseInt(id));
+  if (job) {
+    job.reports += 1;
+    if (job.reports >= 30) {
+      job.under_review = true;
+    }
+  }
+  return job;
+};
