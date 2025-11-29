@@ -11,6 +11,9 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetSent, setResetSent] = useState(false);
   const { login, register, isAuthenticated } = useAuth();
   const { language, changeLanguage } = useLanguage();
   const t = (key) => translations[language]?.[key] || key;
@@ -212,8 +215,9 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
 
                 <div className="forgot-password-link">
                   <a onClick={() => {
-                    // Aquí irá la funcionalidad de recuperar contraseña
-                    alert('🔐 Función de recuperación de contraseña en desarrollo');
+                    setIsForgotPassword(true);
+                    setError('');
+                    setResetEmail(formData.email);
                   }}>
                     🔑 ¿Olvidaste tu contraseña?
                   </a>
@@ -368,6 +372,85 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 }}
               >
                 {t('signInLink')}
+              </button>
+            </div>
+          )}
+
+          {/* Tab de Recuperación de Contraseña */}
+          {isForgotPassword && (
+            <div className="auth-form-wrapper">
+              <h2>🔐 Recuperar Contraseña</h2>
+              <p className="auth-subtitle">Ingresa tu correo para recuperar tu contraseña</p>
+
+              {!resetSent ? (
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  setError('');
+                  setLoading(true);
+
+                  try {
+                    // Simular envío de correo de recuperación
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    if (!resetEmail || !resetEmail.includes('@')) {
+                      throw new Error('Por favor ingresa un correo válido');
+                    }
+
+                    setResetSent(true);
+                    setError('');
+                  } catch (err) {
+                    setError(err.message || 'Error al procesar la solicitud');
+                  } finally {
+                    setLoading(false);
+                  }
+                }}>
+                  <div className="form-group">
+                    <label htmlFor="reset-email">Correo Electrónico</label>
+                    <input
+                      type="email"
+                      id="reset-email"
+                      value={resetEmail}
+                      onChange={(e) => setResetEmail(e.target.value)}
+                      placeholder="tu@email.com"
+                      disabled={loading}
+                      required
+                    />
+                  </div>
+
+                  {error && <div className="auth-error">{error}</div>}
+
+                  <button
+                    type="submit"
+                    className="auth-button"
+                    disabled={loading}
+                  >
+                    {loading ? '⏳ Procesando...' : '📧 Enviar Enlace de Recuperación'}
+                  </button>
+                </form>
+              ) : (
+                <div className="reset-success-message">
+                  <div className="success-icon">✅</div>
+                  <p><strong>¡Éxito!</strong></p>
+                  <p>Se ha enviado un enlace de recuperación a:</p>
+                  <p className="email-highlight">{resetEmail}</p>
+                  <p className="small-text">Por favor revisa tu correo (incluida la carpeta de spam) en los próximos 10 minutos.</p>
+                </div>
+              )}
+
+              <div className="auth-divider">
+                <span>o</span>
+              </div>
+
+              <button
+                className="auth-toggle-button"
+                onClick={() => {
+                  setIsForgotPassword(false);
+                  setResetEmail('');
+                  setResetSent(false);
+                  setError('');
+                }}
+              >
+                🔑 Volver al Inicio de Sesión
               </button>
             </div>
           )}
