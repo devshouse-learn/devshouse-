@@ -119,6 +119,14 @@ legend {
   flex-wrap: wrap;
 }
 
+.btn-group-center {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .btn-group-right {
   justify-content: flex-end;
   margin-left: auto;
