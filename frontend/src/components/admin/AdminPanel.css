@@ -192,7 +192,7 @@
 
 .admin-navigation {
   display: flex;
-  gap: 12px;
+  gap: 1.5rem;
   margin-top: 30px;
   padding-top: 20px;
   border-top: 1px solid rgba(138, 43, 226, 0.2);
@@ -280,7 +280,7 @@
 .toggle-container {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1.5rem;
 }
 
 .toggle-checkbox {

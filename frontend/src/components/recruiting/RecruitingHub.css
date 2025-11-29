@@ -145,7 +145,7 @@
 
 .mode-actions {
   display: flex;
-  gap: 12px;
+  gap: 1.5rem;
   margin-bottom: 24px;
   flex-wrap: wrap;
 }
@@ -284,7 +284,7 @@
 
 .filter-actions {
   display: flex;
-  gap: 12px;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
