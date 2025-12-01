@@ -1,7 +1,7 @@
 /* Consolidated form styles for all forms */
 
 .form-container {
-  max-width: 500px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 100vh;
@@ -104,7 +104,7 @@ legend {
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
