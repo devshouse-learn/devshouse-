@@ -15,10 +15,30 @@ router.get('/', async (req, res) => {
       limit,
     });
 
+    // Mapear campos de snake_case a camelCase para el frontend
+    const mappedAgreements = agreements.map(agreement => ({
+      id: agreement.id,
+      schoolName: agreement.school_name,
+      schoolType: agreement.school_level,
+      contactEmail: agreement.school_contact,
+      contactPhone: agreement.school_phone,
+      location: agreement.school_location,
+      description: agreement.description,
+      views: agreement.views,
+      likes: agreement.likes,
+      reports: agreement.reports,
+      status: agreement.status,
+      createdBy: agreement.created_by,
+      createdAt: agreement.created_at,
+      updatedAt: agreement.updated_at,
+      // Mantener todos los campos originales también
+      ...agreement,
+    }));
+
     res.json({
       success: true,
-      count: agreements.length,
-      data: agreements,
+      count: mappedAgreements.length,
+      data: mappedAgreements,
     });
   } catch (error) {
     console.error('Error al obtener convenios:', error);
@@ -45,9 +65,29 @@ router.get('/:id', async (req, res) => {
     // Incrementar vistas (solo en memoria)
     agreement.views += 1;
 
+    // Mapear campos de snake_case a camelCase
+    const mappedAgreement = {
+      id: agreement.id,
+      schoolName: agreement.school_name,
+      schoolType: agreement.school_level,
+      contactEmail: agreement.school_contact,
+      contactPhone: agreement.school_phone,
+      location: agreement.school_location,
+      description: agreement.description,
+      views: agreement.views,
+      likes: agreement.likes,
+      reports: agreement.reports,
+      status: agreement.status,
+      createdBy: agreement.created_by,
+      createdAt: agreement.created_at,
+      updatedAt: agreement.updated_at,
+      // Mantener todos los campos originales también
+      ...agreement,
+    };
+
     res.json({
       success: true,
-      data: agreement,
+      data: mappedAgreement,
     });
   } catch (error) {
     console.error('Error al obtener convenio:', error);
