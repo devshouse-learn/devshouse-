@@ -188,12 +188,13 @@ form {
 }
 
 /* Labels blancos solo para los campos específicos */
-.form-group label[for="email"],
-.form-group label[for="password"],
-.form-group label[for="name"],
-.form-group label[for="city"],
-.form-group label[for="confirmPassword"] {
-  color: #ffffff;
+.auth-form-wrapper:not(:has(.forgot-password-form)) label[for="email"],
+.auth-form-wrapper:not(:has(.forgot-password-form)) label[for="password"],
+.auth-form-wrapper:not(:has(.forgot-password-form)) label[for="name"],
+.auth-form-wrapper:not(:has(.forgot-password-form)) label[for="city"],
+.auth-form-wrapper:not(:has(.forgot-password-form)) label[for="confirmPassword"],
+.auth-form-wrapper:not(:has(.forgot-password-form)) label[for="adminCode"] {
+  color: #ffffff !important;
 }
 
 .form-group input,
@@ -430,9 +431,23 @@ form {
 /* Labels en blanco solo para formularios de login y registro */
 
 /* Labels centrados en formulario de recuperación */
+.forgot-password-form {
+  text-align: center;
+}
+
+.forgot-password-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .forgot-password-form .form-group label {
   color: #a0a0a0;
   text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .reset-success-message {
