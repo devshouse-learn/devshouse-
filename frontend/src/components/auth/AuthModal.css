@@ -180,11 +180,20 @@ form {
 }
 
 .form-group label {
-  color: #ffffff;
+  color: #a0a0a0;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Labels blancos solo para los campos específicos */
+.form-group label[for="email"],
+.form-group label[for="password"],
+.form-group label[for="name"],
+.form-group label[for="city"],
+.form-group label[for="confirmPassword"] {
+  color: #ffffff;
 }
 
 .form-group input,
@@ -419,9 +428,6 @@ form {
 }
 
 /* Labels en blanco solo para formularios de login y registro */
-.form-group label {
-  color: #ffffff;
-}
 
 /* Labels centrados en formulario de recuperación */
 .forgot-password-form .form-group label {
