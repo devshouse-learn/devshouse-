@@ -378,12 +378,12 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
 
           {/* Tab de Recuperación de Contraseña */}
           {isForgotPassword && (
-            <div className="auth-form-wrapper forgot-password-wrapper">
+            <div className="auth-form-wrapper">
               <h2>🔐 Recuperar Contraseña</h2>
               <p className="auth-subtitle">Ingresa tu correo para recuperar tu contraseña</p>
 
               {!resetSent ? (
-                <form onSubmit={async (e) => {
+                <form className="forgot-password-form" onSubmit={async (e) => {
                   e.preventDefault();
                   setError('');
                   setLoading(true);

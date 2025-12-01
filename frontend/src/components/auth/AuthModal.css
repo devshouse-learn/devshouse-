@@ -418,8 +418,14 @@ form {
   gap: 16px;
 }
 
-.auth-form-wrapper .form-group label {
+/* Labels en blanco solo para formularios de login y registro */
+.form-group label {
   color: #ffffff;
+}
+
+/* Labels centrados en formulario de recuperación */
+.forgot-password-form .form-group label {
+  color: #a0a0a0;
   text-align: center;
 }
 
