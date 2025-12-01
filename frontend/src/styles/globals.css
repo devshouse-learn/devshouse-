@@ -35,9 +35,11 @@ body {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 /* Global Button Styles - CONSOLIDATED */
@@ -317,4 +319,16 @@ select option:checked {
   50% {
     transform: translateY(-20px) rotate(10deg);
   }
+}
+
+/* Fullscreen home and dashboard */
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper .home {
+  flex: 1;
 }
