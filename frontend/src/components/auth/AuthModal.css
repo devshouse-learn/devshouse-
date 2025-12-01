@@ -219,9 +219,9 @@ form {
 .password-toggle {
   position: absolute;
   right: 12px;
-  background: #e5e7eb !important;
-  border: 2px solid #d1d5db !important;
-  color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  color: #1f2937 !important;
   font-size: 18px;
   cursor: pointer;
   padding: 4px;
