@@ -411,20 +411,16 @@ form {
   text-decoration: underline;
 }
 
-.forgot-password-wrapper {
-  text-align: center;
+/* Estilos para formulario de recuperación de contraseña */
+.auth-form-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.forgot-password-wrapper h2 {
+.auth-form-wrapper .form-group label {
+  color: #ffffff;
   text-align: center;
-}
-
-.forgot-password-wrapper p {
-  text-align: center;
-}
-
-.forgot-password-wrapper form {
-  max-width: 100%;
 }
 
 .reset-success-message {
