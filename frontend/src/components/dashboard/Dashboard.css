@@ -75,45 +75,21 @@
   z-index: -1;
 }
 
-/* Colores únicos para cada tipo de tarjeta */
-.dashboard-blue {
+/* Todas las tarjetas con el mismo color azul */
+.dashboard-blue,
+.dashboard-purple,
+.dashboard-orange,
+.dashboard-red,
+.dashboard-green {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 
-.dashboard-blue::after {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.85), rgba(37, 99, 235, 0.85));
-}
-
-.dashboard-purple {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-}
-
-.dashboard-purple::after {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.85), rgba(124, 58, 237, 0.85));
-}
-
-.dashboard-orange {
-  background: linear-gradient(135deg, #f97316, #ea580c);
-}
-
-.dashboard-orange::after {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.85), rgba(234, 88, 12, 0.85));
-}
-
-.dashboard-red {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-}
-
-.dashboard-red::after {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(220, 38, 38, 0.85));
-}
-
-.dashboard-green {
-  background: linear-gradient(135deg, #10b981, #059669);
-}
-
+.dashboard-blue::after,
+.dashboard-purple::after,
+.dashboard-orange::after,
+.dashboard-red::after,
 .dashboard-green::after {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.85), rgba(5, 150, 105, 0.85));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.85), rgba(37, 99, 235, 0.85));
 }
 
 .dashboard-card:hover {
