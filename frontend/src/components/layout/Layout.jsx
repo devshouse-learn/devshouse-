@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import Header from './Header';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import AIAssistantEnhanced from '../ai-assistant/AIAssistantEnhanced';
+import AIAssistant from '../ai-assistant/AIAssistant';
 import AuthModal from '../auth/AuthModal';
 import './Layout.css';
 
@@ -29,7 +29,7 @@ const Layout = () => {
       {!isAuthenticated && !loading && showModal && (
         <AuthModal onClose={handleAuthModalClose} />
       )}
-      <AIAssistantEnhanced />
+      <AIAssistant />
     </div>
   );
 };
