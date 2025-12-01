@@ -219,12 +219,12 @@ form {
 .password-toggle {
   position: absolute;
   right: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  color: #1e3a8a;
+  background: none;
+  border: 2px solid #ffffff;
+  color: #ffffff;
   font-size: 18px;
   cursor: pointer;
-  padding: 6px;
+  padding: 4px;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -236,9 +236,9 @@ form {
 }
 
 .password-toggle:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 1);
+  border-color: #fbbf24;
   transform: scale(1.15);
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .password-toggle:disabled {
