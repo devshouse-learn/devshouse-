@@ -1,11 +1,12 @@
 .dashboard {
-  min-height: auto;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 1rem 0;
+  padding: 2rem 1rem;
   margin: 0;
   width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .dashboard-header {

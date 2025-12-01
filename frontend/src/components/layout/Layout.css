@@ -6,18 +6,23 @@
 
 .main-content {
   flex: 1;
-  padding: 1rem 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .content-wrapper {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 1.5rem 1.25rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-  box-shadow: var(--shadow-xl);
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
   backdrop-filter: blur(10px);
   animation: fadeIn 0.5s ease-out;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
