@@ -162,9 +162,7 @@ const AgreementsForm = () => {
                 <option value="high-school">Secundaria</option>
               </select>
             </div>
-          </div>
 
-          <div className="form-row">
             <div className="form-group">
               <label htmlFor="location">Ubicación *</label>
               <input
@@ -178,24 +176,7 @@ const AgreementsForm = () => {
                 disabled={loading}
               />
             </div>
-
-            <div className="form-group">
-              <label htmlFor="contactPhone">Teléfono</label>
-              <input
-                type="tel"
-                id="contactPhone"
-                name="contactPhone"
-                value={formData.contactPhone}
-                onChange={handleInputChange}
-                placeholder="+57 (1) 1234-5678"
-                disabled={loading}
-              />
-            </div>
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Información de Contacto</legend>
 
           <div className="form-row">
             <div className="form-group">
@@ -224,30 +205,43 @@ const AgreementsForm = () => {
                 disabled={loading}
               />
             </div>
+
+            <div className="form-group">
+              <label htmlFor="contactPhone">Teléfono</label>
+              <input
+                type="tel"
+                id="contactPhone"
+                name="contactPhone"
+                value={formData.contactPhone}
+                onChange={handleInputChange}
+                placeholder="+57 (1) 1234-5678"
+                disabled={loading}
+              />
+            </div>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Detalles del Convenio</legend>
 
-          <div className="form-group">
-            <label htmlFor="agreementType">Tipo de Convenio</label>
-            <select
-              id="agreementType"
-              name="agreementType"
-              value={formData.agreementType}
-              onChange={handleInputChange}
-              disabled={loading}
-            >
-              <option value="educational_agreement">Acuerdo Educativo</option>
-              <option value="internship">Programa de Prácticas</option>
-              <option value="training">Programa de Capacitación</option>
-              <option value="research">Colaboración Investigativa</option>
-              <option value="other">Otro</option>
-            </select>
-          </div>
-
           <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="agreementType">Tipo de Convenio</label>
+              <select
+                id="agreementType"
+                name="agreementType"
+                value={formData.agreementType}
+                onChange={handleInputChange}
+                disabled={loading}
+              >
+                <option value="educational_agreement">Acuerdo Educativo</option>
+                <option value="internship">Programa de Prácticas</option>
+                <option value="training">Programa de Capacitación</option>
+                <option value="research">Colaboración Investigativa</option>
+                <option value="other">Otro</option>
+              </select>
+            </div>
+
             <div className="form-group">
               <label htmlFor="startDate">Fecha de Inicio</label>
               <input
