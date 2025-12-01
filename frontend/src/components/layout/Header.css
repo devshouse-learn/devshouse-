@@ -38,6 +38,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 2rem;
 }
 
 .header-content {
@@ -51,6 +52,7 @@
   text-decoration: none;
   color: white;
   flex: 1;
+  margin-left: 1.5rem;
 }
 
 .header h1 {
