@@ -43,7 +43,7 @@ body {
 }
 
 /* Global Button Styles - CONSOLIDATED */
-/* Todos los botones: azul relleno con texto blanco */
+/* Todos los botones: azul gradiente cian con texto blanco */
 
 button,
 button[type="button"],
@@ -63,11 +63,12 @@ a[role="button"],
 .btn-approve,
 .btn-delete,
 .nav-tab {
-  background-color: #1e3a8a !important;
+  background: linear-gradient(135deg, #1e88e5, #1565c0) !important;
   color: white !important;
   border: none !important;
   background-image: none !important;
   fill: white !important;
+  transition: all 0.3s ease !important;
 }
 
 button:hover:not(:disabled),
@@ -88,8 +89,10 @@ a[role="button"]:hover:not(:disabled),
 .btn-approve:hover,
 .btn-delete:hover,
 .nav-tab:hover:not(:disabled) {
-  background-color: #1e40af !important;
+  background: linear-gradient(135deg, #1565c0, #0d47a1) !important;
   color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 136, 229, 0.3) !important;
 }
 
 button:active:not(:disabled),
@@ -99,7 +102,7 @@ button[type="reset"]:active:not(:disabled),
 .btn:active:not(:disabled),
 .btn-back:active:not(:disabled),
 .btn-home:active:not(:disabled) {
-  background-color: #0f2438 !important;
+  background: linear-gradient(135deg, #0d47a1, #1a237e) !important;
   color: white !important;
 }
 
@@ -114,7 +117,7 @@ input[type="reset"]:disabled,
 .admin-button:disabled,
 .auth-button:disabled,
 .nav-tab:disabled {
-  background-color: #1e3a8a !important;
+  background: linear-gradient(135deg, #1e88e5, #1565c0) !important;
   color: white !important;
   opacity: 0.6 !important;
   cursor: not-allowed !important;
