@@ -121,7 +121,7 @@ const SearchCompanies = () => {
 
   return (
     <div className="list-container">
-      <div className="list-header">
+      <div className="list-header" style={{ padding: '60px 40px', minHeight: '250px', justifyContent: 'space-between' }}>
         <div className="header-top">
           <button 
             className="btn-back"
