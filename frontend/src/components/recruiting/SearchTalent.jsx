@@ -239,8 +239,12 @@ const SearchTalent = () => {
                   <button
                     className="btn-contact"
                     onClick={() => {
-                      if (talent.email) {
-                        window.location.href = `mailto:${talent.email}`;
+                      // Intenta múltiples fuentes de email
+                      const email = talent.email || talent.contactEmail;
+                      console.log('📧 Trying email:', email, 'from talent:', talent);
+                      
+                      if (email && email.trim()) {
+                        window.location.href = `mailto:${email}`;
                       } else {
                         alert('❌ Email no disponible para este contacto');
                       }

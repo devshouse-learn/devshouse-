@@ -22,6 +22,7 @@ const VenturesList = () => {
       setError('');
       const response = await venturesService.getAll();
       const loadedVentures = response.data || [];
+      console.log('🔍 Ventures loaded:', loadedVentures);
       setVentures(loadedVentures);
       
       // Cargar reacciones del usuario
@@ -257,8 +258,12 @@ const VenturesList = () => {
                 <button
                   className="btn-contact"
                   onClick={() => {
-                    if (venture.founderEmail) {
-                      window.location.href = `mailto:${venture.founderEmail}`;
+                    // Intenta múltiples fuentes de email
+                    const email = venture.founderEmail || venture.contact?.email || venture.email;
+                    console.log('📧 Trying email:', email, 'from venture:', venture);
+                    
+                    if (email && email.trim()) {
+                      window.location.href = `mailto:${email}`;
                     } else {
                       alert('❌ Email no disponible para este contacto');
                     }

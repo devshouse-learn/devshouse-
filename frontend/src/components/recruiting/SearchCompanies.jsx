@@ -306,8 +306,16 @@ const SearchCompanies = () => {
                   <button
                     className="btn-contact"
                     onClick={() => {
-                      const email = activeTab === 'ventures' ? company.founderEmail : company.contactEmail;
-                      if (email) {
+                      // Intenta múltiples fuentes de email
+                      let email;
+                      if (activeTab === 'ventures') {
+                        email = company.founderEmail || company.contact?.email || company.email;
+                      } else {
+                        email = company.contactEmail || company.email;
+                      }
+                      console.log('📧 Trying email:', email, 'from company:', company);
+                      
+                      if (email && email.trim()) {
                         window.location.href = `mailto:${email}`;
                       } else {
                         alert('❌ Email no disponible para este contacto');

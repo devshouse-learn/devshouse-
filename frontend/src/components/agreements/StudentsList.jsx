@@ -237,8 +237,12 @@ const StudentsList = () => {
                 <button
                   className="btn-contact"
                   onClick={() => {
-                    if (student.contactEmail) {
-                      window.location.href = `mailto:${student.contactEmail}`;
+                    // Intenta múltiples fuentes de email
+                    const email = student.contactEmail || student.email;
+                    console.log('📧 Trying email:', email, 'from student:', student);
+                    
+                    if (email && email.trim()) {
+                      window.location.href = `mailto:${email}`;
                     } else {
                       alert('❌ Email no disponible para este contacto');
                     }

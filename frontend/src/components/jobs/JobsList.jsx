@@ -254,8 +254,12 @@ const JobsList = () => {
                 <button
                   className="btn-contact"
                   onClick={() => {
-                    if (job.contactEmail) {
-                      window.location.href = `mailto:${job.contactEmail}`;
+                    // Intenta múltiples fuentes de email
+                    const email = job.contactEmail || job.email;
+                    console.log('📧 Trying email:', email, 'from job:', job);
+                    
+                    if (email && email.trim()) {
+                      window.location.href = `mailto:${email}`;
                     } else {
                       alert('❌ Email no disponible para este contacto');
                     }
