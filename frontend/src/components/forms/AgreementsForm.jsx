@@ -56,6 +56,10 @@ const AgreementsForm = () => {
       } else {
         const emailError = validationRules.email(formData.contactEmail);
         if (emailError) errors.contactEmail = emailError;
+        else {
+          const gmailError = validationRules.gmail(formData.contactEmail);
+          if (gmailError) errors.contactEmail = gmailError;
+        }
       }
 
       if (!formData.location?.trim()) {

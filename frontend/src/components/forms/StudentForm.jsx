@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
+import validationRules from '../../services/validation.service';
 import './forms.css';
 
 const StudentForm = () => {
@@ -43,6 +44,12 @@ const StudentForm = () => {
     try {
       if (!formData.studentName || !formData.studentEmail || !formData.schoolName) {
         throw new Error('Por favor completa todos los campos requeridos');
+      }
+
+      // Validar que el email sea Gmail
+      const gmailError = validationRules.gmail(formData.studentEmail);
+      if (gmailError) {
+        throw new Error(gmailError);
       }
 
       // Crear un registro de convenio con la información del estudiante

@@ -9,6 +9,14 @@ const validationRules = {
     return regex.test(value) ? null : 'Email inválido';
   },
 
+  gmail: (value) => {
+    const gmailRegex = /^[^\s@]+@gmail\.com$/;
+    if (!gmailRegex.test(value)) {
+      return 'Debe ser un email de Gmail (@gmail.com)';
+    }
+    return null;
+  },
+
   phone: (value) => {
     const regex = /^[\d\s\-+()]+$/;
     return regex.test(value) && value.length >= 7 ? null : 'Teléfono inválido';

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { jobsService } from '../../services/registration.service';
+import validationRules from '../../services/validation.service';
 import './forms.css';
 
 const JobsForm = () => {
@@ -48,6 +49,14 @@ const JobsForm = () => {
     try {
       if (!formData.position || !formData.company || !formData.description) {
         throw new Error('Por favor completa todos los campos requeridos');
+      }
+
+      // Validar que el email sea Gmail
+      if (formData.contactEmail) {
+        const gmailError = validationRules.gmail(formData.contactEmail);
+        if (gmailError) {
+          throw new Error(gmailError);
+        }
       }
 
       if (formData.salaryMin && formData.salaryMax) {

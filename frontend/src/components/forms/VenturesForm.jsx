@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { venturesService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
+import validationRules from '../../services/validation.service';
 import './forms.css';
 
 const VenturesForm = () => {
@@ -45,6 +46,12 @@ const VenturesForm = () => {
     try {
       if (!formData.companyName || !formData.founderEmail || !formData.description) {
         throw new Error('Por favor completa todos los campos requeridos');
+      }
+
+      // Validar que el email sea Gmail
+      const gmailError = validationRules.gmail(formData.founderEmail);
+      if (gmailError) {
+        throw new Error(gmailError);
       }
 
       const response = await venturesService.create({
