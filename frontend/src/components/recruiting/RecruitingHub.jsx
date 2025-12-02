@@ -44,7 +44,7 @@ const RecruitingHub = () => {
           ← Volver
         </button>
         <h1>💼 Centro de Reclutamiento</h1>
-        <p>Encuentra talentos o publicia oportunidades laborales</p>
+        <p></p>
       </div>
 
       {!activeMode ? (
