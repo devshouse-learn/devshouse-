@@ -26,13 +26,14 @@ const AgreementsForm = () => {
     agreementType: 'educational_agreement',
     startDate: '',
     endDate: '',
+    gmailVerified: false,
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
     setError('');
   };
@@ -71,6 +72,10 @@ const AgreementsForm = () => {
         if (phoneError) errors.contactPhone = phoneError;
       }
 
+      if (!formData.gmailVerified) {
+        errors.gmailVerified = 'Debes confirmar que tienes acceso a este Gmail';
+      }
+
       if (Object.keys(errors).length > 0) {
         setFieldErrors(errors);
         throw new Error('Por favor completa todos los campos requeridos correctamente');
@@ -96,6 +101,7 @@ const AgreementsForm = () => {
         agreementType: 'educational_agreement',
         startDate: '',
         endDate: '',
+        gmailVerified: false,
       });
 
       // Limpiar mensaje de éxito después de 3 segundos y navegar
@@ -282,6 +288,28 @@ const AgreementsForm = () => {
               rows="5"
               disabled={loading}
             />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Verificación de Gmail</legend>
+          <div className="form-group checkbox-group">
+            <label htmlFor="gmailVerified" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="gmailVerified"
+                name="gmailVerified"
+                checked={formData.gmailVerified}
+                onChange={handleInputChange}
+                disabled={loading}
+              />
+              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+            </label>
+            {fieldErrors.gmailVerified && (
+              <p style={{ color: '#ef4444', fontSize: '0.9rem', margin: '0.5rem 0 0 0' }}>
+                {fieldErrors.gmailVerified}
+              </p>
+            )}
           </div>
         </fieldset>
 

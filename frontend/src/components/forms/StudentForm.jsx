@@ -25,13 +25,14 @@ const StudentForm = () => {
     skills: '',
     bio: '',
     availability: 'disponible',
+    gmailVerified: false,
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
     setError('');
   };
@@ -52,6 +53,10 @@ const StudentForm = () => {
         throw new Error(gmailError);
       }
 
+      if (!formData.gmailVerified) {
+        throw new Error('Debes confirmar que tienes acceso a este Gmail');
+      }
+
       // Crear un registro de convenio con la información del estudiante
       const dataToSubmit = {
         schoolName: formData.schoolName,
@@ -62,6 +67,7 @@ const StudentForm = () => {
         contactPhone: formData.studentPhone,
         description: `Estudiante buscando oportunidades de aprendizaje y experiencia.\n\nCarrera: ${formData.careerGoal}\nExperiencia: ${formData.experience}\nHabilidades: ${formData.skills}\n\n${formData.bio}`,
         createdBy: user?.id,
+        gmailVerified: formData.gmailVerified,
       };
 
       const response = await agreementsService.create(dataToSubmit);
@@ -80,6 +86,7 @@ const StudentForm = () => {
         skills: '',
         bio: '',
         availability: 'disponible',
+        gmailVerified: false,
       });
 
       setTimeout(() => {
@@ -265,6 +272,23 @@ const StudentForm = () => {
               required
               disabled={loading}
             />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Verificación de Gmail</legend>
+          <div className="form-group checkbox-group">
+            <label htmlFor="gmailVerified" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="gmailVerified"
+                name="gmailVerified"
+                checked={formData.gmailVerified}
+                onChange={handleInputChange}
+                disabled={loading}
+              />
+              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+            </label>
           </div>
         </fieldset>
 

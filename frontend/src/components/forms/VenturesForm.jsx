@@ -27,6 +27,7 @@ const VenturesForm = () => {
     investmentStage: 'idea',
     teamSize: '',
     showInSearch: true,
+    gmailVerified: false,
   });
 
   const handleInputChange = (e) => {
@@ -54,6 +55,10 @@ const VenturesForm = () => {
         throw new Error(gmailError);
       }
 
+      if (!formData.gmailVerified) {
+        throw new Error('Debes confirmar que tienes acceso a este Gmail');
+      }
+
       const response = await venturesService.create({
         ...formData,
         createdBy: user?.id,
@@ -75,6 +80,7 @@ const VenturesForm = () => {
         investmentStage: 'idea',
         teamSize: '',
         showInSearch: true,
+        gmailVerified: false,
       });
 
       setTimeout(() => setSuccess(false), 3000);
@@ -321,6 +327,23 @@ const VenturesForm = () => {
             <p className="checkbox-help">
               Si está marcado, tu emprendimiento será visible cuando otros usuarios busquen empresas en la plataforma.
             </p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Verificación de Gmail</legend>
+          <div className="form-group checkbox-group">
+            <label htmlFor="gmailVerified" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="gmailVerified"
+                name="gmailVerified"
+                checked={formData.gmailVerified}
+                onChange={handleInputChange}
+                disabled={loading}
+              />
+              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+            </label>
           </div>
         </fieldset>
 

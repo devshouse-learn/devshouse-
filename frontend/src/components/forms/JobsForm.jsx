@@ -30,13 +30,14 @@ const JobsForm = () => {
     contactPhone: '',
     applicationDeadline: '',
     benefits: '',
+    gmailVerified: false,
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
     setError('');
   };
@@ -57,6 +58,10 @@ const JobsForm = () => {
         if (gmailError) {
           throw new Error(gmailError);
         }
+      }
+
+      if (!formData.gmailVerified) {
+        throw new Error('Debes confirmar que tienes acceso a este Gmail');
       }
 
       if (formData.salaryMin && formData.salaryMax) {
@@ -94,6 +99,7 @@ const JobsForm = () => {
         contactPhone: '',
         applicationDeadline: '',
         benefits: '',
+        gmailVerified: false,
       });
 
       setTimeout(() => setSuccess(false), 3000);
@@ -376,6 +382,23 @@ const JobsForm = () => {
               min={new Date().toISOString().split('T')[0]}
               disabled={loading}
             />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Verificación de Gmail</legend>
+          <div className="form-group checkbox-group">
+            <label htmlFor="gmailVerified" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="gmailVerified"
+                name="gmailVerified"
+                checked={formData.gmailVerified}
+                onChange={handleInputChange}
+                disabled={loading}
+              />
+              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+            </label>
           </div>
         </fieldset>
 
