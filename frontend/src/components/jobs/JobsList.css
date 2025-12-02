@@ -222,10 +222,12 @@
 }
 
 .card-actions {
-  padding: 15px 20px;
+  padding: 15px;
   display: flex;
   gap: 10px;
   background: #f8f9fa;
+  flex-wrap: wrap;
+  justify-content: stretch;
 }
 
 .btn-like,
