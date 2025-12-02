@@ -52,10 +52,13 @@
 
 .agreement-form,
 .venture-form,
+.ventures-form,
 .job-form,
+.jobs-form,
 .search-form {
   background: #ffffff;
   border: 2px solid #e0e0e0;
+  border-left: 6px solid #b0b0b0;
   border-radius: 12px;
   padding: 2.5rem;
   margin-bottom: 2rem;
@@ -65,7 +68,9 @@
 
 .agreement-form:nth-of-type(even),
 .venture-form:nth-of-type(even),
+.ventures-form:nth-of-type(even),
 .job-form:nth-of-type(even),
+.jobs-form:nth-of-type(even),
 .search-form:nth-of-type(even) {
   background: #ffffff;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -194,15 +199,21 @@ legend {
 /* Form inputs, textareas, and selects styling */
 .agreement-form input,
 .venture-form input,
+.ventures-form input,
 .job-form input,
+.jobs-form input,
 .search-form input,
 .agreement-form textarea,
 .venture-form textarea,
+.ventures-form textarea,
 .job-form textarea,
+.jobs-form textarea,
 .search-form textarea,
 .agreement-form select,
 .venture-form select,
+.ventures-form select,
 .job-form select,
+.jobs-form select,
 .search-form select {
   background-color: #ffffff !important;
   color: #000000 !important;
@@ -211,26 +222,36 @@ legend {
 
 .agreement-form input::placeholder,
 .venture-form input::placeholder,
+.ventures-form input::placeholder,
 .job-form input::placeholder,
+.jobs-form input::placeholder,
 .search-form input::placeholder,
 .agreement-form textarea::placeholder,
 .venture-form textarea::placeholder,
+.ventures-form textarea::placeholder,
 .job-form textarea::placeholder,
+.jobs-form textarea::placeholder,
 .search-form textarea::placeholder {
   color: #999999 !important;
 }
 
 .agreement-form input:focus,
 .venture-form input:focus,
+.ventures-form input:focus,
 .job-form input:focus,
+.jobs-form input:focus,
 .search-form input:focus,
 .agreement-form textarea:focus,
 .venture-form textarea:focus,
+.ventures-form textarea:focus,
 .job-form textarea:focus,
+.jobs-form textarea:focus,
 .search-form textarea:focus,
 .agreement-form select:focus,
 .venture-form select:focus,
+.ventures-form select:focus,
 .job-form select:focus,
+.jobs-form select:focus,
 .search-form select:focus {
   outline: none !important;
   border-color: #1e88e5 !important;
@@ -240,7 +261,9 @@ legend {
 /* Form labels styling */
 .agreement-form label,
 .venture-form label,
+.ventures-form label,
 .job-form label,
+.jobs-form label,
 .search-form label {
   color: #000000 !important;
   font-weight: 600;
@@ -254,7 +277,9 @@ legend {
 
   .agreement-form,
   .venture-form,
+  .ventures-form,
   .job-form,
+  .jobs-form,
   .search-form {
     padding: 1.5rem;
   }
