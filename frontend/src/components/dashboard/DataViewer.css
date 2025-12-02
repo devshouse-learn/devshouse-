@@ -188,19 +188,20 @@
 }
 
 .btn-delete {
-  background: #fee2e2;
-  border: 1px solid #fecaca;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  background: #1e88e5 !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 1rem !important;
+  color: white !important;
 }
 
 .btn-delete:hover {
-  background: #ef4444;
-  border-color: #dc2626;
-  transform: scale(1.1);
+  background: #1e88e5 !important;
+  border-color: #1e88e5 !important;
+  transform: none;
 }
 
 .item-details {
