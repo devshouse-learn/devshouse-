@@ -126,11 +126,11 @@
 }
 
 .item-card {
-  background: linear-gradient(135deg, rgba(230, 126, 34, 0.05), rgba(230, 126, 34, 0.02));
-  border: 1px solid rgba(230, 126, 34, 0.2);
+  background: linear-gradient(135deg, rgba(30, 136, 229, 0.05), rgba(30, 136, 229, 0.02));
+  border: 1px solid rgba(30, 136, 229, 0.2);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.1);
+  box-shadow: 0 4px 15px rgba(30, 136, 229, 0.1);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -139,13 +139,13 @@
 
 .item-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(230, 126, 34, 0.25);
-  border-color: rgba(230, 126, 34, 0.4);
+  box-shadow: 0 12px 30px rgba(30, 136, 229, 0.25);
+  border-color: rgba(30, 136, 229, 0.4);
 }
 
 .card-header {
-  padding: 20px;
-  background: linear-gradient(135deg, #e67e22 0%, #e74c3c 100%);
+  padding: 15px;
+  background: #1e88e5;
   color: white;
   display: flex;
   justify-content: space-between;
