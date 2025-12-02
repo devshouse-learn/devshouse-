@@ -140,6 +140,36 @@ const VenturesForm = () => {
             </div>
           </div>
 
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="foundedYear">Año de Fundación</label>
+              <input
+                type="number"
+                id="foundedYear"
+                name="foundedYear"
+                value={formData.foundedYear}
+                onChange={handleInputChange}
+                min="2000"
+                max={new Date().getFullYear()}
+                disabled={loading}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="location">Ubicación *</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                value={formData.location}
+                onChange={handleInputChange}
+                placeholder="Ej: Medellín, Colombia"
+                required
+                disabled={loading}
+              />
+            </div>
+          </div>
+
           <div className="form-group">
             <label htmlFor="description">Descripción del Proyecto *</label>
             <textarea
@@ -198,6 +228,92 @@ const VenturesForm = () => {
               required
               disabled={loading}
             />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Detalles del Emprendimiento</legend>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="investmentStage">Etapa de Inversión</label>
+              <select
+                id="investmentStage"
+                name="investmentStage"
+                value={formData.investmentStage}
+                onChange={handleInputChange}
+                disabled={loading}
+              >
+                <option value="idea">Idea</option>
+                <option value="prototype">Prototipo</option>
+                <option value="mvp">MVP (Producto Mínimo Viable)</option>
+                <option value="seed">Seed Funding</option>
+                <option value="series-a">Series A</option>
+                <option value="growth">Growth Stage</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="teamSize">Tamaño del Equipo</label>
+              <input
+                type="number"
+                id="teamSize"
+                name="teamSize"
+                value={formData.teamSize}
+                onChange={handleInputChange}
+                placeholder="Ej: 5"
+                min="1"
+                disabled={loading}
+              />
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="website">Sitio Web</label>
+              <input
+                type="url"
+                id="website"
+                name="website"
+                value={formData.website}
+                onChange={handleInputChange}
+                placeholder="https://www.tuempresa.com"
+                disabled={loading}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="socialMedia">Redes Sociales</label>
+              <input
+                type="text"
+                id="socialMedia"
+                name="socialMedia"
+                value={formData.socialMedia}
+                onChange={handleInputChange}
+                placeholder="LinkedIn, Twitter, Instagram..."
+                disabled={loading}
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Visibilidad</legend>
+          <div className="form-group checkbox-group">
+            <label htmlFor="showInSearch" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="showInSearch"
+                name="showInSearch"
+                checked={formData.showInSearch}
+                onChange={handleInputChange}
+                disabled={loading}
+              />
+              <span>👁️ Mostrar en "Buscar Empresa"</span>
+            </label>
+            <p className="checkbox-help">
+              Si está marcado, tu emprendimiento será visible cuando otros usuarios busquen empresas en la plataforma.
+            </p>
           </div>
         </fieldset>
 
