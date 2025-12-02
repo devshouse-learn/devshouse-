@@ -43,7 +43,7 @@ body {
 }
 
 /* Global Button Styles - CONSOLIDATED */
-/* Todos los botones: azul relleno con texto blanco */
+/* Todos los botones: azul en todo momento, tamaño igual, medio redondeados */
 
 button,
 button[type="button"],
@@ -63,11 +63,16 @@ a[role="button"],
 .btn-approve,
 .btn-delete,
 .nav-tab {
-  background-color: #1e3a8a !important;
+  background-color: #1e88e5 !important;
   color: white !important;
   border: none !important;
   background-image: none !important;
   fill: white !important;
+  padding: 10px 20px !important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
 }
 
 button:hover:not(:disabled),
@@ -88,7 +93,7 @@ a[role="button"]:hover:not(:disabled),
 .btn-approve:hover,
 .btn-delete:hover,
 .nav-tab:hover:not(:disabled) {
-  background-color: #1e40af !important;
+  background-color: #1e88e5 !important;
   color: white !important;
 }
 
@@ -99,7 +104,7 @@ button[type="reset"]:active:not(:disabled),
 .btn:active:not(:disabled),
 .btn-back:active:not(:disabled),
 .btn-home:active:not(:disabled) {
-  background-color: #0f2438 !important;
+  background-color: #1e88e5 !important;
   color: white !important;
 }
 
@@ -114,7 +119,7 @@ input[type="reset"]:disabled,
 .admin-button:disabled,
 .auth-button:disabled,
 .nav-tab:disabled {
-  background-color: #1e3a8a !important;
+  background-color: #1e88e5 !important;
   color: white !important;
   opacity: 0.6 !important;
   cursor: not-allowed !important;
