@@ -405,7 +405,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                   }
                 }}>
                   <div className="form-group">
-                    <label htmlFor="reset-email">Correo Electrónico</label>
+                    <label htmlFor="reset-email"></label>
                     <input
                       type="email"
                       id="reset-email"
