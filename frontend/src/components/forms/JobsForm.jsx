@@ -374,7 +374,7 @@ const JobsForm = () => {
           <div className="btn-group-left">
             <button
               type="button"
-              className="btn-back"
+              className="btn"
               onClick={() => navigate(-1)}
             >
               ⬅️ Atrás
@@ -383,14 +383,14 @@ const JobsForm = () => {
           <div className="btn-group-center">
             <button
               type="submit"
-              className="btn-submit"
+              className="btn"
               disabled={loading}
             >
               {loading ? '⏳ Publicando...' : '✅ Publicar'}
             </button>
             <button
               type="reset"
-              className="btn-reset"
+              className="btn"
               disabled={loading}
               onClick={() => setError('')}
             >
@@ -400,7 +400,7 @@ const JobsForm = () => {
           <div className="btn-group-right">
             <button
               type="button"
-              className="btn-close"
+              className="btn"
               onClick={() => navigate('/')}
             >
               ✕ Cerrar

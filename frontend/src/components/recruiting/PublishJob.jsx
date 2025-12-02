@@ -91,7 +91,7 @@ const PublishJob = () => {
     <div className="form-container">
       <div className="form-header">
         <button 
-          className="btn-back"
+          className="btn"
           onClick={() => navigate('/recruiting')}
           title="Volver al Centro de Reclutamiento"
         >
@@ -254,14 +254,14 @@ const PublishJob = () => {
         <div className="form-actions">
           <button
             type="submit"
-            className="btn-submit"
+            className="btn"
             disabled={loading}
           >
             {loading ? 'Publicando...' : '📢 Publicar Oferta'}
           </button>
           <button
             type="button"
-            className="btn-cancel"
+            className="btn"
             onClick={() => navigate('/recruiting')}
             disabled={loading}
           >

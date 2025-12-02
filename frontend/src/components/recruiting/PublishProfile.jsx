@@ -90,7 +90,7 @@ const PublishProfile = () => {
     <div className="form-container">
       <div className="form-header">
         <button 
-          className="btn-back"
+          className="btn"
           onClick={() => navigate('/recruiting')}
           title="Volver al Centro de Reclutamiento"
         >
@@ -226,14 +226,14 @@ const PublishProfile = () => {
         <div className="form-actions">
           <button
             type="submit"
-            className="btn-submit"
+            className="btn"
             disabled={loading}
           >
             {loading ? 'Publicando...' : '📄 Publicar Perfil'}
           </button>
           <button
             type="button"
-            className="btn-cancel"
+            className="btn"
             onClick={() => navigate('/recruiting')}
             disabled={loading}
           >
