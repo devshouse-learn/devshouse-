@@ -239,6 +239,8 @@ const StudentsList = () => {
                   onClick={() => {
                     if (student.contactEmail) {
                       window.location.href = `mailto:${student.contactEmail}`;
+                    } else {
+                      alert('❌ Email no disponible para este contacto');
                     }
                   }}
                   title="Contactar al estudiante"

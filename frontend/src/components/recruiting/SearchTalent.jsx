@@ -241,9 +241,11 @@ const SearchTalent = () => {
                     onClick={() => {
                       if (talent.email) {
                         window.location.href = `mailto:${talent.email}`;
+                      } else {
+                        alert('❌ Email no disponible para este contacto');
                       }
                     }}
-                    title="Contactar al talento"
+                    title="Contactar con el candidato"
                   >
                     ✉️ Contactar
                   </button>

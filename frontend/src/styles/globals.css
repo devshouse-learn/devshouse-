@@ -62,6 +62,7 @@ a[role="button"],
 .btn-close,
 .btn-approve,
 .btn-delete,
+.btn-contact,
 .nav-tab {
   background-color: #1e88e5 !important;
   color: white !important;
@@ -92,6 +93,7 @@ a[role="button"]:hover:not(:disabled),
 .btn-close:hover:not(:disabled),
 .btn-approve:hover,
 .btn-delete:hover,
+.btn-contact:hover,
 .nav-tab:hover:not(:disabled) {
   background-color: #1e88e5 !important;
   color: white !important;

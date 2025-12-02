@@ -259,6 +259,8 @@ const VenturesList = () => {
                   onClick={() => {
                     if (venture.founderEmail) {
                       window.location.href = `mailto:${venture.founderEmail}`;
+                    } else {
+                      alert('❌ Email no disponible para este contacto');
                     }
                   }}
                   title="Contactar con el fundador"

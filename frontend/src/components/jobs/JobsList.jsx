@@ -256,6 +256,8 @@ const JobsList = () => {
                   onClick={() => {
                     if (job.contactEmail) {
                       window.location.href = `mailto:${job.contactEmail}`;
+                    } else {
+                      alert('❌ Email no disponible para este contacto');
                     }
                   }}
                   title="Contactar con el empleador"

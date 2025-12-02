@@ -309,6 +309,8 @@ const SearchCompanies = () => {
                       const email = activeTab === 'ventures' ? company.founderEmail : company.contactEmail;
                       if (email) {
                         window.location.href = `mailto:${email}`;
+                      } else {
+                        alert('❌ Email no disponible para este contacto');
                       }
                     }}
                     title="Contactar"
