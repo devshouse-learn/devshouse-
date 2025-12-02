@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 .form-header {
@@ -18,7 +19,7 @@
 
 .form-header h1 {
   font-size: 2rem;
-  background: linear-gradient(135deg, #1e3a8a, #581c87);
+  background: linear-gradient(135deg, #1e88e5, #00d4ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -27,7 +28,7 @@
 }
 
 .form-header p {
-  color: #000000;
+  color: #ffffff;
   font-size: 1rem;
 }
 
@@ -56,21 +57,21 @@
 .venture-form,
 .job-form,
 .search-form {
-  background: #ffffff;
-  border: none;
+  background: rgba(30, 136, 229, 0.1);
+  border: 2px solid rgba(30, 136, 229, 0.3);
   border-radius: 12px;
   padding: 2.5rem;
   margin-bottom: 2rem;
-  color: #000000;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  box-shadow: 0 8px 32px rgba(30, 136, 229, 0.2);
 }
 
 .agreement-form:nth-of-type(even),
 .venture-form:nth-of-type(even),
 .job-form:nth-of-type(even),
 .search-form:nth-of-type(even) {
-  background: #ffffff;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: rgba(30, 136, 229, 0.1);
+  box-shadow: 0 8px 32px rgba(30, 136, 229, 0.2);
 }
 
 fieldset {
@@ -81,7 +82,7 @@ fieldset {
 
 .form-type-badge {
   display: inline-block;
-  background: linear-gradient(135deg, #1e3a8a, #1565c0);
+  background: linear-gradient(135deg, #1e88e5, #00d4ff);
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -89,16 +90,16 @@ fieldset {
   font-weight: 600;
   margin-bottom: 1.5rem;
   letter-spacing: 0.5px;
-  filter: grayscale(100%);
+  filter: none;
 }
 
 legend {
-  color: #000000;
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(30, 136, 229, 0.3);
   width: 100%;
 }
 
@@ -160,14 +161,14 @@ legend {
 
 
 .form-info {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(30, 136, 229, 0.1);
+  border: 1px solid rgba(30, 136, 229, 0.3);
   border-radius: 8px;
   padding: 1.5rem;
 }
 
 .form-info h3 {
-  color: #000000;
+  color: #ffffff;
   font-size: 1rem;
   margin: 0 0 1rem 0;
   font-weight: 600;
@@ -180,7 +181,7 @@ legend {
 }
 
 .form-info li {
-  color: #000000;
+  color: #ffffff;
   padding: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
