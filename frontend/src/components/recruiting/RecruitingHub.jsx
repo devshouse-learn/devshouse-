@@ -86,7 +86,7 @@ const RecruitingHub = () => {
 
           {activeMode === 'search' && (
             <div className="search-mode-content">
-              <h2>¿Qué buscas?</h2>
+              <h2></h2>
 
               <div className="type-selector">
                 <button
