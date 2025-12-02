@@ -254,6 +254,17 @@ const VenturesList = () => {
                 >
                   🚨 {userReactions[venture.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
+                <button
+                  className="btn-contact"
+                  onClick={() => {
+                    if (venture.founderEmail) {
+                      window.location.href = `mailto:${venture.founderEmail}`;
+                    }
+                  }}
+                  title="Contactar con el fundador"
+                >
+                  ✉️ Contactar
+                </button>
                 {(user?.role === 'admin' || user?.id === venture.createdBy) && (
                   <button
                     className="btn-delete"

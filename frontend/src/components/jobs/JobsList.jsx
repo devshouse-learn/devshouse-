@@ -251,6 +251,17 @@ const JobsList = () => {
                 >
                   🚨 {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
+                <button
+                  className="btn-contact"
+                  onClick={() => {
+                    if (job.contactEmail) {
+                      window.location.href = `mailto:${job.contactEmail}`;
+                    }
+                  }}
+                  title="Contactar con el empleador"
+                >
+                  ✉️ Contactar
+                </button>
                 {(user?.role === 'admin' || user?.id === job.createdBy) && (
                   <button
                     onClick={() => handleDelete(job.id, job)}
