@@ -53,9 +53,9 @@
 
 .hub-options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 800px;
   margin: 0 auto;
   flex: 1;
   width: 100%;
@@ -64,8 +64,8 @@
 .option-card {
   background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(0, 212, 255, 0.05));
   border: 2px solid rgba(30, 136, 229, 0.3);
-  border-radius: 16px;
-  padding: 18px 14px;
+  border-radius: 12px;
+  padding: 12px 10px;
   text-align: center;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -73,8 +73,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  min-height: 170px;
+  gap: 6px;
+  min-height: 120px;
   animation: slideUp 0.6s ease 0.2s backwards;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .option-icon {
-  font-size: 44px;
+  font-size: 28px;
   display: block;
   animation: float 3s ease-in-out infinite;
 }
@@ -101,7 +101,7 @@
 }
 
 .option-card h2 {
-  font-size: 18px;
+  font-size: 14px;
   color: #e0e0e0;
   margin: 0;
   font-weight: 700;
@@ -109,7 +109,7 @@
 
 .option-card p {
   color: #a0a0a0;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.2;
   margin: 0;
 }
