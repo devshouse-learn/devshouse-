@@ -240,13 +240,18 @@ const SearchTalent = () => {
                     className="btn-contact"
                     onClick={() => {
                       // Intenta múltiples fuentes de email
-                      const email = talent.email || talent.contactEmail;
+                      const email = talent.email 
+                        || talent.contactEmail 
+                        || talent.emailProfile
+                        || talent.contact?.email;
+                      
                       console.log('📧 Trying email:', email, 'from talent:', talent);
                       
-                      if (email && email.trim()) {
-                        window.location.href = `mailto:${email}`;
+                      if (email && String(email).trim()) {
+                        window.location.href = `mailto:${String(email).trim()}`;
                       } else {
-                        alert('❌ Email no disponible para este contacto');
+                        console.warn('❌ No email found in talent object:', talent);
+                        alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
                       }
                     }}
                     title="Contactar con el candidato"

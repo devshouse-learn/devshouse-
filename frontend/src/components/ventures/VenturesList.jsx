@@ -259,13 +259,19 @@ const VenturesList = () => {
                   className="btn-contact"
                   onClick={() => {
                     // Intenta múltiples fuentes de email
-                    const email = venture.founderEmail || venture.contact?.email || venture.email;
+                    const email = venture.founderEmail 
+                      || venture.contact?.email 
+                      || venture.email 
+                      || venture.contactEmail
+                      || venture.contactPerson?.email;
+                    
                     console.log('📧 Trying email:', email, 'from venture:', venture);
                     
-                    if (email && email.trim()) {
-                      window.location.href = `mailto:${email}`;
+                    if (email && String(email).trim()) {
+                      window.location.href = `mailto:${String(email).trim()}`;
                     } else {
-                      alert('❌ Email no disponible para este contacto');
+                      console.warn('❌ No email found in venture object:', venture);
+                      alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
                     }
                   }}
                   title="Contactar con el fundador"

@@ -238,13 +238,18 @@ const StudentsList = () => {
                   className="btn-contact"
                   onClick={() => {
                     // Intenta múltiples fuentes de email
-                    const email = student.contactEmail || student.email;
+                    const email = student.contactEmail 
+                      || student.email 
+                      || student.emailStudent
+                      || student.contact?.email;
+                    
                     console.log('📧 Trying email:', email, 'from student:', student);
                     
-                    if (email && email.trim()) {
-                      window.location.href = `mailto:${email}`;
+                    if (email && String(email).trim()) {
+                      window.location.href = `mailto:${String(email).trim()}`;
                     } else {
-                      alert('❌ Email no disponible para este contacto');
+                      console.warn('❌ No email found in student object:', student);
+                      alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
                     }
                   }}
                   title="Contactar al estudiante"

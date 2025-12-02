@@ -309,16 +309,23 @@ const SearchCompanies = () => {
                       // Intenta múltiples fuentes de email
                       let email;
                       if (activeTab === 'ventures') {
-                        email = company.founderEmail || company.contact?.email || company.email;
+                        email = company.founderEmail 
+                          || company.contact?.email 
+                          || company.email 
+                          || company.contactEmail;
                       } else {
-                        email = company.contactEmail || company.email;
+                        email = company.contactEmail 
+                          || company.email 
+                          || company.postedByEmail
+                          || company.postedBy?.email;
                       }
                       console.log('📧 Trying email:', email, 'from company:', company);
                       
-                      if (email && email.trim()) {
-                        window.location.href = `mailto:${email}`;
+                      if (email && String(email).trim()) {
+                        window.location.href = `mailto:${String(email).trim()}`;
                       } else {
-                        alert('❌ Email no disponible para este contacto');
+                        console.warn('❌ No email found in company object:', company);
+                        alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
                       }
                     }}
                     title="Contactar"
