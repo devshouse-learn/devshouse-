@@ -35,16 +35,20 @@ const RecruitingHub = () => {
 
   return (
     <div className="recruiting-container">
-      <div className="recruiting-header">
-        <button 
-          className="btn-back"
-          onClick={() => navigate('/')}
-          title="Volver al inicio"
-        >
-          ← Volver
-        </button>
-        <h1>💼 Centro de Reclutamiento</h1>
-        <p></p>
+      <div className="list-header">
+        <div className="header-top">
+          <button 
+            className="btn-back"
+            onClick={() => navigate('/')}
+            title="Volver al inicio"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="header-content">
+          <h1>Centro de Reclutamiento</h1>
+          <p>Busca talento, publica ofertas y encuentra el mejor equipo</p>
+        </div>
       </div>
 
       {!activeMode ? (
