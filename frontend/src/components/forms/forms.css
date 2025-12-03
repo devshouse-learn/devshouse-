@@ -2,7 +2,8 @@
 
 .list-header {
   margin-bottom: 40px;
-  width: 1080px;
+  width: 100%;
+  max-width: 1200px;
   height: 149.375px;
   background: linear-gradient(135deg, #1e88e5, #00d4ff);
   border-radius: 15px;
@@ -13,6 +14,7 @@
   justify-content: center;
   box-sizing: border-box;
   overflow: hidden;
+  padding: 0 40px;
 }
 
 .header-top {
