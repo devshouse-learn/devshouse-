@@ -17,7 +17,6 @@ import JobsList from './components/jobs/JobsList';
 import JobsForm from './components/forms/JobsForm';
 import JobSearchList from './components/job-search/JobSearchList';
 import JobSearchForm from './components/forms/JobSearchForm';
-import FormGallery from './components/forms/FormGallery';
 import AdminDashboard from './components/admin/AdminDashboard';
 import DataViewer from './components/dashboard/DataViewer';
 import ModerationPanelPage from './components/moderation/ModerationPanelPage';
@@ -37,10 +36,6 @@ function App() {
             <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
-              <Route
-                path="forms"
-                element={<FormGallery />}
-              />
               <Route
                 path="agreements"
                 element={<AgreementsHub />}
