@@ -29,6 +29,7 @@
 /* Alternative approach: add class to list-header in form pages */
 .list-header.form-page-header {
   height: 300px;
+  max-width: 4000px;
 }
 
 /* Hide description and register button in form pages */
