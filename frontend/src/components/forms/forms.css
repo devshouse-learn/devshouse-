@@ -29,8 +29,9 @@
 /* Alternative approach: add class to list-header in form pages */
 .list-header.form-page-header {
   height: 300px;
-  max-width: 4000px;
+  max-width: 2000px;
   padding: 60px 40px;
+  margin: 0 auto;
 }
 
 /* Increase font size for form page headers */
