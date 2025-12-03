@@ -14,15 +14,6 @@ const Dashboard = () => {
   // Filtrar menú según el rol del usuario
   const availableItems = DASHBOARD_MENU_ITEMS.filter(item => item.roles.includes(user?.role));
 
-  const getRoleLabel = (role) => {
-    const roleLabels = {
-      admin: 'Administrador',
-      moderador: 'Moderador',
-      usuario: 'Usuario'
-    };
-    return roleLabels[role] || role;
-  };
-
   return (
     <div className="dashboard">
       <div className="dashboard-header">
