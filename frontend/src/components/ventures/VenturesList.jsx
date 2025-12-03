@@ -145,13 +145,14 @@ const VenturesList = () => {
           <h1>Emprendimientos</h1>
           <p>Descubre startups y emprendimientos</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => navigate('/ventures/form')}
-        >
-          ➕ Registrar el tuyo
-        </button>
       </div>
+
+      <button 
+        className="btn-primary-large"
+        onClick={() => navigate('/ventures/form')}
+      >
+        ➕ Registrar el tuyo
+      </button>
 
       {error && (
         <div className="error-message">
