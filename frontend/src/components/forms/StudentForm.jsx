@@ -103,9 +103,20 @@ const StudentForm = () => {
 
   return (
     <div className="form-container">
-      <div className="form-header">
-        <h1>📚 Soy Estudiante</h1>
-        <p>Registra tu perfil y encuentra oportunidades de aprendizaje y experiencia</p>
+      <div className="list-header">
+        <div className="header-top">
+          <button 
+            className="btn-back"
+            onClick={() => navigate('/agreements')}
+            title="Volver a Convenios"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="header-content">
+          <h1>📚 Soy Estudiante</h1>
+          <p>Registra tu perfil y encuentra oportunidades de aprendizaje y experiencia</p>
+        </div>
       </div>
 
       {success && (

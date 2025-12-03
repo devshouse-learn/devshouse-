@@ -88,16 +88,20 @@ const PublishProfile = () => {
 
   return (
     <div className="form-container">
-      <div className="form-header">
-        <button 
-          className="btn"
-          onClick={() => navigate('/recruiting')}
-          title="Volver al Centro de Reclutamiento"
-        >
-          ← Volver
-        </button>
-        <h1>📄 Publicar Perfil Profesional</h1>
-        <p>Comparte tu hoja de vida con empleadores</p>
+      <div className="list-header">
+        <div className="header-top">
+          <button 
+            className="btn-back"
+            onClick={() => navigate('/recruiting')}
+            title="Volver al Centro de Reclutamiento"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="header-content">
+          <h1>📄 Publicar Perfil Profesional</h1>
+          <p>Comparte tu hoja de vida con empleadores</p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="form-content">

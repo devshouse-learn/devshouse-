@@ -112,9 +112,20 @@ const JobsForm = () => {
 
   return (
     <div className="form-container">
-      <div className="form-header">
-        <h1>🎯 Publicar Oportunidad de Empleo</h1>
-        <p>Publica una nueva oferta laboral y llega a candidatos calificados</p>
+      <div className="list-header">
+        <div className="header-top">
+          <button 
+            className="btn-back"
+            onClick={() => navigate('/jobs')}
+            title="Volver a Empleos"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="header-content">
+          <h1>🎯 Publicar Oportunidad de Empleo</h1>
+          <p>Publica una nueva oferta laboral y llega a candidatos calificados</p>
+        </div>
       </div>
 
       {success && (

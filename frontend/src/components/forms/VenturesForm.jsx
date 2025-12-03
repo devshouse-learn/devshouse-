@@ -93,9 +93,20 @@ const VenturesForm = () => {
 
   return (
     <div className="form-container">
-      <div className="form-header">
-        <h1>� Publica Tu Emprendimiento</h1>
-        <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
+      <div className="list-header">
+        <div className="header-top">
+          <button 
+            className="btn-back"
+            onClick={() => navigate('/ventures')}
+            title="Volver a Emprendimientos"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="header-content">
+          <h1>🚀 Publica Tu Emprendimiento</h1>
+          <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
+        </div>
       </div>
 
       {success && (
