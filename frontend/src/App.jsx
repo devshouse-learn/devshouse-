@@ -26,6 +26,7 @@ import SearchCompanies from './components/recruiting/SearchCompanies';
 import SearchTalent from './components/recruiting/SearchTalent';
 import PublishJob from './components/recruiting/PublishJob';
 import PublishProfile from './components/recruiting/PublishProfile';
+import RegisteredItemsGallery from './components/forms/RegisteredItemsGallery';
 
 function App() {
   return (
@@ -40,6 +41,10 @@ function App() {
               <Route
                 path="forms"
                 element={<FormGallery />}
+              />
+              <Route
+                path="registered"
+                element={<RegisteredItemsGallery />}
               />
               <Route
                 path="agreements"
