@@ -227,7 +227,7 @@
   gap: 10px;
   background: #f8f9fa;
   flex-wrap: wrap;
-  justify-content: stretch;
+  justify-content: center;
 }
 
 .btn-like,
