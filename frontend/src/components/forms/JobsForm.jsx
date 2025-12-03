@@ -126,6 +126,13 @@ const JobsForm = () => {
           <h1>🎯 Publicar Oportunidad de Empleo</h1>
           <p>Publica una nueva oferta laboral y llega a candidatos calificados</p>
         </div>
+        <button 
+          className="btn-primary-large"
+          onClick={() => window.scrollTo(0, document.querySelector('.jobs-form').offsetTop)}
+          title="Ir al formulario"
+        >
+          ➕ Registrar el tuyo
+        </button>
       </div>
 
       {success && (
