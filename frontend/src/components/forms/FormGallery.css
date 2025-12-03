@@ -1,11 +1,12 @@
 /* Form Gallery Styles */
 
 .form-gallery-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 40px 20px;
   background: #ffffff;
   min-height: 100vh;
+  width: 100%;
 }
 
 .gallery-header {
@@ -209,7 +210,35 @@
 }
 
 /* Responsive design */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+  .form-gallery-container {
+    padding: 40px 15px;
+  }
+  
+  .forms-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .forms-grid {
+    gap: 15px;
+  }
+  
+  .form-column .list-header {
+    padding: 30px 20px;
+  }
+  
+  .form-column .agreement-form,
+  .form-column .venture-form,
+  .form-column .ventures-form,
+  .form-column .job-form,
+  .form-column .jobs-form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 900px) {
   .forms-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
