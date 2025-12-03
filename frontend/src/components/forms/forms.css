@@ -37,6 +37,7 @@
 /* Increase font size for form page headers */
 .list-header.form-page-header .header-content h1 {
   font-size: 2rem;
+  text-align: center;
 }
 
 /* Hide description and register button in form pages */
