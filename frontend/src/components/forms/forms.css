@@ -2,12 +2,15 @@
 
 .list-header {
   margin-bottom: 40px;
+  width: 1080px;
+  height: 149.375px;
   padding: 80px 60px;
   background: linear-gradient(135deg, #1e88e5, #00d4ff);
   border-radius: 15px;
   color: white;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .header-top {
