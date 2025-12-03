@@ -112,7 +112,7 @@ const JobsForm = () => {
 
   return (
     <div className="form-container">
-      <div className="list-header">
+      <div className="list-header form-page-header">
         <div className="header-top">
           <button 
             className="btn-back"

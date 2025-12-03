@@ -17,6 +17,20 @@
   padding: 0 40px;
 }
 
+/* Specific height for form pages */
+.agreement-form ~ .list-header,
+.venture-form ~ .list-header,
+.ventures-form ~ .list-header,
+.job-form ~ .list-header,
+.jobs-form ~ .list-header {
+  height: 300px;
+}
+
+/* Alternative approach: add class to list-header in form pages */
+.list-header.form-page-header {
+  height: 300px;
+}
+
 .header-top {
   display: none;
 }
