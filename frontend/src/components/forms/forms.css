@@ -30,6 +30,12 @@
 .list-header.form-page-header {
   height: 300px;
   max-width: 4000px;
+  padding: 60px 40px;
+}
+
+/* Increase font size for form page headers */
+.list-header.form-page-header .header-content h1 {
+  font-size: 2rem;
 }
 
 /* Hide description and register button in form pages */
