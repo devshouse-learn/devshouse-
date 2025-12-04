@@ -142,7 +142,7 @@ const VenturesList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>Emprendimientos</h1>
+          <h1>🚀 Emprendimientos</h1>
           <p>Descubre startups y emprendimientos</p>
         </div>
       </div>
@@ -191,8 +191,8 @@ const VenturesList = () => {
           {ventures.map((venture) => (
             <div key={venture.id} className="item-card">
               <div className="card-header">
-                <h3>{venture.companyName}</h3>
-                <span className="badge">{venture.investmentStage}</span>
+                <h3>{venture.company_name}</h3>
+                <span className="badge">{venture.investment_stage}</span>
               </div>
 
               <div className="card-content">
