@@ -229,10 +229,34 @@ const SearchCompanies = () => {
                           <span className="value">{company.location}</span>
                         </div>
                       )}
+                      {company.founded_year && (
+                        <div className="info-row">
+                          <span className="label">📅 Año:</span>
+                          <span className="value">{company.founded_year}</span>
+                        </div>
+                      )}
                       {company.investment_stage && (
                         <div className="info-row">
                           <span className="label">💰 Etapa:</span>
                           <span className="value">{company.investment_stage}</span>
+                        </div>
+                      )}
+                      {company.funding_needed && (
+                        <div className="info-row">
+                          <span className="label">💵 Financiamiento:</span>
+                          <span className="value">{company.funding_needed}</span>
+                        </div>
+                      )}
+                      {company.team_size && (
+                        <div className="info-row">
+                          <span className="label">👥 Equipo:</span>
+                          <span className="value">{company.team_size}</span>
+                        </div>
+                      )}
+                      {company.revenue_model && (
+                        <div className="info-row">
+                          <span className="label">📊 Modelo:</span>
+                          <span className="value">{company.revenue_model}</span>
                         </div>
                       )}
                       {company.website && (
@@ -248,6 +272,12 @@ const SearchCompanies = () => {
                     </>
                   ) : (
                     <>
+                      {company.company && (
+                        <div className="info-row">
+                          <span className="label">🏢 Empresa:</span>
+                          <span className="value">{company.company}</span>
+                        </div>
+                      )}
                       {company.location && (
                         <div className="info-row">
                           <span className="label">📍 Ubicación:</span>
@@ -270,6 +300,18 @@ const SearchCompanies = () => {
                         <div className="info-row">
                           <span className="label">📈 Experiencia:</span>
                           <span className="value">{company.experience_level}</span>
+                        </div>
+                      )}
+                      {company.requirements && (
+                        <div className="info-row">
+                          <span className="label">✓ Requisitos:</span>
+                          <span className="value">{company.requirements}</span>
+                        </div>
+                      )}
+                      {company.benefits && (
+                        <div className="info-row">
+                          <span className="label">🎁 Beneficios:</span>
+                          <span className="value">{company.benefits}</span>
                         </div>
                       )}
                     </>
