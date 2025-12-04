@@ -9,7 +9,7 @@
   align-items: flex-start;
   justify-content: center;
   z-index: 1000;
-  padding: 40px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   animation: fadeIn 0.3s ease;
   overflow: hidden;
 }
@@ -30,7 +30,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: 12px 16px;
   border-bottom: 1px solid rgba(30, 58, 138, 0.1);
   position: relative;
   z-index: 10;
@@ -146,7 +146,7 @@
 }
 
 .auth-modal-container {
-  padding: 12px 20px;
+  padding: 8px 16px;
 }
 
 .auth-form-wrapper {
@@ -155,20 +155,20 @@
 
 .auth-form-wrapper h2 {
   color: #ffffff;
-  font-size: 20px;
-  margin: 0 0 0px 0;
+  font-size: 16px;
+  margin: 0 0 2px 0;
 }
 
 .auth-subtitle {
   color: #a0a0a0;
-  font-size: 11px;
-  margin: 0 0 10px 0;
+  font-size: 9px;
+  margin: 0 0 6px 0;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .form-group {
@@ -197,12 +197,12 @@ form {
 
 .form-group input,
 .form-group select {
-  padding: 5px 9px;
+  padding: 4px 7px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(30, 58, 138, 0.3);
   border-radius: 4px;
   color: #000000;
-  font-size: 11px;
+  font-size: 10px;
   font-family: inherit;
   transition: all 0.3s ease;
 }
@@ -251,17 +251,17 @@ form {
 }
 
 .auth-button {
-  padding: 10px 20px;
+  padding: 4px 10px;
   background: #1e88e5;
   color: #ffffff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .auth-button:hover:not(:disabled) {
@@ -366,12 +366,12 @@ form {
 }
 
 .auth-button {
-  padding: 5px 12px;
+  padding: 4px 10px;
   background: #1e88e5;
   color: #ffffff;
   border: none;
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -392,7 +392,7 @@ form {
 .auth-divider {
   display: flex;
   align-items: center;
-  margin: 6px 0;
+  margin: 3px 0;
   gap: 12px;
 }
 
