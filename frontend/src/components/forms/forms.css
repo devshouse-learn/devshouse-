@@ -75,7 +75,7 @@
 }
 
 .header-content h1 {
-  font-size: 2rem;
+  font-size: 2rem; 
   margin: 0;
   font-weight: bold;
   line-height: 1.2;
@@ -247,8 +247,8 @@ legend {
   min-width: auto;
   text-align: center;
   height: auto;
-  margin: 0 !important;
-  width: 100%;
+  margin: 0 4px !important;
+  width: auto;
   background-color: #1e88e5 !important;
   color: white !important;
   border: none !important;
