@@ -168,7 +168,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
 
         <div className="auth-modal-container">
           {/* Tab de Login */}
-          {isLogin ? (
+          {isLogin && !isForgotPassword ? (
             <div className="auth-form-wrapper">
               <h2>{t('signIn')}</h2>
               <p className="auth-subtitle">{t('welcomeToDevsHouse')}</p>
@@ -249,7 +249,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 {t('createAccountLink')}
               </button>
             </div>
-          ) : (
+          ) : !isForgotPassword ? (
             /* Tab de Registro */
             <div className="auth-form-wrapper">
               <h2>{t('createAccount')}</h2>
@@ -374,6 +374,8 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 {t('signInLink')}
               </button>
             </div>
+          ) : (
+            <div />
           )}
 
           {/* Tab de Recuperación de Contraseña */}
