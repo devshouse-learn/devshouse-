@@ -11,16 +11,17 @@
   z-index: 1000;
   padding: 40px 20px 20px 20px;
   animation: fadeIn 0.3s ease;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .auth-modal {
   position: relative;
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 20px 60px rgba(30, 58, 138, 0.3);
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
+  max-height: 90vh;
   border: 1px solid rgba(30, 58, 138, 0.2);
   overflow: hidden;
 }
