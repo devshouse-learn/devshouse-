@@ -218,7 +218,33 @@ const JobsList = () => {
                 )}
 
                 <div className="info-row">
-                  <span className="label">📧 Email:</span>
+                  <span className="label">� Experiencia:</span>
+                  <span className="value">{job.experience}</span>
+                </div>
+
+                {job.requirements && (
+                  <div className="info-row">
+                    <span className="label">✓ Requisitos:</span>
+                    <span className="value">{job.requirements}</span>
+                  </div>
+                )}
+
+                {job.responsibilities && (
+                  <div className="info-row">
+                    <span className="label">📋 Responsabilidades:</span>
+                    <span className="value">{job.responsibilities}</span>
+                  </div>
+                )}
+
+                {job.benefits && (
+                  <div className="info-row">
+                    <span className="label">🎁 Beneficios:</span>
+                    <span className="value">{job.benefits}</span>
+                  </div>
+                )}
+
+                <div className="info-row">
+                  <span className="label">�📧 Email:</span>
                   <span className="value">{job.contactEmail}</span>
                 </div>
 

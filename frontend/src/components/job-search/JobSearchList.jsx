@@ -195,9 +195,23 @@ const JobSearchList = () => {
                   </div>
                 )}
 
+                {candidate.salary_expectation && (
+                  <div className="info-row">
+                    <span className="label">💰 Salario Esperado:</span>
+                    <span className="value">{candidate.salary_expectation}</span>
+                  </div>
+                )}
+
+                {candidate.availability && (
+                  <div className="info-row">
+                    <span className="label">� Disponibilidad:</span>
+                    <span className="value">{candidate.availability}</span>
+                  </div>
+                )}
+
                 {candidate.experience && (
                   <div className="info-row">
-                    <span className="label">💼 Experiencia:</span>
+                    <span className="label">�💼 Experiencia:</span>
                     <span className="value">
                       {Array.isArray(candidate.experience) 
                         ? candidate.experience.map((exp, i) => (
@@ -215,10 +229,46 @@ const JobSearchList = () => {
                   </div>
                 )}
 
+                {candidate.education && (
+                  <div className="info-row">
+                    <span className="label">🎓 Educación:</span>
+                    <span className="value">{candidate.education}</span>
+                  </div>
+                )}
+
+                {candidate.certifications && (
+                  <div className="info-row">
+                    <span className="label">📜 Certificaciones:</span>
+                    <span className="value">{candidate.certifications}</span>
+                  </div>
+                )}
+
                 {candidate.resume && (
                   <div className="info-row">
                     <span className="label">📝 CV:</span>
                     <span className="value">{candidate.resume}</span>
+                  </div>
+                )}
+
+                {candidate.linkedin && (
+                  <div className="info-row">
+                    <span className="label">💼 LinkedIn:</span>
+                    <span className="value">
+                      <a href={candidate.linkedin} target="_blank" rel="noopener noreferrer">
+                        {candidate.linkedin}
+                      </a>
+                    </span>
+                  </div>
+                )}
+
+                {candidate.portfolio && (
+                  <div className="info-row">
+                    <span className="label">🖼️ Portafolio:</span>
+                    <span className="value">
+                      <a href={candidate.portfolio} target="_blank" rel="noopener noreferrer">
+                        {candidate.portfolio}
+                      </a>
+                    </span>
                   </div>
                 )}
 

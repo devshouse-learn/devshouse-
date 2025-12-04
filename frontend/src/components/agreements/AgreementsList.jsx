@@ -209,6 +209,34 @@ const AgreementsList = () => {
                   <span className="value">{agreement.location}</span>
                 </div>
 
+                {agreement.level && (
+                  <div className="info-row">
+                    <span className="label">📚 Nivel:</span>
+                    <span className="value">{agreement.level}</span>
+                  </div>
+                )}
+
+                {agreement.areaOfInterest && (
+                  <div className="info-row">
+                    <span className="label">🎯 Área:</span>
+                    <span className="value">{agreement.areaOfInterest}</span>
+                  </div>
+                )}
+
+                {agreement.studentCount && (
+                  <div className="info-row">
+                    <span className="label">👥 Estudiantes:</span>
+                    <span className="value">{agreement.studentCount}</span>
+                  </div>
+                )}
+
+                {agreement.establishmentYear && (
+                  <div className="info-row">
+                    <span className="label">📅 Fundación:</span>
+                    <span className="value">{agreement.establishmentYear}</span>
+                  </div>
+                )}
+
                 <div className="info-row">
                   <span className="label">✉️ Email:</span>
                   <span className="value">{agreement.contactEmail}</span>
@@ -218,6 +246,17 @@ const AgreementsList = () => {
                   <span className="label">📱 Teléfono:</span>
                   <span className="value">{agreement.contactPhone || 'No disponible'}</span>
                 </div>
+
+                {agreement.website && (
+                  <div className="info-row">
+                    <span className="label">🌐 Web:</span>
+                    <span className="value">
+                      <a href={agreement.website} target="_blank" rel="noopener noreferrer">
+                        {agreement.website}
+                      </a>
+                    </span>
+                  </div>
+                )}
 
                 <div className="info-row">
                   <span className="label">📅 Estado:</span>
