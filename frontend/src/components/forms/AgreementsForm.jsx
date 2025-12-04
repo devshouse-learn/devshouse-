@@ -359,16 +359,6 @@ const AgreementsForm = () => {
               🔄 Limpiar
             </button>
           </div>
-          
-          <div className="btn-group-right">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => navigate('/')}
-            >
-              ✕ Cerrar
-            </button>
-          </div>
         </div>
       </form>
 
