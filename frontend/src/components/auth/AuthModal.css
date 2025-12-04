@@ -547,3 +547,9 @@ form {
     font-size: 13px;
   }
 }
+
+/* Bloquear scroll cuando el modal está abierto */
+body:has(.auth-modal-overlay) {
+  overflow: hidden;
+  height: 100vh;
+}
