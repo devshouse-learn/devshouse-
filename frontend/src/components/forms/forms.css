@@ -38,6 +38,8 @@
 .list-header.form-page-header .header-content h1 {
   font-size: 3rem;
   text-align: center;
+  white-space: normal;
+  word-spacing: 9999px;
 }
 
 /* Hide description and register button in form pages */
