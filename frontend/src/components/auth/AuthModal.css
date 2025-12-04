@@ -144,7 +144,7 @@
 }
 
 .auth-modal-container {
-  padding: 40px;
+  padding: 24px;
 }
 
 .auth-form-wrapper {
@@ -153,31 +153,31 @@
 
 .auth-form-wrapper h2 {
   color: #ffffff;
-  font-size: 28px;
-  margin: 0 0 8px 0;
+  font-size: 24px;
+  margin: 0 0 4px 0;
 }
 
 .auth-subtitle {
   color: #a0a0a0;
-  font-size: 14px;
-  margin: 0 0 24px 0;
+  font-size: 13px;
+  margin: 0 0 16px 0;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .form-group label {
   color: #a0a0a0;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -195,12 +195,12 @@ form {
 
 .form-group input,
 .form-group select {
-  padding: 12px 16px;
+  padding: 8px 12px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(30, 58, 138, 0.3);
-  border-radius: 8px;
+  border-radius: 6px;
   color: #000000;
-  font-size: 14px;
+  font-size: 13px;
   font-family: inherit;
   transition: all 0.3s ease;
 }
@@ -364,12 +364,12 @@ form {
 }
 
 .auth-button {
-  padding: 10px 20px;
+  padding: 8px 16px;
   background: #1e88e5;
   color: #ffffff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -390,7 +390,7 @@ form {
 .auth-divider {
   display: flex;
   align-items: center;
-  margin: 24px 0;
+  margin: 12px 0;
   gap: 12px;
 }
 
@@ -429,12 +429,13 @@ form {
 
 .forgot-password-link {
   text-align: center;
-  margin-top: -8px;
+  margin-top: -4px;
+  margin-bottom: 4px;
 }
 
 .forgot-password-link a {
   color: #f59e0b;
-  font-size: 12px;
+  font-size: 11px;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
