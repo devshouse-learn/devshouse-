@@ -144,7 +144,7 @@
 }
 
 .auth-modal-container {
-  padding: 24px;
+  padding: 16px 24px;
 }
 
 .auth-form-wrapper {
@@ -153,34 +153,34 @@
 
 .auth-form-wrapper h2 {
   color: #ffffff;
-  font-size: 24px;
-  margin: 0 0 4px 0;
+  font-size: 22px;
+  margin: 0 0 2px 0;
 }
 
 .auth-subtitle {
   color: #a0a0a0;
-  font-size: 13px;
-  margin: 0 0 16px 0;
+  font-size: 12px;
+  margin: 0 0 12px 0;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .form-group label {
   color: #a0a0a0;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 /* Labels blancos solo para los campos específicos */
@@ -195,12 +195,12 @@ form {
 
 .form-group input,
 .form-group select {
-  padding: 8px 12px;
+  padding: 6px 10px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(30, 58, 138, 0.3);
-  border-radius: 6px;
+  border-radius: 5px;
   color: #000000;
-  font-size: 13px;
+  font-size: 12px;
   font-family: inherit;
   transition: all 0.3s ease;
 }
@@ -364,17 +364,17 @@ form {
 }
 
 .auth-button {
-  padding: 8px 16px;
+  padding: 6px 14px;
   background: #1e88e5;
   color: #ffffff;
   border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 .auth-button:hover:not(:disabled) {
@@ -390,7 +390,7 @@ form {
 .auth-divider {
   display: flex;
   align-items: center;
-  margin: 12px 0;
+  margin: 8px 0;
   gap: 12px;
 }
 
@@ -404,17 +404,17 @@ form {
 
 .auth-divider span {
   color: #888888;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .auth-toggle-button {
   width: 100%;
-  padding: 10px 20px;
+  padding: 7px 16px;
   background: transparent;
   color: #1e88e5;
   border: 1px solid rgba(30, 136, 229, 0.3);
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -429,13 +429,13 @@ form {
 
 .forgot-password-link {
   text-align: center;
-  margin-top: -4px;
-  margin-bottom: 4px;
+  margin-top: -2px;
+  margin-bottom: 2px;
 }
 
 .forgot-password-link a {
   color: #f59e0b;
-  font-size: 11px;
+  font-size: 10px;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
