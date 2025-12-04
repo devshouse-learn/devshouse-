@@ -55,6 +55,11 @@
   display: none;
 }
 
+/* Show back button in list pages */
+.list-header:not(.form-page-header) .header-top {
+  display: block;
+}
+
 .list-header .btn-back {
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.2);
