@@ -207,7 +207,7 @@ const SearchCompanies = () => {
           {companies.map((company) => (
             <div key={company.id} className="item-card">
               <div className="card-header">
-                <h3>{activeTab === 'ventures' ? company.companyName : company.position}</h3>
+                <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
                 <span className="badge">
                   {activeTab === 'ventures' ? company.industry : company.company}
                 </span>
@@ -217,10 +217,10 @@ const SearchCompanies = () => {
                 <div className="card-body">
                   {activeTab === 'ventures' ? (
                     <>
-                      {company.founderName && (
+                      {company.founder_name && (
                         <div className="info-row">
                           <span className="label">👤 Fundador:</span>
-                          <span className="value">{company.founderName}</span>
+                          <span className="value">{company.founder_name}</span>
                         </div>
                       )}
                       {company.location && (
@@ -229,10 +229,10 @@ const SearchCompanies = () => {
                           <span className="value">{company.location}</span>
                         </div>
                       )}
-                      {company.investmentStage && (
+                      {company.investment_stage && (
                         <div className="info-row">
                           <span className="label">💰 Etapa:</span>
-                          <span className="value">{company.investmentStage}</span>
+                          <span className="value">{company.investment_stage}</span>
                         </div>
                       )}
                       {company.website && (
@@ -254,10 +254,10 @@ const SearchCompanies = () => {
                           <span className="value">{company.location}</span>
                         </div>
                       )}
-                      {company.contractType && (
+                      {company.contract_type && (
                         <div className="info-row">
                           <span className="label">📋 Tipo:</span>
-                          <span className="value">{company.contractType}</span>
+                          <span className="value">{company.contract_type}</span>
                         </div>
                       )}
                       {company.salary && (
@@ -266,10 +266,10 @@ const SearchCompanies = () => {
                           <span className="value">{company.salary}</span>
                         </div>
                       )}
-                      {company.experienceLevel && (
+                      {company.experience_level && (
                         <div className="info-row">
                           <span className="label">📈 Experiencia:</span>
-                          <span className="value">{company.experienceLevel}</span>
+                          <span className="value">{company.experience_level}</span>
                         </div>
                       )}
                     </>
