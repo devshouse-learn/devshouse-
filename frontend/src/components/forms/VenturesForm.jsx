@@ -104,7 +104,7 @@ const VenturesForm = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>🚀 Publica Tu Emprendimiento</h1>
+          <h1>🚀 Publica Tu<br/>Emprendimiento</h1>
           <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
         </div>
         <button 
