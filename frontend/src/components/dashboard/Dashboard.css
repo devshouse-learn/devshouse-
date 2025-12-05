@@ -1,5 +1,5 @@
 .dashboard {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +8,7 @@
   margin: 0;
   width: 100%;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  overflow-y: auto;
 }
 
 .dashboard-header {
@@ -48,13 +49,12 @@
   border-radius: 16px;
   text-decoration: none;
   color: white;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  cursor: pointer;
+  cursor: default;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
 }
 
@@ -66,7 +66,6 @@
   right: 0;
   height: 5px;
   background: rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
 }
 
 .dashboard-card::after {
@@ -94,19 +93,7 @@
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.85), rgba(37, 99, 235, 0.85));
 }
 
-.dashboard-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-}
 
-.dashboard-card::before {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dashboard-card:hover::before {
-  height: 6px;
-  background: rgba(255, 255, 255, 0.6);
-}
 
 .card-icon {
   font-size: 3.25rem;
@@ -136,17 +123,10 @@
 .card-arrow {
   font-size: 1.25rem;
   align-self: flex-end;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-15px);
+  display: none;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.dashboard-card:hover .card-arrow {
-  opacity: 1;
-  transform: translateX(5px);
-  color: rgba(255, 255, 255, 1);
-}
 
 @media (max-width: 768px) {
   .dashboard {
