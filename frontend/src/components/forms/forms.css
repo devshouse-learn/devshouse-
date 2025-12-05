@@ -14,7 +14,7 @@
   justify-content: center;
   box-sizing: border-box;
   overflow: hidden;
-  padding: 0 40px;
+  padding: 30px 20px;
 }
 
 /* Specific height for form pages */
@@ -30,7 +30,7 @@
 .list-header.form-page-header {
   height: 250px;
   max-width: 2000px;
-  padding: 50px 40px;
+  padding: 30px 20px;
   margin: 0 auto;
 }
 
