@@ -41,11 +41,12 @@
 }
 
 .header-content h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin: 0 0 15px 0;
   font-weight: bold;
   line-height: 1.2;
   color: white;
+  text-align: center;
 }
 
 .header-content p {
