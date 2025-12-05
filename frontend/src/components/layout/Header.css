@@ -89,7 +89,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(0, 0, 0, 0.2);
+  background: #1e88e5;
   padding: 4px 12px;
   border-radius: 8px;
   backdrop-filter: blur(10px);
@@ -99,6 +99,7 @@
   padding-right: 20px;
   height: 100%;
   min-height: 70px;
+  color: white;
 }
 
 .user-details {
