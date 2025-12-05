@@ -20,6 +20,14 @@
   margin-bottom: 20px;
 }
 
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .btn-back {
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.2);
