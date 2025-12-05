@@ -46,14 +46,16 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 
 .logo {
   text-decoration: none;
   color: white;
-  margin-left: 0;
   position: absolute;
-  left: 2rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .header h1 {
