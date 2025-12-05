@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 3rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   margin: 0;
   width: 100%;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -15,6 +15,7 @@
   margin-bottom: 2rem;
   width: 100%;
   max-width: 1400px;
+  display: none;
 }
 
 .dashboard-header h1 {
