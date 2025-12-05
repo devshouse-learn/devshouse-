@@ -28,6 +28,7 @@
   font-size: 1.1rem;
   margin: 0;
   opacity: 0.95;
+  display: none;
 }
 
 .btn-primary-large {
@@ -43,6 +44,7 @@
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: none;
 }
 
 .btn-primary-large:hover {
