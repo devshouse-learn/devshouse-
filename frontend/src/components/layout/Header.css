@@ -92,11 +92,12 @@
   backdrop-filter: blur(10px);
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: 0;
+  top: 0;
   width: 1210px;
-  height: 100px;
+  height: 100%;
+  margin-right: 0;
+  justify-content: flex-end;
+  padding-right: 20px;
 }
 
 .user-details {
