@@ -12,6 +12,8 @@
   color: white;
   display: flex;
   flex-direction: column;
+  max-width: 1100px;
+  height: 150px;
 }
 
 .header-top {
