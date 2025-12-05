@@ -1,33 +1,19 @@
-import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import Hero from './Hero';
 import Description from './Description';
 import Impact from './Impact';
 import Dashboard from '../dashboard/Dashboard';
-import AuthModal from '../auth/AuthModal';
 
 const Home = () => {
   const { isAuthenticated } = useAuth();
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [authMode, setAuthMode] = useState('login');
-
-  const handleShowAuthModal = (mode = 'login') => {
-    setAuthMode(mode);
-    setShowAuthModal(true);
-  };
-
-  const handleCloseAuthModal = () => {
-    setShowAuthModal(false);
-  };
 
   return (
     <div className="home">
       {!isAuthenticated ? (
         <>
-          <Hero onShowAuthModal={handleShowAuthModal} />
+          <Hero />
           <Description />
           <Impact />
-          {showAuthModal && <AuthModal onClose={handleCloseAuthModal} initialMode={authMode} />}
         </>
       ) : (
         <Dashboard />
