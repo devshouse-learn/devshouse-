@@ -1,9 +1,10 @@
 .recruiting-container {
-  min-height: 100vh;
+  height: 100vh;
   background: #ffffff;
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .list-header {
@@ -60,8 +61,8 @@
 
 .mode-selector {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
   max-width: 800px;
   margin: 0 auto;
   flex: 1;
@@ -72,16 +73,15 @@
   background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(0, 212, 255, 0.05));
   border: 2px solid rgba(30, 136, 229, 0.3);
   border-radius: 12px;
-  padding: 12px 10px;
+  padding: 10px 8px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  min-height: 120px;
+  gap: 4px;
+  min-height: 95px;
   animation: slideUp 0.6s ease 0.2s backwards;
 }
 
@@ -92,19 +92,12 @@
 .mode-button:hover {
   background: linear-gradient(135deg, rgba(30, 136, 229, 0.2), rgba(0, 212, 255, 0.1));
   border-color: #1e88e5;
-  transform: translateY(-12px);
   box-shadow: 0 20px 40px rgba(30, 136, 229, 0.2);
 }
 
 .mode-icon {
-  font-size: 28px;
+  font-size: 24px;
   display: block;
-  animation: float 3s ease-in-out infinite;
-}
-
-.mode-button:hover .mode-icon {
-  transform: scale(1.1);
-  animation: bounce 0.6s ease;
 }
 
 .mode-title {
