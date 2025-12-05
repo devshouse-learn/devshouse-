@@ -51,8 +51,9 @@
 .logo {
   text-decoration: none;
   color: white;
-  flex: 1;
-  margin-left: 1.5rem;
+  margin-left: 0;
+  position: absolute;
+  left: 2rem;
 }
 
 .header h1 {
