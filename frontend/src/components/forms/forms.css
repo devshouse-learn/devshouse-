@@ -1,7 +1,7 @@
 /* Consolidated form styles for all forms */
 
 .list-header {
-  margin-bottom: 10px;
+  margin: 0 auto 10px auto;
   width: 100%;
   max-width: 1100px;
   height: 150px;
