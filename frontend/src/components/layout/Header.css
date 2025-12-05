@@ -87,7 +87,11 @@
   padding: 8px 16px;
   border-radius: 8px;
   backdrop-filter: blur(10px);
-  margin-right: 2rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0;
 }
 
 .user-details {
