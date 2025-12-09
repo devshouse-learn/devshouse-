@@ -278,7 +278,7 @@ const AgreementsList = () => {
                   onClick={() => handleLike(agreement.id)}
                   title={userReactions[agreement.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[agreement.id]?.hasLiked ? ' Liked' : ' Like'}
+                  <span className="emoji">🤍</span> {userReactions[agreement.id]?.hasLiked ? 'Liked' : 'Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[agreement.id]?.hasReported ? 'reported' : ''}`}

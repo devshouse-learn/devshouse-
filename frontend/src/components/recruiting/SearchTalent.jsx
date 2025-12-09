@@ -225,7 +225,7 @@ const SearchTalent = () => {
                     onClick={() => handleLike(talent.id)}
                     title={userReactions[talent.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                   >
-                    {userReactions[talent.id]?.hasLiked ? ' Liked' : ' Like'}
+                    <span className="emoji">🤍</span> {userReactions[talent.id]?.hasLiked ? 'Liked' : 'Like'}
                   </button>
                   <button
                     className={`btn-report ${userReactions[talent.id]?.hasReported ? 'reported' : ''}`}
