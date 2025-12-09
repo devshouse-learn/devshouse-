@@ -257,26 +257,51 @@ const JobSearchForm = () => {
                   <div className="job-header">
                     <div>
                       <h3>{job.position}</h3>
-                      <p className="company">{job.company}</p>
+                      <p className="company"> {job.company}</p>
                     </div>
                     <div className="job-type-badge" data-type={job.jobType}>
-                      {job.jobType === 'full-time' && ' Tiempo Completo'}
+                      {job.jobType === 'full-time' && '📋 Tiempo Completo'}
                       {job.jobType === 'part-time' && '⏰ Medio Tiempo'}
-                      {job.jobType === 'contract' && ' Contrato'}
-                      {job.jobType === 'freelance' && ' Freelance'}
+                      {job.jobType === 'contract' && '📄 Contrato'}
+                      {job.jobType === 'freelance' && '🎯 Freelance'}
                     </div>
                   </div>
 
+                  {/* Información Básica */}
                   <div className="job-details">
-                    <span className="detail"> {job.location}</span>
-                    <span className="detail"> {job.experience}</span>
-                    <span className="detail"> {job.currency} {job.salaryMin} - {job.salaryMax}</span>
+                    <span className="detail">📍 {job.location}</span>
+                    <span className="detail">📈 {job.experience}</span>
+                    {job.jobType && <span className="detail">💼 {job.jobType}</span>}
                   </div>
 
+                  {/* Salario */}
+                  {(job.salaryMin || job.salaryMax) && (
+                    <div className="job-salary">
+                      <span className="salary-label">💰 Salario:</span>
+                      <span className="salary-value">
+                        {job.salaryMin && job.salaryMax 
+                          ? `${job.currency || 'USD'} ${job.salaryMin.toLocaleString()} - ${job.salaryMax.toLocaleString()}`
+                          : `${job.currency || 'USD'} ${job.salaryMin || job.salaryMax || 'No especificado'}`
+                        }
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Industria */}
+                  {job.industry && (
+                    <div className="job-info-row">
+                      <span className="info-label">🏢 Industria:</span>
+                      <span className="info-value">{job.industry}</span>
+                    </div>
+                  )}
+
+                  {/* Descripción */}
                   <p className="job-description">{job.description}</p>
 
+                  {/* Requisitos */}
                   {job.requirements && (
                     <div className="job-keywords">
+                      <span className="keywords-label">✅ Requisitos:</span>
                       {job.requirements.split(',').map((req, idx) => (
                         <span key={idx} className="keyword">
                           {req.trim()}
@@ -285,9 +310,45 @@ const JobSearchForm = () => {
                     </div>
                   )}
 
+                  {/* Responsabilidades */}
+                  {job.responsibilities && (
+                    <div className="job-responsibilities">
+                      <span className="resp-label">📋 Responsabilidades:</span>
+                      <p className="resp-text">
+                        {typeof job.responsibilities === 'string' 
+                          ? job.responsibilities.substring(0, 120)
+                          : 'Consultar oferta completa'
+                        }
+                        {typeof job.responsibilities === 'string' && job.responsibilities.length > 120 ? '...' : ''}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Beneficios */}
+                  {job.benefits && (
+                    <div className="job-benefits">
+                      <span className="benefits-label">🎁 Beneficios:</span>
+                      <p className="benefits-text">
+                        {typeof job.benefits === 'string' 
+                          ? job.benefits.substring(0, 120)
+                          : 'Consultar oferta completa'
+                        }
+                        {typeof job.benefits === 'string' && job.benefits.length > 120 ? '...' : ''}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Plazo de Aplicación */}
+                  {job.applicationDeadline && (
+                    <div className="job-info-row">
+                      <span className="info-label">📅 Plazo:</span>
+                      <span className="info-value">{new Date(job.applicationDeadline).toLocaleDateString('es-ES')}</span>
+                    </div>
+                  )}
+
                   <div className="job-footer">
-                    <span className="posted">Publicado: {new Date(job.createdAt).toLocaleDateString()}</span>
-                    <button className="btn-apply">Aplicar Ahora</button>
+                    <span className="posted">📅 Publicado: {new Date(job.createdAt).toLocaleDateString()}</span>
+                    <button className="btn-apply">📬 Aplicar Ahora</button>
                   </div>
                 </div>
               ))}
