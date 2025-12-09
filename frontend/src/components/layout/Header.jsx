@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Header.css';
 
 const Header = () => {
   const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <header className="header">
@@ -13,7 +14,7 @@ const Header = () => {
         </Link>
         <p className="subtitle">Conectando oportunidades</p>
 
-        {isAuthenticated && user && (
+        {isAuthenticated && user ? (
           <div className="user-info">
             <div className="user-details">
               <span className="user-name">{user.name}</span>
@@ -31,6 +32,21 @@ const Header = () => {
             )}
             <button className="logout-button" onClick={logout}>
               Salir
+            </button>
+          </div>
+        ) : (
+          <div className="auth-buttons">
+            <button 
+              className="login-button" 
+              onClick={() => navigate('/login')}
+            >
+              Inicia sesión
+            </button>
+            <button 
+              className="register-button" 
+              onClick={() => navigate('/register')}
+            >
+              Registrate
             </button>
           </div>
         )}
