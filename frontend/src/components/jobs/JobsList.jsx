@@ -182,17 +182,26 @@ const JobsList = () => {
                 <div className="card-body">
                   <div className="info-row">
                     <span className="label">📍 Ubicación:</span>
-                    <span className="value">{job.location}</span>
+                    <span className="value">
+                      {job.location}
+                      {job.remote && <span className="remote-badge"> • Remoto</span>}
+                    </span>
                   </div>
 
                   <div className="info-row">
                     <span className="label">📋 Tipo:</span>
-                    <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
+                    <span className="value" style={{ textTransform: 'capitalize' }}>
+                      {job.jobType}
+                      {job.salary && <span className="salary-info"> • {job.salary}</span>}
+                    </span>
                   </div>
 
                   <div className="info-row">
                     <span className="label">📈 Experiencia:</span>
-                    <span className="value">{job.experience}</span>
+                    <span className="value">
+                      {job.experience}
+                      {job.skillsRequired && <span className="skills-preview"> • {job.skillsRequired.split(',').slice(0, 2).join(', ')}</span>}
+                    </span>
                   </div>
                 </div>
 

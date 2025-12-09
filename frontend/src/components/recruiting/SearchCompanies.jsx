@@ -280,19 +280,28 @@ const SearchCompanies = () => {
                       {company.location && (
                         <div className="info-row">
                           <span className="label">Ubicacion:</span>
-                          <span className="value">{company.location}</span>
+                          <span className="value">
+                            {company.location}
+                            {company.remote && <span className="remote-badge"> • Remoto</span>}
+                          </span>
                         </div>
                       )}
                       {company.contract_type && (
                         <div className="info-row">
                           <span className="label">Tipo:</span>
-                          <span className="value">{company.contract_type}</span>
+                          <span className="value">
+                            {company.contract_type}
+                            {company.salary && <span className="salary-info"> • {company.salary}</span>}
+                          </span>
                         </div>
                       )}
                       {company.experience_level && (
                         <div className="info-row">
                           <span className="label">Experiencia:</span>
-                          <span className="value">{company.experience_level}</span>
+                          <span className="value">
+                            {company.experience_level}
+                            {company.skillsRequired && <span className="skills-preview"> • {company.skillsRequired.split(',').slice(0, 2).join(', ')}</span>}
+                          </span>
                         </div>
                       )}
                     </>
