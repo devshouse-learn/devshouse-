@@ -218,80 +218,84 @@ const VenturesList = () => {
               </div>
 
               <div className="card-content">
-                <div className="info-row">
-                  <span className="label"><span className="emoji">🏭</span> Industria:</span>
-                  <span className="value">{venture.industry}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📍</span> Ubicación:</span>
-                  <span className="value">{venture.location}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">👤</span> Fundador:</span>
-                  <span className="value">{venture.founderName || venture.founder_name || 'No disponible'}</span>
-                </div>
-
-                {(venture.founded_year || venture.foundedYear) && (
+                <div className="card-body">
+                  {/* Información Básica */}
                   <div className="info-row">
-                    <span className="label"><span className="emoji">📅</span> Año:</span>
-                    <span className="value">{venture.founded_year || venture.foundedYear}</span>
+                    <span className="label"><span className="emoji">🏭</span> Industria:</span>
+                    <span className="value">{venture.industry}</span>
                   </div>
-                )}
 
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📈</span> Etapa:</span>
-                  <span className="value">{venture.investment_stage}</span>
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📍</span> Ubicación:</span>
+                    <span className="value">{venture.location}</span>
+                  </div>
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">👤</span> Fundador:</span>
+                    <span className="value">{venture.founderName || venture.founder_name || 'No disponible'}</span>
+                  </div>
+
+                  {(venture.founded_year || venture.foundedYear) && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📅</span> Año:</span>
+                      <span className="value">{venture.founded_year || venture.foundedYear}</span>
+                    </div>
+                  )}
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📈</span> Etapa:</span>
+                    <span className="value">{venture.investment_stage}</span>
+                  </div>
+
+                  {(venture.funding_needed || venture.fundingNeeded) && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">💰</span> Financiamiento:</span>
+                      <span className="value">{venture.funding_needed || venture.fundingNeeded}</span>
+                    </div>
+                  )}
+
+                  {(venture.team_size || venture.teamSize) && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">👥</span> Equipo:</span>
+                      <span className="value">{venture.team_size || venture.teamSize}</span>
+                    </div>
+                  )}
+
+                  {(venture.revenue_model || venture.revenueModel) && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">💼</span> Modelo:</span>
+                      <span className="value">{venture.revenue_model || venture.revenueModel}</span>
+                    </div>
+                  )}
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📧</span> Email:</span>
+                    <span className="value">{venture.founderEmail}</span>
+                  </div>
+
+                  {venture.website && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🌐</span> Web:</span>
+                      <span className="value">
+                        <a href={venture.website} target="_blank" rel="noopener noreferrer">
+                          {venture.website}
+                        </a>
+                      </span>
+                    </div>
+                  )}
+
+                  {venture.description && (
+                    <div className="info-row description-preview">
+                      <span className="label"><span className="emoji">📝</span> Descripción:</span>
+                      <span className="value">{venture.description.substring(0, 100)}{venture.description.length > 100 ? '...' : ''}</span>
+                    </div>
+                  )}
                 </div>
-
-                {(venture.funding_needed || venture.fundingNeeded) && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">💰</span> Financiamiento:</span>
-                    <span className="value">{venture.funding_needed || venture.fundingNeeded}</span>
-                  </div>
-                )}
-
-                {(venture.team_size || venture.teamSize) && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">👥</span> Equipo:</span>
-                    <span className="value">{venture.team_size || venture.teamSize}</span>
-                  </div>
-                )}
-
-                {(venture.revenue_model || venture.revenueModel) && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">💼</span> Modelo:</span>
-                    <span className="value">{venture.revenue_model || venture.revenueModel}</span>
-                  </div>
-                )}
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📧</span> Email:</span>
-                  <span className="value">{venture.founderEmail}</span>
-                </div>
-
-                {venture.website && (
-                  <div className="info-row">
-                    <span className="label"> Web:</span>
-                    <span className="value">
-                      <a href={venture.website} target="_blank" rel="noopener noreferrer">
-                        {venture.website}
-                      </a>
-                    </span>
-                  </div>
-                )}
-
-                {venture.description && (
-                  <div className="description">
-                    <p>{venture.description}</p>
-                  </div>
-                )}
 
                 <div className="card-stats">
-                  <span> {venture.views} vistas</span>
-                  <span> {venture.likes} likes</span>
-                  <span> {venture.reports} reportes</span>
+                  <span><span className="emoji">👁️</span> Vistas: {venture.views || 0}</span>
+                  <span><span className="emoji">❤️</span> Likes: {venture.likes || 0}</span>
+                  <span><span className="emoji">🚨</span> Reportes: {venture.reports || 0}</span>
                 </div>
               </div>
 

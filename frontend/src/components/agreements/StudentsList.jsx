@@ -207,36 +207,68 @@ const StudentsList = () => {
               </div>
 
               <div className="card-content">
-                <div className="info-row">
-                  <span className="label"><span className="emoji">🏫</span> Institución:</span>
-                  <span className="value">{student.schoolName}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📍</span> Ubicación:</span>
-                  <span className="value">{student.location || 'No especificada'}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📧</span> Email:</span>
-                  <span className="value">{student.contactEmail}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📱</span> Teléfono:</span>
-                  <span className="value">{student.contactPhone || 'No disponible'}</span>
-                </div>
-
-                {student.description && (
-                  <div className="description">
-                    <p>{student.description}</p>
+                <div className="card-body">
+                  {/* Información Básica */}
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">🏫</span> Institución:</span>
+                    <span className="value">{student.schoolName}</span>
                   </div>
-                )}
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📍</span> Ubicación:</span>
+                    <span className="value">{student.location || 'No especificada'}</span>
+                  </div>
+
+                  {student.schoolType && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🎓</span> Tipo:</span>
+                      <span className="value">{student.schoolType}</span>
+                    </div>
+                  )}
+
+                  {student.program && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📚</span> Programa:</span>
+                      <span className="value">{student.program}</span>
+                    </div>
+                  )}
+
+                  {student.grade && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📊</span> Grado:</span>
+                      <span className="value">{student.grade}</span>
+                    </div>
+                  )}
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📧</span> Email:</span>
+                    <span className="value">{student.contactEmail}</span>
+                  </div>
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📱</span> Teléfono:</span>
+                    <span className="value">{student.contactPhone || 'No disponible'}</span>
+                  </div>
+
+                  {student.interests && (
+                    <div className="info-row description-preview">
+                      <span className="label"><span className="emoji">🎯</span> Intereses:</span>
+                      <span className="value">{student.interests.substring(0, 100)}{student.interests.length > 100 ? '...' : ''}</span>
+                    </div>
+                  )}
+
+                  {student.description && (
+                    <div className="info-row description-preview">
+                      <span className="label"><span className="emoji">📝</span> Descripción:</span>
+                      <span className="value">{student.description.substring(0, 100)}{student.description.length > 100 ? '...' : ''}</span>
+                    </div>
+                  )}
+                </div>
 
                 <div className="card-stats">
-                  <span> {student.views || 0} vistas</span>
-                  <span> {student.likes || 0} likes</span>
-                  <span> {student.reports || 0} reportes</span>
+                  <span><span className="emoji">👁️</span> Vistas: {student.views || 0}</span>
+                  <span><span className="emoji">❤️</span> Likes: {student.likes || 0}</span>
+                  <span><span className="emoji">🚨</span> Reportes: {student.reports || 0}</span>
                 </div>
               </div>
 

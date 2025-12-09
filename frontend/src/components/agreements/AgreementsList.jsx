@@ -226,75 +226,79 @@ const AgreementsList = () => {
               </div>
 
               <div className="card-content">
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📍</span> Ubicación:</span>
-                  <span className="value">{agreement.location}</span>
+                <div className="card-body">
+                  {/* Información Básica */}
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📍</span> Ubicación:</span>
+                    <span className="value">{agreement.location}</span>
+                  </div>
+
+                  {agreement.level && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📚</span> Nivel:</span>
+                      <span className="value">{agreement.level}</span>
+                    </div>
+                  )}
+
+                  {agreement.areaOfInterest && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🎯</span> Área:</span>
+                      <span className="value">{agreement.areaOfInterest}</span>
+                    </div>
+                  )}
+
+                  {agreement.studentCount && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">👥</span> Estudiantes:</span>
+                      <span className="value">{agreement.studentCount}</span>
+                    </div>
+                  )}
+
+                  {agreement.establishmentYear && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📅</span> Fundación:</span>
+                      <span className="value">{agreement.establishmentYear}</span>
+                    </div>
+                  )}
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📧</span> Email:</span>
+                    <span className="value">{agreement.contactEmail}</span>
+                  </div>
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">📱</span> Teléfono:</span>
+                    <span className="value">{agreement.contactPhone || 'No disponible'}</span>
+                  </div>
+
+                  {agreement.website && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🌐</span> Web:</span>
+                      <span className="value">
+                        <a href={agreement.website} target="_blank" rel="noopener noreferrer">
+                          {agreement.website}
+                        </a>
+                      </span>
+                    </div>
+                  )}
+
+                  {agreement.description && (
+                    <div className="info-row description-preview">
+                      <span className="label"><span className="emoji">📝</span> Descripción:</span>
+                      <span className="value">{agreement.description.substring(0, 100)}{agreement.description.length > 100 ? '...' : ''}</span>
+                    </div>
+                  )}
+
+                  <div className="info-row">
+                    <span className="label"><span className="emoji">⚙️</span> Estado:</span>
+                    <span className="value">{agreement.status || 'No especificado'}</span>
+                  </div>
                 </div>
-
-                {agreement.level && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">📚</span> Nivel:</span>
-                    <span className="value">{agreement.level}</span>
-                  </div>
-                )}
-
-                {agreement.areaOfInterest && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">🎯</span> Área:</span>
-                    <span className="value">{agreement.areaOfInterest}</span>
-                  </div>
-                )}
-
-                {agreement.studentCount && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">👥</span> Estudiantes:</span>
-                    <span className="value">{agreement.studentCount}</span>
-                  </div>
-                )}
-
-                {agreement.establishmentYear && (
-                  <div className="info-row">
-                    <span className="label"><span className="emoji">📅</span> Fundación:</span>
-                    <span className="value">{agreement.establishmentYear}</span>
-                  </div>
-                )}
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📧</span> Email:</span>
-                  <span className="value">{agreement.contactEmail}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">📱</span> Teléfono:</span>
-                  <span className="value">{agreement.contactPhone || 'No disponible'}</span>
-                </div>
-
-                {agreement.website && (
-                  <div className="info-row">
-                    <span className="label"> Web:</span>
-                    <span className="value">
-                      <a href={agreement.website} target="_blank" rel="noopener noreferrer">
-                        {agreement.website}
-                      </a>
-                    </span>
-                  </div>
-                )}
-
-                <div className="info-row">
-                  <span className="label"><span className="emoji">⚙️</span> Estado:</span>
-                  <span className="value">{agreement.status || 'No especificado'}</span>
-                </div>
-
-                {agreement.description && (
-                  <div className="description">
-                    <p>{agreement.description}</p>
-                  </div>
-                )}
 
                 <div className="card-stats">
-                  <span> {agreement.views} vistas</span>
-                  <span> {agreement.likes} likes</span>
-                  <span> {agreement.reports} reportes</span>
+                  <span><span className="emoji">👁️</span> Vistas: {agreement.views || 0}</span>
+                  <span><span className="emoji">❤️</span> Likes: {agreement.likes || 0}</span>
+                  <span><span className="emoji">🚨</span> Reportes: {agreement.reports || 0}</span>
                 </div>
               </div>
 
