@@ -28,7 +28,7 @@ const Dashboard = () => {
             onClick={() => handleCardClick(item)}
             style={{ cursor: 'pointer' }}
           >
-            <div className="card-icon">{item.icon}</div>
+            <div className="card-icon"><span className="emoji">{item.icon}</span></div>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
             <span className="card-arrow"></span>

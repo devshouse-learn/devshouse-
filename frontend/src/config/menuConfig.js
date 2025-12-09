@@ -5,7 +5,7 @@ export const DASHBOARD_MENU_ITEMS = [
     path: '/agreements',
     title: 'Convenios Educativos',
     description: 'Accede a convenios educativos y conexiones académicas',
-    icon: '',
+    icon: '🎓',
     color: 'blue',
     roles: ['usuario', 'moderador', 'admin']
   },
@@ -14,7 +14,7 @@ export const DASHBOARD_MENU_ITEMS = [
     path: '/ventures',
     title: 'Emprendimientos',
     description: 'Crea y gestiona tus proyectos emprendedores',
-    icon: '',
+    icon: '🚀',
     color: 'purple',
     roles: ['usuario', 'moderador', 'admin']
   },
@@ -23,7 +23,7 @@ export const DASHBOARD_MENU_ITEMS = [
     path: '/recruiting',
     title: 'Centro de Reclutamiento',
     description: 'Busca talentos o publica oportunidades laborales',
-    icon: '',
+    icon: '💼',
     color: 'orange',
     roles: ['usuario', 'moderador', 'admin']
   },
@@ -32,7 +32,7 @@ export const DASHBOARD_MENU_ITEMS = [
     path: '/admin',
     title: 'Panel de Administración',
     description: 'Gestiona usuarios, permisos y configuraciones',
-    icon: '',
+    icon: '⚙️',
     color: 'red',
     roles: ['admin', 'moderador']
   },
@@ -41,7 +41,7 @@ export const DASHBOARD_MENU_ITEMS = [
     path: '/moderation-panel',
     title: 'Panel de Moderación',
     description: 'Revisa y modera contenido de la plataforma',
-    icon: '',
+    icon: '🛡️',
     color: 'green',
     roles: ['moderador', 'admin']
   }
