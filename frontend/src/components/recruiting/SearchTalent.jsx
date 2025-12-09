@@ -297,7 +297,6 @@ const SearchTalent = () => {
                   <span><span className="emoji">❤️</span> Likes: {talent.likes || 0}</span>
                   <span><span className="emoji">🚨</span> Reportes: {talent.reports || 0}</span>
                 </div>
-              </div>
 
                 <div className="card-actions">
                   <button
