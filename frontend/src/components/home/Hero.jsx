@@ -1,6 +1,7 @@
 import { useAuth } from '../../context/AuthContext';
 import './Hero.css';
 
+// Deploy: 2025-12-09
 const Hero = ({ onShowAuthModal }) => {
   const { isAuthenticated } = useAuth();
 
