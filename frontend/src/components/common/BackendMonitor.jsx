@@ -16,7 +16,7 @@ const BackendMonitor = () => {
 
         if (response.ok) {
           if (isBackendDown) {
-            console.log('✅ Backend reconectado');
+            console.log(' Backend reconectado');
           }
           setIsBackendDown(false);
           setRetryCount(0);
@@ -119,7 +119,7 @@ const BackendMonitor = () => {
           onMouseEnter={(e) => e.target.style.backgroundColor = '#1565c0'}
           onMouseLeave={(e) => e.target.style.backgroundColor = '#1a73e8'}
         >
-          🔄 Reintentar Ahora
+           Reintentar Ahora
         </button>
 
         <style>{`

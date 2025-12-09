@@ -58,9 +58,9 @@ const PublishProfile = () => {
 
       // Llamar a la API para crear el candidato
       const response = await candidatesService.create(candidateData);
-      console.log('✅ Hoja de vida creada:', response);
+      console.log(' Hoja de vida creada:', response);
 
-      setSuccess('✅ Perfil publicado exitosamente');
+      setSuccess(' Perfil publicado exitosamente');
       
       // Limpiar formulario
       setFormData({
@@ -99,7 +99,7 @@ const PublishProfile = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>📄 Publicar Perfil Profesional</h1>
+          <h1> Publicar Perfil Profesional</h1>
           <p>Comparte tu hoja de vida con empleadores</p>
         </div>
       </div>
@@ -224,7 +224,7 @@ const PublishProfile = () => {
           </div>
         </div>
 
-        {error && <div className="form-error">⚠️ {error}</div>}
+        {error && <div className="form-error"> {error}</div>}
         {success && <div className="form-success">{success}</div>}
 
         <div className="form-actions">
@@ -233,7 +233,7 @@ const PublishProfile = () => {
             className="btn"
             disabled={loading}
           >
-            {loading ? 'Publicando...' : '📄 Publicar Perfil'}
+            {loading ? 'Publicando...' : ' Publicar Perfil'}
           </button>
           <button
             type="button"

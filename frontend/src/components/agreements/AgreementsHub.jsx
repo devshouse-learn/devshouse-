@@ -27,7 +27,7 @@ const AgreementsHub = () => {
           className="option-card"
           onClick={() => navigate('/agreements/list')}
         >
-          <div className="option-icon">📋</div>
+          <div className="option-icon"></div>
           <h2>Convenios</h2>
           <p>Explora convenios educativos registrados</p>
           <button className="option-button">
@@ -39,7 +39,7 @@ const AgreementsHub = () => {
           className="option-card"
           onClick={() => navigate('/agreements/students')}
         >
-          <div className="option-icon">🎓</div>
+          <div className="option-icon"></div>
           <h2>Estudiar</h2>
           <p>Descubre estudiantes y talentos registrados</p>
           <button className="option-button">

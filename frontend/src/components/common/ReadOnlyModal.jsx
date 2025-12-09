@@ -31,7 +31,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
 
   const renderAgreement = () => (
     <div className="readonly-form">
-      <h2>� Convenio Educativo (Solo Lectura)</h2>
+      <h2> Convenio Educativo (Solo Lectura)</h2>
       
       <fieldset disabled>
         <legend>Información de la Institución</legend>
@@ -66,7 +66,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
 
   const renderVenture = () => (
     <div className="readonly-form">
-      <h2>� Emprendimiento (Solo Lectura)</h2>
+      <h2> Emprendimiento (Solo Lectura)</h2>
       
       <fieldset disabled>
         <legend>Información de la Empresa</legend>
@@ -104,7 +104,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
 
   const renderJob = () => (
     <div className="readonly-form">
-      <h2>🎯 Oferta de Empleo (Solo Lectura)</h2>
+      <h2> Oferta de Empleo (Solo Lectura)</h2>
       
       <fieldset disabled>
         <legend>Información de la Posición</legend>
@@ -155,13 +155,13 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
     <div className="readonly-modal-overlay" onClick={onClose}>
       <div className="readonly-modal-container" onClick={(e) => e.stopPropagation()}>
         <div className="readonly-modal-header">
-          <h1>👁️ Visualización Solo Lectura</h1>
+          <h1> Visualización Solo Lectura</h1>
           <button 
             className="readonly-modal-close"
             onClick={onClose}
             title="Cerrar"
           >
-            ✕
+            
           </button>
         </div>
 
@@ -170,7 +170,7 @@ const ReadOnlyModal = ({ isOpen, onClose, data, type }) => {
         </div>
 
         <div className="readonly-modal-footer">
-          <p className="info-message">ℹ️ Este formulario está en modo solo lectura. No puedes hacer cambios.</p>
+          <p className="info-message">ℹ Este formulario está en modo solo lectura. No puedes hacer cambios.</p>
           <button 
             className="btn-close-modal"
             onClick={onClose}

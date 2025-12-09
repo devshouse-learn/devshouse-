@@ -67,7 +67,7 @@ const ReactionButtons = ({ resourceType, resourceId, initialLikes = 0, initialRe
       setReports(prev => prev + 1);
       setShowReportModal(false);
       setReportReason('');
-      alert('✅ Denuncia enviada. Gracias por ayudar a mantener la calidad del contenido.');
+      alert(' Denuncia enviada. Gracias por ayudar a mantener la calidad del contenido.');
     } catch (error) {
       console.error('Error al denunciar:', error);
       if (error.message?.includes('Ya has denunciado')) {
@@ -88,7 +88,7 @@ const ReactionButtons = ({ resourceType, resourceId, initialLikes = 0, initialRe
         disabled={loading}
         title={hasLiked ? 'Quitar like' : 'Dar like'}
       >
-        {hasLiked ? '❤️' : '🤍'} {likes}
+        {hasLiked ? '' : ''} {likes}
       </button>
 
       <button
@@ -97,14 +97,14 @@ const ReactionButtons = ({ resourceType, resourceId, initialLikes = 0, initialRe
         disabled={loading || hasReported || !isAuthenticated}
         title={hasReported ? 'Ya denunciaste este contenido' : 'Denunciar contenido inapropiado'}
       >
-        {hasReported ? '🚫' : '🚨'} Denunciar
+        {hasReported ? '' : ''} Denunciar
       </button>
 
       {/* Modal de denuncia */}
       {showReportModal && (
         <div className="report-modal-overlay" onClick={() => setShowReportModal(false)}>
           <div className="report-modal" onClick={(e) => e.stopPropagation()}>
-            <h3>🚨 Denunciar Contenido</h3>
+            <h3> Denunciar Contenido</h3>
             <p>Por favor indica la razón de tu denuncia:</p>
             <textarea
               value={reportReason}

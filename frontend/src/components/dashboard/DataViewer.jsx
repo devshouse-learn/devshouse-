@@ -89,10 +89,10 @@ const DataViewer = () => {
         }
         
         await loadData();
-        alert('✅ Todos los datos han sido eliminados');
+        alert(' Todos los datos han sido eliminados');
       } catch (error) {
         console.error('Error al eliminar datos:', error);
-        alert('❌ Error al eliminar los datos');
+        alert(' Error al eliminar los datos');
       }
     }
   };
@@ -116,7 +116,7 @@ const DataViewer = () => {
         await loadData();
       } catch (error) {
         console.error('Error al eliminar:', error);
-        alert('❌ Error al eliminar el registro');
+        alert(' Error al eliminar el registro');
       }
     }
   };
@@ -152,17 +152,17 @@ const DataViewer = () => {
         >
           ← Volver
         </button>
-        <h1>📊 Visor de Datos</h1>
+        <h1> Visor de Datos</h1>
         <p>Administra todos los datos guardados en localStorage</p>
         <div className="data-actions">
           <button onClick={loadData} className="btn-refresh">
-            🔄 Actualizar
+             Actualizar
           </button>
           <button onClick={exportData} className="btn-export">
-            💾 Exportar JSON
+             Exportar JSON
           </button>
           <button onClick={clearAllData} className="btn-danger">
-            🗑️ Limpiar Todo
+             Limpiar Todo
           </button>
         </div>
       </div>
@@ -172,25 +172,25 @@ const DataViewer = () => {
           className={activeTab === 'stats' ? 'active' : ''}
           onClick={() => setActiveTab('stats')}
         >
-          📈 Estadísticas
+           Estadísticas
         </button>
         <button
           className={activeTab === 'agreements' ? 'active' : ''}
           onClick={() => setActiveTab('agreements')}
         >
-          📋 Convenios ({stats.agreements || 0})
+           Convenios ({stats.agreements || 0})
         </button>
         <button
           className={activeTab === 'ventures' ? 'active' : ''}
           onClick={() => setActiveTab('ventures')}
         >
-          🚀 Emprendimientos ({stats.ventures || 0})
+           Emprendimientos ({stats.ventures || 0})
         </button>
         <button
           className={activeTab === 'jobs' ? 'active' : ''}
           onClick={() => setActiveTab('jobs')}
         >
-          💼 Empleos ({stats.jobs || 0})
+           Empleos ({stats.jobs || 0})
         </button>
       </div>
 
@@ -198,27 +198,27 @@ const DataViewer = () => {
         {activeTab === 'stats' && (
           <div className="stats-grid">
             <div className="stat-card">
-              <div className="stat-icon">📋</div>
+              <div className="stat-icon"></div>
               <div className="stat-value">{stats.agreements || 0}</div>
               <div className="stat-label">Convenios Educativos</div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">🚀</div>
+              <div className="stat-icon"></div>
               <div className="stat-value">{stats.ventures || 0}</div>
               <div className="stat-label">Emprendimientos</div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">💼</div>
+              <div className="stat-icon"></div>
               <div className="stat-value">{stats.jobs || 0}</div>
               <div className="stat-label">Ofertas de Empleo</div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">📝</div>
+              <div className="stat-icon"></div>
               <div className="stat-value">{stats.applications || 0}</div>
               <div className="stat-label">Aplicaciones</div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">👥</div>
+              <div className="stat-icon"></div>
               <div className="stat-value">{stats.users || 0}</div>
               <div className="stat-label">Usuarios Registrados</div>
             </div>
@@ -244,7 +244,7 @@ const DataViewer = () => {
                       onClick={() => deleteItem('agreement', agreement.id)}
                       className="btn-delete"
                     >
-                      🗑️
+                      
                     </button>
                   </div>
                   <div className="item-details">
@@ -292,7 +292,7 @@ const DataViewer = () => {
                       onClick={() => deleteItem('venture', venture.id)}
                       className="btn-delete"
                     >
-                      🗑️
+                      
                     </button>
                   </div>
                   <div className="item-details">
@@ -342,7 +342,7 @@ const DataViewer = () => {
                       onClick={() => deleteItem('job', job.id)}
                       className="btn-delete"
                     >
-                      🗑️
+                      
                     </button>
                   </div>
                   <div className="item-details">

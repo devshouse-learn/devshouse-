@@ -20,7 +20,7 @@ const JobSearchList = () => {
       setError('');
       console.log(' Cargando candidatos desde API...');
       const response = await candidatesService.getAll();
-      console.log('✅ Respuesta del API:', response);
+      console.log(' Respuesta del API:', response);
       const loadedCandidates = response.data || [];
       console.log(' Candidatos cargados:', loadedCandidates);
       setCandidates(loadedCandidates);
@@ -32,7 +32,7 @@ const JobSearchList = () => {
         reactions[candidate.id] = userReaction;
       }
       setUserReactions(reactions);
-      console.log('✅ Candidatos y reacciones cargados exitosamente');
+      console.log(' Candidatos y reacciones cargados exitosamente');
     } catch (err) {
       console.error(' Error loading candidates:', err);
       if (err.message.includes('Failed to fetch')) {
@@ -155,7 +155,7 @@ const JobSearchList = () => {
 
       {candidates.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin perfiles de candidatos aún</h2>
+          <h2> Sin perfiles de candidatos aún</h2>
           <p>Sé el primero en registrar tu perfil profesional</p>
           <button 
             className="btn-primary"
@@ -183,7 +183,7 @@ const JobSearchList = () => {
 
                 {candidate.phone && (
                   <div className="info-row">
-                    <span className="label">📱 Teléfono:</span>
+                    <span className="label"> Teléfono:</span>
                     <span className="value">{candidate.phone}</span>
                   </div>
                 )}
@@ -204,14 +204,14 @@ const JobSearchList = () => {
 
                 {candidate.availability && (
                   <div className="info-row">
-                    <span className="label">� Disponibilidad:</span>
+                    <span className="label"> Disponibilidad:</span>
                     <span className="value">{candidate.availability}</span>
                   </div>
                 )}
 
                 {candidate.experience && (
                   <div className="info-row">
-                    <span className="label">�💼 Experiencia:</span>
+                    <span className="label"> Experiencia:</span>
                     <span className="value">
                       {Array.isArray(candidate.experience) 
                         ? candidate.experience.map((exp, i) => (
@@ -231,14 +231,14 @@ const JobSearchList = () => {
 
                 {candidate.education && (
                   <div className="info-row">
-                    <span className="label">🎓 Educación:</span>
+                    <span className="label"> Educación:</span>
                     <span className="value">{candidate.education}</span>
                   </div>
                 )}
 
                 {candidate.certifications && (
                   <div className="info-row">
-                    <span className="label">📜 Certificaciones:</span>
+                    <span className="label"> Certificaciones:</span>
                     <span className="value">{candidate.certifications}</span>
                   </div>
                 )}
@@ -252,7 +252,7 @@ const JobSearchList = () => {
 
                 {candidate.linkedin && (
                   <div className="info-row">
-                    <span className="label">💼 LinkedIn:</span>
+                    <span className="label"> LinkedIn:</span>
                     <span className="value">
                       <a href={candidate.linkedin} target="_blank" rel="noopener noreferrer">
                         {candidate.linkedin}
@@ -263,7 +263,7 @@ const JobSearchList = () => {
 
                 {candidate.portfolio && (
                   <div className="info-row">
-                    <span className="label">🖼️ Portafolio:</span>
+                    <span className="label"> Portafolio:</span>
                     <span className="value">
                       <a href={candidate.portfolio} target="_blank" rel="noopener noreferrer">
                         {candidate.portfolio}

@@ -81,7 +81,7 @@ const AIAssistant = () => {
         onClick={toggleChat}
         aria-label="Asistente de IA"
       >
-        {isOpen ? '✕' : '🤖'}
+        {isOpen ? '' : ''}
       </button>
 
       {/* Chat Window */}
@@ -89,13 +89,13 @@ const AIAssistant = () => {
         <div className="ai-chat-window">
           <div className="chat-header">
             <div className="header-info">
-              <span className="bot-icon">🤖</span>
+              <span className="bot-icon"></span>
               <div>
                 <h3>Asistente DEVSHOUSE</h3>
-                <span className="status">● En línea</span>
+                <span className="status"> En línea</span>
               </div>
             </div>
-            <button className="close-btn" onClick={toggleChat}>✕</button>
+            <button className="close-btn" onClick={toggleChat}></button>
           </div>
 
           <div className="chat-messages">
@@ -104,7 +104,7 @@ const AIAssistant = () => {
                 key={index} 
                 className={`message ${message.type === 'ai' ? 'ai-message' : 'user-message'}`}
               >
-                {message.type === 'ai' && <span className="message-icon">🤖</span>}
+                {message.type === 'ai' && <span className="message-icon"></span>}
                 <div className="message-bubble">
                   {message.text}
                 </div>

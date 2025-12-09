@@ -49,7 +49,7 @@ class ErrorBoundary extends Component {
       return (
         <div className="error-boundary-container">
           <div className="error-boundary-content">
-            <h1>❌ Algo salió mal</h1>
+            <h1> Algo salió mal</h1>
             <p className="error-message">{this.state.error?.toString()}</p>
             
             {process.env.NODE_ENV === 'development' && (
@@ -63,14 +63,14 @@ class ErrorBoundary extends Component {
               onClick={this.handleReset}
               className="error-boundary-button"
             >
-              🔄 Intentar de nuevo
+               Intentar de nuevo
             </button>
 
             <button 
               onClick={() => window.location.href = '/'}
               className="error-boundary-button secondary"
             >
-              🏠 Ir a inicio
+               Ir a inicio
             </button>
           </div>
         </div>

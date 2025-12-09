@@ -13,7 +13,7 @@ export default function AdminDashboard() {
     <PageWrapper
       title="Panel de Administración"
       subtitle="Gestiona la plataforma y el contenido"
-      icon="⚙️"
+      icon=""
     >
       <AdminPanel />
     </PageWrapper>

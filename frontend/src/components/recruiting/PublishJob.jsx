@@ -58,9 +58,9 @@ const PublishJob = () => {
 
       // Llamar a la API para crear el empleo
       const response = await jobsService.create(jobData);
-      console.log('✅ Oferta de empleo creada:', response);
+      console.log(' Oferta de empleo creada:', response);
 
-      setSuccess('✅ Oferta publicada exitosamente');
+      setSuccess(' Oferta publicada exitosamente');
       
       // Limpiar formulario
       setFormData({
@@ -100,7 +100,7 @@ const PublishJob = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>💼 Publicar Oferta de Empleo</h1>
+          <h1> Publicar Oferta de Empleo</h1>
           <p>Comparte una oportunidad laboral</p>
         </div>
       </div>
@@ -252,7 +252,7 @@ const PublishJob = () => {
           </div>
         </div>
 
-        {error && <div className="form-error">⚠️ {error}</div>}
+        {error && <div className="form-error"> {error}</div>}
         {success && <div className="form-success">{success}</div>}
 
         <div className="form-actions">
@@ -261,7 +261,7 @@ const PublishJob = () => {
             className="btn"
             disabled={loading}
           >
-            {loading ? 'Publicando...' : '📢 Publicar Oferta'}
+            {loading ? 'Publicando...' : ' Publicar Oferta'}
           </button>
           <button
             type="button"

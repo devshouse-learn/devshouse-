@@ -83,7 +83,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 setFormData({ name: '', email: formData.email, password: '', confirmPassword: '', adminCode: '' });
               }}
             >
-              📝 Crear cuenta ahora
+               Crear cuenta ahora
             </button>
           </div>
         );
@@ -126,7 +126,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                 setFormData({ name: '', email: formData.email, password: '', confirmPassword: '', adminCode: '' });
               }}
             >
-              🔑 Ir a Iniciar Sesión
+               Ir a Iniciar Sesión
             </button>
           </div>
         );
@@ -148,7 +148,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
             title="Presiona ESC o haz clic para cerrar"
             aria-label="Cerrar modal"
           >
-            ✕
+            
           </button>
           <div className="language-selector-wrapper">
             <select 
@@ -208,7 +208,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                       disabled={loading}
                       title={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                     >
-                      {showPassword ? '👁️' : '👁️‍🗨️'}
+                      {showPassword ? '' : ''}
                     </button>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                     setError('');
                     setResetEmail(formData.email);
                   }}>
-                    🔑 ¿Olvidaste tu contraseña?
+                     ¿Olvidaste tu contraseña?
                   </a>
                 </div>
 
@@ -318,7 +318,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                       disabled={loading}
                       title={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                     >
-                      {showPassword ? '👁️' : '👁️‍🗨️'}
+                      {showPassword ? '' : ''}
                     </button>
                   </div>
                 </div>
@@ -343,7 +343,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                       disabled={loading}
                       title={showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                     >
-                      {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                      {showConfirmPassword ? '' : ''}
                     </button>
                   </div>
                 </div>
@@ -381,7 +381,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
           {/* Tab de Recuperación de Contraseña */}
           {isForgotPassword && (
             <div className="auth-form-wrapper">
-              <h2>🔐 Recuperar Contraseña</h2>
+              <h2> Recuperar Contraseña</h2>
               <p className="auth-subtitle">Ingresa tu correo para recuperar tu contraseña</p>
 
               {!resetSent ? (
@@ -426,12 +426,12 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                     className="auth-button"
                     disabled={loading}
                   >
-                    {loading ? '⏳ Procesando...' : '📧 Enviar Enlace de Recuperación'}
+                    {loading ? '⏳ Procesando...' : ' Enviar Enlace de Recuperación'}
                   </button>
                 </form>
               ) : (
                 <div className="reset-success-message">
-                  <div className="success-icon">✅</div>
+                  <div className="success-icon"></div>
                   <p><strong>¡Éxito!</strong></p>
                   <p>Se ha enviado un enlace de recuperación a:</p>
                   <p className="email-highlight">{resetEmail}</p>
@@ -452,7 +452,7 @@ const AuthModal = ({ onClose, initialMode = 'login' }) => {
                   setError('');
                 }}
               >
-                🔑 Volver al Inicio de Sesión
+                 Volver al Inicio de Sesión
               </button>
             </div>
           )}

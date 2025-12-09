@@ -22,7 +22,7 @@ const StudentsList = () => {
       setError('');
       console.log(' Cargando estudiantes desde API...');
       const response = await agreementsService.getAll();
-      console.log('✅ Respuesta del API:', response);
+      console.log(' Respuesta del API:', response);
       let loadedStudents = response.data || [];
       
       // Filtrar solo los registros que sean de estudiantes
@@ -31,7 +31,7 @@ const StudentsList = () => {
         s.description && s.description.includes('Estudiante buscando oportunidades')
       );
       
-      console.log('👥 Estudiantes cargados:', loadedStudents);
+      console.log(' Estudiantes cargados:', loadedStudents);
       setStudents(loadedStudents);
       
       // Cargar reacciones del usuario
@@ -41,7 +41,7 @@ const StudentsList = () => {
         reactions[student.id] = userReaction;
       }
       setUserReactions(reactions);
-      console.log('✅ Estudiantes y reacciones cargados exitosamente');
+      console.log(' Estudiantes y reacciones cargados exitosamente');
     } catch (err) {
       console.error(' Error loading students:', err);
       if (err.message.includes('Failed to fetch')) {
@@ -132,7 +132,7 @@ const StudentsList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>📚 Estudiantes y Talentos</h1>
+          <h1> Estudiantes y Talentos</h1>
           <p>Descubre perfiles de estudiantes registrados</p>
         </div>
         <button 
@@ -166,7 +166,7 @@ const StudentsList = () => {
 
       {students.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin estudiantes registrados aún</h2>
+          <h2> Sin estudiantes registrados aún</h2>
           <p>Sé el primero en registrarte como estudiante</p>
           <button 
             className="btn-primary"
@@ -186,7 +186,7 @@ const StudentsList = () => {
 
               <div className="card-content">
                 <div className="info-row">
-                  <span className="label">🏫 Institución:</span>
+                  <span className="label"> Institución:</span>
                   <span className="value">{student.schoolName}</span>
                 </div>
 
@@ -201,7 +201,7 @@ const StudentsList = () => {
                 </div>
 
                 <div className="info-row">
-                  <span className="label">📱 Teléfono:</span>
+                  <span className="label"> Teléfono:</span>
                   <span className="value">{student.contactPhone || 'No disponible'}</span>
                 </div>
 
@@ -263,7 +263,7 @@ const StudentsList = () => {
                       const isCreator = user?.id === student.createdBy;
 
                       if (!isAdmin && !isCreator) {
-                        alert('⛔ No tienes permiso para eliminar este perfil');
+                        alert(' No tienes permiso para eliminar este perfil');
                         return;
                       }
 

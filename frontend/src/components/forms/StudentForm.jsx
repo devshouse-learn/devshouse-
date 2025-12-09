@@ -71,7 +71,7 @@ const StudentForm = () => {
       };
 
       const response = await agreementsService.create(dataToSubmit);
-      console.log('✅ Perfil de estudiante guardado:', response.data);
+      console.log(' Perfil de estudiante guardado:', response.data);
       
       setSuccess(true);
       setFormData({
@@ -114,20 +114,20 @@ const StudentForm = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>📚 Soy Estudiante</h1>
+          <h1> Soy Estudiante</h1>
           <p>Registra tu perfil y encuentra oportunidades de aprendizaje y experiencia</p>
         </div>
       </div>
 
       {success && (
         <div className="success-message">
-          ✅ ¡Perfil registrado exitosamente! Pronto verás oportunidades disponibles.
+           ¡Perfil registrado exitosamente! Pronto verás oportunidades disponibles.
         </div>
       )}
 
       {error && (
         <div className="error-message">
-          ⚠️ {error}
+           {error}
         </div>
       )}
 
@@ -298,7 +298,7 @@ const StudentForm = () => {
                 onChange={handleInputChange}
                 disabled={loading}
               />
-              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+              <span> Confirmo que tengo acceso a este Gmail y que es correcto</span>
             </label>
           </div>
         </fieldset>
@@ -310,7 +310,7 @@ const StudentForm = () => {
               className="btn-back"
               onClick={() => navigate(-1)}
             >
-              ⬅️ Atrás
+               Atrás
             </button>
           </div>
           <div className="btn-group-center">
@@ -319,7 +319,7 @@ const StudentForm = () => {
               className="btn-submit"
               disabled={loading}
             >
-              {loading ? '⏳ Registrando...' : '✅ Registrar Perfil'}
+              {loading ? '⏳ Registrando...' : ' Registrar Perfil'}
             </button>
             <button
               type="reset"
@@ -327,7 +327,7 @@ const StudentForm = () => {
               disabled={loading}
               onClick={() => setError('')}
             >
-              🔄 Limpiar
+               Limpiar
             </button>
           </div>
           <div className="btn-group-right">
@@ -336,14 +336,14 @@ const StudentForm = () => {
               className="btn-close"
               onClick={() => navigate('/')}
             >
-              ✕ Cerrar
+               Cerrar
             </button>
           </div>
         </div>
       </form>
 
       <div className="form-info">
-        <h3>💡 Consejos para tu Perfil</h3>
+        <h3> Consejos para tu Perfil</h3>
         <ul>
           <li>Sé honesto y detallado en tus habilidades</li>
           <li>Destaca proyectos académicos o personales relevantes</li>

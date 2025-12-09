@@ -87,7 +87,7 @@ const AgreementsForm = () => {
         createdBy: user?.id,
       };
       const response = await agreementsService.create(dataToSubmit);
-      console.log('✅ Convenio guardado en BD:', response.data);
+      console.log(' Convenio guardado en BD:', response.data);
       
       setSuccess(true);
       setFormData({
@@ -138,19 +138,19 @@ const AgreementsForm = () => {
           onClick={() => window.scrollTo(0, document.querySelector('.agreement-form').offsetTop)}
           title="Ir al formulario"
         >
-          ➕ Registrar el tuyo
+           Registrar el tuyo
         </button>
       </div>
 
       {success && (
         <div className="success-message">
-          ✅ ¡Convenio registrado exitosamente! Nos pondremos en contacto pronto.
+           ¡Convenio registrado exitosamente! Nos pondremos en contacto pronto.
         </div>
       )}
 
       {error && (
         <div className="error-message">
-          ⚠️ {error}
+           {error}
         </div>
       )}
 
@@ -321,7 +321,7 @@ const AgreementsForm = () => {
                 onChange={handleInputChange}
                 disabled={loading}
               />
-              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+              <span> Confirmo que tengo acceso a este Gmail y que es correcto</span>
             </label>
             {fieldErrors.gmailVerified && (
               <p style={{ color: '#ef4444', fontSize: '0.9rem', margin: '0.5rem 0 0 0' }}>
@@ -338,7 +338,7 @@ const AgreementsForm = () => {
               className="btn"
               onClick={() => navigate(-1)}
             >
-              ⬅️ Atrás
+               Atrás
             </button>
           </div>
           
@@ -348,7 +348,7 @@ const AgreementsForm = () => {
               className="btn"
               disabled={loading}
             >
-              {loading ? '⏳ Enviando...' : '✅ Registrar Convenio'}
+              {loading ? '⏳ Enviando...' : ' Registrar Convenio'}
             </button>
             <button
               type="reset"
@@ -356,14 +356,14 @@ const AgreementsForm = () => {
               disabled={loading}
               onClick={() => setError('')}
             >
-              🔄 Limpiar
+               Limpiar
             </button>
           </div>
         </div>
       </form>
 
       <div className="form-info">
-        <h3>ℹ️ Información Importante</h3>
+        <h3>ℹ Información Importante</h3>
         <ul>
           <li>Los campos marcados con * son obligatorios</li>
           <li>Recibirás un email de confirmación una vez registrado</li>

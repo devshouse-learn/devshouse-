@@ -22,7 +22,7 @@ const VenturesList = () => {
       setError('');
       const response = await venturesService.getAll();
       const loadedVentures = response.data || [];
-      console.log('🔍 Ventures loaded:', loadedVentures);
+      console.log(' Ventures loaded:', loadedVentures);
       setVentures(loadedVentures);
       
       // Cargar reacciones del usuario
@@ -109,14 +109,14 @@ const VenturesList = () => {
     const isCreator = user?.id === venture.createdBy;
 
     if (!isAdmin && !isCreator) {
-      alert('⛔ No tienes permiso para eliminar este emprendimiento');
+      alert(' No tienes permiso para eliminar este emprendimiento');
       return;
     }
 
     if (window.confirm(' ¿Estás seguro de que quieres eliminar este emprendimiento? Esta acción no se puede deshacer.')) {
       try {
         await venturesService.delete(id);
-        console.log('✅ Emprendimiento eliminado');
+        console.log(' Emprendimiento eliminado');
         setVentures(prevVentures => prevVentures.filter(v => v.id !== id));
       } catch (err) {
         console.error('Error al eliminar emprendimiento:', err);
@@ -142,7 +142,7 @@ const VenturesList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>🚀 Emprendimientos</h1>
+          <h1> Emprendimientos</h1>
           <p>Descubre startups y emprendimientos</p>
         </div>
       </div>
@@ -177,7 +177,7 @@ const VenturesList = () => {
 
       {ventures.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin emprendimientos aún</h2>
+          <h2> Sin emprendimientos aún</h2>
           <p>Sé el primero en registrar tu emprendimiento</p>
           <button 
             className="btn-primary"
@@ -207,7 +207,7 @@ const VenturesList = () => {
                 </div>
 
                 <div className="info-row">
-                  <span className="label">👤 Fundador:</span>
+                  <span className="label"> Fundador:</span>
                   <span className="value">{venture.founderName || venture.founder_name || 'No disponible'}</span>
                 </div>
 
@@ -225,14 +225,14 @@ const VenturesList = () => {
 
                 {(venture.funding_needed || venture.fundingNeeded) && (
                   <div className="info-row">
-                    <span className="label">� Financiamiento:</span>
+                    <span className="label"> Financiamiento:</span>
                     <span className="value">{venture.funding_needed || venture.fundingNeeded}</span>
                   </div>
                 )}
 
                 {(venture.team_size || venture.teamSize) && (
                   <div className="info-row">
-                    <span className="label">👥 Equipo:</span>
+                    <span className="label"> Equipo:</span>
                     <span className="value">{venture.team_size || venture.teamSize}</span>
                   </div>
                 )}
@@ -251,7 +251,7 @@ const VenturesList = () => {
 
                 {venture.website && (
                   <div className="info-row">
-                    <span className="label">🌐 Web:</span>
+                    <span className="label"> Web:</span>
                     <span className="value">
                       <a href={venture.website} target="_blank" rel="noopener noreferrer">
                         {venture.website}

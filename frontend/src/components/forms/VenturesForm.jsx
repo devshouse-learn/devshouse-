@@ -63,7 +63,7 @@ const VenturesForm = () => {
         ...formData,
         createdBy: user?.id,
       });
-      console.log('✅ Emprendimiento guardado en BD:', response.data);
+      console.log(' Emprendimiento guardado en BD:', response.data);
       
       setSuccess(true);
       setFormData({
@@ -104,7 +104,7 @@ const VenturesForm = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>🚀 Publica Tu<br/>Emprendimiento</h1>
+          <h1> Publica Tu<br/>Emprendimiento</h1>
           <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
         </div>
         <button 
@@ -112,24 +112,24 @@ const VenturesForm = () => {
           onClick={() => window.scrollTo(0, document.querySelector('.ventures-form').offsetTop)}
           title="Ir al formulario"
         >
-          ➕ Registrar el tuyo
+           Registrar el tuyo
         </button>
       </div>
 
       {success && (
         <div className="success-message">
-          ✅ ¡Emprendimiento publicado exitosamente! Pronto será visible en la plataforma.
+           ¡Emprendimiento publicado exitosamente! Pronto será visible en la plataforma.
         </div>
       )}
 
       {error && (
         <div className="error-message">
-          ⚠️ {error}
+           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="ventures-form">
-        <div className="form-type-badge">🚀 Formulario de Emprendimientos</div>
+        <div className="form-type-badge"> Formulario de Emprendimientos</div>
         <fieldset>
           <legend>Información de la Empresa</legend>
 
@@ -340,7 +340,7 @@ const VenturesForm = () => {
                 onChange={handleInputChange}
                 disabled={loading}
               />
-              <span>👁️ Mostrar en "Buscar Empresa"</span>
+              <span> Mostrar en "Buscar Empresa"</span>
             </label>
             <p className="checkbox-help">
               Si está marcado, tu emprendimiento será visible cuando otros usuarios busquen empresas en la plataforma.
@@ -360,7 +360,7 @@ const VenturesForm = () => {
                 onChange={handleInputChange}
                 disabled={loading}
               />
-              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+              <span> Confirmo que tengo acceso a este Gmail y que es correcto</span>
             </label>
           </div>
         </fieldset>
@@ -372,7 +372,7 @@ const VenturesForm = () => {
               className="btn"
               onClick={() => navigate(-1)}
             >
-              ⬅️ Atrás
+               Atrás
             </button>
           </div>
           <div className="btn-group-center">
@@ -381,7 +381,7 @@ const VenturesForm = () => {
               className="btn"
               disabled={loading}
             >
-              {loading ? '⏳ Publicando...' : '✅ Publicar'}
+              {loading ? '⏳ Publicando...' : ' Publicar'}
             </button>
             <button
               type="reset"
@@ -389,14 +389,14 @@ const VenturesForm = () => {
               disabled={loading}
               onClick={() => setError('')}
             >
-              🔄 Limpiar
+               Limpiar
             </button>
           </div>
         </div>
       </form>
 
       <div className="form-info">
-        <h3>💡 Consejos para tu Perfil</h3>
+        <h3> Consejos para tu Perfil</h3>
         <ul>
           <li>Sé claro y conciso en la descripción de tu proyecto</li>
           <li>Incluye el problema que resuelves y tu propuesta de valor</li>

@@ -22,12 +22,12 @@ const Header = () => {
             </div>
             {(user.role === 'admin' || user.role === 'moderador') && (
               <Link to="/moderation-panel" className="moderation-link">
-                🛡️ Moderación
+                 Moderación
               </Link>
             )}
             {user.role === 'admin' && (
               <Link to="/data-viewer" className="admin-link">
-                📊 Datos
+                 Datos
               </Link>
             )}
             <button className="logout-button" onClick={logout}>

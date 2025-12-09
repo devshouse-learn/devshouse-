@@ -19,11 +19,11 @@ const SearchTalent = () => {
   const loadTalents = async () => {
     try {
       setLoading(true);
-      console.log('🔄 Cargando talentos desde API...');
+      console.log(' Cargando talentos desde API...');
       const response = await candidatesService.getAll();
-      console.log('✅ Respuesta del API:', response);
+      console.log(' Respuesta del API:', response);
       const loadedTalents = response.data || [];
-      console.log('👥 Talentos cargados:', loadedTalents);
+      console.log(' Talentos cargados:', loadedTalents);
       setTalents(loadedTalents);
       
       // Cargar reacciones del usuario
@@ -35,8 +35,8 @@ const SearchTalent = () => {
       setUserReactions(reactions);
       setError('');
     } catch (err) {
-      console.error('❌ Error al cargar talentos:', err);
-      setError('❌ Error al cargar los talentos. Por favor, intenta de nuevo.');
+      console.error(' Error al cargar talentos:', err);
+      setError(' Error al cargar los talentos. Por favor, intenta de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -102,18 +102,18 @@ const SearchTalent = () => {
     const isCreator = user?.id === talent.createdBy;
 
     if (!isAdmin && !isCreator) {
-      alert('⛔ No tienes permiso para eliminar este perfil');
+      alert(' No tienes permiso para eliminar este perfil');
       return;
     }
 
-    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este perfil? Esta acción no se puede deshacer.')) {
+    if (window.confirm(' ¿Estás seguro de que quieres eliminar este perfil? Esta acción no se puede deshacer.')) {
       try {
         await candidatesService.delete(id);
-        console.log('✅ Perfil de talento eliminado');
+        console.log(' Perfil de talento eliminado');
         setTalents(prevTalents => prevTalents.filter(t => t.id !== id));
       } catch (err) {
         console.error('Error al eliminar:', err);
-        alert('❌ Error al eliminar el perfil: ' + err.message);
+        alert(' Error al eliminar el perfil: ' + err.message);
       }
     }
   };
@@ -139,7 +139,7 @@ const SearchTalent = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>👤 Buscar Talentos</h1>
+          <h1> Buscar Talentos</h1>
           <p>Encuentra profesionales capacitados</p>
         </div>
       </div>
@@ -160,20 +160,20 @@ const SearchTalent = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
 
       {talents.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin talentos registrados aún</h2>
+          <h2> Sin talentos registrados aún</h2>
           <p>Sé el primero en registrar tu perfil profesional</p>
           <button 
             className="btn-primary"
             onClick={() => navigate('/recruiting/publish-profile')}
           >
-            ➕ Registra el tuyo
+             Registra el tuyo
           </button>
         </div>
       ) : (
@@ -189,21 +189,21 @@ const SearchTalent = () => {
                 <div className="card-body">
                   {talent.phone && (
                     <div className="info-row">
-                      <span className="label">📞 Teléfono:</span>
+                      <span className="label"> Teléfono:</span>
                       <span className="value">{talent.phone}</span>
                     </div>
                   )}
 
                   {talent.location && (
                     <div className="info-row">
-                      <span className="label">📍 Ubicación:</span>
+                      <span className="label"> Ubicación:</span>
                       <span className="value">{talent.location}</span>
                     </div>
                   )}
 
                   {talent.technologies && talent.technologies.length > 0 && (
                     <div className="info-row">
-                      <span className="label">🔧 Tecnologías:</span>
+                      <span className="label"> Tecnologías:</span>
                       <span className="value">{talent.technologies.join(', ')}</span>
                     </div>
                   )}
@@ -215,9 +215,9 @@ const SearchTalent = () => {
                   )}
 
                   <div className="card-stats">
-                    <span>👁️ {talent.views || 0} vistas</span>
-                    <span>❤️ {talent.likes || 0} likes</span>
-                    <span>🚨 {talent.reports || 0} reportes</span>
+                    <span> {talent.views || 0} vistas</span>
+                    <span> {talent.likes || 0} likes</span>
+                    <span> {talent.reports || 0} reportes</span>
                   </div>
                 </div>
 
@@ -227,14 +227,14 @@ const SearchTalent = () => {
                     onClick={() => handleLike(talent.id)}
                     title={userReactions[talent.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                   >
-                    {userReactions[talent.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                    {userReactions[talent.id]?.hasLiked ? ' Liked' : ' Like'}
                   </button>
                   <button
                     className={`btn-report ${userReactions[talent.id]?.hasReported ? 'reported' : ''}`}
                     onClick={() => handleReport(talent.id, 'Contenido inapropiado')}
                     title={userReactions[talent.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
                   >
-                    {userReactions[talent.id]?.hasReported ? '🚩 Reported' : '🚩 Report'}
+                    {userReactions[talent.id]?.hasReported ? ' Reported' : ' Report'}
                   </button>
                   <button
                     className="btn-contact"
@@ -245,18 +245,18 @@ const SearchTalent = () => {
                         || talent.emailProfile
                         || talent.contact?.email;
                       
-                      console.log('📧 Trying email:', email, 'from talent:', talent);
+                      console.log(' Trying email:', email, 'from talent:', talent);
                       
                       if (email && String(email).trim()) {
                         window.location.href = `mailto:${String(email).trim()}`;
                       } else {
-                        console.warn('❌ No email found in talent object:', talent);
-                        alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
+                        console.warn(' No email found in talent object:', talent);
+                        alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
                       }
                     }}
                     title="Contactar con el candidato"
                   >
-                    ✉️ Contactar
+                     Contactar
                   </button>
                   {(user?.role === 'admin' || user?.id === talent.createdBy) && (
                     <button
@@ -275,7 +275,7 @@ const SearchTalent = () => {
                         transition: 'background-color 0.2s ease',
                       }}
                     >
-                      🗑️ Eliminar
+                       Eliminar
                     </button>
                   )}
                 </div>

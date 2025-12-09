@@ -67,7 +67,7 @@ const EmailValidator = () => {
   return (
     <div className="email-validator-container">
       <div className="validator-card">
-        <h2>🔍 Validador de Email</h2>
+        <h2> Validador de Email</h2>
         <p className="validator-description">
           Verifica que tu email sea real y esté correctamente configurado
         </p>
@@ -110,7 +110,7 @@ const EmailValidator = () => {
           <div className={`result-box ${result.valid ? 'valid' : 'invalid'}`}>
             <div className="result-header">
               <span className="result-icon">
-                {result.valid ? '✅' : '❌'}
+                {result.valid ? '' : ''}
               </span>
               <h3>
                 {result.valid ? 'Email Válido' : 'Email No Válido'}
@@ -121,21 +121,21 @@ const EmailValidator = () => {
             <div className="checks-container">
               <div className={`check-item ${result.checks.format ? 'pass' : 'fail'}`}>
                 <span className="check-icon">
-                  {result.checks.format ? '✓' : '✗'}
+                  {result.checks.format ? '' : ''}
                 </span>
                 <span>Formato correcto</span>
               </div>
 
               <div className={`check-item ${result.checks.disposable ? 'pass' : 'fail'}`}>
                 <span className="check-icon">
-                  {result.checks.disposable ? '✓' : '✗'}
+                  {result.checks.disposable ? '' : ''}
                 </span>
                 <span>No es email desechable</span>
               </div>
 
               <div className={`check-item ${result.checks.mxRecords ? 'pass' : 'fail'}`}>
                 <span className="check-icon">
-                  {result.checks.mxRecords ? '✓' : '✗'}
+                  {result.checks.mxRecords ? '' : ''}
                 </span>
                 <span>Servidor de correo válido</span>
               </div>
@@ -143,7 +143,7 @@ const EmailValidator = () => {
               {result.checks.smtpServer !== undefined && (
                 <div className={`check-item ${result.checks.smtpServer ? 'pass' : 'fail'}`}>
                   <span className="check-icon">
-                    {result.checks.smtpServer ? '✓' : '✗'}
+                    {result.checks.smtpServer ? '' : ''}
                   </span>
                   <span>Servidor SMTP activo</span>
                 </div>
@@ -190,12 +190,12 @@ const EmailValidator = () => {
         )}
 
         <div className="validator-info">
-          <h4>📋 ¿Qué verificamos?</h4>
+          <h4> ¿Qué verificamos?</h4>
           <ul>
-            <li>✓ Formato válido del email</li>
-            <li>✓ No es un email temporal o desechable</li>
-            <li>✓ El dominio existe y tiene servidor de correo</li>
-            <li>✓ El servidor de correo está activo</li>
+            <li> Formato válido del email</li>
+            <li> No es un email temporal o desechable</li>
+            <li> El dominio existe y tiene servidor de correo</li>
+            <li> El servidor de correo está activo</li>
           </ul>
         </div>
       </div>

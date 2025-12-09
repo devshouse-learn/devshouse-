@@ -44,11 +44,11 @@ const ModerationPanel = () => {
 
     try {
       await moderationService.approve(resourceType, resourceId);
-      alert('✅ Contenido aprobado correctamente');
+      alert(' Contenido aprobado correctamente');
       await loadData();
     } catch (error) {
       console.error('Error al aprobar:', error);
-      alert('❌ Error al aprobar el contenido');
+      alert(' Error al aprobar el contenido');
     }
   };
 
@@ -63,11 +63,11 @@ const ModerationPanel = () => {
 
     try {
       await moderationService.delete(resourceType, resourceId);
-      alert('✅ Contenido eliminado correctamente');
+      alert(' Contenido eliminado correctamente');
       await loadData();
     } catch (error) {
       console.error('Error al eliminar:', error);
-      alert('❌ Error al eliminar el contenido');
+      alert(' Error al eliminar el contenido');
     }
   };
 
@@ -87,11 +87,11 @@ const ModerationPanel = () => {
   const getResourceTypeLabel = (type) => {
     switch (type) {
       case 'agreement':
-        return '📋 Convenio';
+        return ' Convenio';
       case 'venture':
-        return '🚀 Emprendimiento';
+        return ' Emprendimiento';
       case 'job':
-        return '💼 Empleo';
+        return ' Empleo';
       default:
         return type;
     }
@@ -105,14 +105,14 @@ const ModerationPanel = () => {
   return (
     <div className="moderation-panel">
       <div className="moderation-header">
-        <h1>🛡️ Panel de Moderación</h1>
+        <h1> Panel de Moderación</h1>
         <p>
           Revisa y gestiona el contenido denunciado por la comunidad
         </p>
         <div className="moderator-info">
           <span className="moderator-name">{user?.name}</span>
           <span className={`moderator-role role-${user?.role}`}>
-            {user?.role === 'admin' ? '👑 Administrador' : '🛡️ Moderador'}
+            {user?.role === 'admin' ? ' Administrador' : ' Moderador'}
           </span>
         </div>
       </div>
@@ -120,33 +120,33 @@ const ModerationPanel = () => {
       {/* Estadísticas */}
       <div className="stats-grid">
         <div className="stat-card urgent">
-          <div className="stat-icon">⚠️</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">
             {stats.itemsUnderReview?.total || 0}
           </div>
           <div className="stat-label">Items en Revisión</div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon">📋</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">
             {stats.itemsUnderReview?.agreements || 0}
           </div>
           <div className="stat-label">Convenios</div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon">🚀</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">
             {stats.itemsUnderReview?.ventures || 0}
           </div>
           <div className="stat-label">Emprendimientos</div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon">💼</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">{stats.itemsUnderReview?.jobs || 0}</div>
           <div className="stat-label">Empleos</div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon">🚨</div>
+          <div className="stat-icon"></div>
           <div className="stat-value">{stats.totalReports || 0}</div>
           <div className="stat-label">Denuncias Totales</div>
         </div>
@@ -158,27 +158,27 @@ const ModerationPanel = () => {
           className={filter === 'all' ? 'active' : ''}
           onClick={() => setFilter('all')}
         >
-          📊 Todos ({pendingItems.length})
+           Todos ({pendingItems.length})
         </button>
         <button
           className={filter === 'agreement' ? 'active' : ''}
           onClick={() => setFilter('agreement')}
         >
-          📋 Convenios (
+           Convenios (
           {pendingItems.filter((i) => i.resourceType === 'agreement').length})
         </button>
         <button
           className={filter === 'venture' ? 'active' : ''}
           onClick={() => setFilter('venture')}
         >
-          🚀 Emprendimientos (
+           Emprendimientos (
           {pendingItems.filter((i) => i.resourceType === 'venture').length})
         </button>
         <button
           className={filter === 'job' ? 'active' : ''}
           onClick={() => setFilter('job')}
         >
-          💼 Empleos (
+           Empleos (
           {pendingItems.filter((i) => i.resourceType === 'job').length})
         </button>
       </div>
@@ -189,7 +189,7 @@ const ModerationPanel = () => {
           <div className="loading">Cargando...</div>
         ) : filteredItems.length === 0 ? (
           <div className="no-items">
-            <p>✅ No hay contenido pendiente de revisión</p>
+            <p> No hay contenido pendiente de revisión</p>
           </div>
         ) : (
           filteredItems.map((item) => (
@@ -203,7 +203,7 @@ const ModerationPanel = () => {
                 </div>
                 <div className="item-reports">
                   <span className="reports-count">
-                    🚨 {item.reports} denuncias
+                     {item.reports} denuncias
                   </span>
                 </div>
               </div>
@@ -214,31 +214,31 @@ const ModerationPanel = () => {
                 </p>
                 {item.resourceType === 'agreement' && (
                   <div className="item-details">
-                    <span>📍 {item.location}</span>
-                    <span>📧 {item.contactEmail}</span>
-                    <span>🏫 {item.schoolType}</span>
+                    <span> {item.location}</span>
+                    <span> {item.contactEmail}</span>
+                    <span> {item.schoolType}</span>
                   </div>
                 )}
                 {item.resourceType === 'venture' && (
                   <div className="item-details">
-                    <span>📍 {item.location}</span>
-                    <span>🏭 {item.industry}</span>
-                    <span>💰 {item.investmentStage}</span>
+                    <span> {item.location}</span>
+                    <span> {item.industry}</span>
+                    <span> {item.investmentStage}</span>
                   </div>
                 )}
                 {item.resourceType === 'job' && (
                   <div className="item-details">
-                    <span>🏢 {item.company}</span>
-                    <span>📍 {item.location}</span>
-                    <span>💼 {item.jobType}</span>
-                    <span>⭐ {item.experience}</span>
+                    <span> {item.company}</span>
+                    <span> {item.location}</span>
+                    <span> {item.jobType}</span>
+                    <span> {item.experience}</span>
                   </div>
                 )}
               </div>
 
               {/* Detalles de las denuncias */}
               <div className="reports-section">
-                <h4>📋 Detalles de Denuncias:</h4>
+                <h4> Detalles de Denuncias:</h4>
                 <div className="reports-list">
                   {item.reportDetails?.slice(0, 5).map((report, idx) => (
                     <div key={idx} className="report-detail">
@@ -263,13 +263,13 @@ const ModerationPanel = () => {
                   className="btn-approve"
                   onClick={() => handleApprove(item.resourceType, item.id)}
                 >
-                  ✅ Aprobar Contenido
+                   Aprobar Contenido
                 </button>
                 <button
                   className="btn-delete"
                   onClick={() => handleDelete(item.resourceType, item.id)}
                 >
-                  🗑️ Eliminar Contenido
+                   Eliminar Contenido
                 </button>
               </div>
             </div>
@@ -285,7 +285,7 @@ const ModerationPanel = () => {
           onClick={() => navigate(-1)}
           title="Volver atrás"
         >
-          ⬅️ Atrás
+           Atrás
         </button>
       </div>
     </div>

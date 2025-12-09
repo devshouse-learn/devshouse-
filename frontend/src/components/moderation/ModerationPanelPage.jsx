@@ -13,13 +13,13 @@ const ModerationPanelPage = () => {
     return (
       <PageWrapper
         title="Acceso Denegado"
-        icon="🚫"
+        icon=""
         showBackButton={false}
       >
         <div className="access-denied-container">
           <h2>No tienes permisos para acceder a este panel.</h2>
           <button onClick={() => navigate('/')} className="btn-home">
-            🏠 Volver al inicio
+             Volver al inicio
           </button>
         </div>
       </PageWrapper>
@@ -30,7 +30,7 @@ const ModerationPanelPage = () => {
     <PageWrapper
       title="Panel de Moderación"
       subtitle="Revisa y modera el contenido de la plataforma"
-      icon="🛡️"
+      icon=""
     >
       <ModerationPanel />
     </PageWrapper>

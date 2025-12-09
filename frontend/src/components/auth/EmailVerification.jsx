@@ -16,14 +16,14 @@ const EmailVerification = () => {
 
       if (data.success) {
         setMessageType('success');
-        setMessage('✅ ' + data.message);
+        setMessage(' ' + data.message);
       } else {
         setMessageType('error');
-        setMessage('❌ ' + data.message);
+        setMessage(' ' + data.message);
       }
     } catch (err) {
       setMessageType('error');
-      setMessage('❌ Error al verificar el email');
+      setMessage(' Error al verificar el email');
       console.error('Error:', err);
     } finally {
       setIsLoading(false);
@@ -56,15 +56,15 @@ const EmailVerification = () => {
 
       if (data.success) {
         setMessageType('success');
-        setMessage('✅ Email de verificación enviado. Revisa tu bandeja de entrada.');
+        setMessage(' Email de verificación enviado. Revisa tu bandeja de entrada.');
         setEmail('');
       } else {
         setMessageType('error');
-        setMessage('❌ ' + data.message);
+        setMessage(' ' + data.message);
       }
     } catch (err) {
       setMessageType('error');
-      setMessage('❌ Error al enviar el email de verificación');
+      setMessage(' Error al enviar el email de verificación');
       console.error('Error:', err);
     } finally {
       setIsLoading(false);
@@ -85,7 +85,7 @@ const EmailVerification = () => {
     <div className="email-verification-container">
       <div className="verification-card">
         <div className="verification-header">
-          <h1>📧 Verificación de Email</h1>
+          <h1> Verificación de Email</h1>
         </div>
 
         {message && (
@@ -123,7 +123,7 @@ const EmailVerification = () => {
           </form>
 
           <div className="verification-info">
-            <h3>📌 Información importante:</h3>
+            <h3> Información importante:</h3>
             <ul>
               <li>El enlace de verificación expira en 24 horas</li>
               <li>Revisa tu carpeta de spam si no ves el email</li>

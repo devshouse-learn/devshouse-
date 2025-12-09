@@ -27,7 +27,7 @@ const SearchCompanies = () => {
         response = await jobsService.getAll();
       }
       
-      console.log('✅ Respuesta del API:', response);
+      console.log(' Respuesta del API:', response);
       let loadedCompanies = response.data || [];
       
       // Filtrar solo emprendimientos con showInSearch = true
@@ -151,7 +151,7 @@ const SearchCompanies = () => {
             fontWeight: '600',
           }}
         >
-          🚀 Emprendimientos
+           Emprendimientos
         </button>
         <button
           className={`tab-button ${activeTab === 'jobs' ? 'active' : ''}`}
@@ -166,7 +166,7 @@ const SearchCompanies = () => {
             fontWeight: '600',
           }}
         >
-          💼 Ofertas de Trabajo
+           Ofertas de Trabajo
         </button>
       </div>
 
@@ -193,7 +193,7 @@ const SearchCompanies = () => {
 
       {companies.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin {activeTab === 'ventures' ? 'emprendimientos' : 'ofertas'} registrados aún</h2>
+          <h2> Sin {activeTab === 'ventures' ? 'emprendimientos' : 'ofertas'} registrados aún</h2>
           <p>Sé el primero en registrar {activeTab === 'ventures' ? 'tu emprendimiento' : 'una oferta'}</p>
           <button 
             className="btn-primary"
@@ -224,7 +224,7 @@ const SearchCompanies = () => {
                     <>
                       {company.founder_name && (
                         <div className="info-row">
-                          <span className="label">👤 Fundador:</span>
+                          <span className="label"> Fundador:</span>
                           <span className="value">{company.founder_name}</span>
                         </div>
                       )}
@@ -248,13 +248,13 @@ const SearchCompanies = () => {
                       )}
                       {company.funding_needed && (
                         <div className="info-row">
-                          <span className="label">💵 Financiamiento:</span>
+                          <span className="label"> Financiamiento:</span>
                           <span className="value">{company.funding_needed}</span>
                         </div>
                       )}
                       {company.team_size && (
                         <div className="info-row">
-                          <span className="label">👥 Equipo:</span>
+                          <span className="label"> Equipo:</span>
                           <span className="value">{company.team_size}</span>
                         </div>
                       )}
@@ -266,7 +266,7 @@ const SearchCompanies = () => {
                       )}
                       {company.website && (
                         <div className="info-row">
-                          <span className="label">🌐 Web:</span>
+                          <span className="label"> Web:</span>
                           <span className="value">
                             <a href={company.website} target="_blank" rel="noopener noreferrer">
                               {company.website}
@@ -370,7 +370,7 @@ const SearchCompanies = () => {
                     onClick={() => handleReport(company.id, 'Contenido inapropiado')}
                     title={userReactions[company.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
                   >
-                    {userReactions[company.id]?.hasReported ? '🚩 Reported' : '🚩 Report'}
+                    {userReactions[company.id]?.hasReported ? ' Reported' : ' Report'}
                   </button>
                   <button
                     className="btn-contact"

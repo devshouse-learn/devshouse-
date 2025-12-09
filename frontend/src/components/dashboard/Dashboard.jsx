@@ -31,7 +31,7 @@ const Dashboard = () => {
             <div className="card-icon">{item.icon}</div>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <span className="card-arrow">▶</span>
+            <span className="card-arrow"></span>
           </div>
         ))}
       </div>

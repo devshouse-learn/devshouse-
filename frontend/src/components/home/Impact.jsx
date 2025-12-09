@@ -2,22 +2,22 @@ import './Impact.css';
 
 const featuresData = [
   {
-    icon: '⭐',
+    icon: '',
     title: 'Rápido y Eficiente',
     description: 'Acceso inmediato a oportunidades sin trámites complicados'
   },
   {
-    icon: '🔐',
+    icon: '',
     title: 'Seguro y Confiable',
     description: 'Tu información está protegida con los más altos estándares'
   },
   {
-    icon: '🌐',
+    icon: '',
     title: 'Alcance Global',
     description: 'Conecta con profesionales y oportunidades en todo el mundo'
   },
   {
-    icon: '💡',
+    icon: '',
     title: 'Accesible en Cualquier Lugar',
     description: 'Plataforma responsive optimizada para todos los dispositivos'
   }

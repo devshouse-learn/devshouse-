@@ -191,7 +191,7 @@ export default function AdminPanel() {
         }
 
         // Simular eliminación de usuario
-        setDeleteMessage(`✅ Usuario ${deleteEmail} eliminado correctamente`);
+        setDeleteMessage(` Usuario ${deleteEmail} eliminado correctamente`);
         setDeleteMessageType('success');
         setDeleteEmail('');
 
@@ -218,13 +218,13 @@ export default function AdminPanel() {
       
       setMaintenanceMessage(
         newMode 
-          ? '✅ Modo mantenimiento ACTIVADO - La plataforma no aceptará nuevas conexiones' 
-          : '✅ Modo mantenimiento DESACTIVADO - La plataforma está operativa'
+          ? ' Modo mantenimiento ACTIVADO - La plataforma no aceptará nuevas conexiones' 
+          : ' Modo mantenimiento DESACTIVADO - La plataforma está operativa'
       );
       
       setTimeout(() => setMaintenanceMessage(''), 4000);
     } catch (error) {
-      setMaintenanceMessage(`❌ Error al cambiar modo de mantenimiento: ${error.message}`);
+      setMaintenanceMessage(` Error al cambiar modo de mantenimiento: ${error.message}`);
       setTimeout(() => setMaintenanceMessage(''), 4000);
     }
   };
@@ -247,14 +247,14 @@ export default function AdminPanel() {
         if (criticalData.user) localStorage.setItem('user', criticalData.user);
         if (criticalData.adminPassword) localStorage.setItem('adminPassword', criticalData.adminPassword);
         
-        setMaintenanceMessage('✅ Cache limpiado correctamente (datos críticos preservados)');
+        setMaintenanceMessage(' Cache limpiado correctamente (datos críticos preservados)');
         
         setTimeout(() => {
           setMaintenanceMessage('');
           setClearCacheLoading(false);
         }, 3000);
       } catch (error) {
-        setMaintenanceMessage(`❌ Error al limpiar caché: ${error.message}`);
+        setMaintenanceMessage(` Error al limpiar caché: ${error.message}`);
         setClearCacheLoading(false);
         setTimeout(() => setMaintenanceMessage(''), 3000);
       }
@@ -318,10 +318,10 @@ export default function AdminPanel() {
       // Limpiar URL del objeto blob
       setTimeout(() => URL.revokeObjectURL(url), 100);
       
-      setMaintenanceMessage('✅ Datos exportados correctamente - Archivo descargado');
+      setMaintenanceMessage(' Datos exportados correctamente - Archivo descargado');
       setTimeout(() => setMaintenanceMessage(''), 4000);
     } catch (error) {
-      setMaintenanceMessage(`❌ Error al exportar datos: ${error.message}`);
+      setMaintenanceMessage(` Error al exportar datos: ${error.message}`);
       setTimeout(() => setMaintenanceMessage(''), 4000);
     }
   };
@@ -348,9 +348,9 @@ export default function AdminPanel() {
         .map(([key, value]) => `${key}: ${value}`)
         .join('\n');
       
-      alert(`📊 ESTADÍSTICAS DEL SISTEMA\n\n${statsStr}\n\nÚltima actualización: ${stats.timestamp}`);
+      alert(` ESTADÍSTICAS DEL SISTEMA\n\n${statsStr}\n\nÚltima actualización: ${stats.timestamp}`);
     } catch (error) {
-      alert(`❌ Error al obtener estadísticas: ${error.message}`);
+      alert(` Error al obtener estadísticas: ${error.message}`);
     }
   };
 
@@ -358,42 +358,42 @@ export default function AdminPanel() {
     try {
       const languages = [
         'Español', 'English', 'Português', 'Français', 'Deutsch',
-        'Italiano', 'Nederlands', 'Polski', 'Русский', '日本語',
-        '中文', '한국어', 'العربية', 'हिन्दी', 'Türkçe',
+        'Italiano', 'Nederlands', 'Polski', 'Русский', '',
+        '', '', 'العربية', 'हिन्दी', 'Türkçe',
         'Tiếng Việt', 'ไทย', 'Bahasa Indonesia', 'Tagalog', 'Bahasa Melayu',
         'Svenska', 'Dansk', 'Norsk', 'Suomi', 'Ελληνικά',
         'Čeština', 'Magyar', 'Română', 'Українська', 'עברית'
       ];
       
       const langList = languages.map((lang, idx) => `${idx + 1}. ${lang}`).join('\n');
-      alert(`🌍 IDIOMAS SOPORTADOS (30 TOTAL)\n\n${langList}\n\nTodos los idiomas están disponibles en la plataforma.`);
+      alert(` IDIOMAS SOPORTADOS (30 TOTAL)\n\n${langList}\n\nTodos los idiomas están disponibles en la plataforma.`);
     } catch (error) {
-      alert(`❌ Error: ${error.message}`);
+      alert(` Error: ${error.message}`);
     }
   };
 
   const handleSecurityConfig = () => {
     try {
       const securityInfo = `
-🔒 CONFIGURACIÓN DE SEGURIDAD - DevsHouse
+ CONFIGURACIÓN DE SEGURIDAD - DevsHouse
 
-✅ POLÍTICAS ACTUALES:
-├─ Autenticación: Basada en email y contraseña
-├─ Sesión: Almacenada en localStorage
-├─ Roles: Admin, Moderador, Usuario
-├─ Permiso mínimo: Requerida autenticación
-├─ HTTPS: Recomendado en producción
-└─ CORS: Habilitado para desarrollo
+ POLÍTICAS ACTUALES:
+ Autenticación: Basada en email y contraseña
+ Sesión: Almacenada en localStorage
+ Roles: Admin, Moderador, Usuario
+ Permiso mínimo: Requerida autenticación
+ HTTPS: Recomendado en producción
+ CORS: Habilitado para desarrollo
 
-🔐 CARACTERÍSTICAS DE SEGURIDAD:
-├─ Hash de contraseñas: bcryptjs (cuando esté backend)
-├─ Validación de email: Regex completo
-├─ Confirmación de acciones críticas: Habilitada
-├─ Protección de propietario: kelib@gmail.com protegido
-├─ Logs de administrador: Disponible
-└─ Auditoría de acciones: En desarrollo
+ CARACTERÍSTICAS DE SEGURIDAD:
+ Hash de contraseñas: bcryptjs (cuando esté backend)
+ Validación de email: Regex completo
+ Confirmación de acciones críticas: Habilitada
+ Protección de propietario: kelib@gmail.com protegido
+ Logs de administrador: Disponible
+ Auditoría de acciones: En desarrollo
 
-⚙️ OPCIONES DISPONIBLES:
+ OPCIONES DISPONIBLES:
 1. Cambiar políticas de contraseña (próximamente)
 2. Configurar 2FA (próximamente)
 3. Gestionar sesiones activas (próximamente)
@@ -404,64 +404,64 @@ Todas las políticas se aplicarán cuando el backend esté integrado.
       `;
       alert(securityInfo);
     } catch (error) {
-      alert(`❌ Error: ${error.message}`);
+      alert(` Error: ${error.message}`);
     }
   };
 
   const handleNotificationsConfig = () => {
     try {
       const notifInfo = `
-📧 CONFIGURACIÓN DE NOTIFICACIONES - DevsHouse
+ CONFIGURACIÓN DE NOTIFICACIONES - DevsHouse
 
-✅ CANALES DISPONIBLES:
-├─ Email: Sistema SMTP (próximamente)
-├─ SMS: Integración Twilio (próximamente)
-├─ Push: Notificaciones web (próximamente)
-├─ Webhook: Eventos en tiempo real (próximamente)
-└─ In-app: Notificaciones en la plataforma (próximamente)
+ CANALES DISPONIBLES:
+ Email: Sistema SMTP (próximamente)
+ SMS: Integración Twilio (próximamente)
+ Push: Notificaciones web (próximamente)
+ Webhook: Eventos en tiempo real (próximamente)
+ In-app: Notificaciones en la plataforma (próximamente)
 
-📋 TIPOS DE NOTIFICACIÓN:
-├─ Cambios de rol
-├─ Nuevas ofertas de empleo
-├─ Actualizaciones de convenios
-├─ Cambios de estado de solicitudes
-├─ Mensajes de moderadores
-└─ Alertas del sistema
+ TIPOS DE NOTIFICACIÓN:
+ Cambios de rol
+ Nuevas ofertas de empleo
+ Actualizaciones de convenios
+ Cambios de estado de solicitudes
+ Mensajes de moderadores
+ Alertas del sistema
 
-🔧 CONFIGURACIÓN ACTUAL:
-├─ Email SMTP: No configurado
-├─ Remitente: noreply@devshouse.com
-├─ Frecuencia: Inmediata
-├─ Zona horaria: Auto-detectada
-└─ Idioma: Según preferencia del usuario
+ CONFIGURACIÓN ACTUAL:
+ Email SMTP: No configurado
+ Remitente: noreply@devshouse.com
+ Frecuencia: Inmediata
+ Zona horaria: Auto-detectada
+ Idioma: Según preferencia del usuario
 
 Para configurar SMTP, contacta al administrador principal.
       `;
       alert(notifInfo);
     } catch (error) {
-      alert(`❌ Error: ${error.message}`);
+      alert(` Error: ${error.message}`);
     }
   };
 
   const handleAPIKeysConfig = () => {
     try {
       const apiInfo = `
-📱 GESTIÓN DE API KEYS - DevsHouse
+ GESTIÓN DE API KEYS - DevsHouse
 
-🔑 TUS API KEYS ACTUALES:
-├─ Clave Principal: sk_live_${user.id?.substring(0, 12)}
-├─ Estatus: Activa
-├─ Creada: ${new Date().toLocaleDateString('es-ES')}
-├─ Última actividad: Hace 5 minutos
-└─ Límite de requests: 10,000/día
+ TUS API KEYS ACTUALES:
+ Clave Principal: sk_live_${user.id?.substring(0, 12)}
+ Estatus: Activa
+ Creada: ${new Date().toLocaleDateString('es-ES')}
+ Última actividad: Hace 5 minutos
+ Límite de requests: 10,000/día
 
-📊 ESTADÍSTICAS DE USO:
-├─ Requests hoy: 234
-├─ Requests este mes: 5,421
-├─ Límite disponible: 4,766
-└─ Porcentaje usado: 53%
+ ESTADÍSTICAS DE USO:
+ Requests hoy: 234
+ Requests este mes: 5,421
+ Límite disponible: 4,766
+ Porcentaje usado: 53%
 
-⚙️ OPCIONES DISPONIBLES:
+ OPCIONES DISPONIBLES:
 1. Crear nueva API Key
 2. Regenerar clave principal
 3. Revocar acceso
@@ -469,7 +469,7 @@ Para configurar SMTP, contacta al administrador principal.
 5. Configurar límites por endpoint
 6. Habilitar/deshabilitar por IP
 
-🔐 SEGURIDAD:
+ SEGURIDAD:
 - Nunca compartas tus API Keys
 - Regenera regularmente
 - Usa diferentes keys para diferentes aplicaciones
@@ -479,14 +479,14 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
       `;
       alert(apiInfo);
     } catch (error) {
-      alert(`❌ Error: ${error.message}`);
+      alert(` Error: ${error.message}`);
     }
   };
 
   return (
     <div className="admin-panel">
       <div className="admin-panel-header">
-        <h2>⚙️ Panel de Administración</h2>
+        <h2> Panel de Administración</h2>
         <p className="admin-info">
           Conectado como: <strong>{user.email}</strong>
         </p>
@@ -495,7 +495,7 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
       <div className="admin-panel-content">
         {/* Sección para asignar Administrador */}
         <section className="admin-section">
-          <h3>👑 Asignar Rol de Administrador</h3>
+          <h3> Asignar Rol de Administrador</h3>
           <p className="section-description">
             Promueve a otros usuarios a administradores para que puedan gestionar la plataforma.
           </p>
@@ -518,20 +518,20 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="admin-button admin-button-primary"
               disabled={isLoadingAdmin || !adminEmail.trim()}
             >
-              {isLoadingAdmin ? 'Procesando...' : '👑 Promover a Administrador'}
+              {isLoadingAdmin ? 'Procesando...' : ' Promover a Administrador'}
             </button>
           </form>
 
           {adminMessage && (
             <div className={`admin-message ${adminMessageType}`}>
-              {adminMessageType === 'success' ? '✅' : '❌'} {adminMessage}
+              {adminMessageType === 'success' ? '' : ''} {adminMessage}
             </div>
           )}
         </section>
 
         {/* Sección para asignar Moderador */}
         <section className="admin-section">
-          <h3>🛡️ Asignar Rol de Moderador</h3>
+          <h3> Asignar Rol de Moderador</h3>
           <p className="section-description">
             Promueve a usuarios a moderadores para que ayuden a gestionar el contenido.
           </p>
@@ -554,20 +554,20 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="admin-button admin-button-secondary"
               disabled={isLoadingModerator || !moderatorEmail.trim()}
             >
-              {isLoadingModerator ? 'Procesando...' : '🛡️ Promover a Moderador'}
+              {isLoadingModerator ? 'Procesando...' : ' Promover a Moderador'}
             </button>
           </form>
 
           {moderatorMessage && (
             <div className={`admin-message ${moderatorMessageType}`}>
-              {moderatorMessageType === 'success' ? '✅' : '❌'} {moderatorMessage}
+              {moderatorMessageType === 'success' ? '' : ''} {moderatorMessage}
             </div>
           )}
         </section>
 
         {/* Sección para revocar Administrador */}
         <section className="admin-section">
-          <h3>❌ Revocar Rol de Administrador</h3>
+          <h3> Revocar Rol de Administrador</h3>
           <p className="section-description">
             Revoca el rol de administrador a usuarios (excepto al propietario kelib@gmail.com).
           </p>
@@ -590,20 +590,20 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="admin-button admin-button-danger"
               disabled={isLoadingRevokeAdmin || !revokeAdminEmail.trim()}
             >
-              {isLoadingRevokeAdmin ? 'Procesando...' : '❌ Revocar Administrador'}
+              {isLoadingRevokeAdmin ? 'Procesando...' : ' Revocar Administrador'}
             </button>
           </form>
 
           {revokeAdminMessage && (
             <div className={`admin-message ${revokeAdminMessageType}`}>
-              {revokeAdminMessageType === 'success' ? '✅' : '❌'} {revokeAdminMessage}
+              {revokeAdminMessageType === 'success' ? '' : ''} {revokeAdminMessage}
             </div>
           )}
         </section>
 
         {/* Sección para revocar Moderador */}
         <section className="admin-section">
-          <h3>🚫 Revocar Rol de Moderador</h3>
+          <h3> Revocar Rol de Moderador</h3>
           <p className="section-description">
             Revoca el rol de moderador a usuarios.
           </p>
@@ -626,20 +626,20 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="admin-button admin-button-warning"
               disabled={isLoadingRevokeModerator || !revokeModeratorEmail.trim()}
             >
-              {isLoadingRevokeModerator ? 'Procesando...' : '🚫 Revocar Moderador'}
+              {isLoadingRevokeModerator ? 'Procesando...' : ' Revocar Moderador'}
             </button>
           </form>
 
           {revokeModeratorMessage && (
             <div className={`admin-message ${revokeModeratorMessageType}`}>
-              {revokeModeratorMessageType === 'success' ? '✅' : '❌'} {revokeModeratorMessage}
+              {revokeModeratorMessageType === 'success' ? '' : ''} {revokeModeratorMessage}
             </div>
           )}
         </section>
 
         {/* Sección para eliminar usuario */}
         <section className="admin-section">
-          <h3>🗑️ Eliminar Usuario</h3>
+          <h3> Eliminar Usuario</h3>
           <p className="section-description">
             Elimina permanentemente un usuario de la plataforma (no se puede deshacer).
           </p>
@@ -662,27 +662,27 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="admin-button admin-button-danger"
               disabled={isLoadingDelete || !deleteEmail.trim()}
             >
-              {isLoadingDelete ? 'Procesando...' : '🗑️ Eliminar Usuario'}
+              {isLoadingDelete ? 'Procesando...' : ' Eliminar Usuario'}
             </button>
           </form>
 
           {deleteMessage && (
             <div className={`admin-message ${deleteMessageType}`}>
-              {deleteMessageType === 'success' ? '✅' : '❌'} {deleteMessage}
+              {deleteMessageType === 'success' ? '' : ''} {deleteMessage}
             </div>
           )}
         </section>
 
         {/* Sección de Mantenimiento */}
         <section className="admin-section">
-          <h3>🔧 Mantenimiento del Sistema</h3>
+          <h3> Mantenimiento del Sistema</h3>
           <p className="section-description">
             Herramientas de gestión y mantenimiento de la plataforma.
           </p>
 
           <div className="maintenance-grid">
             <div className="maintenance-option">
-              <h4>⚙️ Modo Mantenimiento</h4>
+              <h4> Modo Mantenimiento</h4>
               <p>Activa modo de mantenimiento para no permitir acceso a usuarios</p>
               <div className="toggle-container">
                 <input
@@ -699,36 +699,36 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
             </div>
 
             <div className="maintenance-option">
-              <h4>🗑️ Limpiar Caché</h4>
+              <h4> Limpiar Caché</h4>
               <p>Limpia toda la información del caché del navegador</p>
               <button
                 onClick={handleClearCache}
                 disabled={clearCacheLoading}
                 className="admin-button admin-button-secondary"
               >
-                {clearCacheLoading ? 'Limpiando...' : '🗑️ Limpiar Caché'}
+                {clearCacheLoading ? 'Limpiando...' : ' Limpiar Caché'}
               </button>
             </div>
 
             <div className="maintenance-option">
-              <h4>💾 Exportar Datos</h4>
+              <h4> Exportar Datos</h4>
               <p>Descarga una copia de seguridad de los datos del sistema</p>
               <button
                 onClick={handleExportData}
                 className="admin-button admin-button-primary"
               >
-                💾 Descargar Backup
+                 Descargar Backup
               </button>
             </div>
 
             <div className="maintenance-option">
-              <h4>📊 Estadísticas del Sistema</h4>
+              <h4> Estadísticas del Sistema</h4>
               <p>Ver información de uso y estadísticas</p>
               <button
                 onClick={handleViewStats}
                 className="admin-button admin-button-primary"
               >
-                📊 Ver Estadísticas
+                 Ver Estadísticas
               </button>
             </div>
           </div>
@@ -742,14 +742,14 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
 
         {/* Sección de Configuración General */}
         <section className="admin-section">
-          <h3>⚙️ Configuración General</h3>
+          <h3> Configuración General</h3>
           <p className="section-description">
             Ajusta la configuración general de la plataforma.
           </p>
 
           <div className="config-grid">
             <div className="config-option">
-              <h4>🌍 Idiomas</h4>
+              <h4> Idiomas</h4>
               <p>30 idiomas soportados</p>
               <button
                 onClick={handleLanguageConfig}
@@ -760,7 +760,7 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
             </div>
 
             <div className="config-option">
-              <h4>🔒 Seguridad</h4>
+              <h4> Seguridad</h4>
               <p>Configurar políticas de seguridad</p>
               <button
                 onClick={handleSecurityConfig}
@@ -771,7 +771,7 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
             </div>
 
             <div className="config-option">
-              <h4>📧 Notificaciones</h4>
+              <h4> Notificaciones</h4>
               <p>Gestionar configuración de email</p>
               <button
                 onClick={handleNotificationsConfig}
@@ -782,7 +782,7 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
             </div>
 
             <div className="config-option">
-              <h4>📱 API Keys</h4>
+              <h4> API Keys</h4>
               <p>Gestionar claves de API</p>
               <button
                 onClick={handleAPIKeysConfig}
@@ -802,7 +802,7 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="btn-back"
               onClick={() => navigate(-1)}
             >
-              ⬅️ Atrás
+               Atrás
             </button>
           </div>
           <div className="btn-group-right">
@@ -811,7 +811,7 @@ Para crear una nueva API Key, haz clic en "Crear Nueva".
               className="btn-close"
               onClick={() => navigate('/')}
             >
-              ✕ Cerrar
+               Cerrar
             </button>
           </div>
         </div>

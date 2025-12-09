@@ -16,7 +16,7 @@ const NavBar = () => {
             to="/agreements"
             className={`nav-link ${isActive('agreements')}`}
           >
-            <span className="nav-icon">📋</span>
+            <span className="nav-icon"></span>
             <span className="nav-text">Convenios</span>
           </Link>
 
@@ -24,7 +24,7 @@ const NavBar = () => {
             to="/ventures"
             className={`nav-link ${isActive('ventures')}`}
           >
-            <span className="nav-icon">🚀</span>
+            <span className="nav-icon"></span>
             <span className="nav-text">Emprendimientos</span>
           </Link>
 
@@ -32,7 +32,7 @@ const NavBar = () => {
             to="/recruiting"
             className={`nav-link recruiting-link ${isActive('recruiting')}`}
           >
-            <span className="nav-icon">💼</span>
+            <span className="nav-icon"></span>
             <span className="nav-text">Centro de Reclutamiento</span>
           </Link>
         </div>

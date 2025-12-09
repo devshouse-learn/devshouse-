@@ -99,7 +99,7 @@ const JobsList = () => {
     try {
       await jobsService.delete(id);
       setJobs(prevJobs => prevJobs.filter(j => j.id !== id));
-      alert('✅ Oferta eliminada correctamente');
+      alert(' Oferta eliminada correctamente');
     } catch (err) {
       console.error('Error al eliminar:', err);
       alert(' Error al eliminar: ' + err.message);
@@ -157,7 +157,7 @@ const JobsList = () => {
 
       {jobs.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin ofertas de empleo aún</h2>
+          <h2> Sin ofertas de empleo aún</h2>
           <p>Sé el primero en publicar una oferta</p>
           <button 
             className="btn-primary"

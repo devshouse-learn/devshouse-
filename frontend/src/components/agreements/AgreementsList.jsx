@@ -113,14 +113,14 @@ const AgreementsList = () => {
     const isCreator = user?.id === agreement.createdBy;
 
     if (!isAdmin && !isCreator) {
-      alert('⛔ No tienes permiso para eliminar este convenio');
+      alert(' No tienes permiso para eliminar este convenio');
       return;
     }
 
     if (window.confirm(' ¿Estás seguro de que quieres eliminar este convenio? Esta acción no se puede deshacer.')) {
       try {
         await agreementsService.delete(id);
-        console.log('✅ Convenio eliminado');
+        console.log(' Convenio eliminado');
         setAgreements(prevAgreements => prevAgreements.filter(a => a.id !== id));
       } catch (err) {
         console.error('Error al eliminar convenio:', err);
@@ -151,7 +151,7 @@ const AgreementsList = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>� Convenios Educativos</h1>
+          <h1> Convenios Educativos</h1>
           <p>Descubre instituciones educativas que buscan convenios con empresas</p>
         </div>
         <button 
@@ -185,7 +185,7 @@ const AgreementsList = () => {
 
       {agreements.length === 0 ? (
         <div className="empty-state">
-          <h2>📭 Sin convenios aún</h2>
+          <h2> Sin convenios aún</h2>
           <p>Sé el primero en registrar un convenio educativo</p>
           <button 
             className="btn-primary"
@@ -211,7 +211,7 @@ const AgreementsList = () => {
 
                 {agreement.level && (
                   <div className="info-row">
-                    <span className="label">📚 Nivel:</span>
+                    <span className="label"> Nivel:</span>
                     <span className="value">{agreement.level}</span>
                   </div>
                 )}
@@ -225,7 +225,7 @@ const AgreementsList = () => {
 
                 {agreement.studentCount && (
                   <div className="info-row">
-                    <span className="label">👥 Estudiantes:</span>
+                    <span className="label"> Estudiantes:</span>
                     <span className="value">{agreement.studentCount}</span>
                   </div>
                 )}
@@ -243,13 +243,13 @@ const AgreementsList = () => {
                 </div>
 
                 <div className="info-row">
-                  <span className="label">📱 Teléfono:</span>
+                  <span className="label"> Teléfono:</span>
                   <span className="value">{agreement.contactPhone || 'No disponible'}</span>
                 </div>
 
                 {agreement.website && (
                   <div className="info-row">
-                    <span className="label">🌐 Web:</span>
+                    <span className="label"> Web:</span>
                     <span className="value">
                       <a href={agreement.website} target="_blank" rel="noopener noreferrer">
                         {agreement.website}

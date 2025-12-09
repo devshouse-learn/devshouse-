@@ -34,7 +34,7 @@ const PageWrapper = ({
 
       <div className="page-footer">
         <button className="btn-home" onClick={() => navigate('/')}>
-          🏠 Inicio
+           Inicio
         </button>
       </div>
     </div>

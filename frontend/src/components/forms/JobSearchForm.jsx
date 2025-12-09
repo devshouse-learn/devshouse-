@@ -30,7 +30,7 @@ const JobSearchForm = () => {
         const response = await jobsService.getAll({ status: 'active' });
         const jobs = response.data || [];
         setAllJobs(jobs);
-        console.log('📋 Empleos cargados desde BD:', jobs.length);
+        console.log(' Empleos cargados desde BD:', jobs.length);
       } catch (error) {
         console.error('Error al cargar empleos:', error);
         setAllJobs([]);
@@ -99,12 +99,12 @@ const JobSearchForm = () => {
   return (
     <div className="search-container">
       <div className="search-header">
-        <h1>🎯 Busca Tu Próxima Oportunidad</h1>
+        <h1> Busca Tu Próxima Oportunidad</h1>
         <p>Encuentra empleos que se adapten a tu perfil y experiencia</p>
       </div>
 
       <form onSubmit={handleSearch} className="job-search-form">
-        <div className="form-type-badge">🔍 Formulario de Búsqueda de Empleos</div>
+        <div className="form-type-badge"> Formulario de Búsqueda de Empleos</div>
         <fieldset>
           <legend>Criterios de Búsqueda</legend>
 
@@ -217,15 +217,15 @@ const JobSearchForm = () => {
                 className="btn-back"
                 onClick={() => navigate(-1)}
               >
-                ⬅️ Atrás
+                 Atrás
               </button>
             </div>
             <div className="btn-group-center">
               <button type="submit" className="btn-submit">
-                ⭐ Buscar Empleos
+                 Buscar Empleos
               </button>
               <button type="button" className="btn-reset" onClick={handleReset}>
-                🔄 Limpiar Filtros
+                 Limpiar Filtros
               </button>
             </div>
             <div className="btn-group-right">
@@ -234,7 +234,7 @@ const JobSearchForm = () => {
                 className="btn-close"
                 onClick={() => navigate('/')}
               >
-                ✕ Cerrar
+                 Cerrar
               </button>
             </div>
           </div>
@@ -247,7 +247,7 @@ const JobSearchForm = () => {
 
           {results.length === 0 ? (
             <div className="no-results">
-              <p>😔 No encontramos empleos que coincidan con tu búsqueda.</p>
+              <p> No encontramos empleos que coincidan con tu búsqueda.</p>
               <p>Intenta con diferentes criterios o ajusta tus filtros.</p>
             </div>
           ) : (
@@ -260,17 +260,17 @@ const JobSearchForm = () => {
                       <p className="company">{job.company}</p>
                     </div>
                     <div className="job-type-badge" data-type={job.jobType}>
-                      {job.jobType === 'full-time' && '💼 Tiempo Completo'}
+                      {job.jobType === 'full-time' && ' Tiempo Completo'}
                       {job.jobType === 'part-time' && '⏰ Medio Tiempo'}
-                      {job.jobType === 'contract' && '📋 Contrato'}
-                      {job.jobType === 'freelance' && '🎯 Freelance'}
+                      {job.jobType === 'contract' && ' Contrato'}
+                      {job.jobType === 'freelance' && ' Freelance'}
                     </div>
                   </div>
 
                   <div className="job-details">
-                    <span className="detail">📍 {job.location}</span>
-                    <span className="detail">💼 {job.experience}</span>
-                    <span className="detail">💵 {job.currency} {job.salaryMin} - {job.salaryMax}</span>
+                    <span className="detail"> {job.location}</span>
+                    <span className="detail"> {job.experience}</span>
+                    <span className="detail"> {job.currency} {job.salaryMin} - {job.salaryMax}</span>
                   </div>
 
                   <p className="job-description">{job.description}</p>
@@ -297,7 +297,7 @@ const JobSearchForm = () => {
       )}
 
       <div className="search-tips">
-        <h3>💡 Consejos para tu Búsqueda</h3>
+        <h3> Consejos para tu Búsqueda</h3>
         <ul>
           <li>Sé específico en tus criterios para mejores resultados</li>
           <li>Explora diferentes ubicaciones, incluyendo oportunidades virtuales</li>

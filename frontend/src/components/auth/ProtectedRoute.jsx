@@ -53,7 +53,7 @@ const ProtectedRoute = ({ children, requiredRole = null }) => {
           flexDirection: 'column',
           gap: '12px'
         }}>
-          <h2>⛔ Acceso Denegado</h2>
+          <h2> Acceso Denegado</h2>
           <p>Tu rol actual es: <strong>{user?.role}</strong></p>
           <p>Se requiere: <strong>{allowedRoles.join(' o ')}</strong></p>
         </div>

@@ -79,7 +79,7 @@ const JobsForm = () => {
       };
 
       const response = await jobsService.create(jobData);
-      console.log('✅ Empleo guardado en BD:', response.data);
+      console.log(' Empleo guardado en BD:', response.data);
       
       setSuccess(true);
       setFormData({
@@ -123,7 +123,7 @@ const JobsForm = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>🎯 Publicar Oportunidad de Empleo</h1>
+          <h1> Publicar Oportunidad de Empleo</h1>
           <p>Publica una nueva oferta laboral y llega a candidatos calificados</p>
         </div>
         <button 
@@ -131,24 +131,24 @@ const JobsForm = () => {
           onClick={() => window.scrollTo(0, document.querySelector('.jobs-form').offsetTop)}
           title="Ir al formulario"
         >
-          ➕ Registrar el tuyo
+           Registrar el tuyo
         </button>
       </div>
 
       {success && (
         <div className="success-message">
-          ✅ ¡Empleo publicado exitosamente! Los candidatos podrán verlo en la plataforma.
+           ¡Empleo publicado exitosamente! Los candidatos podrán verlo en la plataforma.
         </div>
       )}
 
       {error && (
         <div className="error-message">
-          ⚠️ {error}
+           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="jobs-form">
-        <div className="form-type-badge">💼 Formulario de Empleos</div>
+        <div className="form-type-badge"> Formulario de Empleos</div>
         <fieldset>
           <legend>Información de la Posición</legend>
 
@@ -415,7 +415,7 @@ const JobsForm = () => {
                 onChange={handleInputChange}
                 disabled={loading}
               />
-              <span>✅ Confirmo que tengo acceso a este Gmail y que es correcto</span>
+              <span> Confirmo que tengo acceso a este Gmail y que es correcto</span>
             </label>
           </div>
         </fieldset>
@@ -427,7 +427,7 @@ const JobsForm = () => {
               className="btn"
               onClick={() => navigate(-1)}
             >
-              ⬅️ Atrás
+               Atrás
             </button>
           </div>
           <div className="btn-group-center">
@@ -436,7 +436,7 @@ const JobsForm = () => {
               className="btn"
               disabled={loading}
             >
-              {loading ? '⏳ Publicando...' : '✅ Publicar'}
+              {loading ? '⏳ Publicando...' : ' Publicar'}
             </button>
             <button
               type="reset"
@@ -444,7 +444,7 @@ const JobsForm = () => {
               disabled={loading}
               onClick={() => setError('')}
             >
-              🔄 Limpiar
+               Limpiar
             </button>
           </div>
         </div>
