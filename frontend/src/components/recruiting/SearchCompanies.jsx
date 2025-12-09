@@ -279,48 +279,23 @@ const SearchCompanies = () => {
                     <>
                       {company.location && (
                         <div className="info-row">
-                          <span className="label">📍 Ubicación:</span>
+                          <span className="label">Ubicacion:</span>
                           <span className="value">{company.location}</span>
                         </div>
                       )}
                       {company.contract_type && (
                         <div className="info-row">
-                          <span className="label">📋 Tipo:</span>
+                          <span className="label">Tipo:</span>
                           <span className="value">{company.contract_type}</span>
                         </div>
                       )}
                       {company.experience_level && (
                         <div className="info-row">
-                          <span className="label">� Experiencia:</span>
+                          <span className="label">Experiencia:</span>
                           <span className="value">{company.experience_level}</span>
                         </div>
                       )}
-                      {company.salary && (
-                        <div className="info-row salary-row">
-                          <span className="label">� Salario:</span>
-                          <span className="value">{company.salary}</span>
-                        </div>
-                      )}
-                      {company.requirements && (
-                        <div className="info-row">
-                          <span className="label">✓ Requisitos:</span>
-                          <span className="value">{company.requirements}</span>
-                        </div>
-                      )}
-                      {company.benefits && (
-                        <div className="info-row">
-                          <span className="label">🎁 Beneficios:</span>
-                          <span className="value">{company.benefits}</span>
-                        </div>
-                      )}
                     </>
-                  )}
-
-                  {company.description && (
-                    <div className="description">
-                      <h4 style={{ margin: '10px 0 8px 0', fontSize: '0.95rem', fontWeight: '600', color: '#1a73e8' }}>📝 Descripción:</h4>
-                      <p>{activeTab === 'jobs' ? company.description : company.description.substring(0, 200)}...</p>
-                    </div>
                   )}
 
                   <div className="card-stats">
