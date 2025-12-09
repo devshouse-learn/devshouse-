@@ -208,6 +208,11 @@ const JobsList = () => {
                   <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
                 </div>
 
+                <div className="info-row">
+                  <span className="label">📊 Experiencia:</span>
+                  <span className="value">{job.experience}</span>
+                </div>
+
                 {job.salaryMin && job.salaryMax && (
                   <div className="info-row">
                     <span className="label">💰 Salario:</span>
@@ -216,11 +221,6 @@ const JobsList = () => {
                     </span>
                   </div>
                 )}
-
-                <div className="info-row">
-                  <span className="label">� Experiencia:</span>
-                  <span className="value">{job.experience}</span>
-                </div>
 
                 {job.requirements && (
                   <div className="info-row">
@@ -244,7 +244,7 @@ const JobsList = () => {
                 )}
 
                 <div className="info-row">
-                  <span className="label">�📧 Email:</span>
+                  <span className="label">📧 Email:</span>
                   <span className="value">{job.contactEmail}</span>
                 </div>
 
