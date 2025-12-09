@@ -230,8 +230,16 @@ const JobsList = () => {
                     <span className="value">{job.contactEmail}</span>
                   </div>
 
+                  {job.createdAt && (
+                    <div className="info-row">
+                      <span className="label">📅 Publicado:</span>
+                      <span className="value">{new Date(job.createdAt).toLocaleDateString('es-ES')}</span>
+                    </div>
+                  )}
+
                   {job.description && (
                     <div className="description">
+                      <h4 style={{ margin: '10px 0 8px 0', fontSize: '0.95rem', fontWeight: '600', color: '#1a73e8' }}>📝 Descripción:</h4>
                       <p>{job.description}</p>
                     </div>
                   )}

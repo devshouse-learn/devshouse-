@@ -318,7 +318,8 @@ const SearchCompanies = () => {
 
                   {company.description && (
                     <div className="description">
-                      <p>{company.description.substring(0, 200)}...</p>
+                      <h4 style={{ margin: '10px 0 8px 0', fontSize: '0.95rem', fontWeight: '600', color: '#1a73e8' }}>📝 Descripción:</h4>
+                      <p>{activeTab === 'jobs' ? company.description : company.description.substring(0, 200)}...</p>
                     </div>
                   )}
 
