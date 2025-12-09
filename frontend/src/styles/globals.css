@@ -233,7 +233,7 @@ form,
 
 .form-row {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   gap: 20px !important;
   margin-bottom: 20px !important;
 }
