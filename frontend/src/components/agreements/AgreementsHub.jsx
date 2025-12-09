@@ -12,9 +12,7 @@ const AgreementsHub = () => {
             className="btn-back"
             onClick={() => navigate('/')}
             title="Volver al inicio"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1>Educación y Convenios</h1>

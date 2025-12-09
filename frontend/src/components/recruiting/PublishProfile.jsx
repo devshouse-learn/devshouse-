@@ -94,9 +94,7 @@ const PublishProfile = () => {
             className="btn-back"
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Publicar Perfil Profesional</h1>

@@ -99,9 +99,7 @@ const VenturesForm = () => {
             className="btn-back"
             onClick={() => navigate('/ventures')}
             title="Volver a Emprendimientos"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Publica Tu<br/>Emprendimiento</h1>

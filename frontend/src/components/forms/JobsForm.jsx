@@ -118,9 +118,7 @@ const JobsForm = () => {
             className="btn-back"
             onClick={() => navigate('/jobs')}
             title="Volver a Empleos"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Publicar Oportunidad de Empleo</h1>

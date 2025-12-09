@@ -125,9 +125,7 @@ const AgreementsForm = () => {
             className="btn-back"
             onClick={() => navigate('/agreements')}
             title="Volver a Convenios"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Convenios Educativos</h1>

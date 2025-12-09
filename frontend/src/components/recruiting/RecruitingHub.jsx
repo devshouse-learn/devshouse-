@@ -41,9 +41,7 @@ const RecruitingHub = () => {
             className="btn-back"
             onClick={() => navigate('/')}
             title="Volver al inicio"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1>Centro de Reclutamiento</h1>
@@ -75,7 +73,7 @@ const RecruitingHub = () => {
         <div className="mode-content">
           <div className="mode-actions">
             <button className="back-button" onClick={() => setActiveMode(null)}>
-              ← Atrás
+              <span className="emoji">↩️</span> Atrás
             </button>
             <button 
               className="clear-button" 

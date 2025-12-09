@@ -134,9 +134,7 @@ const SearchTalent = () => {
             className="btn-back"
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
-          >
-            ← Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Buscar Talentos</h1>
