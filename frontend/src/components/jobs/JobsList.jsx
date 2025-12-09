@@ -194,55 +194,6 @@ const JobsList = () => {
                     <span className="label">📈 Experiencia:</span>
                     <span className="value">{job.experience}</span>
                   </div>
-
-                  {job.salaryMin && job.salaryMax && (
-                    <div className="info-row salary-row">
-                      <span className="label">💰 Salario:</span>
-                      <span className="value">
-                        ${Number(job.salaryMin).toLocaleString()} - ${Number(job.salaryMax).toLocaleString()} {job.currency}
-                      </span>
-                    </div>
-                  )}
-
-                  {job.requirements && (
-                    <div className="info-row">
-                      <span className="label">✓ Requisitos:</span>
-                      <span className="value">{job.requirements}</span>
-                    </div>
-                  )}
-
-                  {job.responsibilities && (
-                    <div className="info-row">
-                      <span className="label">📋 Responsabilidades:</span>
-                      <span className="value">{job.responsibilities}</span>
-                    </div>
-                  )}
-
-                  {job.benefits && (
-                    <div className="info-row">
-                      <span className="label">🎁 Beneficios:</span>
-                      <span className="value">{job.benefits}</span>
-                    </div>
-                  )}
-
-                  <div className="info-row">
-                    <span className="label">📧 Email:</span>
-                    <span className="value">{job.contactEmail}</span>
-                  </div>
-
-                  {job.createdAt && (
-                    <div className="info-row">
-                      <span className="label">📅 Publicado:</span>
-                      <span className="value">{new Date(job.createdAt).toLocaleDateString('es-ES')}</span>
-                    </div>
-                  )}
-
-                  {job.description && (
-                    <div className="description">
-                      <h4 style={{ margin: '10px 0 8px 0', fontSize: '0.95rem', fontWeight: '600', color: '#1a73e8' }}>📝 Descripción:</h4>
-                      <p>{job.description}</p>
-                    </div>
-                  )}
                 </div>
 
                 <div className="card-stats">
