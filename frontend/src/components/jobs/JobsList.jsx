@@ -118,9 +118,7 @@ const JobsList = () => {
             className="btn-back"
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
-          >
-             Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Ofertas de Empleo</h1>
@@ -149,9 +147,7 @@ const JobsList = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -234,9 +230,7 @@ const JobsList = () => {
                     }
                   }}
                   title="Contactar con el empleador"
-                >
-                   Contactar
-                </button>
+                ><span className="emoji">📬</span> Contactar </button>
                 {(user?.role === 'admin' || user?.id === job.createdBy) && (
                   <button
                     onClick={() => handleDelete(job.id)}
@@ -253,9 +247,7 @@ const JobsList = () => {
                       fontWeight: '600',
                       transition: 'background-color 0.2s ease',
                     }}
-                  >
-                     Eliminar
-                  </button>
+                  ><span className="emoji">🗑️</span> Eliminar </button>
                 )}
               </div>
             </div>

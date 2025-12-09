@@ -146,9 +146,7 @@ const AgreementsList = () => {
             className="btn-back"
             onClick={() => navigate('/')}
             title="Volver al inicio"
-          >
-             Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Convenios Educativos</h1>
@@ -177,9 +175,7 @@ const AgreementsList = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -238,12 +234,12 @@ const AgreementsList = () => {
                 )}
 
                 <div className="info-row">
-                  <span className="label"> Email:</span>
+                  <span className="label"><span className="emoji">📧</span> Email:</span>
                   <span className="value">{agreement.contactEmail}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label"> Teléfono:</span>
+                  <span className="label"><span className="emoji">📱</span> Teléfono:</span>
                   <span className="value">{agreement.contactPhone || 'No disponible'}</span>
                 </div>
 
@@ -259,7 +255,7 @@ const AgreementsList = () => {
                 )}
 
                 <div className="info-row">
-                  <span className="label"> Estado:</span>
+                  <span className="label"><span className="emoji">⚙️</span> Estado:</span>
                   <span className="value">{agreement.status || 'No especificado'}</span>
                 </div>
 
@@ -309,9 +305,7 @@ const AgreementsList = () => {
                     }}
                     onMouseOver={(e) => e.target.style.background = '#ff5252'}
                     onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
-                  >
-                     Eliminar
-                  </button>
+                  ><span className="emoji">🗑️</span> Eliminar </button>
                 )}
               </div>
             </div>

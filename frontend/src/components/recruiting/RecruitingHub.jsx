@@ -67,7 +67,7 @@ const RecruitingHub = () => {
             onClick={handlePublishClick}
           >
             <div className="mode-icon"></div>
-            <div className="mode-title">Publicar</div>
+            <div className="mode-title"><span className="emoji">📤</span> Publicar </div>
             <div className="mode-description">Comparte ofertas o perfiles</div>
           </button>
         </div>

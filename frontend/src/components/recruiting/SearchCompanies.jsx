@@ -127,9 +127,7 @@ const SearchCompanies = () => {
             className="btn-back"
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
-          >
-             Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Buscar Empresas</h1>
@@ -185,9 +183,7 @@ const SearchCompanies = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -198,9 +194,7 @@ const SearchCompanies = () => {
           <button 
             className="btn-primary"
             onClick={() => navigate(activeTab === 'ventures' ? '/ventures/form' : '/jobs/form')}
-          >
-             Registrar
-          </button>
+          ><span className="emoji">✍️</span> Registrar </button>
         </div>
       ) : (
         <div className="items-grid">
@@ -224,43 +218,43 @@ const SearchCompanies = () => {
                     <>
                       {company.founder_name && (
                         <div className="info-row">
-                          <span className="label"> Fundador:</span>
+                          <span className="label"><span className="emoji">👤</span> Fundador:</span>
                           <span className="value">{company.founder_name}</span>
                         </div>
                       )}
                       {company.location && (
                         <div className="info-row">
-                          <span className="label"> Ubicación:</span>
+                          <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                           <span className="value">{company.location}</span>
                         </div>
                       )}
                       {company.founded_year && (
                         <div className="info-row">
-                          <span className="label"> Año:</span>
+                          <span className="label"><span className="emoji">📅</span> Año:</span>
                           <span className="value">{company.founded_year}</span>
                         </div>
                       )}
                       {company.investment_stage && (
                         <div className="info-row">
-                          <span className="label"> Etapa:</span>
+                          <span className="label"><span className="emoji">📈</span> Etapa:</span>
                           <span className="value">{company.investment_stage}</span>
                         </div>
                       )}
                       {company.funding_needed && (
                         <div className="info-row">
-                          <span className="label"> Financiamiento:</span>
+                          <span className="label"><span className="emoji">💵</span> Financiamiento:</span>
                           <span className="value">{company.funding_needed}</span>
                         </div>
                       )}
                       {company.team_size && (
                         <div className="info-row">
-                          <span className="label"> Equipo:</span>
+                          <span className="label"><span className="emoji">👥</span> Equipo:</span>
                           <span className="value">{company.team_size}</span>
                         </div>
                       )}
                       {company.revenue_model && (
                         <div className="info-row">
-                          <span className="label"> Modelo:</span>
+                          <span className="label"><span className="emoji">💼</span> Modelo:</span>
                           <span className="value">{company.revenue_model}</span>
                         </div>
                       )}
@@ -398,9 +392,7 @@ const SearchCompanies = () => {
                       }
                     }}
                     title="Contactar"
-                  >
-                     Contactar
-                  </button>
+                  ><span className="emoji">📬</span> Contactar </button>
                 </div>
               </div>
             </div>

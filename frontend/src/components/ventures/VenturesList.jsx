@@ -137,9 +137,7 @@ const VenturesList = () => {
             className="btn-back"
             onClick={() => navigate('/')}
             title="Volver al inicio"
-          >
-             Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Emprendimientos</h1>
@@ -169,9 +167,7 @@ const VenturesList = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -309,9 +305,7 @@ const VenturesList = () => {
                     }
                   }}
                   title="Contactar con el fundador"
-                >
-                   Contactar
-                </button>
+                ><span className="emoji">📬</span> Contactar </button>
                 {(user?.role === 'admin' || user?.id === venture.createdBy) && (
                   <button
                     className="btn-delete"
@@ -329,9 +323,7 @@ const VenturesList = () => {
                     }}
                     onMouseOver={(e) => e.target.style.background = '#ff5252'}
                     onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
-                  >
-                     Eliminar
-                  </button>
+                  ><span className="emoji">🗑️</span> Eliminar </button>
                 )}
               </div>
             </div>

@@ -116,9 +116,7 @@ const JobSearchList = () => {
             className="btn-back"
             onClick={() => navigate('/')}
             title="Volver al inicio"
-          >
-             Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Buscar Empleo</h1>
@@ -147,9 +145,7 @@ const JobSearchList = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -183,14 +179,14 @@ const JobSearchList = () => {
 
                 {candidate.phone && (
                   <div className="info-row">
-                    <span className="label"> Teléfono:</span>
+                    <span className="label"><span className="emoji">📱</span> Teléfono:</span>
                     <span className="value">{candidate.phone}</span>
                   </div>
                 )}
 
                 {candidate.location && (
                   <div className="info-row">
-                    <span className="label"> Ubicación:</span>
+                    <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                     <span className="value">{candidate.location}</span>
                   </div>
                 )}
@@ -211,7 +207,7 @@ const JobSearchList = () => {
 
                 {candidate.experience && (
                   <div className="info-row">
-                    <span className="label"> Experiencia:</span>
+                    <span className="label"><span className="emoji">📈</span> Experiencia:</span>
                     <span className="value">
                       {Array.isArray(candidate.experience) 
                         ? candidate.experience.map((exp, i) => (
@@ -231,7 +227,7 @@ const JobSearchList = () => {
 
                 {candidate.education && (
                   <div className="info-row">
-                    <span className="label"> Educación:</span>
+                    <span className="label"><span className="emoji">🎓</span> Educación:</span>
                     <span className="value">{candidate.education}</span>
                   </div>
                 )}

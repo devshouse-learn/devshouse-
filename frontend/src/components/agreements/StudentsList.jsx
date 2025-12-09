@@ -127,9 +127,7 @@ const StudentsList = () => {
             className="btn-back"
             onClick={() => navigate('/agreements')}
             title="Volver a Convenios"
-          >
-             Volver
-          </button>
+          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Estudiantes y Talentos</h1>
@@ -158,9 +156,7 @@ const StudentsList = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -201,7 +197,7 @@ const StudentsList = () => {
                 </div>
 
                 <div className="info-row">
-                  <span className="label"> Teléfono:</span>
+                  <span className="label"><span className="emoji">📱</span> Teléfono:</span>
                   <span className="value">{student.contactPhone || 'No disponible'}</span>
                 </div>
 
@@ -253,9 +249,7 @@ const StudentsList = () => {
                     }
                   }}
                   title="Contactar al estudiante"
-                >
-                   Contactar
-                </button>
+                ><span className="emoji">📬</span> Contactar </button>
                 {(user?.role === 'admin' || user?.id === student.createdBy) && (
                   <button
                     onClick={() => {
@@ -289,9 +283,7 @@ const StudentsList = () => {
                       fontWeight: '600',
                       transition: 'background-color 0.2s ease',
                     }}
-                  >
-                     Eliminar
-                  </button>
+                  ><span className="emoji">🗑️</span> Eliminar </button>
                 )}
               </div>
             </div>

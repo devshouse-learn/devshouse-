@@ -159,9 +159,7 @@ const SearchTalent = () => {
               cursor: 'pointer',
               fontWeight: '600',
             }}
-          >
-             Reintentar
-          </button>
+          ><span className="emoji">🔄</span> Reintentar </button>
         </div>
       )}
 
@@ -189,7 +187,7 @@ const SearchTalent = () => {
                 <div className="card-body">
                   {talent.phone && (
                     <div className="info-row">
-                      <span className="label"> Teléfono:</span>
+                      <span className="label"><span className="emoji">📱</span> Teléfono:</span>
                       <span className="value">{talent.phone}</span>
                     </div>
                   )}
@@ -255,9 +253,7 @@ const SearchTalent = () => {
                       }
                     }}
                     title="Contactar con el candidato"
-                  >
-                     Contactar
-                  </button>
+                  ><span className="emoji">📬</span> Contactar </button>
                   {(user?.role === 'admin' || user?.id === talent.createdBy) && (
                     <button
                       onClick={() => handleDelete(talent.id, talent)}
@@ -274,9 +270,7 @@ const SearchTalent = () => {
                         fontWeight: '600',
                         transition: 'background-color 0.2s ease',
                       }}
-                    >
-                       Eliminar
-                    </button>
+                    ><span className="emoji">🗑️</span> Eliminar </button>
                   )}
                 </div>
               </div>
