@@ -300,6 +300,57 @@
   gap: 8px;
 }
 
+/* Estilos para vista previa de descripción */
+.info-row.description-preview {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row.description-preview .value {
+  background: rgba(26, 115, 232, 0.05);
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 3px solid #1a73e8;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 60px;
+  overflow: hidden;
+}
+
+/* Estilos para vista previa de requisitos */
+.info-row.requirements-preview {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row.requirements-preview .value {
+  background: rgba(76, 175, 80, 0.05);
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 3px solid #4caf50;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 60px;
+  overflow: hidden;
+}
+
+/* Estilos para vista previa de beneficios */
+.info-row.benefits-preview {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row.benefits-preview .value {
+  background: rgba(255, 152, 0, 0.05);
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 3px solid #ff9800;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 60px;
+  overflow: hidden;
+}
+
 .remote-badge,
 .salary-info,
 .skills-preview {

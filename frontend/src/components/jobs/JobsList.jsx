@@ -202,8 +202,9 @@ const JobsList = () => {
 
               <div className="card-content">
                 <div className="card-body">
+                  {/* Información Básica */}
                   <div className="info-row">
-                    <span className="label"><span className="emoji">📍</span> Ubicacion:</span>
+                    <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                     <span className="value">{job.location}</span>
                   </div>
 
@@ -213,9 +214,77 @@ const JobsList = () => {
                   </div>
 
                   <div className="info-row">
-                    <span className="label"><span className="emoji">📈</span> Experiencia requerida:</span>
+                    <span className="label"><span className="emoji">📈</span> Experiencia:</span>
                     <span className="value">{job.experience}</span>
                   </div>
+
+                  {/* Información Salarial */}
+                  {(job.salaryMin || job.salaryMax) && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">💰</span> Salario:</span>
+                      <span className="value">
+                        {job.salaryMin && job.salaryMax 
+                          ? `${job.currency || 'USD'} ${job.salaryMin.toLocaleString()} - ${job.salaryMax.toLocaleString()}`
+                          : `${job.currency || 'USD'} ${job.salaryMin || job.salaryMax || 'No especificado'}`
+                        }
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Industria */}
+                  {job.industry && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🏢</span> Industria:</span>
+                      <span className="value" style={{ textTransform: 'capitalize' }}>{job.industry}</span>
+                    </div>
+                  )}
+
+                  {/* Descripción Resumida */}
+                  {job.description && (
+                    <div className="info-row description-preview">
+                      <span className="label"><span className="emoji">📝</span> Descripción:</span>
+                      <span className="value">{job.description.substring(0, 100)}{job.description.length > 100 ? '...' : ''}</span>
+                    </div>
+                  )}
+
+                  {/* Requisitos Principales */}
+                  {job.requirements && (
+                    <div className="info-row requirements-preview">
+                      <span className="label"><span className="emoji">✅</span> Requisitos:</span>
+                      <span className="value">
+                        {typeof job.requirements === 'string' 
+                          ? job.requirements.split(',').slice(0, 2).map(req => req.trim()).join(', ')
+                          : Array.isArray(job.requirements)
+                          ? job.requirements.slice(0, 2).join(', ')
+                          : 'No especificados'
+                        }
+                        {typeof job.requirements === 'string' && job.requirements.split(',').length > 2 ? '...' : ''}
+                        {Array.isArray(job.requirements) && job.requirements.length > 2 ? '...' : ''}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Beneficios */}
+                  {job.benefits && (
+                    <div className="info-row benefits-preview">
+                      <span className="label"><span className="emoji">🎁</span> Beneficios:</span>
+                      <span className="value">
+                        {typeof job.benefits === 'string' 
+                          ? job.benefits.substring(0, 80)
+                          : 'Consultar oferta completa'
+                        }
+                        {typeof job.benefits === 'string' && job.benefits.length > 80 ? '...' : ''}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Fecha Límite */}
+                  {job.applicationDeadline && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📅</span> Plazo:</span>
+                      <span className="value">{new Date(job.applicationDeadline).toLocaleDateString('es-ES')}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="card-stats">
