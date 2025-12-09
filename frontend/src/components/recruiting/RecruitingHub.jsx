@@ -57,7 +57,7 @@ const RecruitingHub = () => {
             className="mode-button search-mode"
             onClick={handleSearchClick}
           >
-            <div className="mode-icon"></div>
+            <div className="mode-icon"><span className="emoji">🔍</span></div>
             <div className="mode-title">Buscar</div>
             <div className="mode-description">Encontra empresas o talentos</div>
           </button>
@@ -66,8 +66,8 @@ const RecruitingHub = () => {
             className="mode-button publish-mode"
             onClick={handlePublishClick}
           >
-            <div className="mode-icon"></div>
-            <div className="mode-title"><span className="emoji">📤</span> Publicar </div>
+            <div className="mode-icon"><span className="emoji">📤</span></div>
+            <div className="mode-title">Publicar</div>
             <div className="mode-description">Comparte ofertas o perfiles</div>
           </button>
         </div>
@@ -99,7 +99,7 @@ const RecruitingHub = () => {
                   }`}
                   onClick={() => handleTypeSelect('empresa')}
                 >
-                  <div className="type-icon"></div>
+                  <div className="type-icon"><span className="emoji">🏢</span></div>
                   <div className="type-name">Empresas</div>
                 </button>
 
@@ -109,7 +109,7 @@ const RecruitingHub = () => {
                   }`}
                   onClick={() => handleTypeSelect('talento')}
                 >
-                  <div className="type-icon"></div>
+                  <div className="type-icon"><span className="emoji">👤</span></div>
                   <div className="type-name">Talentos</div>
                 </button>
               </div>
@@ -144,7 +144,7 @@ const RecruitingHub = () => {
                   }`}
                   onClick={() => handleTypeSelect('empleo')}
                 >
-                  <div className="type-icon"></div>
+                  <div className="type-icon"><span className="emoji">💼</span></div>
                   <div className="type-name">Oferta de Empleo</div>
                 </button>
 
@@ -154,7 +154,7 @@ const RecruitingHub = () => {
                   }`}
                   onClick={() => handleTypeSelect('hoja-vida')}
                 >
-                  <div className="type-icon"></div>
+                  <div className="type-icon"><span className="emoji">📄</span></div>
                   <div className="type-name">Hoja de Vida</div>
                 </button>
               </div>
