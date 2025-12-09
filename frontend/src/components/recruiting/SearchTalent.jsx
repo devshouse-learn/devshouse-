@@ -183,10 +183,18 @@ const SearchTalent = () => {
 
               <div className="card-content">
                 <div className="card-body">
-                  {talent.phone && (
+                  {/* Información Básica */}
+                  {talent.profession && (
                     <div className="info-row">
-                      <span className="label"><span className="emoji">📱</span> Teléfono:</span>
-                      <span className="value">{talent.phone}</span>
+                      <span className="label"><span className="emoji">💼</span> Profesión:</span>
+                      <span className="value">{talent.profession}</span>
+                    </div>
+                  )}
+
+                  {talent.experience && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📈</span> Experiencia:</span>
+                      <span className="value">{talent.experience}</span>
                     </div>
                   )}
 
@@ -197,25 +205,99 @@ const SearchTalent = () => {
                     </div>
                   )}
 
-                  {talent.technologies && talent.technologies.length > 0 && (
+                  {talent.phone && (
                     <div className="info-row">
-                      <span className="label"> Tecnologías:</span>
-                      <span className="value">{talent.technologies.join(', ')}</span>
+                      <span className="label"><span className="emoji">📱</span> Teléfono:</span>
+                      <span className="value">{talent.phone}</span>
+                    </div>
+                  )}
+
+                  {talent.email && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📧</span> Email:</span>
+                      <span className="value">
+                        <a href={`mailto:${talent.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
+                          {talent.email}
+                        </a>
+                      </span>
+                    </div>
+                  )}
+
+                  {talent.education && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🎓</span> Educación:</span>
+                      <span className="value">{talent.education}</span>
+                    </div>
+                  )}
+
+                  {talent.salaryExpectation && (
+                    <div className="info-row salary-row">
+                      <span className="label"><span className="emoji">💰</span> Salario esperado:</span>
+                      <span className="value">{talent.salaryExpectation}</span>
+                    </div>
+                  )}
+
+                  {talent.technologies && talent.technologies.length > 0 && (
+                    <div className="info-row requirements-preview">
+                      <span className="label"><span className="emoji">✅</span> Tecnologías:</span>
+                      <span className="value">
+                        {Array.isArray(talent.technologies) 
+                          ? talent.technologies.slice(0, 3).join(', ')
+                          : talent.technologies
+                        }
+                        {Array.isArray(talent.technologies) && talent.technologies.length > 3 ? '...' : ''}
+                      </span>
+                    </div>
+                  )}
+
+                  {talent.skills && (
+                    <div className="info-row requirements-preview">
+                      <span className="label"><span className="emoji">⚡</span> Habilidades:</span>
+                      <span className="value">
+                        {typeof talent.skills === 'string' 
+                          ? talent.skills.substring(0, 100)
+                          : Array.isArray(talent.skills)
+                          ? talent.skills.slice(0, 3).join(', ')
+                          : 'No especificadas'
+                        }
+                        {typeof talent.skills === 'string' && talent.skills.length > 100 ? '...' : ''}
+                        {Array.isArray(talent.skills) && talent.skills.length > 3 ? '...' : ''}
+                      </span>
                     </div>
                   )}
 
                   {talent.bio && (
-                    <div className="description">
-                      <p>{talent.bio}</p>
+                    <div className="info-row description-preview">
+                      <span className="label"><span className="emoji">📝</span> Descripción:</span>
+                      <span className="value">{talent.bio.substring(0, 100)}{talent.bio.length > 100 ? '...' : ''}</span>
                     </div>
                   )}
 
-                  <div className="card-stats">
-                    <span> {talent.views || 0} vistas</span>
-                    <span> {talent.likes || 0} likes</span>
-                    <span> {talent.reports || 0} reportes</span>
-                  </div>
+                  {talent.availability && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">📅</span> Disponibilidad:</span>
+                      <span className="value">{talent.availability}</span>
+                    </div>
+                  )}
+
+                  {talent.portfolio && (
+                    <div className="info-row">
+                      <span className="label"><span className="emoji">🌐</span> Portfolio:</span>
+                      <span className="value">
+                        <a href={talent.portfolio} target="_blank" rel="noopener noreferrer">
+                          Ver portafolio
+                        </a>
+                      </span>
+                    </div>
+                  )}
                 </div>
+
+                <div className="card-stats">
+                  <span><span className="emoji">👁️</span> Vistas: {talent.views || 0}</span>
+                  <span><span className="emoji">❤️</span> Likes: {talent.likes || 0}</span>
+                  <span><span className="emoji">🚨</span> Reportes: {talent.reports || 0}</span>
+                </div>
+              </div>
 
                 <div className="card-actions">
                   <button

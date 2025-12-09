@@ -271,61 +271,124 @@ const SearchCompanies = () => {
                     </>
                   ) : (
                     <>
+                      {/* Información Básica */}
                       {company.location && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                           <span className="value">{company.location}</span>
                         </div>
                       )}
-                      {company.contract_type && (
+                      {company.jobType && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📋</span> Tipo de contrato:</span>
-                          <span className="value">{company.contract_type}</span>
+                          <span className="value" style={{ textTransform: 'capitalize' }}>{company.jobType}</span>
                         </div>
                       )}
-                      {company.experience_level && (
+                      {company.experience && (
                         <div className="info-row">
-                          <span className="label"><span className="emoji">📈</span> Experiencia requerida:</span>
-                          <span className="value">{company.experience_level}</span>
+                          <span className="label"><span className="emoji">📈</span> Experiencia:</span>
+                          <span className="value">{company.experience}</span>
                         </div>
                       )}
-                      {company.salary && (
+                      
+                      {/* Información Salarial */}
+                      {(company.salaryMin || company.salaryMax) && (
                         <div className="info-row salary-row">
                           <span className="label"><span className="emoji">💰</span> Salario:</span>
-                          <span className="value">{company.salary}</span>
-                        </div>
-                      )}
-                      {company.requirements && (
-                        <div className="info-row">
-                          <span className="label"> Requisitos:</span>
-                          <span className="value">{company.requirements}</span>
-                        </div>
-                      )}
-                      {company.responsibilities && (
-                        <div className="info-row">
-                          <span className="label">:</span>
-                          <span className="value">{company.responsibilities}</span>
-                        </div>
-                      )}
-                      {company.benefits && (
-                        <div className="info-row">
-                          <span className="label"> Beneficios:</span>
-                          <span className="value">{company.benefits}</span>
-                        </div>
-                      )}
-                      {company.email && (
-                        <div className="info-row">
-                          <span className="label"> Email de contacto:</span>
                           <span className="value">
-                            <a href={`mailto:${company.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
-                              {company.email}
+                            {company.salaryMin && company.salaryMax 
+                              ? `${company.currency || 'USD'} ${company.salaryMin.toLocaleString()} - ${company.salaryMax.toLocaleString()}`
+                              : `${company.currency || 'USD'} ${company.salaryMin || company.salaryMax || 'No especificado'}`
+                            }
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Industria */}
+                      {company.industry && (
+                        <div className="info-row">
+                          <span className="label"><span className="emoji">🏢</span> Industria:</span>
+                          <span className="value" style={{ textTransform: 'capitalize' }}>{company.industry}</span>
+                        </div>
+                      )}
+                      
+                      {/* Descripción */}
+                      {company.description && (
+                        <div className="info-row description-preview">
+                          <span className="label"><span className="emoji">📝</span> Descripción:</span>
+                          <span className="value">{company.description.substring(0, 100)}{company.description.length > 100 ? '...' : ''}</span>
+                        </div>
+                      )}
+                      
+                      {/* Requisitos */}
+                      {company.requirements && (
+                        <div className="info-row requirements-preview">
+                          <span className="label"><span className="emoji">✅</span> Requisitos:</span>
+                          <span className="value">
+                            {typeof company.requirements === 'string' 
+                              ? company.requirements.split(',').slice(0, 2).map(req => req.trim()).join(', ')
+                              : Array.isArray(company.requirements)
+                              ? company.requirements.slice(0, 2).join(', ')
+                              : 'No especificados'
+                            }
+                            {typeof company.requirements === 'string' && company.requirements.split(',').length > 2 ? '...' : ''}
+                            {Array.isArray(company.requirements) && company.requirements.length > 2 ? '...' : ''}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Responsabilidades */}
+                      {company.responsibilities && (
+                        <div className="info-row benefits-preview">
+                          <span className="label"><span className="emoji">📋</span> Responsabilidades:</span>
+                          <span className="value">
+                            {typeof company.responsibilities === 'string' 
+                              ? company.responsibilities.substring(0, 80)
+                              : 'Consultar oferta completa'
+                            }
+                            {typeof company.responsibilities === 'string' && company.responsibilities.length > 80 ? '...' : ''}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Beneficios */}
+                      {company.benefits && (
+                        <div className="info-row benefits-preview">
+                          <span className="label"><span className="emoji">🎁</span> Beneficios:</span>
+                          <span className="value">
+                            {typeof company.benefits === 'string' 
+                              ? company.benefits.substring(0, 80)
+                              : 'Consultar oferta completa'
+                            }
+                            {typeof company.benefits === 'string' && company.benefits.length > 80 ? '...' : ''}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Fecha Límite */}
+                      {company.applicationDeadline && (
+                        <div className="info-row">
+                          <span className="label"><span className="emoji">📅</span> Plazo:</span>
+                          <span className="value">{new Date(company.applicationDeadline).toLocaleDateString('es-ES')}</span>
+                        </div>
+                      )}
+                      
+                      {/* Email */}
+                      {company.contactEmail && (
+                        <div className="info-row">
+                          <span className="label"><span className="emoji">📧</span> Email:</span>
+                          <span className="value">
+                            <a href={`mailto:${company.contactEmail}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
+                              {company.contactEmail}
                             </a>
                           </span>
                         </div>
                       )}
+                      
+                      {/* Fecha de publicación */}
                       {company.createdAt && (
                         <div className="info-row">
-                          <span className="label"> Fecha de publicación:</span>
+                          <span className="label"><span className="emoji">📅</span> Publicado:</span>
                           <span className="value">
                             {new Date(company.createdAt).toLocaleDateString('es-CO', { 
                               year: 'numeric', 
@@ -333,12 +396,6 @@ const SearchCompanies = () => {
                               day: 'numeric' 
                             })}
                           </span>
-                        </div>
-                      )}
-                      {company.description && (
-                        <div className="description">
-                          <h4> Descripción completa:</h4>
-                          <p>{company.description}</p>
                         </div>
                       )}
                     </>
