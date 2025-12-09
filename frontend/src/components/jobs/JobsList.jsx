@@ -24,7 +24,6 @@ const JobsList = () => {
       const loadedJobs = response.data || [];
       setJobs(loadedJobs);
       
-      // Cargar reacciones del usuario
       const reactions = {};
       for (const job of loadedJobs) {
         const userReaction = await jobsService.getUserReactions(job.id);
@@ -48,8 +47,6 @@ const JobsList = () => {
   const handleLike = async (id) => {
     try {
       const result = await jobsService.like(id);
-      console.log('Like response:', result);
-      
       const isLiking = result.action === 'liked';
       setJobs(prevJobs => 
         prevJobs.map(job => 
@@ -58,7 +55,6 @@ const JobsList = () => {
             : job
         )
       );
-      
       setUserReactions(prev => ({
         ...prev,
         [id]: { ...prev[id], hasLiked: isLiking }
@@ -70,17 +66,13 @@ const JobsList = () => {
   };
 
   const handleReport = async (id) => {
-    // Si ya reportó, no permitir otro reporte
     if (userReactions[id]?.hasReported) {
       return;
     }
-    
     try {
       const reason = prompt('¿Cuál es el motivo de la denuncia?');
       if (reason) {
-        const result = await jobsService.report(id, reason);
-        console.log('Report response:', result);
-        
+        await jobsService.report(id, reason);
         setJobs(prevJobs => 
           prevJobs.map(job => 
             job.id === id 
@@ -88,43 +80,34 @@ const JobsList = () => {
               : job
           )
         );
-        
         setUserReactions(prev => ({
           ...prev,
           [id]: { ...prev[id], hasReported: true }
         }));
-        
         alert('🚨 Denuncia registrada correctamente');
       }
     } catch (err) {
       console.error('Error al reportar:', err);
-      alert('Error al registrar denuncia: ' + err.message);
+      alert('Error al denunciar: ' + err.message);
     }
   };
 
-  const handleDelete = async (id, job) => {
-    // Solo admin o el creador del formulario pueden eliminar
-    const isAdmin = user?.role === 'admin';
-    const isCreator = user?.id === job.createdBy;
-
-    if (!isAdmin && !isCreator) {
-      alert('⛔ No tienes permiso para eliminar esta oferta de empleo');
+  const handleDelete = async (id) => {
+    if (!window.confirm('¿Estás seguro de que quieres eliminar esta oferta?')) {
       return;
     }
-
-    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar esta oferta de empleo? Esta acción no se puede deshacer.')) {
-      try {
-        await jobsService.delete(id);
-        setJobs(prevJobs => prevJobs.filter(job => job.id !== id));
-      } catch (err) {
-        console.error('Error al eliminar:', err);
-        alert('❌ Error al eliminar la oferta de empleo: ' + err.message);
-      }
+    try {
+      await jobsService.delete(id);
+      setJobs(prevJobs => prevJobs.filter(j => j.id !== id));
+      alert('✅ Oferta eliminada correctamente');
+    } catch (err) {
+      console.error('Error al eliminar:', err);
+      alert('❌ Error al eliminar: ' + err.message);
     }
   };
 
   if (loading) {
-    return <div className="loading">⏳ Cargando empleos...</div>;
+    return <div className="list-container">Cargando ofertas de empleo...</div>;
   }
 
   return (
@@ -133,8 +116,8 @@ const JobsList = () => {
         <div className="header-top">
           <button 
             className="btn-back"
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
+            onClick={() => navigate('/recruiting')}
+            title="Volver al Centro de Reclutamiento"
           >
             ← Volver
           </button>
@@ -196,66 +179,63 @@ const JobsList = () => {
               </div>
 
               <div className="card-content">
-                <div className="info-row">
-                  <span className="label">🏢 Empresa:</span>
-                  <span className="value">{job.company}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label">📍 Ubicación:</span>
-                  <span className="value">{job.location}</span>
-                </div>
-
-                {job.salaryMin && job.salaryMax && (
-                  <div className="info-row salary-row">
-                    <span className="label">💰 Salario:</span>
-                    <span className="value">
-                      ${Number(job.salaryMin).toLocaleString()} - ${Number(job.salaryMax).toLocaleString()} {job.currency}
-                    </span>
-                  </div>
-                )}
-
-                <div className="info-row">
-                  <span className="label">🎯 Tipo:</span>
-                  <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label">� Experiencia:</span>
-                  <span className="value">{job.experience}</span>
-                </div>
-
-                {job.requirements && (
+                <div className="card-body">
                   <div className="info-row">
-                    <span className="label">✓ Requisitos:</span>
-                    <span className="value">{job.requirements}</span>
+                    <span className="label">📍 Ubicación:</span>
+                    <span className="value">{job.location}</span>
                   </div>
-                )}
 
-                {job.responsibilities && (
                   <div className="info-row">
-                    <span className="label">📋 Responsabilidades:</span>
-                    <span className="value">{job.responsibilities}</span>
+                    <span className="label">📋 Tipo:</span>
+                    <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
                   </div>
-                )}
 
-                {job.benefits && (
                   <div className="info-row">
-                    <span className="label">🎁 Beneficios:</span>
-                    <span className="value">{job.benefits}</span>
+                    <span className="label">📈 Experiencia:</span>
+                    <span className="value">{job.experience}</span>
                   </div>
-                )}
 
-                <div className="info-row">
-                  <span className="label">📧 Email:</span>
-                  <span className="value">{job.contactEmail}</span>
+                  {job.salaryMin && job.salaryMax && (
+                    <div className="info-row salary-row">
+                      <span className="label">💰 Salario:</span>
+                      <span className="value">
+                        ${Number(job.salaryMin).toLocaleString()} - ${Number(job.salaryMax).toLocaleString()} {job.currency}
+                      </span>
+                    </div>
+                  )}
+
+                  {job.requirements && (
+                    <div className="info-row">
+                      <span className="label">✓ Requisitos:</span>
+                      <span className="value">{job.requirements}</span>
+                    </div>
+                  )}
+
+                  {job.responsibilities && (
+                    <div className="info-row">
+                      <span className="label">📋 Responsabilidades:</span>
+                      <span className="value">{job.responsibilities}</span>
+                    </div>
+                  )}
+
+                  {job.benefits && (
+                    <div className="info-row">
+                      <span className="label">🎁 Beneficios:</span>
+                      <span className="value">{job.benefits}</span>
+                    </div>
+                  )}
+
+                  <div className="info-row">
+                    <span className="label">📧 Email:</span>
+                    <span className="value">{job.contactEmail}</span>
+                  </div>
+
+                  {job.description && (
+                    <div className="description">
+                      <p>{job.description}</p>
+                    </div>
+                  )}
                 </div>
-
-                {job.description && (
-                  <div className="description">
-                    <p>{job.description}</p>
-                  </div>
-                )}
 
                 <div className="card-stats">
                   <span>👁️ {job.views} vistas</span>
@@ -283,18 +263,14 @@ const JobsList = () => {
                 <button
                   className="btn-contact"
                   onClick={() => {
-                    // Intenta múltiples fuentes de email
                     const email = job.contactEmail 
                       || job.email 
                       || job.postedByEmail
                       || job.postedBy?.email;
                     
-                    console.log('📧 Trying email:', email, 'from job:', job);
-                    
                     if (email && String(email).trim()) {
                       window.location.href = `mailto:${String(email).trim()}`;
                     } else {
-                      console.warn('❌ No email found in job object:', job);
                       alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
                     }
                   }}
@@ -304,7 +280,7 @@ const JobsList = () => {
                 </button>
                 {(user?.role === 'admin' || user?.id === job.createdBy) && (
                   <button
-                    onClick={() => handleDelete(job.id, job)}
+                    onClick={() => handleDelete(job.id)}
                     title={user?.role === 'admin' ? 'Eliminar oferta de empleo (admin)' : 'Eliminar tu oferta de empleo'}
                     onMouseOver={(e) => e.target.style.backgroundColor = '#ff5252'}
                     onMouseOut={(e) => e.target.style.backgroundColor = '#ff6b6b'}
