@@ -25,6 +25,12 @@
   --transition: all 0.3s ease;
 }
 
+/* Grayscale Filter for all emojis */
+.emoji {
+  filter: grayscale(100%);
+  display: inline-block;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   line-height: 1.6;

@@ -181,25 +181,25 @@ const JobsList = () => {
               <div className="card-content">
                 <div className="card-body">
                   <div className="info-row">
-                    <span className="label">Ubicacion:</span>
+                    <span className="label"><span className="emoji">📍</span> Ubicacion:</span>
                     <span className="value">{job.location}</span>
                   </div>
 
                   <div className="info-row">
-                    <span className="label">Tipo de contrato:</span>
+                    <span className="label"><span className="emoji">📋</span> Tipo de contrato:</span>
                     <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
                   </div>
 
                   <div className="info-row">
-                    <span className="label">Experiencia requerida:</span>
+                    <span className="label"><span className="emoji">📈</span> Experiencia requerida:</span>
                     <span className="value">{job.experience}</span>
                   </div>
                 </div>
 
                 <div className="card-stats">
-                  <span>Vistas: {job.views || 0}</span>
-                  <span>Likes: {job.likes || 0}</span>
-                  <span>Reportes: {job.reports || 0}</span>
+                  <span><span className="emoji">👁️</span> Vistas: {job.views || 0}</span>
+                  <span><span className="emoji">❤️</span> Likes: {job.likes || 0}</span>
+                  <span><span className="emoji">🚨</span> Reportes: {job.reports || 0}</span>
                 </div>
               </div>
 
@@ -209,7 +209,7 @@ const JobsList = () => {
                   onClick={() => handleLike(job.id)}
                   title={userReactions[job.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[job.id]?.hasLiked ? ' Liked' : ' Like'}
+                  <span className="emoji">{userReactions[job.id]?.hasLiked ? '❤️' : '🤍'}</span> {userReactions[job.id]?.hasLiked ? 'Liked' : 'Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[job.id]?.hasReported ? 'reported' : ''}`}
@@ -217,7 +217,7 @@ const JobsList = () => {
                   title={userReactions[job.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
                   disabled={userReactions[job.id]?.hasReported}
                 >
-                   {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                  <span className="emoji">🚨</span> {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
                 <button
                   className="btn-contact"
