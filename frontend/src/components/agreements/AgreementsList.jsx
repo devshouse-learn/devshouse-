@@ -205,34 +205,34 @@ const AgreementsList = () => {
 
               <div className="card-content">
                 <div className="info-row">
-                  <span className="label"> Ubicación:</span>
+                  <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                   <span className="value">{agreement.location}</span>
                 </div>
 
                 {agreement.level && (
                   <div className="info-row">
-                    <span className="label"> Nivel:</span>
+                    <span className="label"><span className="emoji">📚</span> Nivel:</span>
                     <span className="value">{agreement.level}</span>
                   </div>
                 )}
 
                 {agreement.areaOfInterest && (
                   <div className="info-row">
-                    <span className="label"> Área:</span>
+                    <span className="label"><span className="emoji">🎯</span> Área:</span>
                     <span className="value">{agreement.areaOfInterest}</span>
                   </div>
                 )}
 
                 {agreement.studentCount && (
                   <div className="info-row">
-                    <span className="label"> Estudiantes:</span>
+                    <span className="label"><span className="emoji">👥</span> Estudiantes:</span>
                     <span className="value">{agreement.studentCount}</span>
                   </div>
                 )}
 
                 {agreement.establishmentYear && (
                   <div className="info-row">
-                    <span className="label"> Fundación:</span>
+                    <span className="label"><span className="emoji">📅</span> Fundación:</span>
                     <span className="value">{agreement.establishmentYear}</span>
                   </div>
                 )}

@@ -197,55 +197,55 @@ const VenturesList = () => {
 
               <div className="card-content">
                 <div className="info-row">
-                  <span className="label"> Industria:</span>
+                  <span className="label"><span className="emoji">🏭</span> Industria:</span>
                   <span className="value">{venture.industry}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label"> Ubicación:</span>
+                  <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                   <span className="value">{venture.location}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label"> Fundador:</span>
+                  <span className="label"><span className="emoji">👤</span> Fundador:</span>
                   <span className="value">{venture.founderName || venture.founder_name || 'No disponible'}</span>
                 </div>
 
                 {(venture.founded_year || venture.foundedYear) && (
                   <div className="info-row">
-                    <span className="label"> Año:</span>
+                    <span className="label"><span className="emoji">📅</span> Año:</span>
                     <span className="value">{venture.founded_year || venture.foundedYear}</span>
                   </div>
                 )}
 
                 <div className="info-row">
-                  <span className="label"> Etapa:</span>
+                  <span className="label"><span className="emoji">📈</span> Etapa:</span>
                   <span className="value">{venture.investment_stage}</span>
                 </div>
 
                 {(venture.funding_needed || venture.fundingNeeded) && (
                   <div className="info-row">
-                    <span className="label"> Financiamiento:</span>
+                    <span className="label"><span className="emoji">💰</span> Financiamiento:</span>
                     <span className="value">{venture.funding_needed || venture.fundingNeeded}</span>
                   </div>
                 )}
 
                 {(venture.team_size || venture.teamSize) && (
                   <div className="info-row">
-                    <span className="label"> Equipo:</span>
+                    <span className="label"><span className="emoji">👥</span> Equipo:</span>
                     <span className="value">{venture.team_size || venture.teamSize}</span>
                   </div>
                 )}
 
                 {(venture.revenue_model || venture.revenueModel) && (
                   <div className="info-row">
-                    <span className="label"> Modelo:</span>
+                    <span className="label"><span className="emoji">💼</span> Modelo:</span>
                     <span className="value">{venture.revenue_model || venture.revenueModel}</span>
                   </div>
                 )}
 
                 <div className="info-row">
-                  <span className="label"> Email:</span>
+                  <span className="label"><span className="emoji">📧</span> Email:</span>
                   <span className="value">{venture.founderEmail}</span>
                 </div>
 
