@@ -178,26 +178,26 @@ const SearchTalent = () => {
             <div key={talent.id} className="item-card">
               <div className="card-header">
                 <div className="header-info">
-                  <h3>{talent.name || 'Talento'}</h3>
-                  <p className="company-name">{talent.profession || 'Profesional'}</p>
+                  <h3>{talent.name || talent.full_name || 'Talento'}</h3>
+                  <p className="company-name">{talent.profession || talent.professional_title || 'Profesional'}</p>
                 </div>
-                <span className="badge">{talent.experience || 'N/A'}</span>
+                <span className="badge">{talent.experience || talent.years_experience || 'N/A'}</span>
               </div>
 
               <div className="card-content">
                 <div className="card-body">
                   {/* Información Básica */}
-                  {talent.profession && (
+                  {(talent.profession || talent.professional_title) && (
                     <div className="info-row">
                       <span className="label"><span className="emoji">💼</span> Profesión:</span>
-                      <span className="value">{talent.profession}</span>
+                      <span className="value">{talent.profession || talent.professional_title}</span>
                     </div>
                   )}
 
-                  {talent.experience && (
+                  {(talent.experience || talent.years_experience) && (
                     <div className="info-row">
                       <span className="label"><span className="emoji">📈</span> Experiencia:</span>
-                      <span className="value">{talent.experience}</span>
+                      <span className="value">{talent.experience || `${talent.years_experience} años`}</span>
                     </div>
                   )}
 
@@ -208,10 +208,10 @@ const SearchTalent = () => {
                     </div>
                   )}
 
-                  {talent.phone && (
+                  {(talent.phone || talent.contact_phone) && (
                     <div className="info-row">
                       <span className="label"><span className="emoji">📱</span> Teléfono:</span>
-                      <span className="value">{talent.phone}</span>
+                      <span className="value">{talent.phone || talent.contact_phone}</span>
                     </div>
                   )}
 
@@ -226,34 +226,39 @@ const SearchTalent = () => {
                     </div>
                   )}
 
-                  {talent.education && (
+                  {(talent.education || talent.education_level) && (
                     <div className="info-row">
                       <span className="label"><span className="emoji">🎓</span> Educación:</span>
-                      <span className="value">{talent.education}</span>
+                      <span className="value">{talent.education || talent.education_level}</span>
                     </div>
                   )}
 
-                  {talent.salaryExpectation && (
+                  {(talent.salaryExpectation || (talent.salary_expectation_min && talent.salary_expectation_max)) && (
                     <div className="info-row salary-row">
                       <span className="label"><span className="emoji">💰</span> Salario esperado:</span>
-                      <span className="value">{talent.salaryExpectation}</span>
-                    </div>
-                  )}
-
-                  {talent.technologies && talent.technologies.length > 0 && (
-                    <div className="info-row requirements-preview">
-                      <span className="label"><span className="emoji">✅</span> Tecnologías:</span>
                       <span className="value">
-                        {Array.isArray(talent.technologies) 
-                          ? talent.technologies.slice(0, 3).join(', ')
-                          : talent.technologies
+                        {talent.salaryExpectation 
+                          ? talent.salaryExpectation
+                          : `${talent.currency || 'USD'} ${talent.salary_expectation_min?.toLocaleString()} - ${talent.salary_expectation_max?.toLocaleString()}`
                         }
-                        {Array.isArray(talent.technologies) && talent.technologies.length > 3 ? '...' : ''}
                       </span>
                     </div>
                   )}
 
-                  {talent.skills && (
+                  {(talent.technologies || talent.skills) && (
+                    <div className="info-row requirements-preview">
+                      <span className="label"><span className="emoji">✅</span> Tecnologías:</span>
+                      <span className="value">
+                        {Array.isArray(talent.technologies || talent.skills) 
+                          ? (talent.technologies || talent.skills).slice(0, 3).join(', ')
+                          : (talent.technologies || talent.skills)
+                        }
+                        {Array.isArray(talent.technologies || talent.skills) && (talent.technologies || talent.skills).length > 3 ? '...' : ''}
+                      </span>
+                    </div>
+                  )}
+
+                  {(talent.skills && !talent.technologies || talent.skills) && (
                     <div className="info-row requirements-preview">
                       <span className="label"><span className="emoji">⚡</span> Habilidades:</span>
                       <span className="value">
@@ -269,10 +274,13 @@ const SearchTalent = () => {
                     </div>
                   )}
 
-                  {talent.bio && (
+                  {(talent.bio || talent.professional_summary) && (
                     <div className="info-row description-preview">
                       <span className="label"><span className="emoji">📝</span> Descripción:</span>
-                      <span className="value">{talent.bio.substring(0, 100)}{talent.bio.length > 100 ? '...' : ''}</span>
+                      <span className="value">
+                        {((talent.bio || talent.professional_summary).substring(0, 100))}
+                        {(talent.bio || talent.professional_summary).length > 100 ? '...' : ''}
+                      </span>
                     </div>
                   )}
 
@@ -283,11 +291,11 @@ const SearchTalent = () => {
                     </div>
                   )}
 
-                  {talent.portfolio && (
+                  {(talent.portfolio || talent.portfolio_url) && (
                     <div className="info-row">
                       <span className="label"><span className="emoji">🌐</span> Portfolio:</span>
                       <span className="value">
-                        <a href={talent.portfolio} target="_blank" rel="noopener noreferrer">
+                        <a href={talent.portfolio || talent.portfolio_url} target="_blank" rel="noopener noreferrer">
                           Ver portafolio
                         </a>
                       </span>

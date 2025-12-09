@@ -278,61 +278,64 @@ const SearchCompanies = () => {
                           <span className="value">{company.location}</span>
                         </div>
                       )}
-                      {company.jobType && (
+                      {(company.jobType || company.job_type || company.contract_type) && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📋</span> Tipo de contrato:</span>
-                          <span className="value" style={{ textTransform: 'capitalize' }}>{company.jobType}</span>
+                          <span className="value" style={{ textTransform: 'capitalize' }}>{company.jobType || company.job_type || company.contract_type}</span>
                         </div>
                       )}
-                      {company.experience && (
+                      {(company.experience || company.experience_level) && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📈</span> Experiencia:</span>
-                          <span className="value">{company.experience}</span>
+                          <span className="value">{company.experience || company.experience_level}</span>
                         </div>
                       )}
                       
                       {/* Información Salarial */}
-                      {(company.salaryMin || company.salaryMax) && (
+                      {(company.salaryMin || company.salary_min || company.salaryMax || company.salary_max) && (
                         <div className="info-row salary-row">
                           <span className="label"><span className="emoji">💰</span> Salario:</span>
                           <span className="value">
-                            {company.salaryMin && company.salaryMax 
-                              ? `${company.currency || 'USD'} ${company.salaryMin.toLocaleString()} - ${company.salaryMax.toLocaleString()}`
-                              : `${company.currency || 'USD'} ${company.salaryMin || company.salaryMax || 'No especificado'}`
+                            {(company.salaryMin || company.salary_min) && (company.salaryMax || company.salary_max)
+                              ? `${company.currency || 'USD'} ${(company.salaryMin || company.salary_min).toLocaleString()} - ${(company.salaryMax || company.salary_max).toLocaleString()}`
+                              : `${company.currency || 'USD'} ${(company.salaryMin || company.salary_min) || (company.salaryMax || company.salary_max) || 'No especificado'}`
                             }
                           </span>
                         </div>
                       )}
                       
                       {/* Industria */}
-                      {company.industry && (
+                      {(company.industry || company.job_category) && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">🏢</span> Industria:</span>
-                          <span className="value" style={{ textTransform: 'capitalize' }}>{company.industry}</span>
+                          <span className="value" style={{ textTransform: 'capitalize' }}>{company.industry || company.job_category}</span>
                         </div>
                       )}
                       
                       {/* Descripción */}
-                      {company.description && (
+                      {(company.description || company.job_description) && (
                         <div className="info-row description-preview">
                           <span className="label"><span className="emoji">📝</span> Descripción:</span>
-                          <span className="value">{company.description.substring(0, 100)}{company.description.length > 100 ? '...' : ''}</span>
+                          <span className="value">
+                            {((company.description || company.job_description).substring(0, 100))}
+                            {(company.description || company.job_description).length > 100 ? '...' : ''}
+                          </span>
                         </div>
                       )}
                       
                       {/* Requisitos */}
-                      {company.requirements && (
+                      {(company.requirements || company.skills_required) && (
                         <div className="info-row requirements-preview">
                           <span className="label"><span className="emoji">✅</span> Requisitos:</span>
                           <span className="value">
-                            {typeof company.requirements === 'string' 
-                              ? company.requirements.split(',').slice(0, 2).map(req => req.trim()).join(', ')
-                              : Array.isArray(company.requirements)
-                              ? company.requirements.slice(0, 2).join(', ')
+                            {Array.isArray(company.requirements || company.skills_required)
+                              ? (company.requirements || company.skills_required).slice(0, 2).join(', ')
+                              : typeof (company.requirements || company.skills_required) === 'string'
+                              ? (company.requirements || company.skills_required).split(',').slice(0, 2).map(req => req.trim()).join(', ')
                               : 'No especificados'
                             }
-                            {typeof company.requirements === 'string' && company.requirements.split(',').length > 2 ? '...' : ''}
-                            {Array.isArray(company.requirements) && company.requirements.length > 2 ? '...' : ''}
+                            {Array.isArray(company.requirements || company.skills_required) && (company.requirements || company.skills_required).length > 2 ? '...' : ''}
+                            {typeof (company.requirements || company.skills_required) === 'string' && (company.requirements || company.skills_required).split(',').length > 2 ? '...' : ''}
                           </span>
                         </div>
                       )}
@@ -358,6 +361,8 @@ const SearchCompanies = () => {
                           <span className="value">
                             {typeof company.benefits === 'string' 
                               ? company.benefits.substring(0, 80)
+                              : Array.isArray(company.benefits)
+                              ? company.benefits.slice(0, 2).join(', ')
                               : 'Consultar oferta completa'
                             }
                             {typeof company.benefits === 'string' && company.benefits.length > 80 ? '...' : ''}
@@ -366,31 +371,31 @@ const SearchCompanies = () => {
                       )}
                       
                       {/* Fecha Límite */}
-                      {company.applicationDeadline && (
+                      {(company.applicationDeadline || company.deadline) && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📅</span> Plazo:</span>
-                          <span className="value">{new Date(company.applicationDeadline).toLocaleDateString('es-ES')}</span>
+                          <span className="value">{new Date(company.applicationDeadline || company.deadline).toLocaleDateString('es-ES')}</span>
                         </div>
                       )}
                       
                       {/* Email */}
-                      {company.contactEmail && (
+                      {(company.contactEmail || company.email) && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📧</span> Email:</span>
                           <span className="value">
-                            <a href={`mailto:${company.contactEmail}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
-                              {company.contactEmail}
+                            <a href={`mailto:${company.contactEmail || company.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
+                              {company.contactEmail || company.email}
                             </a>
                           </span>
                         </div>
                       )}
                       
                       {/* Fecha de publicación */}
-                      {company.createdAt && (
+                      {(company.createdAt || company.created_at) && (
                         <div className="info-row">
                           <span className="label"><span className="emoji">📅</span> Publicado:</span>
                           <span className="value">
-                            {new Date(company.createdAt).toLocaleDateString('es-CO', { 
+                            {new Date(company.createdAt || company.created_at).toLocaleDateString('es-CO', { 
                               year: 'numeric', 
                               month: 'long', 
                               day: 'numeric' 
