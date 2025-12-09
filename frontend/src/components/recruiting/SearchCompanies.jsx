@@ -279,29 +279,72 @@ const SearchCompanies = () => {
                     <>
                       {company.location && (
                         <div className="info-row">
-                          <span className="label">Ubicacion:</span>
-                          <span className="value">
-                            {company.location}
-                            {company.remote && <span className="remote-badge"> • Remoto</span>}
-                          </span>
+                          <span className="label">📍 Ubicación:</span>
+                          <span className="value">{company.location}</span>
                         </div>
                       )}
                       {company.contract_type && (
                         <div className="info-row">
-                          <span className="label">Tipo:</span>
-                          <span className="value">
-                            {company.contract_type}
-                            {company.salary && <span className="salary-info"> • {company.salary}</span>}
-                          </span>
+                          <span className="label">📋 Tipo de contrato:</span>
+                          <span className="value">{company.contract_type}</span>
                         </div>
                       )}
                       {company.experience_level && (
                         <div className="info-row">
-                          <span className="label">Experiencia:</span>
+                          <span className="label">📈 Experiencia requerida:</span>
+                          <span className="value">{company.experience_level}</span>
+                        </div>
+                      )}
+                      {company.salary && (
+                        <div className="info-row salary-row">
+                          <span className="label">💰 Salario:</span>
+                          <span className="value">{company.salary}</span>
+                        </div>
+                      )}
+                      {company.requirements && (
+                        <div className="info-row">
+                          <span className="label">✓ Requisitos:</span>
+                          <span className="value">{company.requirements}</span>
+                        </div>
+                      )}
+                      {company.responsibilities && (
+                        <div className="info-row">
+                          <span className="label">📋 Responsabilidades:</span>
+                          <span className="value">{company.responsibilities}</span>
+                        </div>
+                      )}
+                      {company.benefits && (
+                        <div className="info-row">
+                          <span className="label">🎁 Beneficios:</span>
+                          <span className="value">{company.benefits}</span>
+                        </div>
+                      )}
+                      {company.email && (
+                        <div className="info-row">
+                          <span className="label">📧 Email de contacto:</span>
                           <span className="value">
-                            {company.experience_level}
-                            {company.skillsRequired && <span className="skills-preview"> • {company.skillsRequired.split(',').slice(0, 2).join(', ')}</span>}
+                            <a href={`mailto:${company.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
+                              {company.email}
+                            </a>
                           </span>
+                        </div>
+                      )}
+                      {company.createdAt && (
+                        <div className="info-row">
+                          <span className="label">📅 Fecha de publicación:</span>
+                          <span className="value">
+                            {new Date(company.createdAt).toLocaleDateString('es-CO', { 
+                              year: 'numeric', 
+                              month: 'long', 
+                              day: 'numeric' 
+                            })}
+                          </span>
+                        </div>
+                      )}
+                      {company.description && (
+                        <div className="description">
+                          <h4>📝 Descripción completa:</h4>
+                          <p>{company.description}</p>
                         </div>
                       )}
                     </>

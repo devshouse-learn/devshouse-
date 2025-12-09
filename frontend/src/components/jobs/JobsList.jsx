@@ -182,27 +182,77 @@ const JobsList = () => {
                 <div className="card-body">
                   <div className="info-row">
                     <span className="label">📍 Ubicación:</span>
-                    <span className="value">
-                      {job.location}
-                      {job.remote && <span className="remote-badge"> • Remoto</span>}
-                    </span>
+                    <span className="value">{job.location}</span>
                   </div>
 
                   <div className="info-row">
-                    <span className="label">📋 Tipo:</span>
-                    <span className="value" style={{ textTransform: 'capitalize' }}>
-                      {job.jobType}
-                      {job.salary && <span className="salary-info"> • {job.salary}</span>}
-                    </span>
+                    <span className="label">📋 Tipo de contrato:</span>
+                    <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
                   </div>
 
                   <div className="info-row">
-                    <span className="label">📈 Experiencia:</span>
-                    <span className="value">
-                      {job.experience}
-                      {job.skillsRequired && <span className="skills-preview"> • {job.skillsRequired.split(',').slice(0, 2).join(', ')}</span>}
-                    </span>
+                    <span className="label">📈 Experiencia requerida:</span>
+                    <span className="value">{job.experience}</span>
                   </div>
+
+                  {job.salary && (
+                    <div className="info-row salary-row">
+                      <span className="label">� Salario:</span>
+                      <span className="value">{job.salary}</span>
+                    </div>
+                  )}
+
+                  {job.requirements && (
+                    <div className="info-row">
+                      <span className="label">✓ Requisitos:</span>
+                      <span className="value">{job.requirements}</span>
+                    </div>
+                  )}
+
+                  {job.responsibilities && (
+                    <div className="info-row">
+                      <span className="label">📋 Responsabilidades:</span>
+                      <span className="value">{job.responsibilities}</span>
+                    </div>
+                  )}
+
+                  {job.benefits && (
+                    <div className="info-row">
+                      <span className="label">🎁 Beneficios:</span>
+                      <span className="value">{job.benefits}</span>
+                    </div>
+                  )}
+
+                  {job.email && (
+                    <div className="info-row">
+                      <span className="label">� Email de contacto:</span>
+                      <span className="value">
+                        <a href={`mailto:${job.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
+                          {job.email}
+                        </a>
+                      </span>
+                    </div>
+                  )}
+
+                  {job.createdAt && (
+                    <div className="info-row">
+                      <span className="label">📅 Fecha de publicación:</span>
+                      <span className="value">
+                        {new Date(job.createdAt).toLocaleDateString('es-CO', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
+                      </span>
+                    </div>
+                  )}
+
+                  {job.description && (
+                    <div className="description">
+                      <h4>📝 Descripción completa:</h4>
+                      <p>{job.description}</p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="card-stats">
