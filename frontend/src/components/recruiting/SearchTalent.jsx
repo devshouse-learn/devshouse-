@@ -177,8 +177,11 @@ const SearchTalent = () => {
           {talents.map((talent) => (
             <div key={talent.id} className="item-card">
               <div className="card-header">
-                <h3>{talent.name || 'Talento'}</h3>
-                <span className="badge">{talent.bio ? talent.bio.substring(0, 30) + '...' : 'Profesional'}</span>
+                <div className="header-info">
+                  <h3>{talent.name || 'Talento'}</h3>
+                  <p className="company-name">{talent.profession || 'Profesional'}</p>
+                </div>
+                <span className="badge">{talent.experience || 'N/A'}</span>
               </div>
 
               <div className="card-content">
@@ -297,60 +300,56 @@ const SearchTalent = () => {
                   <span><span className="emoji">❤️</span> Likes: {talent.likes || 0}</span>
                   <span><span className="emoji">🚨</span> Reportes: {talent.reports || 0}</span>
                 </div>
+              </div>
 
-                <div className="card-actions">
+              <div className="card-actions">
+                <button
+                  className={`btn-like ${userReactions[talent.id]?.hasLiked ? 'liked' : ''}`}
+                  onClick={() => handleLike(talent.id)}
+                  title={userReactions[talent.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
+                >
+                  <span className="emoji">🤍</span> {userReactions[talent.id]?.hasLiked ? 'Liked' : 'Like'}
+                </button>
+                <button
+                  className={`btn-report ${userReactions[talent.id]?.hasReported ? 'reported' : ''}`}
+                  onClick={() => handleReport(talent.id, 'Contenido inapropiado')}
+                  title={userReactions[talent.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
+                >
+                  {userReactions[talent.id]?.hasReported ? ' Reported' : ' Report'}
+                </button>
+                <button
+                  className="btn-contact"
+                  onClick={() => {
+                    const email = talent.email 
+                      || talent.contactEmail 
+                      || talent.emailProfile
+                      || talent.contact?.email;
+                    
+                    if (email && String(email).trim()) {
+                      window.location.href = `mailto:${String(email).trim()}`;
+                    } else {
+                      alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
+                    }
+                  }}
+                  title="Contactar con el candidato"
+                ><span className="emoji">📬</span> Contactar </button>
+                {(user?.role === 'admin' || user?.id === talent.createdBy) && (
                   <button
-                    className={`btn-like ${userReactions[talent.id]?.hasLiked ? 'liked' : ''}`}
-                    onClick={() => handleLike(talent.id)}
-                    title={userReactions[talent.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
-                  >
-                    <span className="emoji">🤍</span> {userReactions[talent.id]?.hasLiked ? 'Liked' : 'Like'}
-                  </button>
-                  <button
-                    className={`btn-report ${userReactions[talent.id]?.hasReported ? 'reported' : ''}`}
-                    onClick={() => handleReport(talent.id, 'Contenido inapropiado')}
-                    title={userReactions[talent.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
-                  >
-                    {userReactions[talent.id]?.hasReported ? ' Reported' : ' Report'}
-                  </button>
-                  <button
-                    className="btn-contact"
-                    onClick={() => {
-                      // Intenta múltiples fuentes de email
-                      const email = talent.email 
-                        || talent.contactEmail 
-                        || talent.emailProfile
-                        || talent.contact?.email;
-                      
-                      console.log(' Trying email:', email, 'from talent:', talent);
-                      
-                      if (email && String(email).trim()) {
-                        window.location.href = `mailto:${String(email).trim()}`;
-                      } else {
-                        console.warn(' No email found in talent object:', talent);
-                        alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
-                      }
+                    onClick={() => handleDelete(talent.id, talent)}
+                    title={user?.role === 'admin' ? 'Eliminar perfil (admin)' : 'Eliminar tu perfil'}
+                    style={{
+                      backgroundColor: 'transparent',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0',
+                      borderRadius: '0',
+                      cursor: 'pointer',
+                      fontWeight: '600',
+                      transition: 'none',
+                      fontSize: '20px',
                     }}
-                    title="Contactar con el candidato"
-                  ><span className="emoji">📬</span> Contactar </button>
-                  {(user?.role === 'admin' || user?.id === talent.createdBy) && (
-                    <button
-                      onClick={() => handleDelete(talent.id, talent)}
-                      title={user?.role === 'admin' ? 'Eliminar perfil (admin)' : 'Eliminar tu perfil'}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        border: 'none',
-                        padding: '0',
-                        borderRadius: '0',
-                        cursor: 'pointer',
-                        fontWeight: '600',
-                        transition: 'none',
-                        fontSize: '20px',
-                      }}
-                    ><span className="emoji">🗑️</span></button>
-                  )}
-                </div>
+                  ><span className="emoji">🗑️</span></button>
+                )}
               </div>
             </div>
           ))}
