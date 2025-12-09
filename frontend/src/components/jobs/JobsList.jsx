@@ -203,24 +203,24 @@ const JobsList = () => {
                   <span className="value">{job.location}</span>
                 </div>
 
-                <div className="info-row">
-                  <span className="label">🎯 Tipo:</span>
-                  <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
-                </div>
-
-                <div className="info-row">
-                  <span className="label">📊 Experiencia:</span>
-                  <span className="value">{job.experience}</span>
-                </div>
-
                 {job.salaryMin && job.salaryMax && (
-                  <div className="info-row">
+                  <div className="info-row salary-row">
                     <span className="label">💰 Salario:</span>
                     <span className="value">
                       ${Number(job.salaryMin).toLocaleString()} - ${Number(job.salaryMax).toLocaleString()} {job.currency}
                     </span>
                   </div>
                 )}
+
+                <div className="info-row">
+                  <span className="label">🎯 Tipo:</span>
+                  <span className="value" style={{ textTransform: 'capitalize' }}>{job.jobType}</span>
+                </div>
+
+                <div className="info-row">
+                  <span className="label">� Experiencia:</span>
+                  <span className="value">{job.experience}</span>
+                </div>
 
                 {job.requirements && (
                   <div className="info-row">

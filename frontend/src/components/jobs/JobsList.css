@@ -121,7 +121,7 @@
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   animation: fadeIn 0.6s ease;
 }
@@ -206,6 +206,24 @@
   color: #555;
   flex: 1;
   word-break: break-word;
+}
+
+.info-row.salary-row {
+  background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(30, 136, 229, 0.05));
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #1a73e8;
+}
+
+.info-row.salary-row .label {
+  font-size: 1.1rem;
+  color: #1a73e8;
+}
+
+.info-row.salary-row .value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a73e8;
 }
 
 .description {
