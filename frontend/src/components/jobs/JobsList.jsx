@@ -188,7 +188,10 @@ const JobsList = () => {
           {jobs.map((job) => (
             <div key={job.id} className="item-card">
               <div className="card-header">
-                <h3>{job.position}</h3>
+                <div className="header-info">
+                  <h3>{job.position}</h3>
+                  <p className="company-name">🏢 {job.company}</p>
+                </div>
                 <span className="badge">{job.experience}</span>
               </div>
 
