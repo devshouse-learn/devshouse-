@@ -312,18 +312,17 @@ const VenturesList = () => {
                     onClick={() => handleDelete(venture.id, venture)}
                     title={user?.role === 'admin' ? 'Eliminar emprendimiento (admin)' : 'Eliminar tu emprendimiento'}
                     style={{
-                      background: '#ff6b6b',
+                      background: 'transparent',
                       color: 'white',
                       border: 'none',
-                      padding: '8px 12px',
-                      borderRadius: '5px',
+                      padding: '0',
+                      borderRadius: '0',
                       cursor: 'pointer',
                       fontWeight: '600',
-                      transition: 'all 0.3s ease',
+                      transition: 'none',
+                      fontSize: '20px',
                     }}
-                    onMouseOver={(e) => e.target.style.background = '#ff5252'}
-                    onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
-                  ><span className="emoji">🗑️</span> Eliminar </button>
+                  ><span className="emoji">🗑️</span></button>
                 )}
               </div>
             </div>

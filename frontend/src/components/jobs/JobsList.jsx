@@ -235,19 +235,18 @@ const JobsList = () => {
                   <button
                     onClick={() => handleDelete(job.id)}
                     title={user?.role === 'admin' ? 'Eliminar oferta de empleo (admin)' : 'Eliminar tu oferta de empleo'}
-                    onMouseOver={(e) => e.target.style.backgroundColor = '#ff5252'}
-                    onMouseOut={(e) => e.target.style.backgroundColor = '#ff6b6b'}
                     style={{
-                      backgroundColor: '#ff6b6b',
+                      backgroundColor: 'transparent',
                       color: 'white',
                       border: 'none',
-                      padding: '8px 16px',
-                      borderRadius: '6px',
+                      padding: '0',
+                      borderRadius: '0',
                       cursor: 'pointer',
                       fontWeight: '600',
-                      transition: 'background-color 0.2s ease',
+                      transition: 'none',
+                      fontSize: '20px',
                     }}
-                  ><span className="emoji">🗑️</span> Eliminar </button>
+                  ><span className="emoji">🗑️</span></button>
                 )}
               </div>
             </div>

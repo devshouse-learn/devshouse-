@@ -31,10 +31,12 @@
   display: inline-block;
 }
 
-/* Preserve emoji appearance on button hover */
+/* Preserve emoji appearance on button hover and click */
 button:hover .emoji,
-button:focus .emoji {
-  filter: grayscale(100%) brightness(1.1);
+button:focus .emoji,
+button:active .emoji {
+  filter: grayscale(100%) !important;
+  opacity: 1 !important;
 }
 
 body {
