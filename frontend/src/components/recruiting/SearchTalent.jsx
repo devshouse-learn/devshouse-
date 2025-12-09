@@ -196,7 +196,7 @@ const SearchTalent = () => {
 
                   {talent.location && (
                     <div className="info-row">
-                      <span className="label"> Ubicación:</span>
+                      <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                       <span className="value">{talent.location}</span>
                     </div>
                   )}

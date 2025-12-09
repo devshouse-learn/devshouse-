@@ -186,17 +186,17 @@ const StudentsList = () => {
 
               <div className="card-content">
                 <div className="info-row">
-                  <span className="label"> Institución:</span>
+                  <span className="label"><span className="emoji">🏫</span> Institución:</span>
                   <span className="value">{student.schoolName}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label"> Ubicación:</span>
+                  <span className="label"><span className="emoji">📍</span> Ubicación:</span>
                   <span className="value">{student.location || 'No especificada'}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label"> Email:</span>
+                  <span className="label"><span className="emoji">📧</span> Email:</span>
                   <span className="value">{student.contactEmail}</span>
                 </div>
 

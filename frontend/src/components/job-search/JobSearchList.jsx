@@ -176,7 +176,7 @@ const JobSearchList = () => {
               <div className="card-content">
                 {candidate.email && (
                   <div className="info-row">
-                    <span className="label"> Email:</span>
+                    <span className="label"><span className="emoji">📧</span> Email:</span>
                     <span className="value">{candidate.email}</span>
                   </div>
                 )}
