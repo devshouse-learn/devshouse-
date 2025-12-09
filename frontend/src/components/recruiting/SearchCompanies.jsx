@@ -207,9 +207,14 @@ const SearchCompanies = () => {
           {companies.map((company) => (
             <div key={company.id} className="item-card">
               <div className="card-header">
-                <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
+                <div className="header-info">
+                  <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
+                  {activeTab === 'jobs' && company.company && (
+                    <p className="company-name">🏢 {company.company}</p>
+                  )}
+                </div>
                 <span className="badge">
-                  {activeTab === 'ventures' ? company.industry : company.company}
+                  {activeTab === 'ventures' ? company.industry : company.experience_level}
                 </span>
               </div>
 
@@ -272,12 +277,6 @@ const SearchCompanies = () => {
                     </>
                   ) : (
                     <>
-                      {company.company && (
-                        <div className="info-row">
-                          <span className="label">🏢 Empresa:</span>
-                          <span className="value">{company.company}</span>
-                        </div>
-                      )}
                       {company.location && (
                         <div className="info-row">
                           <span className="label">📍 Ubicación:</span>
@@ -290,16 +289,16 @@ const SearchCompanies = () => {
                           <span className="value">{company.contract_type}</span>
                         </div>
                       )}
-                      {company.salary && (
-                        <div className="info-row">
-                          <span className="label">💵 Salario:</span>
-                          <span className="value">{company.salary}</span>
-                        </div>
-                      )}
                       {company.experience_level && (
                         <div className="info-row">
-                          <span className="label">📈 Experiencia:</span>
+                          <span className="label">� Experiencia:</span>
                           <span className="value">{company.experience_level}</span>
+                        </div>
+                      )}
+                      {company.salary && (
+                        <div className="info-row salary-row">
+                          <span className="label">� Salario:</span>
+                          <span className="value">{company.salary}</span>
                         </div>
                       )}
                       {company.requirements && (
