@@ -11,6 +11,7 @@ const VenturesList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   useEffect(() => {
     loadVentures();
@@ -187,8 +188,33 @@ const VenturesList = () => {
           {ventures.map((venture) => (
             <div key={venture.id} className="item-card">
               <div className="card-header">
-                <h3>{venture.company_name}</h3>
-                <span className="badge">{venture.investment_stage}</span>
+                <div className="header-title">
+                  <h3>{venture.company_name}</h3>
+                  <span className="badge">{venture.investment_stage}</span>
+                </div>
+                <div className="header-menu">
+                  <button
+                    className="menu-btn"
+                    onClick={() => setOpenMenuId(openMenuId === venture.id ? null : venture.id)}
+                    title="Más opciones"
+                  >
+                    ⋮
+                  </button>
+                  {openMenuId === venture.id && (
+                    <div className="menu-dropdown">
+                      <button
+                        className="menu-item"
+                        onClick={() => {
+                          handleReport(venture.id);
+                          setOpenMenuId(null);
+                        }}
+                        disabled={userReactions[venture.id]?.hasReported}
+                      >
+                        {userReactions[venture.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="card-content">
@@ -275,15 +301,7 @@ const VenturesList = () => {
                   onClick={() => handleLike(venture.id)}
                   title={userReactions[venture.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[venture.id]?.hasLiked ? ' Liked' : ' Like'}
-                </button>
-                <button
-                  className={`btn-report ${userReactions[venture.id]?.hasReported ? 'reported' : ''}`}
-                  onClick={() => handleReport(venture.id)}
-                  title={userReactions[venture.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
-                  disabled={userReactions[venture.id]?.hasReported}
-                >
-                   {userReactions[venture.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                  <span className="emoji">🤍</span> {userReactions[venture.id]?.hasLiked ? 'Liked' : 'Like'}
                 </button>
                 <button
                   className="btn-contact"

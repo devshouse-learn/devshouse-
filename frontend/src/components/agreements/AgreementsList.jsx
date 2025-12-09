@@ -11,6 +11,7 @@ const AgreementsList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({}); // Rastrear reacciones del usuario
+  const [openMenuId, setOpenMenuId] = useState(null); // Rastrear cuál menú está abierto
 
   useEffect(() => {
     loadAgreements();
@@ -195,8 +196,33 @@ const AgreementsList = () => {
           {agreements.map((agreement) => (
             <div key={agreement.id} className="item-card">
               <div className="card-header">
-                <h3>{agreement.schoolName}</h3>
-                <span className="badge">{agreement.schoolType}</span>
+                <div className="header-title">
+                  <h3>{agreement.schoolName}</h3>
+                  <span className="badge">{agreement.schoolType}</span>
+                </div>
+                <div className="header-menu">
+                  <button
+                    className="menu-btn"
+                    onClick={() => setOpenMenuId(openMenuId === agreement.id ? null : agreement.id)}
+                    title="Más opciones"
+                  >
+                    ⋮
+                  </button>
+                  {openMenuId === agreement.id && (
+                    <div className="menu-dropdown">
+                      <button
+                        className="menu-item"
+                        onClick={() => {
+                          handleReport(agreement.id);
+                          setOpenMenuId(null);
+                        }}
+                        disabled={userReactions[agreement.id]?.hasReported}
+                      >
+                        {userReactions[agreement.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="card-content">
@@ -279,14 +305,6 @@ const AgreementsList = () => {
                   title={userReactions[agreement.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
                   <span className="emoji">🤍</span> {userReactions[agreement.id]?.hasLiked ? 'Liked' : 'Like'}
-                </button>
-                <button
-                  className={`btn-report ${userReactions[agreement.id]?.hasReported ? 'reported' : ''}`}
-                  onClick={() => handleReport(agreement.id)}
-                  title={userReactions[agreement.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
-                  disabled={userReactions[agreement.id]?.hasReported}
-                >
-                   {userReactions[agreement.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
                 {(user?.role === 'admin' || user?.id === agreement.createdBy) && (
                   <button

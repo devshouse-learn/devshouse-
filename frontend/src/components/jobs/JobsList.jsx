@@ -11,6 +11,7 @@ const JobsList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   useEffect(() => {
     loadJobs();
@@ -167,11 +168,36 @@ const JobsList = () => {
           {jobs.map((job) => (
             <div key={job.id} className="item-card">
               <div className="card-header">
-                <div className="header-info">
-                  <h3>{job.position}</h3>
-                  <p className="company-name"> {job.company}</p>
+                <div className="header-title">
+                  <div className="header-info">
+                    <h3>{job.position}</h3>
+                    <p className="company-name"> {job.company}</p>
+                  </div>
+                  <span className="badge">{job.experience}</span>
                 </div>
-                <span className="badge">{job.experience}</span>
+                <div className="header-menu">
+                  <button
+                    className="menu-btn"
+                    onClick={() => setOpenMenuId(openMenuId === job.id ? null : job.id)}
+                    title="Más opciones"
+                  >
+                    ⋮
+                  </button>
+                  {openMenuId === job.id && (
+                    <div className="menu-dropdown">
+                      <button
+                        className="menu-item"
+                        onClick={() => {
+                          handleReport(job.id);
+                          setOpenMenuId(null);
+                        }}
+                        disabled={userReactions[job.id]?.hasReported}
+                      >
+                        {userReactions[job.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="card-content">
@@ -205,15 +231,7 @@ const JobsList = () => {
                   onClick={() => handleLike(job.id)}
                   title={userReactions[job.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  <span className="emoji">{userReactions[job.id]?.hasLiked ? '❤️' : '🤍'}</span> {userReactions[job.id]?.hasLiked ? 'Liked' : 'Like'}
-                </button>
-                <button
-                  className={`btn-report ${userReactions[job.id]?.hasReported ? 'reported' : ''}`}
-                  onClick={() => handleReport(job.id)}
-                  title={userReactions[job.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
-                  disabled={userReactions[job.id]?.hasReported}
-                >
-                  <span className="emoji">🚨</span> {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                  <span className="emoji">🤍</span> {userReactions[job.id]?.hasLiked ? 'Liked' : 'Like'}
                 </button>
                 <button
                   className="btn-contact"

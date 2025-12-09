@@ -11,6 +11,7 @@ const StudentsList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   useEffect(() => {
     loadStudents();
@@ -176,8 +177,33 @@ const StudentsList = () => {
           {students.map((student) => (
             <div key={student.id} className="item-card">
               <div className="card-header">
-                <h3>{student.contactPerson || 'Estudiante'}</h3>
-                <span className="badge">{student.schoolType}</span>
+                <div className="header-title">
+                  <h3>{student.contactPerson || 'Estudiante'}</h3>
+                  <span className="badge">{student.schoolType}</span>
+                </div>
+                <div className="header-menu">
+                  <button
+                    className="menu-btn"
+                    onClick={() => setOpenMenuId(openMenuId === student.id ? null : student.id)}
+                    title="Más opciones"
+                  >
+                    ⋮
+                  </button>
+                  {openMenuId === student.id && (
+                    <div className="menu-dropdown">
+                      <button
+                        className="menu-item"
+                        onClick={() => {
+                          handleReport(student.id);
+                          setOpenMenuId(null);
+                        }}
+                        disabled={userReactions[student.id]?.hasReported}
+                      >
+                        {userReactions[student.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="card-content">
@@ -220,15 +246,7 @@ const StudentsList = () => {
                   onClick={() => handleLike(student.id)}
                   title={userReactions[student.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                 >
-                  {userReactions[student.id]?.hasLiked ? ' Liked' : ' Like'}
-                </button>
-                <button
-                  className={`btn-report ${userReactions[student.id]?.hasReported ? 'reported' : ''}`}
-                  onClick={() => handleReport(student.id)}
-                  title={userReactions[student.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
-                  disabled={userReactions[student.id]?.hasReported}
-                >
-                   {userReactions[student.id]?.hasReported ? 'Reportado' : 'Reportar'}
+                  <span className="emoji">🤍</span> {userReactions[student.id]?.hasLiked ? 'Liked' : 'Like'}
                 </button>
                 <button
                   className="btn-contact"
