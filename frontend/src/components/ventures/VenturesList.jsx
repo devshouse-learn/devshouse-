@@ -35,11 +35,11 @@ const VenturesList = () => {
     } catch (err) {
       console.error('Error loading ventures:', err);
       if (err.message.includes('Failed to fetch')) {
-        setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
+        setError(' No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
-        setError('⚠️ La conexión tardó demasiado. Por favor, intenta de nuevo.');
+        setError(' La conexión tardó demasiado. Por favor, intenta de nuevo.');
       } else {
-        setError('⚠️ Error al cargar los emprendimientos. Por favor, intenta de nuevo más tarde.');
+        setError(' Error al cargar los emprendimientos. Por favor, intenta de nuevo más tarde.');
       }
     } finally {
       setLoading(false);
@@ -95,7 +95,7 @@ const VenturesList = () => {
           [id]: { ...prev[id], hasReported: true }
         }));
         
-        alert('🚨 Denuncia registrada correctamente');
+        alert(' Denuncia registrada correctamente');
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -113,14 +113,14 @@ const VenturesList = () => {
       return;
     }
 
-    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este emprendimiento? Esta acción no se puede deshacer.')) {
+    if (window.confirm(' ¿Estás seguro de que quieres eliminar este emprendimiento? Esta acción no se puede deshacer.')) {
       try {
         await venturesService.delete(id);
         console.log('✅ Emprendimiento eliminado');
         setVentures(prevVentures => prevVentures.filter(v => v.id !== id));
       } catch (err) {
         console.error('Error al eliminar emprendimiento:', err);
-        alert('❌ Error al eliminar el emprendimiento: ' + err.message);
+        alert(' Error al eliminar el emprendimiento: ' + err.message);
       }
     }
   };
@@ -138,7 +138,7 @@ const VenturesList = () => {
             onClick={() => navigate('/')}
             title="Volver al inicio"
           >
-            ← Volver
+             Volver
           </button>
         </div>
         <div className="header-content">
@@ -151,7 +151,7 @@ const VenturesList = () => {
         className="btn-primary-large"
         onClick={() => navigate('/ventures/form')}
       >
-        ➕ Registrar el tuyo
+         Registrar el tuyo
       </button>
 
       {error && (
@@ -170,7 +170,7 @@ const VenturesList = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
@@ -183,7 +183,7 @@ const VenturesList = () => {
             className="btn-primary"
             onClick={() => navigate('/ventures/form')}
           >
-            ➕ Registrar Emprendimiento
+             Registrar Emprendimiento
           </button>
         </div>
       ) : (
@@ -197,12 +197,12 @@ const VenturesList = () => {
 
               <div className="card-content">
                 <div className="info-row">
-                  <span className="label">🏢 Industria:</span>
+                  <span className="label"> Industria:</span>
                   <span className="value">{venture.industry}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label">📍 Ubicación:</span>
+                  <span className="label"> Ubicación:</span>
                   <span className="value">{venture.location}</span>
                 </div>
 
@@ -213,13 +213,13 @@ const VenturesList = () => {
 
                 {(venture.founded_year || venture.foundedYear) && (
                   <div className="info-row">
-                    <span className="label">📅 Año:</span>
+                    <span className="label"> Año:</span>
                     <span className="value">{venture.founded_year || venture.foundedYear}</span>
                   </div>
                 )}
 
                 <div className="info-row">
-                  <span className="label">💰 Etapa:</span>
+                  <span className="label"> Etapa:</span>
                   <span className="value">{venture.investment_stage}</span>
                 </div>
 
@@ -239,13 +239,13 @@ const VenturesList = () => {
 
                 {(venture.revenue_model || venture.revenueModel) && (
                   <div className="info-row">
-                    <span className="label">📊 Modelo:</span>
+                    <span className="label"> Modelo:</span>
                     <span className="value">{venture.revenue_model || venture.revenueModel}</span>
                   </div>
                 )}
 
                 <div className="info-row">
-                  <span className="label">✉️ Email:</span>
+                  <span className="label"> Email:</span>
                   <span className="value">{venture.founderEmail}</span>
                 </div>
 
@@ -267,9 +267,9 @@ const VenturesList = () => {
                 )}
 
                 <div className="card-stats">
-                  <span>👁️ {venture.views} vistas</span>
-                  <span>❤️ {venture.likes} likes</span>
-                  <span>🚨 {venture.reports} reportes</span>
+                  <span> {venture.views} vistas</span>
+                  <span> {venture.likes} likes</span>
+                  <span> {venture.reports} reportes</span>
                 </div>
               </div>
 
@@ -279,7 +279,7 @@ const VenturesList = () => {
                   onClick={() => handleLike(venture.id)}
                   title={userReactions[venture.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[venture.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                  {userReactions[venture.id]?.hasLiked ? ' Liked' : ' Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[venture.id]?.hasReported ? 'reported' : ''}`}
@@ -287,7 +287,7 @@ const VenturesList = () => {
                   title={userReactions[venture.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
                   disabled={userReactions[venture.id]?.hasReported}
                 >
-                  🚨 {userReactions[venture.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                   {userReactions[venture.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
                 <button
                   className="btn-contact"
@@ -299,18 +299,18 @@ const VenturesList = () => {
                       || venture.contactEmail
                       || venture.contactPerson?.email;
                     
-                    console.log('📧 Trying email:', email, 'from venture:', venture);
+                    console.log(' Trying email:', email, 'from venture:', venture);
                     
                     if (email && String(email).trim()) {
                       window.location.href = `mailto:${String(email).trim()}`;
                     } else {
-                      console.warn('❌ No email found in venture object:', venture);
-                      alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
+                      console.warn(' No email found in venture object:', venture);
+                      alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
                     }
                   }}
                   title="Contactar con el fundador"
                 >
-                  ✉️ Contactar
+                   Contactar
                 </button>
                 {(user?.role === 'admin' || user?.id === venture.createdBy) && (
                   <button
@@ -330,7 +330,7 @@ const VenturesList = () => {
                     onMouseOver={(e) => e.target.style.background = '#ff5252'}
                     onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
                   >
-                    🗑️ Eliminar
+                     Eliminar
                   </button>
                 )}
               </div>

@@ -35,11 +35,11 @@ const AgreementsList = () => {
     } catch (err) {
       console.error('Error loading agreements:', err);
       if (err.message.includes('Failed to fetch')) {
-        setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
+        setError(' No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
-        setError('⚠️ La conexión tardó demasiado. Por favor, intenta de nuevo.');
+        setError(' La conexión tardó demasiado. Por favor, intenta de nuevo.');
       } else {
-        setError('⚠️ Error al cargar los convenios. Por favor, intenta de nuevo más tarde.');
+        setError(' Error al cargar los convenios. Por favor, intenta de nuevo más tarde.');
       }
     } finally {
       setLoading(false);
@@ -117,14 +117,14 @@ const AgreementsList = () => {
       return;
     }
 
-    if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este convenio? Esta acción no se puede deshacer.')) {
+    if (window.confirm(' ¿Estás seguro de que quieres eliminar este convenio? Esta acción no se puede deshacer.')) {
       try {
         await agreementsService.delete(id);
         console.log('✅ Convenio eliminado');
         setAgreements(prevAgreements => prevAgreements.filter(a => a.id !== id));
       } catch (err) {
         console.error('Error al eliminar convenio:', err);
-        alert('❌ Error al eliminar el convenio: ' + err.message);
+        alert(' Error al eliminar el convenio: ' + err.message);
       }
     }
   };
@@ -147,7 +147,7 @@ const AgreementsList = () => {
             onClick={() => navigate('/')}
             title="Volver al inicio"
           >
-            ← Volver
+             Volver
           </button>
         </div>
         <div className="header-content">
@@ -158,7 +158,7 @@ const AgreementsList = () => {
           className="btn-primary-large"
           onClick={() => navigate('/agreements/form')}
         >
-          ➕ Registrar el tuyo
+           Registrar el tuyo
         </button>
       </div>
 
@@ -178,7 +178,7 @@ const AgreementsList = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
@@ -191,7 +191,7 @@ const AgreementsList = () => {
             className="btn-primary"
             onClick={() => navigate('/agreements/form')}
           >
-            ➕ Registrar Convenio
+             Registrar Convenio
           </button>
         </div>
       ) : (
@@ -205,7 +205,7 @@ const AgreementsList = () => {
 
               <div className="card-content">
                 <div className="info-row">
-                  <span className="label">📍 Ubicación:</span>
+                  <span className="label"> Ubicación:</span>
                   <span className="value">{agreement.location}</span>
                 </div>
 
@@ -218,7 +218,7 @@ const AgreementsList = () => {
 
                 {agreement.areaOfInterest && (
                   <div className="info-row">
-                    <span className="label">🎯 Área:</span>
+                    <span className="label"> Área:</span>
                     <span className="value">{agreement.areaOfInterest}</span>
                   </div>
                 )}
@@ -232,13 +232,13 @@ const AgreementsList = () => {
 
                 {agreement.establishmentYear && (
                   <div className="info-row">
-                    <span className="label">📅 Fundación:</span>
+                    <span className="label"> Fundación:</span>
                     <span className="value">{agreement.establishmentYear}</span>
                   </div>
                 )}
 
                 <div className="info-row">
-                  <span className="label">✉️ Email:</span>
+                  <span className="label"> Email:</span>
                   <span className="value">{agreement.contactEmail}</span>
                 </div>
 
@@ -259,7 +259,7 @@ const AgreementsList = () => {
                 )}
 
                 <div className="info-row">
-                  <span className="label">📅 Estado:</span>
+                  <span className="label"> Estado:</span>
                   <span className="value">{agreement.status || 'No especificado'}</span>
                 </div>
 
@@ -270,9 +270,9 @@ const AgreementsList = () => {
                 )}
 
                 <div className="card-stats">
-                  <span>👁️ {agreement.views} vistas</span>
-                  <span>❤️ {agreement.likes} likes</span>
-                  <span>🚨 {agreement.reports} reportes</span>
+                  <span> {agreement.views} vistas</span>
+                  <span> {agreement.likes} likes</span>
+                  <span> {agreement.reports} reportes</span>
                 </div>
               </div>
 
@@ -282,7 +282,7 @@ const AgreementsList = () => {
                   onClick={() => handleLike(agreement.id)}
                   title={userReactions[agreement.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[agreement.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                  {userReactions[agreement.id]?.hasLiked ? ' Liked' : ' Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[agreement.id]?.hasReported ? 'reported' : ''}`}
@@ -290,7 +290,7 @@ const AgreementsList = () => {
                   title={userReactions[agreement.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
                   disabled={userReactions[agreement.id]?.hasReported}
                 >
-                  🚨 {userReactions[agreement.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                   {userReactions[agreement.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
                 {(user?.role === 'admin' || user?.id === agreement.createdBy) && (
                   <button
@@ -310,7 +310,7 @@ const AgreementsList = () => {
                     onMouseOver={(e) => e.target.style.background = '#ff5252'}
                     onMouseOut={(e) => e.target.style.background = '#ff6b6b'}
                   >
-                    🗑️ Eliminar
+                     Eliminar
                   </button>
                 )}
               </div>

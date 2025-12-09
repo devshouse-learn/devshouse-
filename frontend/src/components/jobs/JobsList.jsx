@@ -33,11 +33,11 @@ const JobsList = () => {
     } catch (err) {
       console.error('Error loading jobs:', err);
       if (err.message.includes('Failed to fetch')) {
-        setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
+        setError(' No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
-        setError('⚠️ La conexión tardó demasiado. Por favor, intenta de nuevo.');
+        setError(' La conexión tardó demasiado. Por favor, intenta de nuevo.');
       } else {
-        setError('⚠️ Error al cargar los empleos. Por favor, intenta de nuevo más tarde.');
+        setError(' Error al cargar los empleos. Por favor, intenta de nuevo más tarde.');
       }
     } finally {
       setLoading(false);
@@ -84,7 +84,7 @@ const JobsList = () => {
           ...prev,
           [id]: { ...prev[id], hasReported: true }
         }));
-        alert('🚨 Denuncia registrada correctamente');
+        alert(' Denuncia registrada correctamente');
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -102,7 +102,7 @@ const JobsList = () => {
       alert('✅ Oferta eliminada correctamente');
     } catch (err) {
       console.error('Error al eliminar:', err);
-      alert('❌ Error al eliminar: ' + err.message);
+      alert(' Error al eliminar: ' + err.message);
     }
   };
 
@@ -119,18 +119,18 @@ const JobsList = () => {
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
           >
-            ← Volver
+             Volver
           </button>
         </div>
         <div className="header-content">
-          <h1>🎯 Ofertas de Empleo</h1>
+          <h1> Ofertas de Empleo</h1>
           <p>Encuentra las mejores oportunidades laborales</p>
         </div>
         <button 
           className="btn-primary-large"
           onClick={() => navigate('/jobs/form')}
         >
-          ➕ Publicar Empleo
+           Publicar Empleo
         </button>
       </div>
 
@@ -150,7 +150,7 @@ const JobsList = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
@@ -163,7 +163,7 @@ const JobsList = () => {
             className="btn-primary"
             onClick={() => navigate('/jobs/form')}
           >
-            ➕ Publicar Empleo
+             Publicar Empleo
           </button>
         </div>
       ) : (
@@ -173,7 +173,7 @@ const JobsList = () => {
               <div className="card-header">
                 <div className="header-info">
                   <h3>{job.position}</h3>
-                  <p className="company-name">🏢 {job.company}</p>
+                  <p className="company-name"> {job.company}</p>
                 </div>
                 <span className="badge">{job.experience}</span>
               </div>
@@ -209,7 +209,7 @@ const JobsList = () => {
                   onClick={() => handleLike(job.id)}
                   title={userReactions[job.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[job.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                  {userReactions[job.id]?.hasLiked ? ' Liked' : ' Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[job.id]?.hasReported ? 'reported' : ''}`}
@@ -217,7 +217,7 @@ const JobsList = () => {
                   title={userReactions[job.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
                   disabled={userReactions[job.id]?.hasReported}
                 >
-                  🚨 {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                   {userReactions[job.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
                 <button
                   className="btn-contact"
@@ -230,12 +230,12 @@ const JobsList = () => {
                     if (email && String(email).trim()) {
                       window.location.href = `mailto:${String(email).trim()}`;
                     } else {
-                      alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
+                      alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
                     }
                   }}
                   title="Contactar con el empleador"
                 >
-                  ✉️ Contactar
+                   Contactar
                 </button>
                 {(user?.role === 'admin' || user?.id === job.createdBy) && (
                   <button
@@ -254,7 +254,7 @@ const JobsList = () => {
                       transition: 'background-color 0.2s ease',
                     }}
                   >
-                    🗑️ Eliminar
+                     Eliminar
                   </button>
                 )}
               </div>

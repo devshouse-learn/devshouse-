@@ -18,7 +18,7 @@ const SearchCompanies = () => {
   const loadCompanies = async () => {
     try {
       setLoading(true);
-      console.log(`🔄 Cargando ${activeTab} desde API...`);
+      console.log(` Cargando ${activeTab} desde API...`);
       
       let response;
       if (activeTab === 'ventures') {
@@ -35,7 +35,7 @@ const SearchCompanies = () => {
         loadedCompanies = loadedCompanies.filter(venture => venture.showInSearch !== false);
       }
       
-      console.log('🏢 Empresas cargadas:', loadedCompanies);
+      console.log(' Empresas cargadas:', loadedCompanies);
       setCompanies(loadedCompanies);
       
       // Cargar reacciones del usuario
@@ -48,8 +48,8 @@ const SearchCompanies = () => {
       setUserReactions(reactions);
       setError('');
     } catch (err) {
-      console.error('❌ Error al cargar empresas:', err);
-      setError('❌ Error al cargar las empresas. Por favor, intenta de nuevo.');
+      console.error(' Error al cargar empresas:', err);
+      setError(' Error al cargar las empresas. Por favor, intenta de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -128,11 +128,11 @@ const SearchCompanies = () => {
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
           >
-            ← Volver
+             Volver
           </button>
         </div>
         <div className="header-content">
-          <h1>🏢 Buscar Empresas</h1>
+          <h1> Buscar Empresas</h1>
           <p>Descubre empresas y oportunidades</p>
         </div>
       </div>
@@ -186,7 +186,7 @@ const SearchCompanies = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
@@ -199,7 +199,7 @@ const SearchCompanies = () => {
             className="btn-primary"
             onClick={() => navigate(activeTab === 'ventures' ? '/ventures/form' : '/jobs/form')}
           >
-            ➕ Registrar
+             Registrar
           </button>
         </div>
       ) : (
@@ -210,7 +210,7 @@ const SearchCompanies = () => {
                 <div className="header-info">
                   <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
                   {activeTab === 'jobs' && company.company && (
-                    <p className="company-name">🏢 {company.company}</p>
+                    <p className="company-name"> {company.company}</p>
                   )}
                 </div>
                 <span className="badge">
@@ -230,19 +230,19 @@ const SearchCompanies = () => {
                       )}
                       {company.location && (
                         <div className="info-row">
-                          <span className="label">📍 Ubicación:</span>
+                          <span className="label"> Ubicación:</span>
                           <span className="value">{company.location}</span>
                         </div>
                       )}
                       {company.founded_year && (
                         <div className="info-row">
-                          <span className="label">📅 Año:</span>
+                          <span className="label"> Año:</span>
                           <span className="value">{company.founded_year}</span>
                         </div>
                       )}
                       {company.investment_stage && (
                         <div className="info-row">
-                          <span className="label">💰 Etapa:</span>
+                          <span className="label"> Etapa:</span>
                           <span className="value">{company.investment_stage}</span>
                         </div>
                       )}
@@ -260,7 +260,7 @@ const SearchCompanies = () => {
                       )}
                       {company.revenue_model && (
                         <div className="info-row">
-                          <span className="label">📊 Modelo:</span>
+                          <span className="label"> Modelo:</span>
                           <span className="value">{company.revenue_model}</span>
                         </div>
                       )}
@@ -279,49 +279,49 @@ const SearchCompanies = () => {
                     <>
                       {company.location && (
                         <div className="info-row">
-                          <span className="label">📍 Ubicación:</span>
+                          <span className="label"> Ubicación:</span>
                           <span className="value">{company.location}</span>
                         </div>
                       )}
                       {company.contract_type && (
                         <div className="info-row">
-                          <span className="label">📋 Tipo de contrato:</span>
+                          <span className="label"> Tipo de contrato:</span>
                           <span className="value">{company.contract_type}</span>
                         </div>
                       )}
                       {company.experience_level && (
                         <div className="info-row">
-                          <span className="label">📈 Experiencia requerida:</span>
+                          <span className="label"> Experiencia requerida:</span>
                           <span className="value">{company.experience_level}</span>
                         </div>
                       )}
                       {company.salary && (
                         <div className="info-row salary-row">
-                          <span className="label">💰 Salario:</span>
+                          <span className="label"> Salario:</span>
                           <span className="value">{company.salary}</span>
                         </div>
                       )}
                       {company.requirements && (
                         <div className="info-row">
-                          <span className="label">✓ Requisitos:</span>
+                          <span className="label"> Requisitos:</span>
                           <span className="value">{company.requirements}</span>
                         </div>
                       )}
                       {company.responsibilities && (
                         <div className="info-row">
-                          <span className="label">📋 Responsabilidades:</span>
+                          <span className="label">:</span>
                           <span className="value">{company.responsibilities}</span>
                         </div>
                       )}
                       {company.benefits && (
                         <div className="info-row">
-                          <span className="label">🎁 Beneficios:</span>
+                          <span className="label"> Beneficios:</span>
                           <span className="value">{company.benefits}</span>
                         </div>
                       )}
                       {company.email && (
                         <div className="info-row">
-                          <span className="label">📧 Email de contacto:</span>
+                          <span className="label"> Email de contacto:</span>
                           <span className="value">
                             <a href={`mailto:${company.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
                               {company.email}
@@ -331,7 +331,7 @@ const SearchCompanies = () => {
                       )}
                       {company.createdAt && (
                         <div className="info-row">
-                          <span className="label">📅 Fecha de publicación:</span>
+                          <span className="label"> Fecha de publicación:</span>
                           <span className="value">
                             {new Date(company.createdAt).toLocaleDateString('es-CO', { 
                               year: 'numeric', 
@@ -343,7 +343,7 @@ const SearchCompanies = () => {
                       )}
                       {company.description && (
                         <div className="description">
-                          <h4>📝 Descripción completa:</h4>
+                          <h4> Descripción completa:</h4>
                           <p>{company.description}</p>
                         </div>
                       )}
@@ -351,9 +351,9 @@ const SearchCompanies = () => {
                   )}
 
                   <div className="card-stats">
-                    <span>👁️ {company.views || 0} vistas</span>
-                    <span>❤️ {company.likes || 0} likes</span>
-                    <span>🚨 {company.reports || 0} reportes</span>
+                    <span> {company.views || 0} vistas</span>
+                    <span> {company.likes || 0} likes</span>
+                    <span> {company.reports || 0} reportes</span>
                   </div>
                 </div>
 
@@ -363,7 +363,7 @@ const SearchCompanies = () => {
                     onClick={() => handleLike(company.id)}
                     title={userReactions[company.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                   >
-                    {userReactions[company.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                    {userReactions[company.id]?.hasLiked ? ' Liked' : ' Like'}
                   </button>
                   <button
                     className={`btn-report ${userReactions[company.id]?.hasReported ? 'reported' : ''}`}
@@ -388,18 +388,18 @@ const SearchCompanies = () => {
                           || company.postedByEmail
                           || company.postedBy?.email;
                       }
-                      console.log('📧 Trying email:', email, 'from company:', company);
+                      console.log(' Trying email:', email, 'from company:', company);
                       
                       if (email && String(email).trim()) {
                         window.location.href = `mailto:${String(email).trim()}`;
                       } else {
-                        console.warn('❌ No email found in company object:', company);
-                        alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
+                        console.warn(' No email found in company object:', company);
+                        alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
                       }
                     }}
                     title="Contactar"
                   >
-                    ✉️ Contactar
+                     Contactar
                   </button>
                 </div>
               </div>

@@ -451,7 +451,7 @@ const JobsForm = () => {
       </form>
 
       <div className="form-info">
-        <h3>📋 Recomendaciones para tu Publicación</h3>
+        <h3> Recomendaciones para tu Publicación</h3>
         <ul>
           <li>Sé claro y específico en la descripción del puesto</li>
           <li>Lista todos los requisitos técnicos y habilidades blandas necesarias</li>

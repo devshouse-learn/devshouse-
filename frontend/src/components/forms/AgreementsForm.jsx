@@ -130,7 +130,7 @@ const AgreementsForm = () => {
           </button>
         </div>
         <div className="header-content">
-          <h1>📋 Convenios Educativos</h1>
+          <h1> Convenios Educativos</h1>
           <p>Registra tu institución educativa y establece convenios con empresas</p>
         </div>
         <button 
@@ -155,7 +155,7 @@ const AgreementsForm = () => {
       )}
 
       <form onSubmit={handleSubmit} className="agreement-form">
-        <div className="form-type-badge">📋 Formulario de Convenios</div>
+        <div className="form-type-badge"> Formulario de Convenios</div>
         <fieldset>
           <legend>Información de la Institución</legend>
 

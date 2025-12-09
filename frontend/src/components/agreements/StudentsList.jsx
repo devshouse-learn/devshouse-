@@ -20,7 +20,7 @@ const StudentsList = () => {
     try {
       setLoading(true);
       setError('');
-      console.log('🔄 Cargando estudiantes desde API...');
+      console.log(' Cargando estudiantes desde API...');
       const response = await agreementsService.getAll();
       console.log('✅ Respuesta del API:', response);
       let loadedStudents = response.data || [];
@@ -43,13 +43,13 @@ const StudentsList = () => {
       setUserReactions(reactions);
       console.log('✅ Estudiantes y reacciones cargados exitosamente');
     } catch (err) {
-      console.error('❌ Error loading students:', err);
+      console.error(' Error loading students:', err);
       if (err.message.includes('Failed to fetch')) {
-        setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
+        setError(' No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
-        setError('⚠️ La conexión tardó demasiado. Por favor, intenta de nuevo.');
+        setError(' La conexión tardó demasiado. Por favor, intenta de nuevo.');
       } else {
-        setError('⚠️ Error al cargar los estudiantes. Por favor, intenta de nuevo más tarde.');
+        setError(' Error al cargar los estudiantes. Por favor, intenta de nuevo más tarde.');
       }
     } finally {
       setLoading(false);
@@ -104,7 +104,7 @@ const StudentsList = () => {
           [id]: { ...prev[id], hasReported: true }
         }));
         
-        alert('🚨 Denuncia registrada correctamente');
+        alert(' Denuncia registrada correctamente');
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -128,7 +128,7 @@ const StudentsList = () => {
             onClick={() => navigate('/agreements')}
             title="Volver a Convenios"
           >
-            ← Volver
+             Volver
           </button>
         </div>
         <div className="header-content">
@@ -139,7 +139,7 @@ const StudentsList = () => {
           className="btn-primary-large"
           onClick={() => navigate('/agreements/student')}
         >
-          ➕ Registrar el tuyo
+           Registrar el tuyo
         </button>
       </div>
 
@@ -159,7 +159,7 @@ const StudentsList = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
@@ -172,7 +172,7 @@ const StudentsList = () => {
             className="btn-primary"
             onClick={() => navigate('/agreements/student')}
           >
-            ➕ Registrarte
+             Registrarte
           </button>
         </div>
       ) : (
@@ -191,12 +191,12 @@ const StudentsList = () => {
                 </div>
 
                 <div className="info-row">
-                  <span className="label">📍 Ubicación:</span>
+                  <span className="label"> Ubicación:</span>
                   <span className="value">{student.location || 'No especificada'}</span>
                 </div>
 
                 <div className="info-row">
-                  <span className="label">✉️ Email:</span>
+                  <span className="label"> Email:</span>
                   <span className="value">{student.contactEmail}</span>
                 </div>
 
@@ -212,9 +212,9 @@ const StudentsList = () => {
                 )}
 
                 <div className="card-stats">
-                  <span>👁️ {student.views || 0} vistas</span>
-                  <span>❤️ {student.likes || 0} likes</span>
-                  <span>🚨 {student.reports || 0} reportes</span>
+                  <span> {student.views || 0} vistas</span>
+                  <span> {student.likes || 0} likes</span>
+                  <span> {student.reports || 0} reportes</span>
                 </div>
               </div>
 
@@ -224,7 +224,7 @@ const StudentsList = () => {
                   onClick={() => handleLike(student.id)}
                   title={userReactions[student.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                 >
-                  {userReactions[student.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                  {userReactions[student.id]?.hasLiked ? ' Liked' : ' Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[student.id]?.hasReported ? 'reported' : ''}`}
@@ -232,7 +232,7 @@ const StudentsList = () => {
                   title={userReactions[student.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
                   disabled={userReactions[student.id]?.hasReported}
                 >
-                  🚨 {userReactions[student.id]?.hasReported ? 'Reportado' : 'Reportar'}
+                   {userReactions[student.id]?.hasReported ? 'Reportado' : 'Reportar'}
                 </button>
                 <button
                   className="btn-contact"
@@ -243,18 +243,18 @@ const StudentsList = () => {
                       || student.emailStudent
                       || student.contact?.email;
                     
-                    console.log('📧 Trying email:', email, 'from student:', student);
+                    console.log(' Trying email:', email, 'from student:', student);
                     
                     if (email && String(email).trim()) {
                       window.location.href = `mailto:${String(email).trim()}`;
                     } else {
-                      console.warn('❌ No email found in student object:', student);
-                      alert('❌ Email no disponible para este contacto. Por favor contacta al administrador.');
+                      console.warn(' No email found in student object:', student);
+                      alert(' Email no disponible para este contacto. Por favor contacta al administrador.');
                     }
                   }}
                   title="Contactar al estudiante"
                 >
-                  ✉️ Contactar
+                   Contactar
                 </button>
                 {(user?.role === 'admin' || user?.id === student.createdBy) && (
                   <button
@@ -267,12 +267,12 @@ const StudentsList = () => {
                         return;
                       }
 
-                      if (window.confirm('⚠️ ¿Estás seguro de que quieres eliminar este perfil?')) {
+                      if (window.confirm(' ¿Estás seguro de que quieres eliminar este perfil?')) {
                         try {
                           agreementsService.delete(student.id);
                           setStudents(prevStudents => prevStudents.filter(s => s.id !== student.id));
                         } catch (err) {
-                          alert('❌ Error al eliminar: ' + err.message);
+                          alert(' Error al eliminar: ' + err.message);
                         }
                       }
                     }}
@@ -290,7 +290,7 @@ const StudentsList = () => {
                       transition: 'background-color 0.2s ease',
                     }}
                   >
-                    🗑️ Eliminar
+                     Eliminar
                   </button>
                 )}
               </div>

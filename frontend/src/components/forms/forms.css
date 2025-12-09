@@ -299,7 +299,7 @@ legend {
 }
 
 .form-info li::before {
-  content: '✓';
+  content: '';
   position: absolute;
   left: 0;
   color: #86efac;

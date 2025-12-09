@@ -18,11 +18,11 @@ const JobSearchList = () => {
     try {
       setLoading(true);
       setError('');
-      console.log('🔄 Cargando candidatos desde API...');
+      console.log(' Cargando candidatos desde API...');
       const response = await candidatesService.getAll();
       console.log('✅ Respuesta del API:', response);
       const loadedCandidates = response.data || [];
-      console.log('📋 Candidatos cargados:', loadedCandidates);
+      console.log(' Candidatos cargados:', loadedCandidates);
       setCandidates(loadedCandidates);
       
       // Cargar reacciones del usuario
@@ -34,13 +34,13 @@ const JobSearchList = () => {
       setUserReactions(reactions);
       console.log('✅ Candidatos y reacciones cargados exitosamente');
     } catch (err) {
-      console.error('❌ Error loading candidates:', err);
+      console.error(' Error loading candidates:', err);
       if (err.message.includes('Failed to fetch')) {
-        setError('⚠️ No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
+        setError(' No se puede conectar con el servidor. Verifica que el backend esté ejecutándose.');
       } else if (err.message.includes('timeout')) {
-        setError('⚠️ La conexión tardó demasiado. Por favor, intenta de nuevo.');
+        setError(' La conexión tardó demasiado. Por favor, intenta de nuevo.');
       } else {
-        setError('⚠️ Error al cargar los candidatos. Por favor, intenta de nuevo más tarde.');
+        setError(' Error al cargar los candidatos. Por favor, intenta de nuevo más tarde.');
       }
     } finally {
       setLoading(false);
@@ -96,7 +96,7 @@ const JobSearchList = () => {
           [id]: { ...prev[id], hasReported: true }
         }));
         
-        alert('🚨 Denuncia registrada correctamente');
+        alert(' Denuncia registrada correctamente');
       }
     } catch (err) {
       console.error('Error al reportar:', err);
@@ -117,18 +117,18 @@ const JobSearchList = () => {
             onClick={() => navigate('/')}
             title="Volver al inicio"
           >
-            ← Volver
+             Volver
           </button>
         </div>
         <div className="header-content">
-          <h1>📝 Buscar Empleo</h1>
+          <h1> Buscar Empleo</h1>
           <p>Encuentra candidatos talentosos o publica tu perfil profesional</p>
         </div>
         <button 
           className="btn-primary-large"
           onClick={() => navigate('/job-search/form')}
         >
-          ➕ Registrar Perfil
+           Registrar Perfil
         </button>
       </div>
 
@@ -148,7 +148,7 @@ const JobSearchList = () => {
               fontWeight: '600',
             }}
           >
-            🔄 Reintentar
+             Reintentar
           </button>
         </div>
       )}
@@ -161,7 +161,7 @@ const JobSearchList = () => {
             className="btn-primary"
             onClick={() => navigate('/job-search/form')}
           >
-            ➕ Registrar Perfil
+             Registrar Perfil
           </button>
         </div>
       ) : (
@@ -176,7 +176,7 @@ const JobSearchList = () => {
               <div className="card-content">
                 {candidate.email && (
                   <div className="info-row">
-                    <span className="label">✉️ Email:</span>
+                    <span className="label"> Email:</span>
                     <span className="value">{candidate.email}</span>
                   </div>
                 )}
@@ -190,14 +190,14 @@ const JobSearchList = () => {
 
                 {candidate.location && (
                   <div className="info-row">
-                    <span className="label">📍 Ubicación:</span>
+                    <span className="label"> Ubicación:</span>
                     <span className="value">{candidate.location}</span>
                   </div>
                 )}
 
                 {candidate.salary_expectation && (
                   <div className="info-row">
-                    <span className="label">💰 Salario Esperado:</span>
+                    <span className="label"> Salario Esperado:</span>
                     <span className="value">{candidate.salary_expectation}</span>
                   </div>
                 )}
@@ -224,7 +224,7 @@ const JobSearchList = () => {
 
                 {candidate.skills && (
                   <div className="info-row">
-                    <span className="label">🎯 Habilidades:</span>
+                    <span className="label"> Habilidades:</span>
                     <span className="value">{candidate.skills}</span>
                   </div>
                 )}
@@ -245,7 +245,7 @@ const JobSearchList = () => {
 
                 {candidate.resume && (
                   <div className="info-row">
-                    <span className="label">📝 CV:</span>
+                    <span className="label"> CV:</span>
                     <span className="value">{candidate.resume}</span>
                   </div>
                 )}
@@ -279,9 +279,9 @@ const JobSearchList = () => {
                 )}
 
                 <div className="card-stats">
-                  <span>👁️ {candidate.views || 0} vistas</span>
-                  <span>❤️ {candidate.likes || 0} likes</span>
-                  <span>🚨 {candidate.reports || 0} reportes</span>
+                  <span> {candidate.views || 0} vistas</span>
+                  <span> {candidate.likes || 0} likes</span>
+                  <span> {candidate.reports || 0} reportes</span>
                 </div>
               </div>
 
@@ -291,7 +291,7 @@ const JobSearchList = () => {
                   onClick={() => handleLike(candidate.id)}
                   title={userReactions[candidate.id]?.hasLiked ? 'Remover like' : 'Me gusta'}
                 >
-                  {userReactions[candidate.id]?.hasLiked ? '❤️ Liked' : '🤍 Like'}
+                  {userReactions[candidate.id]?.hasLiked ? ' Liked' : ' Like'}
                 </button>
                 <button
                   className={`btn-report ${userReactions[candidate.id]?.hasReported ? 'reported' : ''}`}
@@ -299,7 +299,7 @@ const JobSearchList = () => {
                   title={userReactions[candidate.id]?.hasReported ? 'Ya denunciado' : 'Reportar'}
                   disabled={userReactions[candidate.id]?.hasReported}
                 >
-                  🚨 {userReactions[candidate.id]?.hasReported ? 'Denunciado' : 'Reportar'}
+                   {userReactions[candidate.id]?.hasReported ? 'Denunciado' : 'Reportar'}
                 </button>
               </div>
             </div>
