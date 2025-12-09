@@ -247,7 +247,8 @@
 }
 
 .btn-like,
-.btn-report {
+.btn-report,
+.btn-delete {
   flex: 1;
   padding: 8px 10px;
   border: none;
@@ -256,6 +257,10 @@
   font-size: 0.8rem;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
 }
 
 .btn-like {
