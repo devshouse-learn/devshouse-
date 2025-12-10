@@ -119,8 +119,14 @@ export const AuthProvider = ({ children }) => {
     const updatedUsers = [...storedUsers, newUser];
     localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-    // Solo kelib@gmail.com es admin
-    const role = userData.email === 'kelib@gmail.com' ? 'admin' : userData.role;
+    // Solo kelib@gmail.com es admin, otros usuarios no tienen rol especial
+    let role = userData.role;
+    if (userData.email === 'kelib@gmail.com') {
+      role = 'admin';
+    } else if (userData.role === 'admin' || userData.role === 'moderador') {
+      // No permitir que otros se registren como admin o moderador
+      role = 'usuario';
+    }
 
     // Iniciar sesión automáticamente
     const userWithPermissions = {
