@@ -280,10 +280,10 @@
 
 .info-row {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   font-size: 1rem;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   min-height: 24px;
 }
 
@@ -293,6 +293,7 @@
   white-space: nowrap;
   flex-shrink: 0;
   font-size: 1rem;
+  min-width: 140px;
 }
 
 .info-row .value {
