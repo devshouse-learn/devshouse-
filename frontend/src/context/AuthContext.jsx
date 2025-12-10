@@ -91,9 +91,13 @@ export const AuthProvider = ({ children }) => {
     const user = storedUsers.find(u => u.email === email && u.password === password);
     
     if (user) {
+      // Asegurar que kelib@gmail.com y test@gmail.com siempre sean admin
+      const role = (email === 'kelib@gmail.com' || email === 'test@gmail.com') ? 'admin' : user.role;
+      
       const userWithPermissions = {
         ...user,
-        permissions: DEFAULT_PERMISSIONS[user.role] || [],
+        role,
+        permissions: DEFAULT_PERMISSIONS[role] || [],
       };
       setUser(userWithPermissions);
       setIsAuthenticated(true);
@@ -123,10 +127,14 @@ export const AuthProvider = ({ children }) => {
     const updatedUsers = [...storedUsers, newUser];
     localStorage.setItem('users', JSON.stringify(updatedUsers));
 
+    // Asegurar que kelib@gmail.com y test@gmail.com siempre sean admin
+    const role = (userData.email === 'kelib@gmail.com' || userData.email === 'test@gmail.com') ? 'admin' : userData.role;
+
     // Iniciar sesión automáticamente
     const userWithPermissions = {
       ...newUser,
-      permissions: DEFAULT_PERMISSIONS[userData.role] || [],
+      role,
+      permissions: DEFAULT_PERMISSIONS[role] || [],
     };
     setUser(userWithPermissions);
     setIsAuthenticated(true);
