@@ -10,7 +10,7 @@ import './Layout.css';
 
 const Layout = () => {
   const { isAuthenticated, loading } = useAuth();
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const handleAuthModalClose = () => {
     setShowModal(false);
