@@ -61,29 +61,53 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = (userData) => {
-    const userWithPermissions = {
-      ...userData,
-      permissions: DEFAULT_PERMISSIONS[userData.role] || [],
-    };
-    setUser(userWithPermissions);
-    setIsAuthenticated(true);
-    localStorage.setItem('user', JSON.stringify(userWithPermissions));
+  const login = (email, password) => {
+    // Buscar usuario registrado
+    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = storedUsers.find(u => u.email === email && u.password === password);
     
-    // Guardar contraseña si es el admin (para poder asignar roles después)
-    if (userData.email === 'kelib@gmail.com') {
-      localStorage.setItem('adminPassword', userData.password || '');
+    if (user) {
+      const userWithPermissions = {
+        ...user,
+        permissions: DEFAULT_PERMISSIONS[user.role] || [],
+      };
+      setUser(userWithPermissions);
+      setIsAuthenticated(true);
+      localStorage.setItem('user', JSON.stringify(userWithPermissions));
+      return true;
     }
+    return false;
   };
 
   const register = (userData) => {
-    const userWithPermissions = {
+    // Verificar que el email no esté registrado
+    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    const existingUser = storedUsers.find(u => u.email === userData.email);
+    
+    if (existingUser) {
+      return false; // Email ya registrado
+    }
+
+    // Crear nuevo usuario con ID único
+    const newUser = {
       ...userData,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
+
+    // Guardar en lista de usuarios
+    const updatedUsers = [...storedUsers, newUser];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+    // Iniciar sesión automáticamente
+    const userWithPermissions = {
+      ...newUser,
       permissions: DEFAULT_PERMISSIONS[userData.role] || [],
     };
     setUser(userWithPermissions);
     setIsAuthenticated(true);
     localStorage.setItem('user', JSON.stringify(userWithPermissions));
+    return true;
   };
 
   const logout = () => {
