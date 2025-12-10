@@ -37,7 +37,31 @@ export const AuthProvider = ({ children }) => {
   // Cargar usuario desde localStorage al montar
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    const storedUsers = localStorage.getItem('users');
+    let storedUsers = localStorage.getItem('users');
+    
+    // Crear usuarios iniciales si no existen
+    if (!storedUsers) {
+      const initialUsers = [
+        {
+          id: '1',
+          name: 'Admin',
+          email: 'kelib@gmail.com',
+          password: '03v5h0u53',
+          role: 'admin',
+          createdAt: new Date().toISOString(),
+        },
+        {
+          id: '2',
+          name: 'Usuario Test',
+          email: 'test@gmail.com',
+          password: 'test123',
+          role: 'candidate',
+          createdAt: new Date().toISOString(),
+        },
+      ];
+      localStorage.setItem('users', JSON.stringify(initialUsers));
+      storedUsers = JSON.stringify(initialUsers);
+    }
     
     if (storedUser) {
       try {
