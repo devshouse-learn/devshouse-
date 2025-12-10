@@ -293,7 +293,7 @@ const SearchCompanies = () => {
                       
                       {/* Información Salarial */}
                       {(company.salaryMin || company.salary_min || company.salaryMax || company.salary_max) && (
-                        <div className="info-row salary-row">
+                        <div className="info-row">
                           <span className="label"><span className="emoji">💰</span> Salario:</span>
                           <span className="value">
                             {(company.salaryMin || company.salary_min) && (company.salaryMax || company.salary_max)
@@ -312,7 +312,7 @@ const SearchCompanies = () => {
                         </div>
                       )}
                       
-                      {/* Descripción */}
+                      {/* Descripción Resumida */}
                       {(company.description || company.job_description) && (
                         <div className="info-row description-preview">
                           <span className="label"><span className="emoji">📝</span> Descripción:</span>
@@ -323,33 +323,19 @@ const SearchCompanies = () => {
                         </div>
                       )}
                       
-                      {/* Requisitos */}
+                      {/* Requisitos Principales */}
                       {(company.requirements || company.skills_required) && (
                         <div className="info-row requirements-preview">
                           <span className="label"><span className="emoji">✅</span> Requisitos:</span>
                           <span className="value">
-                            {Array.isArray(company.requirements || company.skills_required)
-                              ? (company.requirements || company.skills_required).slice(0, 2).join(', ')
-                              : typeof (company.requirements || company.skills_required) === 'string'
+                            {typeof (company.requirements || company.skills_required) === 'string' 
                               ? (company.requirements || company.skills_required).split(',').slice(0, 2).map(req => req.trim()).join(', ')
+                              : Array.isArray(company.requirements || company.skills_required)
+                              ? (company.requirements || company.skills_required).slice(0, 2).join(', ')
                               : 'No especificados'
                             }
-                            {Array.isArray(company.requirements || company.skills_required) && (company.requirements || company.skills_required).length > 2 ? '...' : ''}
                             {typeof (company.requirements || company.skills_required) === 'string' && (company.requirements || company.skills_required).split(',').length > 2 ? '...' : ''}
-                          </span>
-                        </div>
-                      )}
-                      
-                      {/* Responsabilidades */}
-                      {company.responsibilities && (
-                        <div className="info-row benefits-preview">
-                          <span className="label"><span className="emoji">📋</span> Responsabilidades:</span>
-                          <span className="value">
-                            {typeof company.responsibilities === 'string' 
-                              ? company.responsibilities.substring(0, 80)
-                              : 'Consultar oferta completa'
-                            }
-                            {typeof company.responsibilities === 'string' && company.responsibilities.length > 80 ? '...' : ''}
+                            {Array.isArray(company.requirements || company.skills_required) && (company.requirements || company.skills_required).length > 2 ? '...' : ''}
                           </span>
                         </div>
                       )}
@@ -361,45 +347,9 @@ const SearchCompanies = () => {
                           <span className="value">
                             {typeof company.benefits === 'string' 
                               ? company.benefits.substring(0, 80)
-                              : Array.isArray(company.benefits)
-                              ? company.benefits.slice(0, 2).join(', ')
                               : 'Consultar oferta completa'
                             }
                             {typeof company.benefits === 'string' && company.benefits.length > 80 ? '...' : ''}
-                          </span>
-                        </div>
-                      )}
-                      
-                      {/* Fecha Límite */}
-                      {(company.applicationDeadline || company.deadline) && (
-                        <div className="info-row">
-                          <span className="label"><span className="emoji">📅</span> Plazo:</span>
-                          <span className="value">{new Date(company.applicationDeadline || company.deadline).toLocaleDateString('es-ES')}</span>
-                        </div>
-                      )}
-                      
-                      {/* Email */}
-                      {(company.contactEmail || company.email) && (
-                        <div className="info-row">
-                          <span className="label"><span className="emoji">📧</span> Email:</span>
-                          <span className="value">
-                            <a href={`mailto:${company.contactEmail || company.email}`} style={{ color: '#1a73e8', textDecoration: 'none' }}>
-                              {company.contactEmail || company.email}
-                            </a>
-                          </span>
-                        </div>
-                      )}
-                      
-                      {/* Fecha de publicación */}
-                      {(company.createdAt || company.created_at) && (
-                        <div className="info-row">
-                          <span className="label"><span className="emoji">📅</span> Publicado:</span>
-                          <span className="value">
-                            {new Date(company.createdAt || company.created_at).toLocaleDateString('es-CO', { 
-                              year: 'numeric', 
-                              month: 'long', 
-                              day: 'numeric' 
-                            })}
                           </span>
                         </div>
                       )}
