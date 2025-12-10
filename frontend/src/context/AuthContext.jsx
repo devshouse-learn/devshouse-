@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
           id: '1',
           name: 'Admin',
           email: 'kelib@gmail.com',
-          password: '03v5h0u53',
+          password: 'keli',
           role: 'admin',
           createdAt: new Date().toISOString(),
         },
@@ -236,6 +236,18 @@ export const AuthProvider = ({ children }) => {
 
     setUsers(updatedUsers);
     localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+    // Si es el usuario actualmente logueado, actualizar su sesión
+    if (user?.id === userId) {
+      const updatedUser = {
+        ...user,
+        role: newRole,
+        permissions: DEFAULT_PERMISSIONS[newRole] || [],
+      };
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    }
+
     return true;
   };
 

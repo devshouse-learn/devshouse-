@@ -23,7 +23,9 @@ const Header = () => {
           <div className="user-info">
             <div className="user-details">
               <span className="user-name">{user.name}</span>
-              <span className={`user-role role-${user.role}`}>{user.role}</span>
+              {(user.role === 'admin' || user.role === 'moderador') && (
+                <span className={`user-role role-${user.role}`}>{user.role.toUpperCase()}</span>
+              )}
             </div>
             {(user.role === 'admin' || user.role === 'moderador') && (
               <Link to="/moderation-panel" className="moderation-link">
