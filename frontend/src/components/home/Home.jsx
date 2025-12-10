@@ -1,7 +1,5 @@
 import { useAuth } from '../../context/AuthContext';
-import Hero from './Hero';
-import Description from './Description';
-import Impact from './Impact';
+import AllContent from './AllContent';
 import Dashboard from '../dashboard/Dashboard';
 
 const Home = () => {
@@ -10,11 +8,7 @@ const Home = () => {
   return (
     <div className="home">
       {!isAuthenticated ? (
-        <>
-          <Hero />
-          <Description />
-          <Impact />
-        </>
+        <AllContent />
       ) : (
         <Dashboard />
       )}
