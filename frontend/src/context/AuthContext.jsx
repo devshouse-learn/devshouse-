@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
           name: 'Usuario Test',
           email: 'test@gmail.com',
           password: 'test123',
-          role: 'candidate',
+          role: 'admin',
           createdAt: new Date().toISOString(),
         },
       ];

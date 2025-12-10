@@ -12,13 +12,13 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      const success = await login(email, password);
+      const success = login(email, password);
       if (success) {
         navigate('/agreements');
       } else {
