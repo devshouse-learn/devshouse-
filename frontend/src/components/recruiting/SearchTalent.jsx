@@ -180,7 +180,10 @@ const SearchTalent = () => {
               <div className="card-header">
                 <div className="header-info">
                   <h3>{talent.name || talent.full_name || 'Talento'}</h3>
-                  <p className="company-name">{talent.profession || talent.professional_title || 'Profesional'}</p>
+                  <p className="company-name">
+                    {talent.current_job_title || 'Profesional'}
+                    {talent.current_company && ` • ${talent.current_company}`}
+                  </p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span className="badge">{talent.experience || talent.years_experience || 'N/A'}</span>
