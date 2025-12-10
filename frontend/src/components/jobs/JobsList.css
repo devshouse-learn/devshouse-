@@ -304,81 +304,27 @@
 }
 
 /* Estilos para vista previa de descripción */
-.info-row.description-preview {
-  display: flex;
-  gap: 15px;
-  font-size: 1rem;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  min-height: 24px;
-}
-
-.info-row.description-preview .label {
-  font-weight: 600;
-  color: #1a73e8;
-  white-space: nowrap;
-  flex-shrink: 0;
-  font-size: 1rem;
-  min-width: 140px;
-}
-
 .info-row.description-preview .value {
-  font-size: 1rem;
   color: #555;
   flex: 1;
   word-break: break-word;
+  font-size: 1rem;
 }
 
 /* Estilos para vista previa de requisitos */
-.info-row.requirements-preview {
-  display: flex;
-  gap: 15px;
-  font-size: 1rem;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  min-height: 24px;
-}
-
-.info-row.requirements-preview .label {
-  font-weight: 600;
-  color: #1a73e8;
-  white-space: nowrap;
-  flex-shrink: 0;
-  font-size: 1rem;
-  min-width: 140px;
-}
-
 .info-row.requirements-preview .value {
-  font-size: 1rem;
   color: #555;
   flex: 1;
   word-break: break-word;
+  font-size: 1rem;
 }
 
 /* Estilos para vista previa de beneficios */
-.info-row.benefits-preview {
-  display: flex;
-  gap: 15px;
-  font-size: 1rem;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  min-height: 24px;
-}
-
-.info-row.benefits-preview .label {
-  font-weight: 600;
-  color: #1a73e8;
-  white-space: nowrap;
-  flex-shrink: 0;
-  font-size: 1rem;
-  min-width: 140px;
-}
-
 .info-row.benefits-preview .value {
-  font-size: 1rem;
   color: #555;
   flex: 1;
   word-break: break-word;
+  font-size: 1rem;
 }
 
 .remote-badge,
@@ -414,10 +360,11 @@
 
 .info-row.salary-row {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   font-size: 1rem;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  min-height: 24px;
 }
 
 .info-row.salary-row .label {
@@ -426,6 +373,7 @@
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: 140px;
 }
 
 .info-row.salary-row .value {
