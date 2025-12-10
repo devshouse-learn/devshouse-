@@ -57,7 +57,7 @@ const RegisterPage = () => {
       });
 
       if (success) {
-        navigate('/');
+        navigate('/agreements');
       } else {
         setError('El email ya está registrado');
       }

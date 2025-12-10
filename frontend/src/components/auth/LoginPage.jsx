@@ -20,7 +20,7 @@ const LoginPage = () => {
     try {
       const success = await login(email, password);
       if (success) {
-        navigate('/');
+        navigate('/agreements');
       } else {
         setError('Email o contraseña incorrectos');
       }
