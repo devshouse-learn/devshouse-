@@ -87,8 +87,10 @@
 
 .description-mission {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.9rem;
+  max-width: 800px;
+  margin: 0 auto 1rem;
 }
 
 .mission-item {
@@ -96,6 +98,7 @@
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
   border-radius: 10px;
   border: 2px solid rgba(16, 185, 129, 0.15);
+  text-align: center;
 }
 
 .mission-item h4 {
