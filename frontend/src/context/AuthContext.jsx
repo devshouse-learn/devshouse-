@@ -212,6 +212,54 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
+  // Función para cambiar el rol de un usuario (solo admin supremo kelib@gmail.com)
+  const changeUserRole = (userId, newRole) => {
+    // Solo kelib@gmail.com puede cambiar roles
+    if (user?.email !== 'kelib@gmail.com') {
+      console.error('Solo el administrador supremo puede cambiar roles de usuario');
+      return false;
+    }
+
+    // No se puede quitar el rol admin a kelib@gmail.com
+    const targetUser = users.find(u => u.id === userId);
+    if (targetUser?.email === 'kelib@gmail.com' && newRole !== 'admin') {
+      console.error('No se puede cambiar el rol del administrador supremo');
+      return false;
+    }
+
+    const updatedUsers = users.map((u) => {
+      if (u.id === userId) {
+        return { ...u, role: newRole, permissions: DEFAULT_PERMISSIONS[newRole] || [] };
+      }
+      return u;
+    });
+
+    setUsers(updatedUsers);
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    return true;
+  };
+
+  // Función para eliminar un usuario (solo admin supremo kelib@gmail.com)
+  const deleteUser = (userId) => {
+    // Solo kelib@gmail.com puede eliminar usuarios
+    if (user?.email !== 'kelib@gmail.com') {
+      console.error('Solo el administrador supremo puede eliminar usuarios');
+      return false;
+    }
+
+    // No se puede eliminar a kelib@gmail.com
+    const targetUser = users.find(u => u.id === userId);
+    if (targetUser?.email === 'kelib@gmail.com') {
+      console.error('No se puede eliminar al administrador supremo');
+      return false;
+    }
+
+    const updatedUsers = users.filter(u => u.id !== userId);
+    setUsers(updatedUsers);
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    return true;
+  };
+
   const value = {
     user,
     loading,
@@ -224,6 +272,8 @@ export const AuthProvider = ({ children }) => {
     hasPermission,
     getAllUsers,
     updateUserPermissions,
+    changeUserRole,
+    deleteUser,
     users,
     DEFAULT_PERMISSIONS,
   };
