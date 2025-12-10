@@ -251,6 +251,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   flex: 1;
+  line-height: 1.4;
 }
 
 .company-name {
