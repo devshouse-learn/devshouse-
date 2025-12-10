@@ -11,6 +11,7 @@ const SearchTalent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   useEffect(() => {
     loadTalents();
@@ -181,7 +182,32 @@ const SearchTalent = () => {
                   <h3>{talent.name || talent.full_name || 'Talento'}</h3>
                   <p className="company-name">{talent.profession || talent.professional_title || 'Profesional'}</p>
                 </div>
-                <span className="badge">{talent.experience || talent.years_experience || 'N/A'}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span className="badge">{talent.experience || talent.years_experience || 'N/A'}</span>
+                  <div className="header-menu">
+                    <button
+                      className="menu-btn"
+                      onClick={() => setOpenMenuId(openMenuId === talent.id ? null : talent.id)}
+                      title="Más opciones"
+                    >
+                      ⋮
+                    </button>
+                    {openMenuId === talent.id && (
+                      <div className="menu-dropdown">
+                        <button
+                          className="menu-item"
+                          onClick={() => {
+                            handleReport(talent.id, 'Contenido inapropiado');
+                            setOpenMenuId(null);
+                          }}
+                          disabled={userReactions[talent.id]?.hasReported}
+                        >
+                          {userReactions[talent.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               <div className="card-content">
@@ -317,13 +343,6 @@ const SearchTalent = () => {
                   title={userReactions[talent.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                 >
                   <span className="emoji">🤍</span> {userReactions[talent.id]?.hasLiked ? 'Liked' : 'Like'}
-                </button>
-                <button
-                  className={`btn-report ${userReactions[talent.id]?.hasReported ? 'reported' : ''}`}
-                  onClick={() => handleReport(talent.id, 'Contenido inapropiado')}
-                  title={userReactions[talent.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
-                >
-                  {userReactions[talent.id]?.hasReported ? ' Reported' : ' Report'}
                 </button>
                 <button
                   className="btn-contact"
