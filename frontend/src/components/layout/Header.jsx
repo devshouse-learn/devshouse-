@@ -6,6 +6,11 @@ const Header = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <header className="header">
       <div className="container header-content">
@@ -30,7 +35,7 @@ const Header = () => {
                  Datos
               </Link>
             )}
-            <button className="logout-button" onClick={logout}>
+            <button className="logout-button" onClick={handleLogout}>
               Salir
             </button>
           </div>
