@@ -204,8 +204,11 @@ const SearchCompanies = () => {
               <div className="card-header">
                 <div className="header-info">
                   <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
-                  {activeTab === 'jobs' && company.company && (
-                    <p className="company-name"> {company.company}</p>
+                  {activeTab === 'jobs' && (company.company || company.company_name || company.employer) && (
+                    <p className="company-name">{company.company || company.company_name || company.employer}</p>
+                  )}
+                  {activeTab === 'ventures' && company.founder_name && (
+                    <p className="company-name">{company.founder_name}</p>
                   )}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
