@@ -50,14 +50,6 @@ export const AuthProvider = ({ children }) => {
           role: 'admin',
           createdAt: new Date().toISOString(),
         },
-        {
-          id: '2',
-          name: 'Usuario Test',
-          email: 'test@gmail.com',
-          password: 'test123',
-          role: 'admin',
-          createdAt: new Date().toISOString(),
-        },
       ];
       localStorage.setItem('users', JSON.stringify(initialUsers));
       storedUsers = JSON.stringify(initialUsers);
@@ -91,8 +83,8 @@ export const AuthProvider = ({ children }) => {
     const user = storedUsers.find(u => u.email === email && u.password === password);
     
     if (user) {
-      // Asegurar que kelib@gmail.com y test@gmail.com siempre sean admin
-      const role = (email === 'kelib@gmail.com' || email === 'test@gmail.com') ? 'admin' : user.role;
+      // Asegurar que solo kelib@gmail.com sea admin
+      const role = email === 'kelib@gmail.com' ? 'admin' : user.role;
       
       const userWithPermissions = {
         ...user,
@@ -127,8 +119,8 @@ export const AuthProvider = ({ children }) => {
     const updatedUsers = [...storedUsers, newUser];
     localStorage.setItem('users', JSON.stringify(updatedUsers));
 
-    // Asegurar que kelib@gmail.com y test@gmail.com siempre sean admin
-    const role = (userData.email === 'kelib@gmail.com' || userData.email === 'test@gmail.com') ? 'admin' : userData.role;
+    // Solo kelib@gmail.com es admin
+    const role = userData.email === 'kelib@gmail.com' ? 'admin' : userData.role;
 
     // Iniciar sesión automáticamente
     const userWithPermissions = {
