@@ -10,6 +10,7 @@ const SearchCompanies = () => {
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
   const [activeTab, setActiveTab] = useState('ventures');
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   useEffect(() => {
     loadCompanies();
@@ -207,9 +208,34 @@ const SearchCompanies = () => {
                     <p className="company-name"> {company.company}</p>
                   )}
                 </div>
-                <span className="badge">
-                  {activeTab === 'ventures' ? company.industry : company.experience_level}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span className="badge">
+                    {activeTab === 'ventures' ? company.industry : company.experience_level}
+                  </span>
+                  <div className="header-menu">
+                    <button
+                      className="menu-btn"
+                      onClick={() => setOpenMenuId(openMenuId === company.id ? null : company.id)}
+                      title="Más opciones"
+                    >
+                      ⋮
+                    </button>
+                    {openMenuId === company.id && (
+                      <div className="menu-dropdown">
+                        <button
+                          className="menu-item"
+                          onClick={() => {
+                            handleReport(company.id, 'Contenido inapropiado');
+                            setOpenMenuId(null);
+                          }}
+                          disabled={userReactions[company.id]?.hasReported}
+                        >
+                          {userReactions[company.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               <div className="card-content">
@@ -316,13 +342,10 @@ const SearchCompanies = () => {
                       {(company.description || company.job_description) && (
                         <div className="info-row description-preview">
                           <span className="label"><span className="emoji">📝</span> Descripción:</span>
-                          <span className="value">
-                            {((company.description || company.job_description).substring(0, 100))}
-                            {(company.description || company.job_description).length > 100 ? '...' : ''}
-                          </span>
+                          <span className="value">{(company.description || company.job_description).substring(0, 100)}{(company.description || company.job_description).length > 100 ? '...' : ''}</span>
                         </div>
                       )}
-                      
+
                       {/* Requisitos Principales */}
                       {(company.requirements || company.skills_required) && (
                         <div className="info-row requirements-preview">
@@ -370,13 +393,6 @@ const SearchCompanies = () => {
                     title={userReactions[company.id]?.hasLiked ? 'Quitar like' : 'Dar like'}
                   >
                     {userReactions[company.id]?.hasLiked ? ' Liked' : ' Like'}
-                  </button>
-                  <button
-                    className={`btn-report ${userReactions[company.id]?.hasReported ? 'reported' : ''}`}
-                    onClick={() => handleReport(company.id, 'Contenido inapropiado')}
-                    title={userReactions[company.id]?.hasReported ? 'Ya reportado' : 'Reportar'}
-                  >
-                    {userReactions[company.id]?.hasReported ? ' Reported' : ' Report'}
                   </button>
                   <button
                     className="btn-contact"
