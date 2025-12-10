@@ -57,7 +57,7 @@ body {
 }
 
 /* Global Button Styles - CONSOLIDATED */
-/* Todos los botones: azul en todo momento, tamaño igual, medio redondeados */
+/* Todos los botones comparten color gris claro con texto oscuro */
 
 button,
 button[type="button"],
@@ -78,11 +78,11 @@ a[role="button"],
 .btn-delete,
 .btn-contact,
 .nav-tab {
-  background-color: #1e88e5 !important;
-  color: white !important;
-  border: none !important;
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  border: 1px solid #d1d5db !important;
   background-image: none !important;
-  fill: white !important;
+  fill: #1f2937 !important;
   padding: 8px 12px !important;
   font-size: 0.9rem !important;
   border-radius: 8px !important;
@@ -109,8 +109,9 @@ a[role="button"]:hover:not(:disabled),
 .btn-delete:hover,
 .btn-contact:hover,
 .nav-tab:hover:not(:disabled) {
-  background-color: #1e88e5 !important;
-  color: white !important;
+  background-color: #e5e7eb !important;
+  color: #111827 !important;
+  border-color: #cbd5e1 !important;
 }
 
 button:active:not(:disabled),
@@ -120,8 +121,9 @@ button[type="reset"]:active:not(:disabled),
 .btn:active:not(:disabled),
 .btn-back:active:not(:disabled),
 .btn-home:active:not(:disabled) {
-  background-color: #1e88e5 !important;
-  color: white !important;
+  background-color: #d1d5db !important;
+  color: #111827 !important;
+  border-color: #94a3b8 !important;
 }
 
 button:disabled,
@@ -135,18 +137,19 @@ input[type="reset"]:disabled,
 .admin-button:disabled,
 .auth-button:disabled,
 .nav-tab:disabled {
-  background-color: #1e88e5 !important;
-  color: white !important;
+  background-color: #f9fafb !important;
+  color: #9ca3af !important;
+  border-color: #e5e7eb !important;
   opacity: 0.6 !important;
   cursor: not-allowed !important;
 }
 
-/* Asegurar que el contenido del botón sea blanco */
+/* Asegurar que el contenido del botón use el color oscuro definido */
 button *,
 button span,
 a[role="button"] *,
 .btn * {
-  color: white !important;
+  color: #1f2937 !important;
 }
 
 /* ==================== GLOBAL FORM STYLES ==================== */
