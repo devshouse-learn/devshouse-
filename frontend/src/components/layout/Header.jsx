@@ -15,7 +15,7 @@ const Header = () => {
     <header className="header">
       <div className="container header-content">
         <Link to="/" className="logo">
-          <h1>DEVSHOUSE</h1>
+          <h1 style={{ color: '#10b981' }}>DEVSHOUSE</h1>
         </Link>
         <p className="subtitle">Conectando oportunidades</p>
 
