@@ -275,7 +275,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 0;
 }
 
 .info-row {
@@ -284,6 +284,7 @@
   font-size: 1rem;
   align-items: center;
   margin-bottom: 8px;
+  min-height: 24px;
 }
 
 .info-row .label {
@@ -291,6 +292,7 @@
   color: #1a73e8;
   white-space: nowrap;
   flex-shrink: 0;
+  font-size: 1rem;
 }
 
 .info-row .value {
@@ -309,14 +311,7 @@
 }
 
 .info-row.description-preview .value {
-  background: none;
-  padding: 0;
-  border-radius: 0;
-  border-left: none;
   font-size: 1rem;
-  line-height: 1.4;
-  max-height: none;
-  overflow: visible;
   color: #555;
 }
 
@@ -329,14 +324,7 @@
 }
 
 .info-row.requirements-preview .value {
-  background: none;
-  padding: 0;
-  border-radius: 0;
-  border-left: none;
   font-size: 1rem;
-  line-height: 1.4;
-  max-height: none;
-  overflow: visible;
   color: #555;
 }
 
@@ -349,14 +337,7 @@
 }
 
 .info-row.benefits-preview .value {
-  background: none;
-  padding: 0;
-  border-radius: 0;
-  border-left: none;
   font-size: 1rem;
-  line-height: 1.4;
-  max-height: none;
-  overflow: visible;
   color: #555;
 }
 
