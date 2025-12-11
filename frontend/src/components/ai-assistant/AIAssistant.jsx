@@ -14,7 +14,7 @@ const AIAssistant = () => {
   const [inputValue, setInputValue] = useState('');
 
   // Preguntas rápidas según estado de autenticación
-  const quickOptions = user ? [
+  const quickOptions = user && user.id ? [
     '¿Cómo registrar un convenio?',
     '¿Cómo publicar mi emprendimiento?',
     '¿Cómo buscar empleo?',
@@ -59,9 +59,10 @@ const AIAssistant = () => {
 
   const getAIResponse = (userMessage) => {
     const lowerMessage = userMessage.toLowerCase();
+    const isUserLogged = user && user.id;
 
     // Preguntas para usuarios NO autenticados
-    if (!user) {
+    if (!isUserLogged) {
       if (lowerMessage.includes('registro') || lowerMessage.includes('registr')) {
         return 'Para registrarte en DEVSHOUSE, haz clic en el botón "Registrarse" en la parte superior derecha. Deberás proporcionar tu correo electrónico y crear una contraseña segura. Una vez registrado, podrás acceder a todas nuestras funcionalidades y servicios.';
       } else if (lowerMessage.includes('devshouse') || lowerMessage.includes('qué')) {
