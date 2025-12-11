@@ -54,18 +54,26 @@
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.8rem;
+  width: 50px;
+  height: 50px;
 }
 
 .social-link:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
-.social-emoji {
+.social-icon {
   font-size: 2.5rem;
-  filter: grayscale(100%);
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: brightness(0) invert(1);
   transition: filter 0.3s ease;
+}
+
+.social-link:hover .social-icon {
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
 }
 
 .transparency-link {
@@ -101,7 +109,12 @@
     gap: 1.5rem;
   }
 
-  .social-emoji {
+  .social-icon {
     font-size: 2rem;
+  }
+
+  .social-link {
+    width: 45px;
+    height: 45px;
   }
 }
