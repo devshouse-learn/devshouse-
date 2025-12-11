@@ -21,10 +21,8 @@
 
 /* Sección fija de redes sociales */
 .footer-social-fixed {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 0;
-  right: 0;
   background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
   backdrop-filter: blur(10px);
   color: white;
@@ -32,6 +30,7 @@
   box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
   text-align: center;
   z-index: 100;
+  width: 100%;
 }
 
 .footer-social-fixed h4 {
