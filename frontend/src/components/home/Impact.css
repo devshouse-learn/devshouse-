@@ -1,5 +1,9 @@
 .impact-section {
   margin: 1.5rem 0;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
 }
 
 .impact-section h3 {
@@ -17,12 +21,12 @@
 }
 
 .impact-item {
-  background: white;
+  background: var(--bg-white);
   padding: 1.25rem;
   border-radius: 12px;
   text-align: center;
   transition: var(--transition);
-  border: 2px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 .impact-item:hover {

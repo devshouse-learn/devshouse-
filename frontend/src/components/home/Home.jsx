@@ -1,7 +1,6 @@
 import { useAuth } from '../../context/AuthContext';
 import Hero from './Hero';
 import Description from './Description';
-import Impact from './Impact';
 import Dashboard from '../dashboard/Dashboard';
 
 const Home = () => {
@@ -13,7 +12,6 @@ const Home = () => {
         <>
           <Hero />
           <Description />
-          <Impact />
         </>
       ) : (
         <Dashboard />
