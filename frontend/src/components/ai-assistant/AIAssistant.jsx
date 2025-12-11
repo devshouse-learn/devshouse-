@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './AIAssistant.css';
+import { AuthContext } from '../../context/AuthContext';
 
 const AIAssistant = () => {
+  const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -11,11 +13,17 @@ const AIAssistant = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
 
-  const quickOptions = [
+  // Preguntas rápidas según estado de autenticación
+  const quickOptions = user ? [
     '¿Cómo registrar un convenio?',
     '¿Cómo publicar mi emprendimiento?',
     '¿Cómo buscar empleo?',
     'Reportar un problema'
+  ] : [
+    '¿Cómo me registro?',
+    '¿Qué es DEVSHOUSE?',
+    '¿Necesito ayuda con el inicio de sesión?',
+    '¿Qué servicios ofrecen?'
   ];
 
   const toggleChat = () => {
@@ -52,6 +60,22 @@ const AIAssistant = () => {
   const getAIResponse = (userMessage) => {
     const lowerMessage = userMessage.toLowerCase();
 
+    // Preguntas para usuarios NO autenticados
+    if (!user) {
+      if (lowerMessage.includes('registro') || lowerMessage.includes('registr')) {
+        return 'Para registrarte en DEVSHOUSE, haz clic en el botón "Registrarse" en la parte superior derecha. Deberás proporcionar tu correo electrónico y crear una contraseña segura. Una vez registrado, podrás acceder a todas nuestras funcionalidades y servicios.';
+      } else if (lowerMessage.includes('devshouse') || lowerMessage.includes('qué')) {
+        return 'DEVSHOUSE es una plataforma educativa y de empleo que conecta instituciones educativas, emprendedores y buscadores de empleo. Ofrecemos programas de capacitación en tecnología, espacios para publicar emprendimientos y ofertas de trabajo. ¡Únete ahora para ser parte de nuestra comunidad!';
+      } else if (lowerMessage.includes('sesión') || lowerMessage.includes('login') || lowerMessage.includes('iniciar')) {
+        return 'Para iniciar sesión, haz clic en el botón "Iniciar Sesión" en la parte superior derecha. Usa el correo electrónico y contraseña con los que te registraste. Si olvidaste tu contraseña, ponte en contacto con nuestro equipo a través de nuestras redes sociales.';
+      } else if (lowerMessage.includes('servicio') || lowerMessage.includes('ofrecen')) {
+        return 'DEVSHOUSE ofrece: 1) Convenios con instituciones educativas para capacitación en tecnología, 2) Espacios para publicar y promocionar emprendimientos, 3) Plataforma de empleo para buscar y publicar ofertas de trabajo, 4) Asistencia de IA para todas tus consultas. ¡Regístrate para acceder a todo esto!';
+      } else {
+        return 'Bienvenido a DEVSHOUSE. Para poder acceder a todas nuestras funcionalidades, necesitas registrarte o iniciar sesión. ¿Deseas saber cómo registrarte o tienes preguntas sobre nuestros servicios?';
+      }
+    }
+
+    // Preguntas para usuarios autenticados
     if (lowerMessage.includes('convenio') || lowerMessage.includes('colegio')) {
       return 'Para registrar un convenio educativo, haz clic en "Convenios con Colegios" en la página principal. Deberás proporcionar información sobre tu institución, el tipo de programa que deseas implementar y los datos de contacto. Nuestros programas incluyen capacitación en Visual Studio Code, Git, API REST e IA.';
     } else if (lowerMessage.includes('emprendimiento') || lowerMessage.includes('empresa')) {
@@ -81,7 +105,7 @@ const AIAssistant = () => {
         onClick={toggleChat}
         aria-label="Asistente de IA"
       >
-        {isOpen ? '' : ''}
+        {isOpen ? '✕' : '💬'}
       </button>
 
       {/* Chat Window */}
