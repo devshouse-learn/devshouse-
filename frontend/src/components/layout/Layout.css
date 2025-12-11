@@ -12,7 +12,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--bg-light);
-  padding-bottom: 15rem;
+  padding-bottom: 25rem;
 }
 
 .content-wrapper {
