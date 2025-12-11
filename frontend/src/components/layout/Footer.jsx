@@ -5,17 +5,17 @@ const Footer = () => {
     {
       name: 'Facebook',
       emoji: '👍',
-      url: 'https://facebook.com/devshouse'
+      url: 'https://www.facebook.com/share/1G9QVn3rdd/'
     },
     {
       name: 'Instagram',
       emoji: '📷',
-      url: 'https://instagram.com/devshouse'
+      url: 'https://www.instagram.com/devshouseorg'
     },
     {
       name: 'YouTube',
       emoji: '🎥',
-      url: 'https://youtube.com/@devshouse'
+      url: 'https://www.youtube.com/@devshouse'
     }
   ];
 
@@ -43,7 +43,7 @@ const Footer = () => {
 
         <div className="footer-section">
           <h4>Transparencia</h4>
-          <a href="/esal" className="transparency-link">
+          <a href="https://devshouse.org/transparecia/" target="_blank" rel="noopener noreferrer" className="transparency-link">
             📋 ESAL
           </a>
         </div>
