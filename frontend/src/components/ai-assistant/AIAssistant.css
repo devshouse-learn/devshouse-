@@ -2,18 +2,19 @@
 
 .ai-chat-button {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
   z-index: 999;
   display: flex;
   align-items: center;
@@ -21,7 +22,6 @@
 }
 
 .ai-chat-button:hover {
-  transform: scale(1.1);
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.6);
 }
 
