@@ -42,27 +42,15 @@ function App() {
               <Route index element={<Home />} />
               <Route
                 path="agreements"
-                element={
-                  <ProtectedRoute>
-                    <AgreementsHub />
-                  </ProtectedRoute>
-                }
+                element={<AgreementsHub />}
               />
               <Route
                 path="agreements/list"
-                element={
-                  <ProtectedRoute>
-                    <AgreementsList />
-                  </ProtectedRoute>
-                }
+                element={<AgreementsList />}
               />
               <Route
                 path="agreements/students"
-                element={
-                  <ProtectedRoute>
-                    <StudentsList />
-                  </ProtectedRoute>
-                }
+                element={<StudentsList />}
               />
               <Route
                 path="agreements/form"
@@ -82,11 +70,7 @@ function App() {
               />
               <Route
                 path="ventures"
-                element={
-                  <ProtectedRoute>
-                    <VenturesList />
-                  </ProtectedRoute>
-                }
+                element={<VenturesList />}
               />
               <Route
                 path="ventures/form"
@@ -98,11 +82,7 @@ function App() {
               />
               <Route
                 path="jobs"
-                element={
-                  <ProtectedRoute>
-                    <JobsList />
-                  </ProtectedRoute>
-                }
+                element={<JobsList />}
               />
               <Route
                 path="jobs/form"
@@ -114,11 +94,7 @@ function App() {
               />
               <Route
                 path="job-search"
-                element={
-                  <ProtectedRoute>
-                    <JobSearchList />
-                  </ProtectedRoute>
-                }
+                element={<JobSearchList />}
               />
               <Route
                 path="job-search/form"
@@ -154,43 +130,23 @@ function App() {
               />
               <Route
                 path="recruiting"
-                element={
-                  <ProtectedRoute>
-                    <RecruitingHub />
-                  </ProtectedRoute>
-                }
+                element={<RecruitingHub />}
               />
               <Route
                 path="recruiting/search-companies"
-                element={
-                  <ProtectedRoute>
-                    <SearchCompanies />
-                  </ProtectedRoute>
-                }
+                element={<SearchCompanies />}
               />
               <Route
                 path="recruiting/search-talent"
-                element={
-                  <ProtectedRoute>
-                    <SearchTalent />
-                  </ProtectedRoute>
-                }
+                element={<SearchTalent />}
               />
               <Route
                 path="recruiting/publish-job"
-                element={
-                  <ProtectedRoute>
-                    <PublishJob />
-                  </ProtectedRoute>
-                }
+                element={<PublishJob />}
               />
               <Route
                 path="recruiting/publish-profile"
-                element={
-                  <ProtectedRoute>
-                    <PublishProfile />
-                  </ProtectedRoute>
-                }
+                element={<PublishProfile />}
               />
             </Route>
           </Routes>
