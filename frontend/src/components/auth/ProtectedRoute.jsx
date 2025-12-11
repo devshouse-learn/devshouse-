@@ -1,7 +1,16 @@
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const ProtectedRoute = ({ children, requiredRole = null }) => {
   const { isAuthenticated, user, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate('/login', { replace: true });
+    }
+  }, [isAuthenticated, loading, navigate]);
 
   if (loading) {
     return (
@@ -18,22 +27,7 @@ const ProtectedRoute = ({ children, requiredRole = null }) => {
   }
 
   if (!isAuthenticated) {
-    return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '60vh',
-        color: '#a0a0a0',
-        fontSize: '16px',
-        textAlign: 'center',
-        flexDirection: 'column',
-        gap: '16px'
-      }}>
-        <h2 style={{ color: '#ffffff' }}>Debes iniciar sesión para continuar</h2>
-        <p>La modal de autenticación aparecerá arriba</p>
-      </div>
-    );
+    return null;
   }
 
   if (requiredRole) {

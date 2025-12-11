@@ -142,11 +142,19 @@ function App() {
               />
               <Route
                 path="recruiting/publish-job"
-                element={<PublishJob />}
+                element={
+                  <ProtectedRoute>
+                    <PublishJob />
+                  </ProtectedRoute>
+                }
               />
               <Route
                 path="recruiting/publish-profile"
-                element={<PublishProfile />}
+                element={
+                  <ProtectedRoute>
+                    <PublishProfile />
+                  </ProtectedRoute>
+                }
               />
             </Route>
           </Routes>
