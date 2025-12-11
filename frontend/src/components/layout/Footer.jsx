@@ -22,8 +22,8 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="container footer-content">
-        <div className="footer-section">
-          <h4>Síguenos en Redes</h4>
+        <div className="footer-section social-section">
+          <h4>Síguenos en nuestras redes</h4>
           <div className="social-links">
             {socialLinks.map((social) => (
               <a
@@ -35,17 +35,9 @@ const Footer = () => {
                 title={social.name}
               >
                 <span className="social-emoji">{social.emoji}</span>
-                <span className="social-name">{social.name}</span>
               </a>
             ))}
           </div>
-        </div>
-
-        <div className="footer-section">
-          <h4>Transparencia</h4>
-          <a href="https://devshouse.org/transparecia/" target="_blank" rel="noopener noreferrer" className="transparency-link">
-            📋 ESAL
-          </a>
         </div>
 
         <div className="footer-bottom">
