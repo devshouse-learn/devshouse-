@@ -32,31 +32,35 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="footer">
-      <div className="container footer-content">
-        <div className="footer-section social-section">
-          <h4>Síguenos en nuestras redes</h4>
-          <div className="social-links">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                title={social.name}
-              >
-                <span className="social-icon">{social.icon}</span>
-              </a>
-            ))}
+    <>
+      {/* Footer con derechos de autor */}
+      <footer className="footer">
+        <div className="container footer-content">
+          <div className="footer-bottom">
+            <p>&copy; 2025 DEVSHOUSE. Todos los derechos reservados.</p>
           </div>
         </div>
+      </footer>
 
-        <div className="footer-bottom">
-          <p>&copy; 2025 DEVSHOUSE. Todos los derechos reservados.</p>
+      {/* Sección fija de redes sociales */}
+      <div className="footer-social-fixed">
+        <h4>Síguenos en nuestras redes</h4>
+        <div className="social-links">
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+              title={social.name}
+            >
+              <span className="social-icon">{social.icon}</span>
+            </a>
+          ))}
         </div>
       </div>
-    </footer>
+    </>
   );
 };
 
