@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import './AIAssistant.css';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const AIAssistant = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
