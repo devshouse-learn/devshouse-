@@ -72,9 +72,6 @@ const RecruitingHub = () => {
       ) : (
         <div className="mode-content">
           <div className="mode-actions">
-            <button className="back-button" onClick={() => setActiveMode(null)}>
-              <span className="emoji">↩️</span> Atrás
-            </button>
             <button 
               className="clear-button" 
               onClick={() => {

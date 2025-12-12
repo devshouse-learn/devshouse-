@@ -119,14 +119,14 @@ const AgreementsForm = () => {
 
   return (
     <div className="form-container">
+      <button 
+        className="btn-back"
+        onClick={() => navigate('/agreements')}
+        title="Volver a Convenios"
+        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
+      ><span className="emoji">↩️</span> Volver </button>
+      
       <div className="list-header form-page-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/agreements')}
-            title="Volver a Convenios"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
           <h1> Convenios Educativos</h1>
           <p>Registra tu institución educativa y establece convenios con empresas</p>

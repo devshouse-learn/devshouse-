@@ -139,14 +139,14 @@ const VenturesForm = () => {
 
   return (
     <div className="form-container">
+      <button 
+        className="btn-back"
+        onClick={() => navigate('/ventures')}
+        title="Volver a Emprendimientos"
+        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
+      ><span className="emoji">↩️</span> Volver </button>
+      
       <div className="list-header form-page-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/ventures')}
-            title="Volver a Emprendimientos"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
           <h1> Publica Tu<br/>Emprendimiento</h1>
           <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>

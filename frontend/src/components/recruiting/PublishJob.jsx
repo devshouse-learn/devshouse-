@@ -89,14 +89,14 @@ const PublishJob = () => {
 
   return (
     <div className="form-container">
+      <button 
+        className="btn-back"
+        onClick={() => navigate('/recruiting')}
+        title="Volver al Centro de Reclutamiento"
+        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
+      ><span className="emoji">↩️</span> Volver </button>
+      
       <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/recruiting')}
-            title="Volver al Centro de Reclutamiento"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
           <h1> Publicar Oferta de Empleo</h1>
           <p>Comparte una oportunidad laboral</p>
