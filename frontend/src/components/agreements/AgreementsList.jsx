@@ -153,13 +153,14 @@ const AgreementsList = () => {
           <h1> Convenios Educativos</h1>
           <p>Descubre instituciones educativas que buscan convenios con empresas</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => navigate('/agreements/form')}
-        >
-           Registrar el tuyo
-        </button>
       </div>
+
+      <button 
+        className="btn-primary-large"
+        onClick={() => navigate('/agreements/form')}
+      >
+         Registrar el tuyo
+      </button>
 
       {error && (
         <div className="error-message">

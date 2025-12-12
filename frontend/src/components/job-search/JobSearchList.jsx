@@ -122,13 +122,14 @@ const JobSearchList = () => {
           <h1> Buscar Empleo</h1>
           <p>Encuentra candidatos talentosos o publica tu perfil profesional</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => navigate('/job-search/form')}
-        >
-           Registrar Perfil
-        </button>
       </div>
+
+      <button 
+        className="btn-primary-large"
+        onClick={() => navigate('/recruiting/publish-profile')}
+      >
+         Registrar Perfil
+      </button>
 
       {error && (
         <div className="error-message">
@@ -155,7 +156,7 @@ const JobSearchList = () => {
           <p>Sé el primero en registrar tu perfil profesional</p>
           <button 
             className="btn-primary"
-            onClick={() => navigate('/job-search/form')}
+            onClick={() => navigate('/recruiting/publish-profile')}
           >
              Registrar Perfil
           </button>

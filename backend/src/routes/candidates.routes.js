@@ -63,15 +63,22 @@ router.get('/:id', async (req, res) => {
 // POST /api/candidates - Crear nuevo candidato (hoja de vida)
 router.post('/', async (req, res) => {
   try {
+    // Aceptar ambos formatos: campos del backend y del frontend
     const {
-      full_name,
+      // Formato frontend
+      name,
+      profession,
       email,
       phone,
+      location,
+      experience,
+      skills,
+      bio,
+      // Formato backend
+      full_name,
       professional_title,
       professional_summary,
-      location,
       years_experience,
-      skills,
       languages,
       job_type_preference,
       remote_preference,
@@ -81,10 +88,24 @@ router.post('/', async (req, res) => {
       availability,
       linkedin_url,
       portfolio_url,
+      technologies,
+      resume,
+      createdBy,
     } = req.body;
 
+    // Usar valores del frontend si existen, sino del backend
+    const candidateName = name || full_name;
+    const candidateEmail = email;
+    const candidatePhone = phone || '';
+    const candidateLocation = location || '';
+    const candidateTitle = profession || professional_title || '';
+    const candidateSummary = bio || professional_summary || '';
+    const candidateExperience = experience || resume || '';
+    const candidateSkills = skills || technologies || [];
+    const candidateAvailability = availability || 'Disponible';
+
     // Validar campos requeridos
-    if (!full_name || !email) {
+    if (!candidateName || !candidateEmail) {
       return res.status(400).json({
         success: false,
         message: 'Full name and email are required',
@@ -92,25 +113,31 @@ router.post('/', async (req, res) => {
     }
 
     // Verificar si el email ya existe
-    const existingCandidate = mockCandidates.find(c => c.email === email);
+    const existingCandidate = mockCandidates.find(c => c.email === candidateEmail);
     
     const candidateData = {
       id: mockCandidates.length + 1,
-      full_name,
-      email,
-      phone: phone || '',
-      professional_title: professional_title || '',
-      professional_summary: professional_summary || '',
-      location: location || '',
+      name: candidateName,
+      full_name: candidateName,
+      profession: candidateTitle,
+      professional_title: candidateTitle,
+      email: candidateEmail,
+      phone: candidatePhone,
+      professional_summary: candidateSummary,
+      bio: candidateSummary,
+      location: candidateLocation,
       years_experience: years_experience || 0,
-      skills: skills || [],
+      experience: candidateExperience,
+      resume: candidateExperience,
+      skills: Array.isArray(candidateSkills) ? candidateSkills : (typeof candidateSkills === 'string' ? candidateSkills.split(',').map(s => s.trim()) : []),
+      technologies: Array.isArray(candidateSkills) ? candidateSkills : (typeof candidateSkills === 'string' ? candidateSkills.split(',').map(s => s.trim()) : []),
       languages: languages || [],
       job_type_preference: job_type_preference || '',
       remote_preference: remote_preference || '',
       salary_expectation_min: salary_expectation_min || 0,
       salary_expectation_max: salary_expectation_max || 0,
       currency: currency || 'USD',
-      availability: availability || 'Disponible',
+      availability: candidateAvailability,
       linkedin_url: linkedin_url || '',
       portfolio_url: portfolio_url || '',
       status: 'active',
@@ -121,11 +148,12 @@ router.post('/', async (req, res) => {
       show_in_search: true,
       created_at: new Date(),
       updated_at: new Date(),
+      created_by: createdBy || null,
     };
 
     if (existingCandidate) {
       // Actualizar candidato existente
-      const index = mockCandidates.findIndex(c => c.email === email);
+      const index = mockCandidates.findIndex(c => c.email === candidateEmail);
       const updated = {
         ...existingCandidate,
         ...candidateData,

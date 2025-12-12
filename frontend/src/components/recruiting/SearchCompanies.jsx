@@ -11,6 +11,22 @@ const SearchCompanies = () => {
   const [userReactions, setUserReactions] = useState({});
   const [activeTab, setActiveTab] = useState('ventures');
   const [openMenuId, setOpenMenuId] = useState(null);
+  const getCompanyName = (company) =>
+    activeTab === 'ventures'
+      ? company.company_name || company.companyName || company.name || 'Emprendimiento'
+      : company.company || company.company_name || company.employer || 'Empresa';
+  const getLogoUrl = (company) =>
+    activeTab === 'ventures'
+      ? company.logoUrl || company.logo_url || company.logo || ''
+      : company.logoUrl || company.logo_url || company.companyLogo || company.company_logo || '';
+  const getInitials = (value = '') =>
+    value
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase() || 'EM';
 
   useEffect(() => {
     loadCompanies();
@@ -199,45 +215,56 @@ const SearchCompanies = () => {
         </div>
       ) : (
         <div className="items-grid">
-          {companies.map((company) => (
+          {companies.map((company) => {
+            const companyName = getCompanyName(company);
+            const logoUrl = getLogoUrl(company);
+            const logoFallback = getInitials(companyName);
+            const badgeLabel = activeTab === 'ventures' ? company.industry : (company.experience_level || company.experience || '');
+
+            return (
             <div key={company.id} className="item-card">
               <div className="card-header">
-                <div className="header-info">
-                  <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
-                  {activeTab === 'jobs' && (company.company || company.company_name || company.employer) && (
-                    <p className="company-name">{company.company || company.company_name || company.employer}</p>
-                  )}
-                  {activeTab === 'ventures' && company.founder_name && (
-                    <p className="company-name">{company.founder_name}</p>
-                  )}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span className="badge">
-                    {activeTab === 'ventures' ? company.industry : company.experience_level}
-                  </span>
-                  <div className="header-menu">
-                    <button
-                      className="menu-btn"
-                      onClick={() => setOpenMenuId(openMenuId === company.id ? null : company.id)}
-                      title="Más opciones"
-                    >
-                      ⋮
-                    </button>
-                    {openMenuId === company.id && (
-                      <div className="menu-dropdown">
-                        <button
-                          className="menu-item"
-                          onClick={() => {
-                            handleReport(company.id, 'Contenido inapropiado');
-                            setOpenMenuId(null);
-                          }}
-                          disabled={userReactions[company.id]?.hasReported}
-                        >
-                          {userReactions[company.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
-                        </button>
-                      </div>
+                <div className="header-title">
+                  <div className="company-logo" aria-label={`Logo de ${companyName}`}>
+                    {logoUrl ? (
+                      <img src={logoUrl} alt={`Logo de ${companyName}`} />
+                    ) : (
+                      <span>{logoFallback}</span>
                     )}
                   </div>
+                  <div className="header-info">
+                    <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
+                    {activeTab === 'jobs' && companyName && (
+                      <p className="company-name">{companyName}</p>
+                    )}
+                    {activeTab === 'ventures' && company.founder_name && (
+                      <p className="company-name">{company.founder_name}</p>
+                    )}
+                  </div>
+                  {badgeLabel && <span className="badge">{badgeLabel}</span>}
+                </div>
+                <div className="header-menu">
+                  <button
+                    className="menu-btn"
+                    onClick={() => setOpenMenuId(openMenuId === company.id ? null : company.id)}
+                    title="Más opciones"
+                  >
+                    ⋮
+                  </button>
+                  {openMenuId === company.id && (
+                    <div className="menu-dropdown">
+                      <button
+                        className="menu-item"
+                        onClick={() => {
+                          handleReport(company.id, 'Contenido inapropiado');
+                          setOpenMenuId(null);
+                        }}
+                        disabled={userReactions[company.id]?.hasReported}
+                      >
+                        {userReactions[company.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -427,7 +454,8 @@ const SearchCompanies = () => {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

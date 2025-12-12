@@ -16,6 +16,7 @@ const JobsForm = () => {
   const [formData, setFormData] = useState({
     position: '',
     company: '',
+    logoUrl: '',
     description: '',
     requirements: '',
     responsibilities: '',
@@ -33,6 +34,15 @@ const JobsForm = () => {
     gmailVerified: false,
   });
 
+  const getInitials = (value = '') =>
+    value
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase() || 'LOGO';
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -40,6 +50,41 @@ const JobsForm = () => {
       [name]: type === 'checkbox' ? checked : value,
     }));
     setError('');
+  };
+
+  const handleLogoChange = (e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) {
+      setFormData((prev) => ({ ...prev, logoUrl: '' }));
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      setError('El logo debe ser un archivo de imagen');
+      e.target.value = '';
+      return;
+    }
+
+    const maxFileSize = 2 * 1024 * 1024;
+    if (file.size > maxFileSize) {
+      setError('El logo no debe superar los 2 MB');
+      e.target.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = typeof reader.result === 'string' ? reader.result : '';
+      setFormData((prev) => ({ ...prev, logoUrl: base64 }));
+      setError('');
+    };
+    reader.onerror = () => {
+      setError('No se pudo leer el archivo del logo');
+      e.target.value = '';
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -85,6 +130,7 @@ const JobsForm = () => {
       setFormData({
         position: '',
         company: '',
+        logoUrl: '',
         description: '',
         requirements: '',
         responsibilities: '',
@@ -178,6 +224,34 @@ const JobsForm = () => {
                 disabled={loading}
               />
             </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="companyLogo">Logo de la empresa</label>
+            <input
+              type="file"
+              id="companyLogo"
+              name="companyLogo"
+              accept="image/*"
+              onChange={handleLogoChange}
+              disabled={loading}
+            />
+            {formData.logoUrl && (
+              <div className="logo-preview">
+                <div className="logo-preview-circle">
+                  <img src={formData.logoUrl} alt={`Logo de ${formData.company || 'la empresa'}`} />
+                </div>
+                <span>Así se mostrará el logo junto al nombre de la empresa.</span>
+              </div>
+            )}
+            {!formData.logoUrl && formData.company && (
+              <div className="logo-preview">
+                <div className="logo-preview-circle">
+                  <span>{getInitials(formData.company)}</span>
+                </div>
+                <span>Si no subes un logo, mostraremos las iniciales de la empresa.</span>
+              </div>
+            )}
           </div>
 
           <div className="form-group">

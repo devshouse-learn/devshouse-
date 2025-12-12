@@ -15,6 +15,7 @@ const VenturesForm = () => {
   
   const [formData, setFormData] = useState({
     companyName: '',
+    logoUrl: '',
     industry: '',
     foundedYear: new Date().getFullYear(),
     location: '',
@@ -30,6 +31,15 @@ const VenturesForm = () => {
     gmailVerified: false,
   });
 
+  const getInitials = (value = '') =>
+    value
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase() || 'LOGO';
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -37,6 +47,41 @@ const VenturesForm = () => {
       [name]: type === 'checkbox' ? checked : value,
     }));
     setError('');
+  };
+
+  const handleLogoChange = (e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) {
+      setFormData((prev) => ({ ...prev, logoUrl: '' }));
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      setError('El logo debe ser un archivo de imagen');
+      e.target.value = '';
+      return;
+    }
+
+    const maxFileSize = 2 * 1024 * 1024;
+    if (file.size > maxFileSize) {
+      setError('El logo no debe superar los 2 MB');
+      e.target.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = typeof reader.result === 'string' ? reader.result : '';
+      setFormData((prev) => ({ ...prev, logoUrl: base64 }));
+      setError('');
+    };
+    reader.onerror = () => {
+      setError('No se pudo leer el archivo del logo');
+      e.target.value = '';
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -68,6 +113,7 @@ const VenturesForm = () => {
       setSuccess(true);
       setFormData({
         companyName: '',
+        logoUrl: '',
         industry: '',
         foundedYear: new Date().getFullYear(),
         location: '',
@@ -169,6 +215,34 @@ const VenturesForm = () => {
             </div>
           </div>
 
+          <div className="form-group">
+            <label htmlFor="logo">Logo de la empresa</label>
+            <input
+              type="file"
+              id="logo"
+              name="logo"
+              accept="image/*"
+              onChange={handleLogoChange}
+              disabled={loading}
+            />
+            {formData.logoUrl && (
+              <div className="logo-preview">
+                <div className="logo-preview-circle">
+                  <img src={formData.logoUrl} alt={`Logo de ${formData.companyName || 'tu emprendimiento'}`} />
+                </div>
+                <span>Así se mostrará tu logo junto al nombre del emprendimiento.</span>
+              </div>
+            )}
+            {!formData.logoUrl && formData.companyName && (
+              <div className="logo-preview">
+                <div className="logo-preview-circle">
+                  <span>{getInitials(formData.companyName)}</span>
+                </div>
+                <span>Si no subes un logo, mostraremos las iniciales de tu empresa.</span>
+              </div>
+            )}
+          </div>
+
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="foundedYear">Año de Fundación</label>
@@ -265,13 +339,14 @@ const VenturesForm = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="investmentStage">Etapa de Inversión</label>
+              <label htmlFor="investmentStage" style={{ fontSize: '0.7rem !important', marginBottom: '2px !important' }}>Etapa de Inversión</label>
               <select
                 id="investmentStage"
                 name="investmentStage"
                 value={formData.investmentStage}
                 onChange={handleInputChange}
                 disabled={loading}
+                style={{ padding: '2px 4px !important', fontSize: '0.7rem !important', lineHeight: '1 !important', height: '24px !important' }}
               >
                 <option value="idea">Idea</option>
                 <option value="prototype">Prototipo</option>
@@ -283,7 +358,7 @@ const VenturesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="teamSize">Tamaño del Equipo</label>
+              <label htmlFor="teamSize" style={{ fontSize: '0.7rem !important', marginBottom: '2px !important', width: '100%', display: 'block' }}>Miembros</label>
               <input
                 type="number"
                 id="teamSize"
@@ -292,7 +367,9 @@ const VenturesForm = () => {
                 onChange={handleInputChange}
                 placeholder="Ej: 5"
                 min="1"
+                max="50"
                 disabled={loading}
+                style={{ padding: '2px 12px !important', fontSize: '0.7rem !important', lineHeight: '1 !important', width: '150px !important', height: '56px !important', boxSizing: 'border-box !important' }}
               />
             </div>
           </div>

@@ -12,6 +12,16 @@ const VenturesList = () => {
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
   const [openMenuId, setOpenMenuId] = useState(null);
+  const getCompanyName = (venture) => venture.company_name || venture.companyName || 'Emprendimiento';
+  const getLogoUrl = (venture) => venture.logoUrl || venture.logo_url || venture.logo || '';
+  const getInitials = (value = '') =>
+    value
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase() || 'EM';
 
   useEffect(() => {
     loadVentures();
@@ -185,13 +195,27 @@ const VenturesList = () => {
         </div>
       ) : (
         <div className="items-grid">
-          {ventures.map((venture) => (
-            <div key={venture.id} className="item-card">
-              <div className="card-header">
-                <div className="header-title">
-                  <h3>{venture.company_name}</h3>
-                  <span className="badge">{venture.investment_stage}</span>
-                </div>
+            {ventures.map((venture) => {
+              const companyName = getCompanyName(venture);
+              const logoUrl = getLogoUrl(venture);
+              const logoFallback = getInitials(companyName);
+
+              return (
+                <div key={venture.id} className="item-card">
+                  <div className="card-header">
+                    <div className="header-title">
+                      <div className="company-logo" aria-label={`Logo de ${companyName}`}>
+                        {logoUrl ? (
+                          <img src={logoUrl} alt={`Logo de ${companyName}`} />
+                        ) : (
+                          <span>{logoFallback}</span>
+                        )}
+                      </div>
+                      <div className="header-info">
+                        <h3>{companyName}</h3>
+                      </div>
+                      <span className="badge">{venture.investment_stage}</span>
+                    </div>
                 <div className="header-menu">
                   <button
                     className="menu-btn"
@@ -217,7 +241,7 @@ const VenturesList = () => {
                 </div>
               </div>
 
-              <div className="card-content">
+                <div className="card-content">
                 <div className="card-body">
                   {/* Información Básica */}
                   <div className="info-row">
@@ -299,7 +323,7 @@ const VenturesList = () => {
                 </div>
               </div>
 
-              <div className="card-actions">
+                <div className="card-actions">
                 <button
                   className={`btn-like ${userReactions[venture.id]?.hasLiked ? 'liked' : ''}`}
                   onClick={() => handleLike(venture.id)}
@@ -346,9 +370,10 @@ const VenturesList = () => {
                     }}
                   ><span className="emoji">🗑️</span></button>
                 )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

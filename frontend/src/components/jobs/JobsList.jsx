@@ -12,6 +12,16 @@ const JobsList = () => {
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
   const [openMenuId, setOpenMenuId] = useState(null);
+  const getCompanyName = (job) => job.company || job.company_name || job.employer || 'Empresa';
+  const getLogoUrl = (job) => job.logoUrl || job.logo_url || job.companyLogo || job.company_logo || '';
+  const getInitials = (value = '') =>
+    value
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase() || 'EM';
 
   useEffect(() => {
     loadJobs();
@@ -125,13 +135,14 @@ const JobsList = () => {
           <h1> Ofertas de Empleo</h1>
           <p>Encuentra las mejores oportunidades laborales</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => navigate('/jobs/form')}
-        >
-           Publicar Empleo
-        </button>
       </div>
+
+      <button 
+        className="btn-primary-large"
+        onClick={() => navigate('/jobs/form')}
+      >
+         Publicar Empleo
+      </button>
 
       {error && (
         <div className="error-message">
@@ -165,15 +176,27 @@ const JobsList = () => {
         </div>
       ) : (
         <div className="items-grid">
-          {jobs.map((job) => (
-            <div key={job.id} className="item-card">
+          {jobs.map((job) => {
+            const companyName = getCompanyName(job);
+            const logoUrl = getLogoUrl(job);
+            const logoFallback = getInitials(companyName);
+
+            return (
+              <div key={job.id} className="item-card">
               <div className="card-header">
                 <div className="header-title">
-                  <div className="header-info">
-                    <h3>{job.position}</h3>
-                    <p className="company-name"> {job.company}</p>
-                  </div>
-                  <span className="badge">{job.experience}</span>
+                    <div className="company-logo" aria-label={`Logo de ${companyName}`}>
+                      {logoUrl ? (
+                        <img src={logoUrl} alt={`Logo de ${companyName}`} />
+                      ) : (
+                        <span>{logoFallback}</span>
+                      )}
+                    </div>
+                    <div className="header-info">
+                      <h3>{job.position}</h3>
+                      <p className="company-name"> {companyName}</p>
+                    </div>
+                    <span className="badge">{job.experience}</span>
                 </div>
                 <div className="header-menu">
                   <button
@@ -200,7 +223,7 @@ const JobsList = () => {
                 </div>
               </div>
 
-              <div className="card-content">
+                <div className="card-content">
                 <div className="card-body">
                   {/* Información Básica */}
                   <div className="info-row">
@@ -294,7 +317,7 @@ const JobsList = () => {
                 </div>
               </div>
 
-              <div className="card-actions">
+                <div className="card-actions">
                 <button
                   className={`btn-like ${userReactions[job.id]?.hasLiked ? 'liked' : ''}`}
                   onClick={() => handleLike(job.id)}
@@ -335,9 +358,10 @@ const JobsList = () => {
                     }}
                   ><span className="emoji">🗑️</span></button>
                 )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

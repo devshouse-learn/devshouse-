@@ -129,6 +129,23 @@ const startServer = async () => {
       }
     });
 
+    // Manejo de cierre graceful
+    process.on('SIGINT', () => {
+      console.log('\n[2025-12-12T19:XX:XX.XXXZ] [INFO] SIGINT recibido, cerrando servidor...');
+      server.close(() => {
+        console.log('[2025-12-12T19:XX:XX.XXXZ] [INFO] Servidor cerrado correctamente');
+        process.exit(0);
+      });
+    });
+
+    process.on('SIGTERM', () => {
+      console.log('\n[2025-12-12T19:XX:XX.XXXZ] [INFO] SIGTERM recibido, cerrando servidor...');
+      server.close(() => {
+        console.log('[2025-12-12T19:XX:XX.XXXZ] [INFO] Servidor cerrado correctamente');
+        process.exit(0);
+      });
+    });
+
   } catch (error) {
     console.error('❌ Error al iniciar el servidor:', error.message);
     process.exit(1);

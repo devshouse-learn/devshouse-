@@ -1,7 +1,13 @@
 {
   "watch": ["src"],
   "ext": "js,json",
-  "ignore": ["src/**/*.spec.js", "src/**/*.test.js", "node_modules"],
-  "delay": "2000",
-  "verbose": false
+  "ignore": ["src/**/*.spec.js", "src/**/*.test.js", "node_modules", "*.db", "logs", "docs"],
+  "delay": "3000",
+  "verbose": false,
+  "restartable": "rs",
+  "legacyWatch": true,
+  "events": {
+    "restart": "echo 'App restarted due to file changes'"
+  }
 }
+

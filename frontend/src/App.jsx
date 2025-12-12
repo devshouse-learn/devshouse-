@@ -87,7 +87,7 @@ function App() {
               <Route
                 path="jobs/form"
                 element={
-                  <ProtectedRoute requiredRole="admin">
+                  <ProtectedRoute>
                     <JobsForm />
                   </ProtectedRoute>
                 }
