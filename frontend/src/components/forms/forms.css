@@ -133,7 +133,7 @@
 }
 
 .form-container:has(.student-form) {
-  padding-top: 850px;
+  padding-top: 800px;
 }
 
 .form-header {
