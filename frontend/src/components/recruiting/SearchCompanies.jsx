@@ -15,10 +15,17 @@ const SearchCompanies = () => {
     activeTab === 'ventures'
       ? company.company_name || company.companyName || company.name || 'Emprendimiento'
       : company.company || company.company_name || company.employer || 'Empresa';
-  const getLogoUrl = (company) =>
-    activeTab === 'ventures'
-      ? company.logoUrl || company.logo_url || company.logo || ''
-      : company.logoUrl || company.logo_url || company.companyLogo || company.company_logo || '';
+  const getLogoUrl = (company) => {
+    const url = activeTab === 'ventures'
+      ? company.logoUrl || company.logo_url || company.logo
+      : company.logoUrl || company.logo_url || company.companyLogo || company.company_logo;
+    
+    // Solo devolver la URL si es una cadena no vacía y no es un placeholder
+    if (url && typeof url === 'string' && url.trim() && !url.includes('placeholder')) {
+      return url;
+    }
+    return '';
+  };
   const getInitials = (value = '') =>
     value
       .split(' ')
@@ -219,26 +226,22 @@ const SearchCompanies = () => {
             const companyName = getCompanyName(company);
             const logoUrl = getLogoUrl(company);
             const logoFallback = getInitials(companyName);
-            const badgeLabel = activeTab === 'ventures' ? company.industry : (company.experience_level || company.experience || '');
+            console.log('Logo Debug:', { companyName, logoUrl, logoFallback });
 
             return (
             <div key={company.id} className="item-card">
               <div className="card-header">
                 <div className="header-title">
-                  <div className="company-logo" aria-label={`Logo de ${companyName}`}>
-                    {logoUrl ? (
+                  <div className="company-logo">
+                    {logoUrl && logoUrl.trim() ? (
                       <img src={logoUrl} alt={`Logo de ${companyName}`} />
                     ) : (
                       <span>{logoFallback}</span>
                     )}
                   </div>
                   <div className="header-info">
-                    <h3>{activeTab === 'ventures' ? company.company_name : company.position}</h3>
-                    {activeTab === 'jobs' && companyName && (
-                      <p className="company-name">{companyName}</p>
-                    )}
+                    <h3>{activeTab === 'ventures' ? company.company_name : company.company_name}</h3>
                   </div>
-                  {badgeLabel && <span className="badge">{badgeLabel}</span>}
                 </div>
                 <div className="header-menu">
                   <button

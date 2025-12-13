@@ -112,7 +112,7 @@ const PublishProfile = () => {
         style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
       ><span className="emoji">↩️</span> Volver </button>
       
-      <div className="list-header">
+      <div className="list-header form-page-header">
         <div className="header-content">
           <h1> Publicar Perfil Profesional</h1>
           <p>Comparte tu hoja de vida con empleadores</p>

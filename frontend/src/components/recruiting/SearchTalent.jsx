@@ -13,6 +13,15 @@ const SearchTalent = () => {
   const [userReactions, setUserReactions] = useState({});
   const [openMenuId, setOpenMenuId] = useState(null);
 
+  const getInitials = (name = '') =>
+    name
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join('')
+      .toUpperCase() || 'EM';
+
   useEffect(() => {
     loadTalents();
   }, []);
@@ -129,15 +138,23 @@ const SearchTalent = () => {
 
   return (
     <div className="list-container">
+      <button 
+        className="btn-back"
+        onClick={() => navigate('/recruiting')}
+        title="Volver al Centro de Reclutamiento"
+        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
+      ><span className="emoji">↩️</span> Volver </button>
+
       <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/recruiting')}
-            title="Volver al Centro de Reclutamiento"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
+          <button 
+            className="btn-primary"
+            onClick={() => navigate('/recruiting/publish-profile')}
+            title="Registra tu perfil"
+            style={{ position: 'absolute', top: '-50px', left: '50%', transform: 'translateX(-50%)', zIndex: 100 }}
+          >
+             Registra el tuyo
+          </button>
           <h1> Buscar Talentos</h1>
           <p>Encuentra profesionales capacitados</p>
         </div>
@@ -178,38 +195,40 @@ const SearchTalent = () => {
           {talents.map((talent) => (
             <div key={talent.id} className="item-card">
               <div className="card-header">
-                <div className="header-info">
-                  <h3>{talent.name || talent.full_name || 'Talento'}</h3>
-                  <p className="company-name">
-                    {talent.current_job_title || 'Profesional'}
-                    {talent.current_company && ` • ${talent.current_company}`}
-                  </p>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span className="badge">{talent.experience || talent.years_experience || 'N/A'}</span>
-                  <div className="header-menu">
-                    <button
-                      className="menu-btn"
-                      onClick={() => setOpenMenuId(openMenuId === talent.id ? null : talent.id)}
-                      title="Más opciones"
-                    >
-                      ⋮
-                    </button>
-                    {openMenuId === talent.id && (
-                      <div className="menu-dropdown">
-                        <button
-                          className="menu-item"
-                          onClick={() => {
-                            handleReport(talent.id, 'Contenido inapropiado');
-                            setOpenMenuId(null);
-                          }}
-                          disabled={userReactions[talent.id]?.hasReported}
-                        >
-                          {userReactions[talent.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
-                        </button>
-                      </div>
+                <div className="header-title">
+                  <div className="talent-photo">
+                    {talent.profile_photo ? (
+                      <img src={talent.profile_photo} alt={talent.name || 'Talento'} />
+                    ) : (
+                      <span>{getInitials(talent.name || talent.full_name)}</span>
                     )}
                   </div>
+                  <div className="header-info">
+                    <h3>{talent.name || talent.full_name || 'Talento'}</h3>
+                  </div>
+                </div>
+                <div className="header-menu">
+                  <button
+                    className="menu-btn"
+                    onClick={() => setOpenMenuId(openMenuId === talent.id ? null : talent.id)}
+                    title="Más opciones"
+                  >
+                    ⋮
+                  </button>
+                  {openMenuId === talent.id && (
+                    <div className="menu-dropdown">
+                      <button
+                        className="menu-item"
+                        onClick={() => {
+                          handleReport(talent.id, 'Contenido inapropiado');
+                          setOpenMenuId(null);
+                        }}
+                        disabled={userReactions[talent.id]?.hasReported}
+                      >
+                        {userReactions[talent.id]?.hasReported ? '🚨 Denunciado' : '🚨 Reportar'}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 

@@ -179,7 +179,6 @@ const StudentsList = () => {
               <div className="card-header">
                 <div className="header-title">
                   <h3>{student.contactPerson || 'Estudiante'}</h3>
-                  <span className="badge">{student.schoolType}</span>
                 </div>
                 <div className="header-menu">
                   <button

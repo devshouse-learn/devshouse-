@@ -40,7 +40,7 @@ export const mockCandidates = [
     professional_title: 'UX/UI Designer',
     professional_summary: 'Diseñadora UX/UI especializada en diseño responsivo y accesibilidad web',
     location: 'Medellín, Colombia',
-    current_job_title: 'Senior Designer at Design Studio',
+    current_job_title: '',
     years_experience: 6,
     education_level: 'Profesional',
     skills: ['Figma', 'Adobe XD', 'Prototyping', 'User Research', 'Wireframing', 'CSS'],

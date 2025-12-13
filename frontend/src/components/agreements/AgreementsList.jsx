@@ -199,7 +199,6 @@ const AgreementsList = () => {
               <div className="card-header">
                 <div className="header-title">
                   <h3>{agreement.schoolName}</h3>
-                  <span className="badge">{agreement.schoolType}</span>
                 </div>
                 <div className="header-menu">
                   <button

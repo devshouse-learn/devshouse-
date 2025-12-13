@@ -196,7 +196,6 @@ const JobsList = () => {
                       <h3>{job.position}</h3>
                       <p className="company-name"> {companyName}</p>
                     </div>
-                    <span className="badge">{job.experience}</span>
                 </div>
                 <div className="header-menu">
                   <button

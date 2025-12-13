@@ -103,16 +103,24 @@ const StudentForm = () => {
 
   return (
     <div className="form-container">
-      <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/agreements')}
-            title="Volver a Convenios"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
+      <button 
+        className="btn-back"
+        onClick={() => navigate('/agreements')}
+        title="Volver a Convenios"
+        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
+      ><span className="emoji">↩️</span> Volver </button>
+      
+      <div className="list-header form-page-header">
         <div className="header-content">
-          <h1> Soy Estudiante</h1>
+          <button 
+            className="btn-primary"
+            onClick={() => navigate('/agreements/register')}
+            title="Registra tu perfil"
+            style={{ position: 'absolute', top: '-50px', left: '50%', transform: 'translateX(-50%)', zIndex: 100 }}
+          >
+            Registra el tuyo
+          </button>
+          <h1>Estudiantes</h1>
           <p>Registra tu perfil y encuentra oportunidades de aprendizaje y experiencia</p>
         </div>
       </div>

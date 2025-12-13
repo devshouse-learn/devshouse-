@@ -125,15 +125,15 @@
 }
 
 .form-container:has(.form-content) {
-  padding-top: 600px;
+  padding-top: 750px;
 }
 
 .form-container:has(.profile-form) {
-  padding-top: 850px;
+  padding-top: 950px;
 }
 
 .form-container:has(.student-form) {
-  padding-top: 800px;
+  padding-top: 700px;
 }
 
 .form-header {

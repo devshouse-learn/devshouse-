@@ -128,7 +128,15 @@ const AgreementsForm = () => {
       
       <div className="list-header form-page-header">
         <div className="header-content">
-          <h1> Convenios Educativos</h1>
+          <button 
+            className="btn-primary"
+            onClick={() => navigate('/agreements/register')}
+            title="Registra tu perfil"
+            style={{ position: 'absolute', top: '-50px', left: '50%', transform: 'translateX(-50%)', zIndex: 100 }}
+          >
+            Registra el tuyo
+          </button>
+          <h1>Estudiantes</h1>
           <p>Registra tu institución educativa y establece convenios con empresas</p>
         </div>
       </div>
