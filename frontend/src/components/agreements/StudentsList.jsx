@@ -122,24 +122,25 @@ const StudentsList = () => {
 
   return (
     <div className="list-container">
+      <button 
+        className="btn-back"
+        onClick={() => navigate('/agreements')}
+        title="Volver a Convenios"
+        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
+      ><span className="emoji">↩️</span> Volver </button>
+
       <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/agreements')}
-            title="Volver a Convenios"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
-          <h1> Estudiantes y Talentos</h1>
+          <button 
+            className="btn-primary"
+            onClick={() => navigate('/agreements/student')}
+            style={{ position: 'absolute', top: '-50px', left: '50%', transform: 'translateX(-50%)', zIndex: 100 }}
+          >
+             Registra el tuyo
+          </button>
+          <h1>Estudiantes</h1>
           <p>Descubre perfiles de estudiantes registrados</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => navigate('/agreements/student')}
-        >
-           Registrar el tuyo
-        </button>
       </div>
 
       {error && (
