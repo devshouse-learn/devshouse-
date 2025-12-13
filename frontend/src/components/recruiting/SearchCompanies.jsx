@@ -237,9 +237,6 @@ const SearchCompanies = () => {
                     {activeTab === 'jobs' && companyName && (
                       <p className="company-name">{companyName}</p>
                     )}
-                    {activeTab === 'ventures' && company.founder_name && (
-                      <p className="company-name">{company.founder_name}</p>
-                    )}
                   </div>
                   {badgeLabel && <span className="badge">{badgeLabel}</span>}
                 </div>
