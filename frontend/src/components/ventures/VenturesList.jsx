@@ -148,20 +148,20 @@ const VenturesList = () => {
             className="btn-back"
             onClick={() => navigate('/')}
             title="Volver al inicio"
+            style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
           ><span className="emoji">↩️</span> Volver </button>
+          <button 
+            className="btn-primary-large"
+            onClick={() => navigate('/ventures/form')}
+          >
+             Registrar el tuyo
+          </button>
         </div>
         <div className="header-content">
           <h1> Emprendimientos</h1>
           <p>Descubre startups y emprendimientos</p>
         </div>
       </div>
-
-      <button 
-        className="btn-primary-large"
-        onClick={() => navigate('/ventures/form')}
-      >
-         Registrar el tuyo
-      </button>
 
       {error && (
         <div className="error-message">

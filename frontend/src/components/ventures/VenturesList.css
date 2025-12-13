@@ -16,6 +16,10 @@
 
 .header-top {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 }
 
 .header-content {
@@ -77,7 +81,10 @@
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  margin-bottom: 40px;
+}
+
+.header-top .btn-primary-large {
+  margin-bottom: 0;
 }
 
 .btn-primary-large:hover {

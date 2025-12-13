@@ -129,20 +129,20 @@ const JobsList = () => {
             className="btn-back"
             onClick={() => navigate('/recruiting')}
             title="Volver al Centro de Reclutamiento"
+            style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
           ><span className="emoji">↩️</span> Volver </button>
+          <button 
+            className="btn-primary-large"
+            onClick={() => navigate('/jobs/form')}
+          >
+             Publicar Empleo
+          </button>
         </div>
         <div className="header-content">
           <h1> Ofertas de Empleo</h1>
           <p>Encuentra las mejores oportunidades laborales</p>
         </div>
       </div>
-
-      <button 
-        className="btn-primary-large"
-        onClick={() => navigate('/jobs/form')}
-      >
-         Publicar Empleo
-      </button>
 
       {error && (
         <div className="error-message">

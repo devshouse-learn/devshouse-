@@ -131,13 +131,6 @@ const AgreementsForm = () => {
           <h1> Convenios Educativos</h1>
           <p>Registra tu institución educativa y establece convenios con empresas</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => window.scrollTo(0, document.querySelector('.agreement-form').offsetTop)}
-          title="Ir al formulario"
-        >
-           Registrar el tuyo
-        </button>
       </div>
 
       {success && (

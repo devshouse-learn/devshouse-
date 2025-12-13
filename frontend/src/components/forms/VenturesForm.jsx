@@ -151,13 +151,6 @@ const VenturesForm = () => {
           <h1> Publica Tu<br/>Emprendimiento</h1>
           <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => window.scrollTo(0, document.querySelector('.ventures-form').offsetTop)}
-          title="Ir al formulario"
-        >
-           Registrar el tuyo
-        </button>
       </div>
 
       {success && (
