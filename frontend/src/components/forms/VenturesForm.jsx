@@ -434,15 +434,6 @@ const VenturesForm = () => {
         </fieldset>
 
         <div className="form-actions">
-          <div className="btn-group-left">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => navigate(-1)}
-            >
-               Atrás
-            </button>
-          </div>
           <div className="btn-group-center">
             <button
               type="submit"

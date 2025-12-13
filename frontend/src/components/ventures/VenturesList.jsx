@@ -213,8 +213,9 @@ const VenturesList = () => {
                       </div>
                       <div className="header-info">
                         <h3>{companyName}</h3>
+                        <span className="badge">{venture.industry || 'Industria'}</span>
                       </div>
-                      <span className="badge">{venture.investment_stage}</span>
+                      
                     </div>
                 <div className="header-menu">
                   <button

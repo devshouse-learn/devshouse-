@@ -18,7 +18,9 @@ const PublishProfile = () => {
     location: '',
     experience: '',
     skills: '',
-    bio: ''
+    bio: '',
+    photo: null,
+    photoPreview: null
   });
 
   const handleInputChange = (e) => {
@@ -27,6 +29,21 @@ const PublishProfile = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({
+          ...prev,
+          photo: file,
+          photoPreview: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -102,7 +119,7 @@ const PublishProfile = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="form-content">
+      <form onSubmit={handleSubmit} className="form-content profile-form">
         <div className="form-section">
           <h2>Información Personal</h2>
           
@@ -118,6 +135,25 @@ const PublishProfile = () => {
               disabled={loading}
               required
             />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="photo">Foto de Perfil</label>
+            <input
+              type="file"
+              id="photo"
+              name="photo"
+              onChange={handlePhotoChange}
+              accept="image/*"
+              disabled={loading}
+            />
+            {formData.photoPreview && (
+              <img 
+                src={formData.photoPreview} 
+                alt="Preview de foto" 
+                style={{ maxWidth: '150px', maxHeight: '150px', marginTop: '10px', borderRadius: '50%' }}
+              />
+            )}
           </div>
 
           <div className="form-group">

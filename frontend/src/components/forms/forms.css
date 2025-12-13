@@ -118,6 +118,24 @@
   background: #ffffff;
 }
 
+/* Reducir padding para formularios de convenios y reclutamiento */
+.form-container:has(.agreement-form) {
+  padding-top: 800px;
+  max-width: 1000px;
+}
+
+.form-container:has(.form-content) {
+  padding-top: 600px;
+}
+
+.form-container:has(.profile-form) {
+  padding-top: 850px;
+}
+
+.form-container:has(.student-form) {
+  padding-top: 800px;
+}
+
 .form-header {
   text-align: center;
   margin-bottom: 40px;
@@ -235,6 +253,39 @@ legend {
   align-items: center;
   justify-items: stretch;
   width: 100%;
+}
+
+/* Centrar botones en todos los formularios */
+.agreement-form .form-actions,
+.venture-form .form-actions,
+.ventures-form .form-actions,
+.job-form .form-actions,
+.jobs-form .form-actions,
+.search-form .form-actions,
+.profile-form .form-actions,
+.form-content .form-actions {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  grid-template-columns: unset !important;
+  border-top: 1px solid #e0e0e0 !important;
+  padding: 1.5rem 2rem !important;
+  margin: 2rem auto 0 auto !important;
+  width: fit-content !important;
+}
+
+.agreement-form .form-actions button,
+.venture-form .form-actions button,
+.ventures-form .form-actions button,
+.job-form .form-actions button,
+.jobs-form .form-actions button,
+.search-form .form-actions button,
+.profile-form .form-actions button,
+.form-content .form-actions button {
+  width: auto !important;
+  padding: 10px 30px !important;
+  min-width: 150px !important;
 }
 
 .btn-group-left,

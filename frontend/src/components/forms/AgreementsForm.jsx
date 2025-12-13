@@ -152,7 +152,7 @@ const AgreementsForm = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="schoolName">Nombre de la Institución *</label>
+              <label htmlFor="schoolName">Institución *</label>
               <input
                 type="text"
                 id="schoolName"
@@ -294,7 +294,7 @@ const AgreementsForm = () => {
               value={formData.description}
               onChange={handleInputChange}
               placeholder="Describe los objetivos y detalles del convenio..."
-              rows="5"
+              rows="3"
               disabled={loading}
             />
           </div>
@@ -323,15 +323,6 @@ const AgreementsForm = () => {
         </fieldset>
 
         <div className="form-actions">
-          <div className="btn-group-left">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => navigate(-1)}
-            >
-               Atrás
-            </button>
-          </div>
           
           <div className="btn-group-center">
             <button

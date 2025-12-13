@@ -17,7 +17,9 @@ const PublishJob = () => {
     salaryMax: '',
     currency: 'USD',
     contactEmail: '',
-    description: ''
+    description: '',
+    logo: null,
+    logoPreview: null
   });
 
   const handleInputChange = (e) => {
@@ -26,6 +28,21 @@ const PublishJob = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleLogoChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({
+          ...prev,
+          logo: file,
+          logoPreview: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -133,6 +150,25 @@ const PublishJob = () => {
               disabled={loading}
               required
             />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="logo">Logo de la Empresa</label>
+            <input
+              type="file"
+              id="logo"
+              name="logo"
+              onChange={handleLogoChange}
+              accept="image/*"
+              disabled={loading}
+            />
+            {formData.logoPreview && (
+              <img 
+                src={formData.logoPreview} 
+                alt="Preview del logo" 
+                style={{ maxWidth: '150px', maxHeight: '150px', marginTop: '10px' }}
+              />
+            )}
           </div>
 
           <div className="form-group">
