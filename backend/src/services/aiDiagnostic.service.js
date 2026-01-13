@@ -49,7 +49,7 @@ class AIDiagnosticService {
             symptoms: ['econnrefused', 'net::err_connection_refused', 'fetch failed'],
             fixes: [
               'Verificar que el servidor backend esté ejecutándose',
-              'Revisar que el puerto 3000 esté disponible',
+              'Revisar que el puerto 3001 esté disponible',
               'Ejecutar: cd backend && npm start',
               'Verificar VITE_API_URL en .env del frontend'
             ],
@@ -312,8 +312,8 @@ class AIDiagnosticService {
     if (!url.startsWith('http')) {
       return 'URL relativa - Verificar configuración de baseURL';
     }
-    if (url.includes('localhost') && !url.includes('3000')) {
-      return 'Posible puerto incorrecto - Backend debería estar en puerto 3000';
+    if (url.includes('localhost') && !url.includes('3001')) {
+      return 'Posible puerto incorrecto - Backend debería estar en puerto 3001';
     }
     return 'URL parece correcta';
   }
@@ -369,7 +369,7 @@ location.reload();
         'Abrir terminal en la carpeta del proyecto',
         'Ejecutar: cd backend',
         'Ejecutar: npm start',
-        'Verificar que aparezca: "Servidor iniciado en puerto 3000"'
+        'Verificar que aparezca: "Servidor iniciado en puerto 3001"'
       ],
       commands: [
         'cd backend',
@@ -384,11 +384,11 @@ location.reload();
       action: 'pingServer',
       instructions: [
         'Verificar que el backend responda',
-        'Abrir: http://localhost:3000/api/health',
+        'Abrir: http://localhost:3001/api/health',
         'Debe mostrar respuesta JSON',
         'Si no responde, reiniciar el servidor'
       ],
-      testUrl: 'http://localhost:3000/api/health',
+      testUrl: 'http://localhost:3001/api/health',
       success: true
     };
   }
@@ -397,15 +397,33 @@ location.reload();
     return {
       action: 'checkMongoConnection',
       instructions: [
-        'Verificar que MongoDB esté ejecutándose',
-        'Si tienes MongoDB local: mongod --version',
-        'Si usas MongoDB Atlas: verificar conexión a internet',
-        'Revisar MONGODB_URI en el archivo .env',
-        'Formato: mongodb://localhost:27017/devshouse o tu connection string'
+        'Verificar que MongoDB esté disponible',
+        'Si usas MongoDB local: verificar que mongod esté ejecutándose',
+        'Si usas MongoDB Atlas: verificar credenciales en .env',
+        'Revisar MONGODB_URI en .env',
+        'Verificar que la conexión no esté bloqueada por firewall'
       ],
       commands: [
-        'mongod --version',
-        'mongo --eval "db.stats()"'
+        'mongosh mongodb://localhost:27017',
+        'curl http://localhost:27017'
+      ],
+      success: true
+    };
+  }
+
+  async checkDatabaseConnection() {
+    return {
+      action: 'checkDatabaseConnection',
+      instructions: [
+        'Verificar que la base de datos esté configurada',
+        'Si usas SQLite: verificar que database.sqlite exista',
+        'Si usas PostgreSQL: verificar credenciales en .env',
+        'Revisar DB_TYPE, DB_HOST, DB_USER, DB_PASSWORD en .env',
+        'Ejecutar: npm run sync-db para sincronizar modelos'
+      ],
+      commands: [
+        'ls database.sqlite',
+        'psql -U postgres -d devshouse -c "SELECT 1"'
       ],
       success: true
     };

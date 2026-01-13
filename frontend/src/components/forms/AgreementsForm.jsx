@@ -4,6 +4,7 @@ import { agreementsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
 import { validateField } from '../../services/validation.service';
 import validationRules from '../../services/validation.service';
+import BackButton from '../common/BackButton';
 import './forms.css';
 
 const AgreementsForm = () => {
@@ -119,24 +120,10 @@ const AgreementsForm = () => {
 
   return (
     <div className="form-container">
-      <button 
-        className="btn-back"
-        onClick={() => navigate('/agreements')}
-        title="Volver a Convenios"
-        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-      ><span className="emoji">↩️</span> Volver </button>
-      
+      <BackButton />
       <div className="list-header form-page-header">
         <div className="header-content">
-          <button 
-            className="btn-primary"
-            onClick={() => navigate('/agreements/register')}
-            title="Registra tu perfil"
-            style={{ position: 'absolute', top: '-50px', left: '50%', transform: 'translateX(-50%)', zIndex: 100 }}
-          >
-            Registra el tuyo
-          </button>
-          <h1>Estudiantes</h1>
+          <h1>Convenios</h1>
           <p>Registra tu institución educativa y establece convenios con empresas</p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../common/BackButton';
 import './AgreementsHub.css';
 
 const AgreementsHub = () => {
@@ -6,14 +7,8 @@ const AgreementsHub = () => {
 
   return (
     <div className="hub-container">
+      <BackButton />
       <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
           <h1>Educación y Convenios</h1>
           <p>Elige cómo deseas participar</p>

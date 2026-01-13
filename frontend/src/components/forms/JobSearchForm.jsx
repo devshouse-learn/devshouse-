@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jobsService } from '../../services/registration.service';
+import BackButton from '../common/BackButton';
 import './forms.css';
 
 const JobSearchForm = () => {
@@ -98,6 +99,7 @@ const JobSearchForm = () => {
 
   return (
     <div className="search-container">
+      <BackButton />
       <div className="search-header">
         <h1> Busca Tu Próxima Oportunidad</h1>
         <p>Encuentra empleos que se adapten a tu perfil y experiencia</p>
@@ -211,15 +213,6 @@ const JobSearchForm = () => {
           </div>
 
           <div className="form-actions">
-            <div className="btn-group-left">
-              <button
-                type="button"
-                className="btn-back"
-                onClick={() => navigate(-1)}
-              >
-                 Atrás
-              </button>
-            </div>
             <div className="btn-group-center">
               <button type="submit" className="btn-submit">
                  Buscar Empleos

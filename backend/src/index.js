@@ -68,13 +68,7 @@ app.use('/api/candidates', candidatesRoutes);
 app.use('/api/reactions', reactionsRoutes);
 app.use('/api/moderation', moderationRoutes);
 
-app.use('/api/users', (req, res) => {
-  res.json({ message: 'Users routes coming soon' });
-});
 
-app.use('/api/auth', (req, res) => {
-  res.json({ message: 'Auth routes coming soon' });
-});
 
 // Manejo de rutas no encontradas
 app.use(notFoundHandler);

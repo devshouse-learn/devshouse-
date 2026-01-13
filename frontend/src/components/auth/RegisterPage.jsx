@@ -6,6 +6,9 @@ import './AuthPage.css';
 const RegisterPage = () => {
   const navigate = useNavigate();
   const { register } = useAuth();
+  const [position, setPosition] = useState({ x: 30, y: 30 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,6 +27,27 @@ const RegisterPage = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setDragOffset({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      setPosition({
+        x: e.clientX - dragOffset.x,
+        y: e.clientY - dragOffset.y,
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
   };
 
   const handleRegister = async (e) => {
@@ -70,7 +94,19 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-page" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}>
+      <button 
+        className="back-button"
+        onClick={() => navigate(-1)}
+        onMouseDown={handleMouseDown}
+        style={{
+          position: 'fixed',
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+        }}
+      >
+        ← Volver
+      </button>
       <div className="auth-container">
         <div className="auth-header">
           <h1>Regístrate</h1>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { agreementsService, venturesService, jobsService } from '../../services/registration.service';
 import ReactionButtons from '../common/ReactionButtons';
 import ReadOnlyModal from '../common/ReadOnlyModal';
+import BackButton from '../common/BackButton';
 import { useAuth } from '../../context/AuthContext';
 import './DataViewer.css';
 
@@ -139,19 +140,8 @@ const DataViewer = () => {
 
   return (
     <div className="data-viewer">
+      <BackButton />
       <div className="data-viewer-header">
-        <button 
-          className="btn-back"
-          onClick={() => navigate('/')}
-          title="Volver al inicio"
-          style={{
-            position: 'absolute',
-            left: '20px',
-            top: '20px',
-          }}
-        >
-          ← Volver
-        </button>
         <h1> Visor de Datos</h1>
         <p>Administra todos los datos guardados en localStorage</p>
         <div className="data-actions">

@@ -321,17 +321,7 @@ const StudentsList = () => {
                       }
                     }}
                     title={user?.role === 'admin' ? 'Eliminar perfil (admin)' : 'Eliminar tu perfil'}
-                    style={{
-                      backgroundColor: 'transparent',
-                      color: 'white',
-                      border: 'none',
-                      padding: '0',
-                      borderRadius: '0',
-                      cursor: 'pointer',
-                      fontWeight: '600',
-                      transition: 'none',
-                      fontSize: '20px',
-                    }}
+                    className="btn-delete"
                   ><span className="emoji">🗑️</span></button>
                 )}
               </div>

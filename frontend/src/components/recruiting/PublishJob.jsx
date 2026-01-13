@@ -113,16 +113,18 @@ const PublishJob = () => {
         style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
       ><span className="emoji">↩️</span> Volver </button>
       
-      <div className="list-header">
+      <div className="list-header form-page-header">
         <div className="header-content">
-          <h1> Publicar Oferta de Empleo</h1>
+          <h1>Empleo</h1>
           <p>Comparte una oportunidad laboral</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="form-content">
-        <div className="form-section">
-          <h2>Información de la Posición</h2>
+        <div className="form-type-badge"> Formulario de Empleo</div>
+        
+        <fieldset>
+          <legend>Información de la Posición</legend>
           
           <div className="form-group">
             <label htmlFor="position">Puesto *</label>
@@ -200,10 +202,10 @@ const PublishJob = () => {
               <option value="temporary">Temporal</option>
             </select>
           </div>
-        </div>
+        </fieldset>
 
-        <div className="form-section">
-          <h2>Compensación</h2>
+        <fieldset>
+          <legend>Compensación</legend>
           
           <div className="form-row">
             <div className="form-group">
@@ -249,10 +251,10 @@ const PublishJob = () => {
               </select>
             </div>
           </div>
-        </div>
+        </fieldset>
 
-        <div className="form-section">
-          <h2>Contacto</h2>
+        <fieldset>
+          <legend>Contacto</legend>
           
           <div className="form-group">
             <label htmlFor="contactEmail">Email de Contacto *</label>
@@ -267,10 +269,10 @@ const PublishJob = () => {
               required
             />
           </div>
-        </div>
+        </fieldset>
 
-        <div className="form-section">
-          <h2>Descripción</h2>
+        <fieldset>
+          <legend>Descripción</legend>
           
           <div className="form-group">
             <label htmlFor="description">Descripción de la Oferta</label>
@@ -284,27 +286,29 @@ const PublishJob = () => {
               rows="6"
             />
           </div>
-        </div>
+        </fieldset>
 
         {error && <div className="form-error"> {error}</div>}
         {success && <div className="form-success">{success}</div>}
 
         <div className="form-actions">
-          <button
-            type="submit"
-            className="btn"
-            disabled={loading}
-          >
-            {loading ? 'Publicando...' : ' Publicar Oferta'}
-          </button>
-          <button
-            type="button"
-            className="btn"
-            onClick={() => navigate('/recruiting')}
-            disabled={loading}
-          >
-            Cancelar
-          </button>
+          <div className="btn-group-center">
+            <button
+              type="submit"
+              className="btn"
+              disabled={loading}
+            >
+              {loading ? 'Publicando...' : ' Publicar Oferta'}
+            </button>
+            <button
+              type="button"
+              className="btn"
+              onClick={() => navigate('/recruiting')}
+              disabled={loading}
+            >
+              Cancelar
+            </button>
+          </div>
         </div>
       </form>
     </div>

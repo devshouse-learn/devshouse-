@@ -158,25 +158,12 @@ const JobsForm = () => {
 
   return (
     <div className="form-container">
-      <button 
-        className="btn-back"
-        onClick={() => navigate('/jobs')}
-        title="Volver a Empleos"
-        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-      ><span className="emoji">↩️</span> Volver </button>
-      
+      <BackButton />
       <div className="list-header form-page-header">
         <div className="header-content">
-          <h1> Publicar Oportunidad de Empleo</h1>
+          <h1>Empleo</h1>
           <p>Publica una nueva oferta laboral y llega a candidatos calificados</p>
         </div>
-        <button 
-          className="btn-primary-large"
-          onClick={() => window.scrollTo(0, document.querySelector('.jobs-form').offsetTop)}
-          title="Ir al formulario"
-        >
-           Registrar el tuyo
-        </button>
       </div>
 
       {success && (

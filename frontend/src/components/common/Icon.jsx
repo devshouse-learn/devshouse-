@@ -1,6 +1,4 @@
 import React from 'react';
-import { MdLightbulb, MdWorkspaces, MdPublic, MdStar, MdVerified, MdSecurity, MdEdit } from 'react-icons/md';
-import { FiBook, FiZap, FiGlobe } from 'react-icons/fi';
 
 // Componente wrapper de iconos con tamaño y color personalizables
 export const Icon = ({ name, size = 24, color = '#000000', className = '' }) => {

@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { venturesService, jobsService } from '../../services/registration.service';
+import BackButton from '../common/BackButton';
 import '../jobs/JobsList.css';
 
 const SearchCompanies = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
   const [activeTab, setActiveTab] = useState('ventures');
   const [openMenuId, setOpenMenuId] = useState(null);
+
+  // Detectar si estamos en un formulario
+  const isInForm = location.pathname.includes('/form');
+
   const getCompanyName = (company) =>
     activeTab === 'ventures'
       ? company.company_name || company.companyName || company.name || 'Emprendimiento'
@@ -145,13 +151,9 @@ const SearchCompanies = () => {
 
   return (
     <div className="list-container">
+      <BackButton />
       <div className="list-header" style={{ padding: '60px 40px', minHeight: '250px', justifyContent: 'space-between' }}>
         <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/recruiting')}
-            title="Volver al Centro de Reclutamiento"
-          ><span className="emoji">↩️</span> Volver </button>
         </div>
         <div className="header-content">
           <h1> Buscar Empresas</h1>
@@ -218,6 +220,7 @@ const SearchCompanies = () => {
           <button 
             className="btn-primary"
             onClick={() => navigate(activeTab === 'ventures' ? '/ventures/form' : '/jobs/form')}
+            style={{ display: isInForm ? 'none' : 'block' }}
           ><span className="emoji">✍️</span> Registrar </button>
         </div>
       ) : (
@@ -451,6 +454,21 @@ const SearchCompanies = () => {
                     }}
                     title="Contactar"
                   ><span className="emoji">📬</span> Contactar </button>
+                  <button
+                    className="btn-delete"
+                    onClick={() => {
+                      if (confirm('¿Está seguro de que desea eliminar este registro?')) {
+                        const service = activeTab === 'ventures' ? venturesService : jobsService;
+                        service.delete(company.id).then(() => {
+                          loadCompanies();
+                        }).catch(err => {
+                          console.error('Error al eliminar:', err);
+                          alert('Error al eliminar el registro');
+                        });
+                      }
+                    }}
+                    title="Eliminar registro"
+                  ><span className="emoji">🗑️</span></button>
                 </div>
               </div>
             </div>

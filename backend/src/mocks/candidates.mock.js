@@ -48,19 +48,19 @@ export const mockCandidates = [
     job_type_preference: 'Tiempo Completo',
     remote_preference: 'remote',
     salary_expectation_min: 3000,
-    salary_expectation_max: 4500,
+    salary_expectation_max: 4000,
     currency: 'USD',
-    availability: 'Disponible en 2 semanas',
+    availability: '2 semanas',
     status: 'active',
-    views: 456,
-    likes: 42,
-    reports: 0,
-    under_review: false,
+    views: 156,
+    likes: 9,
+    reports: 2,
+    under_review: true,
     show_in_search: true,
-    linkedin_url: 'https://linkedin.com/in/mariarodriguez',
-    portfolio_url: 'https://mariadesign.work',
-    created_at: new Date('2024-07-20'),
-    updated_at: new Date('2024-11-18'),
+    linkedin_url: 'https://linkedin.com/in/marodriguez',
+    portfolio_url: 'https://mariadesign.com',
+    created_at: new Date('2024-09-10'),
+    updated_at: new Date('2024-11-15'),
   },
   {
     id: 3,
@@ -208,7 +208,8 @@ export const incrementCandidateReports = (id) => {
   const candidate = mockCandidates.find(c => c.id === parseInt(id));
   if (candidate) {
     candidate.reports += 1;
-    if (candidate.reports >= 30) {
+    // Marcar como en revisión desde el primer reporte
+    if (candidate.reports >= 1) {
       candidate.under_review = true;
     }
   }

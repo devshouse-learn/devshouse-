@@ -1,5 +1,9 @@
 /* Consolidated form styles for all forms */
 
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
 .list-header {
   margin: 0 auto 5px auto;
   width: 100%;
@@ -28,7 +32,7 @@
 
 /* Alternative approach: add class to list-header in form pages */
 .list-header.form-page-header {
-  height: 250px;
+  height: auto;
   max-width: 2000px;
   padding: 30px 20px;
   margin: 0 auto;
@@ -40,6 +44,8 @@
   text-align: center;
   white-space: normal;
   word-spacing: 9999px;
+  margin-top: 5px;
+  margin-bottom: 30px;
 }
 
 /* Hide description and register button in form pages */
@@ -116,6 +122,8 @@
   flex-direction: column;
   justify-content: center;
   background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
 }
 
 /* Reducir padding para formularios de convenios y reclutamiento */
@@ -125,7 +133,7 @@
 }
 
 .form-container:has(.form-content) {
-  padding-top: 750px;
+  padding-top: 1000px;
 }
 
 .form-container:has(.profile-form) {
@@ -180,15 +188,18 @@
 .ventures-form,
 .job-form,
 .jobs-form,
-.search-form {
+.search-form,
+.form-content {
   background: #ffffff;
-  border: 2px solid #e0e0e0;
-  border-left: 6px solid #b0b0b0;
+  border: 2px solid #cccccc;
+  border-left: 6px solid #808080;
   border-radius: 12px;
   padding: 2.5rem;
   margin-bottom: 2rem;
   color: #000000;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
 }
 
 .agreement-form:nth-of-type(even),
@@ -216,6 +227,7 @@ fieldset {
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
+  margin-top: 2rem;
   letter-spacing: 0.5px;
   filter: none;
 }
@@ -228,6 +240,7 @@ legend {
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #e0e0e0;
   width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form-row {
@@ -244,14 +257,13 @@ legend {
 }
 
 .form-actions {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 2rem auto 0 auto;
   padding: 1.5rem 2rem;
   border-top: 1px solid #e0e0e0;
-  align-items: center;
-  justify-items: stretch;
   width: 100%;
 }
 
@@ -270,9 +282,11 @@ legend {
   gap: 1.5rem !important;
   grid-template-columns: unset !important;
   border-top: 1px solid #e0e0e0 !important;
-  padding: 1.5rem 2rem !important;
+  padding: 1.5rem 20px !important;
   margin: 2rem auto 0 auto !important;
-  width: fit-content !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  box-sizing: border-box !important;
 }
 
 .agreement-form .form-actions button,
@@ -294,7 +308,12 @@ legend {
 }
 
 .btn-group-center {
-  display: contents;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .btn-group-right {
@@ -327,6 +346,8 @@ legend {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
 }
 
 .form-info h3 {
@@ -334,12 +355,14 @@ legend {
   font-size: 1rem;
   margin: 0 0 1rem 0;
   font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form-info ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form-info li {
@@ -347,7 +370,8 @@ legend {
   padding: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form-info li::before {
@@ -403,21 +427,24 @@ legend {
 .job-form input:focus,
 .jobs-form input:focus,
 .search-form input:focus,
+.form-content input:focus,
 .agreement-form textarea:focus,
 .venture-form textarea:focus,
 .ventures-form textarea:focus,
 .job-form textarea:focus,
 .jobs-form textarea:focus,
 .search-form textarea:focus,
+.form-content textarea:focus,
 .agreement-form select:focus,
 .venture-form select:focus,
 .ventures-form select:focus,
 .job-form select:focus,
 .jobs-form select:focus,
-.search-form select:focus {
+.search-form select:focus,
+.form-content select:focus {
   outline: none !important;
-  border-color: #1e88e5 !important;
-  box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2) !important;
+  border-color: #b0b0b0 !important;
+  box-shadow: 0 0 0 2px rgba(176, 176, 176, 0.2) !important;
 }
 
 /* Form labels styling */
@@ -430,6 +457,8 @@ legend {
   color: #000000 !important;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
 }
 
 /* ============================================

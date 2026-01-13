@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { jobsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
+import BackButton from '../common/BackButton';
 import './JobsList.css';
 
 const JobsList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
   const [openMenuId, setOpenMenuId] = useState(null);
+
+  // Detectar si estamos en un formulario
+  const isInForm = location.pathname.includes('/form');
+
   const getCompanyName = (job) => job.company || job.company_name || job.employer || 'Empresa';
   const getLogoUrl = (job) => job.logoUrl || job.logo_url || job.companyLogo || job.company_logo || '';
   const getInitials = (value = '') =>
@@ -123,14 +129,9 @@ const JobsList = () => {
 
   return (
     <div className="list-container">
+      <BackButton />
       <div className="list-header">
         <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/recruiting')}
-            title="Volver al Centro de Reclutamiento"
-            style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-          ><span className="emoji">↩️</span> Volver </button>
           <button 
             className="btn-primary-large"
             onClick={() => navigate('/jobs/form')}

@@ -1,5 +1,4 @@
 import { useAuth } from '../../context/AuthContext';
-import PageWrapper from '../common/PageWrapper';
 import AdminPanel from './AdminPanel';
 
 export default function AdminDashboard() {
@@ -10,12 +9,6 @@ export default function AdminDashboard() {
   }
 
   return (
-    <PageWrapper
-      title="Panel de Administración"
-      subtitle="Gestiona la plataforma y el contenido"
-      icon=""
-    >
-      <AdminPanel />
-    </PageWrapper>
+    <AdminPanel />
   );
 }

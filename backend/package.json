@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "dev": "bash start-watch.sh",
+    "dev:fast": "bash start-fast.sh",
     "dev:stable": "node src/index.js",
     "start:safe": "node watchdog.js",
     "lint": "eslint src/**/*.js",

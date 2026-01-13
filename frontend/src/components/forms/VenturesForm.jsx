@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { venturesService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
 import validationRules from '../../services/validation.service';
+import BackButton from '../common/BackButton';
 import './forms.css';
 
 const VenturesForm = () => {
@@ -139,16 +140,10 @@ const VenturesForm = () => {
 
   return (
     <div className="form-container">
-      <button 
-        className="btn-back"
-        onClick={() => navigate('/ventures')}
-        title="Volver a Emprendimientos"
-        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-      ><span className="emoji">↩️</span> Volver </button>
-      
+      <BackButton />
       <div className="list-header form-page-header">
         <div className="header-content">
-          <h1> Publica Tu<br/>Emprendimiento</h1>
+          <h1>Emprendimiento</h1>
           <p>Comparte tu idea y conecta con inversores, mentores y posibles clientes</p>
         </div>
       </div>

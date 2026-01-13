@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { venturesService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
+import BackButton from '../common/BackButton';
 import './VenturesList.css';
 
 const VenturesList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [ventures, setVentures] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,9 @@ const VenturesList = () => {
       .map((word) => word[0])
       .join('')
       .toUpperCase() || 'EM';
+
+  // Detectar si estamos en un formulario
+  const isInForm = location.pathname.includes('/form');
 
   useEffect(() => {
     loadVentures();
@@ -96,7 +101,7 @@ const VenturesList = () => {
         setVentures(prevVentures => 
           prevVentures.map(venture => 
             venture.id === id 
-              ? { ...venture, reports: (venture.reports || 0) + 1 }
+              ? { ...venture, reports: (venture.reports || 0) + 1, underReview: result.data?.underReview || false }
               : venture
           )
         );
@@ -142,17 +147,13 @@ const VenturesList = () => {
 
   return (
     <div className="list-container">
+      <BackButton />
       <div className="list-header">
         <div className="header-top">
           <button 
-            className="btn-back"
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
-            style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-          ><span className="emoji">↩️</span> Volver </button>
-          <button 
             className="btn-primary-large"
             onClick={() => navigate('/ventures/form')}
+            style={{ display: isInForm ? 'none' : 'block' }}
           >
              Registrar el tuyo
           </button>

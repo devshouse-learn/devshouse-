@@ -21,7 +21,7 @@
 
 /* Sección fija de redes sociales */
 .footer-social-fixed {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
   backdrop-filter: blur(10px);
@@ -31,6 +31,9 @@
   text-align: center;
   z-index: 100;
   width: 100%;
+  left: 0;
+  right: 0;
+  animation: slideUp 0.3s ease-out;
 }
 
 .footer-social-fixed h4 {
@@ -108,6 +111,18 @@
   font-weight: 300;
   letter-spacing: 0.5px;
   font-size: 0.9rem;
+}
+
+/* Animación para que aparezca el footer */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {

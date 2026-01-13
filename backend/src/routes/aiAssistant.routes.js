@@ -183,7 +183,7 @@ router.get('/quick-fixes', (req, res) => {
         steps: [
           'Detener el servidor (Ctrl + C en la terminal)',
           'Ejecutar: cd backend && npm start',
-          'Esperar mensaje: "Servidor iniciado en puerto 3000"'
+          'Esperar mensaje: "Servidor iniciado en puerto 3001"'
         ],
         category: 'backend',
         difficulty: 'easy'
@@ -194,7 +194,7 @@ router.get('/quick-fixes', (req, res) => {
         description: 'Soluciona errores de configuración',
         steps: [
           'Verificar que exista el archivo .env en backend/',
-          'Comprobar que MONGODB_URI esté configurado',
+          'Comprobar que DB_TYPE esté configurado (sqlite o postgres)',
           'Verificar que JWT_SECRET tenga un valor',
           'Reiniciar el servidor después de cambios'
         ],
@@ -214,19 +214,7 @@ router.get('/quick-fixes', (req, res) => {
         category: 'auth',
         difficulty: 'easy'
       },
-      {
-        id: 'check-mongodb',
-        title: 'Verificar conexión a MongoDB',
-        description: 'Soluciona errores de base de datos',
-        steps: [
-          'Si usas MongoDB local: verificar que esté ejecutándose',
-          'Ejecutar: mongod --version (debe mostrar versión)',
-          'Si usas MongoDB Atlas: verificar conexión a internet',
-          'Verificar MONGODB_URI en .env'
-        ],
-        category: 'database',
-        difficulty: 'medium'
-      },
+
       {
         id: 'npm-install',
         title: 'Reinstalar dependencias',

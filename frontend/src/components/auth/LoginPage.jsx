@@ -6,6 +6,9 @@ import './AuthPage.css';
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [position, setPosition] = useState({ x: 30, y: 30 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -32,8 +35,41 @@ const LoginPage = () => {
     }
   };
 
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setDragOffset({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      setPosition({
+        x: e.clientX - dragOffset.x,
+        y: e.clientY - dragOffset.y,
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
   return (
-    <div className="auth-page">
+    <div className="auth-page" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}>
+      <button 
+        className="back-button"
+        onClick={() => navigate(-1)}
+        onMouseDown={handleMouseDown}
+        style={{
+          position: 'fixed',
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+        }}
+      >
+        ← Volver
+      </button>
       <div className="auth-container">
         <div className="auth-header">
           <h1>Inicia Sesión</h1>

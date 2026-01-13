@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Moderation API</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .section { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Test Moderation API</h1>
+    
+    <div class="section">
+        <h2>Stats</h2>
+        <button onclick="testStats()">Test /api/moderation/stats</button>
+        <pre id="stats-result">Esperando respuesta...</pre>
+    </div>
+
+    <div class="section">
+        <h2>Pending Items</h2>
+        <button onclick="testPending()">Test /api/moderation/pending</button>
+        <pre id="pending-result">Esperando respuesta...</pre>
+    </div>
+
+    <script>
+        async function testStats() {
+            console.log('Fetching /api/moderation/stats...');
+            const result = document.getElementById('stats-result');
+            try {
+                const res = await fetch('http://localhost:3001/api/moderation/stats');
+                const data = await res.json();
+                console.log('Stats response:', data);
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (e) {
+                console.error('Error:', e);
+                result.textContent = '❌ Error: ' + e.message;
+            }
+        }
+
+        async function testPending() {
+            console.log('Fetching /api/moderation/pending...');
+            const result = document.getElementById('pending-result');
+            try {
+                const res = await fetch('http://localhost:3001/api/moderation/pending');
+                const data = await res.json();
+                console.log('Pending response:', data);
+                result.textContent = 'Count: ' + data.count + '\n\n' + JSON.stringify(data.summary, null, 2);
+            } catch (e) {
+                console.error('Error:', e);
+                result.textContent = '❌ Error: ' + e.message;
+            }
+        }
+
+        // Test on load
+        console.log('Page loaded. Testing API...');
+        testStats();
+        testPending();
+    </script>
+</body>
+</html>

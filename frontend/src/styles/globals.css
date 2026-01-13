@@ -75,7 +75,6 @@ a[role="button"],
 .btn-home,
 .btn-close,
 .btn-approve,
-.btn-delete,
 .btn-contact,
 .nav-tab {
   background-color: #f3f4f6 !important;
@@ -83,6 +82,18 @@ a[role="button"],
   border: 1px solid #d1d5db !important;
   background-image: none !important;
   fill: #1f2937 !important;
+  padding: 8px 12px !important;
+  font-size: 0.9rem !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-delete {
+  background-color: #ffebee !important;
+  color: #d32f2f !important;
+  border: 1px solid #ef9a9a !important;
+  background-image: none !important;
   padding: 8px 12px !important;
   font-size: 0.9rem !important;
   border-radius: 8px !important;
@@ -106,12 +117,17 @@ a[role="button"]:hover:not(:disabled),
 .btn-home:hover:not(:disabled),
 .btn-close:hover:not(:disabled),
 .btn-approve:hover,
-.btn-delete:hover,
 .btn-contact:hover,
 .nav-tab:hover:not(:disabled) {
   background-color: #e5e7eb !important;
   color: #111827 !important;
   border-color: #cbd5e1 !important;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f !important;
+  color: white !important;
+  border-color: #b71c1c !important;
 }
 
 button:active:not(:disabled),

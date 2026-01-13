@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { candidatesService } from '../../services/registration.service';
+import BackButton from '../common/BackButton';
 import './JobSearchList.css';
 
 const JobSearchList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [candidates, setCandidates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
+
+  // Detectar si estamos en un formulario
+  const isInForm = location.pathname.includes('/form');
 
   useEffect(() => {
     loadCandidates();
@@ -110,14 +115,8 @@ const JobSearchList = () => {
 
   return (
     <div className="list-container">
+      <BackButton />
       <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
           <h1> Buscar Empleo</h1>
           <p>Encuentra candidatos talentosos o publica tu perfil profesional</p>
@@ -127,6 +126,7 @@ const JobSearchList = () => {
       <button 
         className="btn-primary-large"
         onClick={() => navigate('/recruiting/publish-profile')}
+        style={{ display: isInForm ? 'none' : 'block' }}
       >
          Registrar Perfil
       </button>
@@ -157,6 +157,7 @@ const JobSearchList = () => {
           <button 
             className="btn-primary"
             onClick={() => navigate('/recruiting/publish-profile')}
+            style={{ display: isInForm ? 'none' : 'block' }}
           >
              Registrar Perfil
           </button>

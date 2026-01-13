@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { moderationService } from '../../services/reactions.service';
 import { useAuth } from '../../context/AuthContext';
+import BackButton from '../common/BackButton';
 import './ModerationPanel.css';
 
 const ModerationPanel = () => {
@@ -14,20 +15,32 @@ const ModerationPanel = () => {
 
   useEffect(() => {
     loadData();
+    
+    // Recargar datos cada 5 segundos para detectar nuevos reportes
+    const interval = setInterval(loadData, 5000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   const loadData = async () => {
     try {
       setLoading(true);
+      console.log('📊 Cargando datos de moderación...');
       const [pendingRes, statsRes] = await Promise.all([
         moderationService.getPending(),
         moderationService.getStats(),
       ]);
 
+      console.log('✅ Respuesta getPending:', pendingRes);
+      console.log('✅ Respuesta getStats:', statsRes);
+
       setPendingItems(pendingRes.data || []);
       setStats(statsRes.data || {});
+      
+      console.log('✅ Items pendientes establecidos:', pendingRes.data?.length || 0);
+      console.log('✅ Stats establecidos:', statsRes.data);
     } catch (error) {
-      console.error('Error al cargar datos de moderación:', error);
+      console.error('❌ Error al cargar datos de moderación:', error);
     } finally {
       setLoading(false);
     }
@@ -75,10 +88,14 @@ const ModerationPanel = () => {
     switch (item.resourceType) {
       case 'agreement':
         return item.schoolName;
+      case 'student':
+        return item.name;
       case 'venture':
         return item.companyName;
       case 'job':
         return item.position;
+      case 'candidate':
+        return item.full_name || item.name || 'Sin nombre';
       default:
         return 'Sin título';
     }
@@ -88,10 +105,14 @@ const ModerationPanel = () => {
     switch (type) {
       case 'agreement':
         return ' Convenio';
+      case 'student':
+        return ' Estudiante';
       case 'venture':
         return ' Emprendimiento';
       case 'job':
         return ' Empleo';
+      case 'candidate':
+        return ' Talento';
       default:
         return type;
     }
@@ -104,17 +125,10 @@ const ModerationPanel = () => {
 
   return (
     <div className="moderation-panel">
+      <BackButton />
       <div className="moderation-header">
-        <h1> Panel de Moderación</h1>
-        <p>
-          Revisa y gestiona el contenido denunciado por la comunidad
-        </p>
-        <div className="moderator-info">
-          <span className="moderator-name">{user?.name}</span>
-          <span className={`moderator-role role-${user?.role}`}>
-            {user?.role === 'admin' ? ' Administrador' : ' Moderador'}
-          </span>
-        </div>
+        <h1>Panel de Moderación</h1>
+        <p>Revisa y gestiona el contenido denunciado por la comunidad</p>
       </div>
 
       {/* Estadísticas */}
@@ -144,6 +158,11 @@ const ModerationPanel = () => {
           <div className="stat-icon"></div>
           <div className="stat-value">{stats.itemsUnderReview?.jobs || 0}</div>
           <div className="stat-label">Empleos</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-icon"></div>
+          <div className="stat-value">{stats.itemsUnderReview?.candidates || 0}</div>
+          <div className="stat-label">Talentos</div>
         </div>
         <div className="stat-card">
           <div className="stat-icon"></div>
@@ -180,6 +199,13 @@ const ModerationPanel = () => {
         >
            Empleos (
           {pendingItems.filter((i) => i.resourceType === 'job').length})
+        </button>
+        <button
+          className={filter === 'candidate' ? 'active' : ''}
+          onClick={() => setFilter('candidate')}
+        >
+           Talentos (
+          {pendingItems.filter((i) => i.resourceType === 'candidate').length})
         </button>
       </div>
 
@@ -234,6 +260,14 @@ const ModerationPanel = () => {
                     <span> {item.experience}</span>
                   </div>
                 )}
+                {item.resourceType === 'candidate' && (
+                  <div className="item-details">
+                    <span> {item.email}</span>
+                    <span> {item.professional_title}</span>
+                    <span> {item.location}</span>
+                    <span> {item.years_experience} años experiencia</span>
+                  </div>
+                )}
               </div>
 
               {/* Detalles de las denuncias */}
@@ -275,18 +309,6 @@ const ModerationPanel = () => {
             </div>
           ))
         )}
-      </div>
-
-      {/* Back Button */}
-      <div className="moderation-navigation">
-        <button
-          type="button"
-          className="btn-back"
-          onClick={() => navigate(-1)}
-          title="Volver atrás"
-        >
-           Atrás
-        </button>
       </div>
     </div>
   );

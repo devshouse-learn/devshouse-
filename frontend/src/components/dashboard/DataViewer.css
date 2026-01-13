@@ -1,108 +1,144 @@
 .data-viewer {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-  padding: 2rem;
+  background: #ffffff;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .data-viewer-header {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 5px auto;
+  width: 100%;
+  max-width: 1100px;
+  height: 180px;
+  background: linear-gradient(135deg, #1e88e5, #00d4ff);
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  border-bottom: none;
+  box-sizing: border-box;
 }
 
 .data-viewer-header h1 {
-  margin: 0 0 0.5rem 0;
-  color: #1e3a8a;
+  color: #ffffff;
   font-size: 2rem;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .data-viewer-header p {
-  margin: 0 0 1rem 0;
-  color: #666;
+  margin: 0;
+  color: #ffffff;
+  font-size: 12px;
+  text-align: center;
 }
 
 .data-actions {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
   flex-wrap: wrap;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 .data-actions button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 13px;
 }
 
 .btn-refresh {
-  background: #3b82f6;
+  background: #1e88e5;
   color: white;
+  border-color: #1e88e5;
 }
 
 .btn-refresh:hover {
-  background: #2563eb;
+  background: #1557b0;
+  border-color: #1557b0;
   transform: translateY(-2px);
 }
 
 .btn-export {
-  background: #10b981;
+  background: #22c55e;
   color: white;
+  border-color: #22c55e;
 }
 
 .btn-export:hover {
-  background: #059669;
+  background: #16a34a;
+  border-color: #16a34a;
   transform: translateY(-2px);
 }
 
 .btn-danger {
   background: #ef4444;
   color: white;
+  border-color: #ef4444;
 }
 
 .btn-danger:hover {
   background: #dc2626;
+  border-color: #dc2626;
   transform: translateY(-2px);
 }
 
 .data-tabs {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  gap: 8px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+  box-sizing: border-box;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .data-tabs button {
-  padding: 0.75rem 1.5rem;
+  padding: 10px 20px;
   background: white;
-  border: 2px solid transparent;
-  border-radius: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #1e3a8a;
+  color: #333;
+  font-size: 13px;
 }
 
 .data-tabs button:hover {
-  border-color: #f59e0b;
-  transform: translateY(-2px);
+  border-color: #1e88e5;
+  color: #1e88e5;
 }
 
 .data-tabs button.active {
-  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  background: #1e88e5;
   color: white;
-  border-color: #f59e0b;
+  border-color: #1e88e5;
 }
 
 .data-content {
   background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 0;
+  box-shadow: none;
   min-height: 400px;
 }
 
@@ -110,98 +146,115 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 24px;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .stat-card {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-  padding: 2rem;
-  border-radius: 12px;
+  background: white;
+  border: 1px solid rgba(30, 136, 229, 0.2);
+  border-radius: 8px;
+  padding: 20px;
   text-align: center;
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(30, 136, 229, 0.1);
+  transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.2);
 }
 
 .stat-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 8px;
 }
 
 .stat-value {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 4px;
+  color: #1e88e5;
 }
 
 .stat-label {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 12px;
+  color: #666;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 /* Data List */
 .data-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 16px;
+  margin: 0 auto 40px auto;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .no-data {
   text-align: center;
-  padding: 3rem;
+  padding: 40px;
   color: #666;
-  font-size: 1.1rem;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
 }
 
 .data-item {
-  background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.5rem;
+  background: white;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 16px;
   transition: all 0.3s ease;
 }
 
 .data-item:hover {
-  border-color: #f59e0b;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+  border-color: #1e88e5;
+  box-shadow: 0 2px 8px rgba(30, 136, 229, 0.1);
 }
 
 .item-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #cccccc;
 }
 
 .item-header h3 {
   margin: 0;
-  color: #1e3a8a;
-  font-size: 1.3rem;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .btn-delete {
-  background: #1e88e5 !important;
-  border: none !important;
-  padding: 10px 20px !important;
-  border-radius: 8px !important;
+  background: #ef4444 !important;
+  border: 1px solid #ef4444 !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem !important;
+  font-size: 12px !important;
   color: white !important;
+  font-weight: 600 !important;
 }
 
 .btn-delete:hover {
-  background: #1e88e5 !important;
-  border-color: #1e88e5 !important;
-  transform: none;
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+  transform: translateY(-2px);
 }
 
 .item-details {

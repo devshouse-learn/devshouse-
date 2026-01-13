@@ -108,6 +108,8 @@ router.post('/report', async (req, res) => {
       });
     }
 
+    console.log(`📝 Registrando reporte para ${resourceType}:${resourceId}`);
+
     const result = addReport(finalUserId, resourceType, resourceId, reportReason);
 
     if (result.error) {
@@ -118,12 +120,22 @@ router.post('/report', async (req, res) => {
     }
 
     const resource = incrementResourceReports(resourceType, resourceId);
+    
+    console.log(`✅ Recurso después de reporte:`, { 
+      resourceType, 
+      resourceId, 
+      reports: resource?.reports, 
+      underReview: resource?.under_review 
+    });
 
     res.json({
       success: true,
       message: 'Denuncia registrada',
-      reports: resource?.reports || 1,
-      underReview: resource?.under_review || false,
+      data: {
+        reports: resource?.reports || 1,
+        underReview: resource?.under_review || false,
+      },
+      action: 'reported',
     });
   } catch (error) {
     console.error('Error al procesar denuncia:', error);

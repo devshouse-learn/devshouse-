@@ -1,0 +1,32 @@
+.back-button-floating {
+  position: fixed;
+  top: 100px;
+  left: 30px;
+  width: auto;
+  height: auto;
+  padding: 10px 16px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: grab;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+  z-index: 1000;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button-floating:hover {
+  background: #1557b0;
+  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.6);
+  transform: scale(1.05);
+}
+
+.back-button-floating:active {
+  cursor: grabbing;
+}

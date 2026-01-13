@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import './Footer.css';
 
 const Footer = () => {
+  const [showSocialBar, setShowSocialBar] = useState(false);
   const socialLinks = [
     {
       name: 'Facebook',
@@ -31,6 +33,21 @@ const Footer = () => {
     }
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Obtener la posición del footer
+      const footerElement = document.querySelector('.footer');
+      if (footerElement) {
+        const footerRect = footerElement.getBoundingClientRect();
+        // Mostrar la barra de redes cuando el footer esté visible en pantalla
+        setShowSocialBar(footerRect.top < window.innerHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       {/* Footer con derechos de autor */}
@@ -42,24 +59,26 @@ const Footer = () => {
         </div>
       </footer>
 
-      {/* Sección fija de redes sociales */}
-      <div className="footer-social-fixed">
-        <h4>Síguenos en nuestras redes</h4>
-        <div className="social-links">
-          {socialLinks.map((social) => (
-            <a
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-link"
-              title={social.name}
-            >
-              <span className="social-icon">{social.icon}</span>
-            </a>
-          ))}
+      {/* Sección fija de redes sociales - OCULTA (ahora aparece solo en Description) */}
+      {showSocialBar && (
+        <div className="footer-social-fixed">
+          <h4>Síguenos en nuestras redes</h4>
+          <div className="social-links">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                title={social.name}
+              >
+                <span className="social-icon">{social.icon}</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

@@ -89,6 +89,21 @@ const Description = () => {
             ))}
           </div>
         </div>
+
+        <div className="description-social">
+          <h3>Síguenos en nuestras redes</h3>
+          <div className="social-links">
+            <a href="https://www.facebook.com/share/1G9QVn3rdd/" target="_blank" rel="noopener noreferrer" title="Facebook" className="social-facebook">
+              <span className="emoji">f</span>
+            </a>
+            <a href="https://www.instagram.com/devshouseorg" target="_blank" rel="noopener noreferrer" title="Instagram" className="social-instagram">
+              <span className="emoji">📸</span>
+            </a>
+            <a href="https://www.youtube.com/@devshouse" target="_blank" rel="noopener noreferrer" title="YouTube" className="social-youtube">
+              <span className="emoji">▶️</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

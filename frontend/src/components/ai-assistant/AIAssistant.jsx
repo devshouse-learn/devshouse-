@@ -100,14 +100,16 @@ const AIAssistant = () => {
 
   return (
     <>
-      {/* Chat Button */}
-      <button 
-        className={`ai-chat-button ${isOpen ? 'open' : ''}`}
-        onClick={toggleChat}
-        aria-label="Asistente de IA"
-      >
-        {isOpen ? '✕' : '💬'}
-      </button>
+      {/* Chat Button - solo visible cuando el chat está cerrado */}
+      {!isOpen && (
+        <button 
+          className="ai-chat-button"
+          onClick={toggleChat}
+          aria-label="Asistente de IA"
+        >
+          💬
+        </button>
+      )}
 
       {/* Chat Window */}
       {isOpen && (
@@ -120,7 +122,7 @@ const AIAssistant = () => {
                 <span className="status"> En línea</span>
               </div>
             </div>
-            <button className="close-btn" onClick={toggleChat}></button>
+            <button className="close-btn" onClick={toggleChat} title="Cerrar">✕</button>
           </div>
 
           <div className="chat-messages">

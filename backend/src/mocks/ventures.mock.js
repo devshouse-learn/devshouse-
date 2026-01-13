@@ -44,8 +44,8 @@ export const mockVentures = [
     created_by: 2,
     views: 512,
     likes: 45,
-    reports: 1,
-    under_review: false,
+    reports: 2,
+    under_review: true,
     show_in_search: true,
     created_at: new Date('2023-01-20'),
     updated_at: new Date('2024-11-15'),
@@ -173,7 +173,8 @@ export const incrementVentureReports = (id) => {
   const venture = mockVentures.find(v => v.id === parseInt(id));
   if (venture) {
     venture.reports += 1;
-    if (venture.reports >= 30) {
+    // Marcar como en revisión desde el primer reporte
+    if (venture.reports >= 1) {
       venture.under_review = true;
     }
   }

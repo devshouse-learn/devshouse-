@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
+import BackButton from '../common/BackButton';
 import './AgreementsList.css';
 
 const AgreementsList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [agreements, setAgreements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({}); // Rastrear reacciones del usuario
   const [openMenuId, setOpenMenuId] = useState(null); // Rastrear cuál menú está abierto
+
+  // Detectar si estamos en un formulario
+  const isInForm = location.pathname.includes('/form');
 
   useEffect(() => {
     loadAgreements();
@@ -141,17 +146,13 @@ const AgreementsList = () => {
 
   return (
     <div className="list-container">
+      <BackButton />
       <div className="list-header">
         <div className="header-top">
           <button 
-            className="btn-back"
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
-            style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-          ><span className="emoji">↩️</span> Volver </button>
-          <button 
             className="btn-primary-large"
             onClick={() => navigate('/agreements/form')}
+            style={{ display: isInForm ? 'none' : 'block' }}
           >
              Registrar el tuyo
           </button>
@@ -188,6 +189,7 @@ const AgreementsList = () => {
           <button 
             className="btn-primary"
             onClick={() => navigate('/agreements/form')}
+            style={{ display: isInForm ? 'none' : 'block' }}
           >
              Registrar Convenio
           </button>

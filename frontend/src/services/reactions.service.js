@@ -59,4 +59,9 @@ export const moderationService = {
   getStats: async () => {
     return await apiService.get('/moderation/stats');
   },
+
+  // Obtener estado de revisión de un recurso
+  getStatus: async (resourceType, resourceId) => {
+    return await apiService.get(`/moderation/status/${resourceType}/${resourceId}`);
+  },
 };

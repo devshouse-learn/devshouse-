@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { agreementsService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
 import validationRules from '../../services/validation.service';
+import BackButton from '../common/BackButton';
 import './forms.css';
 
 const StudentForm = () => {
@@ -103,23 +104,9 @@ const StudentForm = () => {
 
   return (
     <div className="form-container">
-      <button 
-        className="btn-back"
-        onClick={() => navigate('/agreements')}
-        title="Volver a Convenios"
-        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-      ><span className="emoji">↩️</span> Volver </button>
-      
+      <BackButton />
       <div className="list-header form-page-header">
         <div className="header-content">
-          <button 
-            className="btn-primary"
-            onClick={() => navigate('/agreements/register')}
-            title="Registra tu perfil"
-            style={{ position: 'absolute', top: '-50px', left: '50%', transform: 'translateX(-50%)', zIndex: 100 }}
-          >
-            Registra el tuyo
-          </button>
           <h1>Estudiantes</h1>
           <p>Registra tu perfil y encuentra oportunidades de aprendizaje y experiencia</p>
         </div>
@@ -310,15 +297,6 @@ const StudentForm = () => {
         </fieldset>
 
         <div className="form-actions">
-          <div className="btn-group-left">
-            <button
-              type="button"
-              className="btn-back"
-              onClick={() => navigate(-1)}
-            >
-               Atrás
-            </button>
-          </div>
           <div className="btn-group-center">
             <button
               type="submit"
@@ -334,15 +312,6 @@ const StudentForm = () => {
               onClick={() => setError('')}
             >
                Limpiar
-            </button>
-          </div>
-          <div className="btn-group-right">
-            <button
-              type="button"
-              className="btn-close"
-              onClick={() => navigate('/')}
-            >
-               Cerrar
             </button>
           </div>
         </div>

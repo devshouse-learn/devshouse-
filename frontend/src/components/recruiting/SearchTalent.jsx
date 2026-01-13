@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { candidatesService } from '../../services/registration.service';
 import { useAuth } from '../../context/AuthContext';
+import BackButton from '../common/BackButton';
 import '../job-search/JobSearchList.css';
 
 const SearchTalent = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [talents, setTalents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userReactions, setUserReactions] = useState({});
   const [openMenuId, setOpenMenuId] = useState(null);
+
+  // Detectar si estamos en un formulario
+  const isInForm = location.pathname.includes('/form');
 
   const getInitials = (name = '') =>
     name
@@ -138,12 +143,7 @@ const SearchTalent = () => {
 
   return (
     <div className="list-container">
-      <button 
-        className="btn-back"
-        onClick={() => navigate('/recruiting')}
-        title="Volver al Centro de Reclutamiento"
-        style={{ position: 'fixed', top: '90px', left: '20px', zIndex: 100 }}
-      ><span className="emoji">↩️</span> Volver </button>
+      <BackButton />
 
       <div className="list-header">
         <div className="header-content">
@@ -186,6 +186,7 @@ const SearchTalent = () => {
           <button 
             className="btn-primary"
             onClick={() => navigate('/recruiting/publish-profile')}
+            style={{ display: isInForm ? 'none' : 'block' }}
           >
              Registra el tuyo
           </button>
@@ -386,17 +387,7 @@ const SearchTalent = () => {
                   <button
                     onClick={() => handleDelete(talent.id, talent)}
                     title={user?.role === 'admin' ? 'Eliminar perfil (admin)' : 'Eliminar tu perfil'}
-                    style={{
-                      backgroundColor: 'transparent',
-                      color: 'white',
-                      border: 'none',
-                      padding: '0',
-                      borderRadius: '0',
-                      cursor: 'pointer',
-                      fontWeight: '600',
-                      transition: 'none',
-                      fontSize: '20px',
-                    }}
+                    className="btn-delete"
                   ><span className="emoji">🗑️</span></button>
                 )}
               </div>

@@ -22,8 +22,8 @@ export const mockJobs = [
     created_by: 1,
     views: 892,
     likes: 67,
-    reports: 0,
-    under_review: false,
+    reports: 1,
+    under_review: true,
     show_in_search: true,
     deadline: new Date('2024-12-31'),
     created_at: new Date('2024-10-15'),
@@ -197,7 +197,8 @@ export const incrementJobReports = (id) => {
   const job = mockJobs.find(j => j.id === parseInt(id));
   if (job) {
     job.reports += 1;
-    if (job.reports >= 30) {
+    // Marcar como en revisión desde el primer reporte
+    if (job.reports >= 1) {
       job.under_review = true;
     }
   }

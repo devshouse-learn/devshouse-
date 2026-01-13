@@ -20,8 +20,8 @@ export const mockAgreements = [
     created_by: 1,
     views: 156,
     likes: 12,
-    reports: 0,
-    under_review: false,
+    reports: 3,
+    under_review: true,
     show_in_search: true,
     created_at: new Date('2023-11-20'),
     updated_at: new Date('2024-11-20'),
@@ -178,7 +178,8 @@ export const incrementAgreementReports = (id) => {
   const agreement = mockAgreements.find(a => a.id === parseInt(id));
   if (agreement) {
     agreement.reports += 1;
-    if (agreement.reports >= 30) {
+    // Marcar como en revisión desde el primer reporte
+    if (agreement.reports >= 1) {
       agreement.under_review = true;
     }
   }

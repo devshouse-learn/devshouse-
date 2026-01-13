@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../common/BackButton';
 import './RecruitingHub.css';
 
 const RecruitingHub = () => {
@@ -35,14 +36,8 @@ const RecruitingHub = () => {
 
   return (
     <div className="recruiting-container">
+      <BackButton />
       <div className="list-header">
-        <div className="header-top">
-          <button 
-            className="btn-back"
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
-          ><span className="emoji">↩️</span> Volver </button>
-        </div>
         <div className="header-content">
           <h1>Centro de Reclutamiento</h1>
           <p>Busca talento, publica ofertas y encuentra el mejor equipo</p>
